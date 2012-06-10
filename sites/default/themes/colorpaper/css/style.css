@@ -911,7 +911,7 @@ ul.tabs {
   font: bold 13px Arial, Helvetica, sans-serif;
 }
 ul.primary, ul.secondary {
-  margin: 0;
+  margin: 0 0 5px 0;
   padding: 0;
   width: 100%;
   float: left;
@@ -919,6 +919,7 @@ ul.primary, ul.secondary {
 }
 ul.primary li, ul.secondary li {
   float: left;
+  list-style: none;
   padding: 0;
   margin: 0;
 }
@@ -941,17 +942,19 @@ ul.primary li.active a, ul.primary li a:hover {
   border: 1px solid #d4d1af;
   border-bottom: 0;
 }
+ul.secondary {
+  border: none;
+  margin-bottom: 15px;
+}
 ul.secondary li {
-  border-right: 0;
   margin-left: 5px;
 }
 ul.secondary a {
+  border: 1px solid #F2F2F2;
   padding: 3px 6px;
-  border-bottom: 3px solid transparent;
 }
 ul.secondary a.active, ul.secondary li a:hover {
-  border-bottom: 3px solid #bdba97;
-  color: #6c6159;
+  border: 1px solid #666;
 }
 
 /*
@@ -1209,3 +1212,8 @@ DIVERS
 .view-temperaments .views-view-grid td { width: 50%; padding: 30px 10px 10px; border: none; }
 .view-temperaments .views-view-grid td.col-first:before { content: " "; background: transparent url(../images/temperament_sep.png) no-repeat left center; width: 520px; height: 100px; position: absolute; left: 50%; z-index: 2; margin-left: -175px; margin-top: -30px; }
 .view-temperaments .views-view-grid td .views-field-name { text-align: center; }
+
+.field-type-list-boolean .form-item { margin-bottom: 0; }
+.field-type-list-boolean .form-item .form-item { display: inline-block; padding-right: 15px; }
+.field-name-field-love-condition .form-item { margin-top: 0; }
+.field-name-field-crimes-condition .form-item { margin-top: 0; }
