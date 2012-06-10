@@ -113,8 +113,8 @@ function cec_payment_form() {
   );
   $form['block_amount']['detail'] = array(
     '#markup' => '<ul>'
-               . '<li' . ($isJoueur ? ' class="highlight"' : ''). '>Joueurs : 110 €</li>'
-               . '<li' . (!$isJoueur ? ' class="highlight"' : ''). '>Orgas et PNJ : 80 €</li>'
+               . '<li' . ($isJoueur ? ' class="highlight"' : ''). '><span>Joueurs : 110€</span></li>'
+               . '<li' . (!$isJoueur ? ' class="highlight"' : ''). '><span>Orgas et PNJ : 80€</span></li>'
                . '</ul>',
   );
   
@@ -125,9 +125,8 @@ function cec_payment_form() {
   $form['block_payment_method']['title'] = array(
     '#markup' => '<h2>Méthode de règlement</h2>',
   );
-  $form['payment_method'] = array(
+  $form['block_payment_method']['payment_method'] = array(
     '#type' => 'radios',
-    '#parents' => array('block_payment_method'),
     '#options' => array(
       'paypal' => 'Paypal',
       'check_1x' => 'Chèque en une fois',
@@ -141,7 +140,7 @@ function cec_payment_form() {
     '#type' => 'container',
     '#states' => array(
       'visible' => array(
-        ':input[name="block_payment_method"]' => array('value' => 'paypal'),
+        ':input[name="block_payment_method[payment_method]"]' => array('value' => 'paypal'),
       ), 
     ),
   );
@@ -153,8 +152,8 @@ function cec_payment_form() {
   );
   $form['block_paypal']['content_amount'] = array(
     '#markup' => '<ul>'
-               . '<li' . ($isJoueur ? ' class="highlight"' : ''). '>Joueurs : 114,13 €</li>'
-               . '<li' . (!$isJoueur ? ' class="highlight"' : ''). '>Orgas et PNJ : 83,07 €</li>'
+               . '<li' . ($isJoueur ? ' class="highlight"' : ''). '><span>Joueurs : 114,13€</span></li>'
+               . '<li' . (!$isJoueur ? ' class="highlight"' : ''). '><span>Orgas et PNJ : 83,07€</span></li>'
                . '</ul>',
   );
   $form['block_paypal']['content_comment'] = array(
@@ -171,7 +170,7 @@ function cec_payment_form() {
     '#type' => 'container',
     '#states' => array(
       'visible' => array(
-        ':input[name="block_payment_method"]' => array('value' => 'check_1x'),
+        ':input[name="block_payment_method[payment_method]"]' => array('value' => 'check_1x'),
       ), 
     ),
   );
@@ -185,8 +184,8 @@ function cec_payment_form() {
     '#markup' => '<p>Pour un paiement en une seule fois merci de nous envoyer un chèque qui sera encaissé au début du mois de septembre 2012.</p>',
   );
   $form['block_check_1x']['content_details'] = array(
-    '#markup' => '<p>'
-               . '<strong>Montant :</strong> ' . ($isJoueur ? '110' : '80'). '€<br />'
+    '#markup' => '<p class="highlight">'
+               . '<strong>Montant :</strong> <span>' . ($isJoueur ? '110' : '80'). '€</span><br />'
                . '<strong>Ordre :</strong> Terra Ludis<br />'
                . '<strong>Adresse :</strong><br />GN Capes&Crocs<br />c/o Edith Verceil<br />208 rue Claude Brousson<br />Apt. 2012, Bât. 7, Rés. Le Fontmagne<br />34000 MONTPELLIER FRANCE'
                . '</p>',
@@ -197,7 +196,7 @@ function cec_payment_form() {
     '#type' => 'container',
     '#states' => array(
       'visible' => array(
-        ':input[name="block_payment_method"]' => array('value' => 'check_3x'),
+        ':input[name="block_payment_method[payment_method]"]' => array('value' => 'check_3x'),
       ), 
     ),
   );
@@ -211,8 +210,8 @@ function cec_payment_form() {
     '#markup' => '<p>Pour un paiement en trois fois merci de nous envoyer trois chèques qui seront respectivement encaissés début septembre, début novembre 2012 et début février 2013.</p>',
   );
   $form['block_check_3x']['content_details'] = array(
-    '#markup' => '<p>'
-               . '<strong>Montants :</strong> ' . ($isJoueur ? '50€, 30€ et 30€' : '28€, 26€ et 26€'). '<br />'
+    '#markup' => '<p class="highlight">'
+               . '<strong>Montants :</strong> <span>' . ($isJoueur ? '50€, 30€ et 30€' : '28€, 26€ et 26€'). '</span><br />'
                . '<strong>Ordre :</strong> Terra Ludis<br />'
                . '<strong>Adresse :</strong><br />GN Capes&Crocs<br />c/o Edith Verceil<br />208 rue Claude Brousson<br />Apt. 2012, Bât. 7, Rés. Le Fontmagne<br />34000 MONTPELLIER FRANCE'
                . '</p>',
