@@ -9,7 +9,7 @@
  */
 function cec_profiles_permission() {
   return array(
-    'access_profile_opus' => array(
+    'access profile opus' => array(
       'title' => t('Access Opus field on profiles'),
     ),
   );
@@ -32,6 +32,6 @@ function cec_profiles_form_user_profile_form_alter(&$form, &$form_state, $form_i
     drupal_add_js(drupal_get_path('module', 'cec_profiles') . '/cec_profiles.js');
   }
   if (!empty($form['profile_' . $form['#user_category']]['field_opus'])) {
-    $form['profile_' . $form['#user_category']]['field_opus']['#access'] = user_access('access_profile_opus');
+    $form['profile_' . $form['#user_category']]['field_opus']['#access'] = user_access('access profile opus');
   }
 }
