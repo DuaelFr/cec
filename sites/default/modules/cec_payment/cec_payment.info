@@ -1,0 +1,5 @@
+name = CEC Payment
+description = Interface de paiement du GN
+package = "CEC"
+core = "7.x"
+dependencies[] = simple_paypal
