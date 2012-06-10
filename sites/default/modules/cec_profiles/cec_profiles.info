@@ -1,0 +1,4 @@
+name = CEC Profiles
+description = Ameliore les formulaires de profil utilisateurs
+package = "CEC"
+core = "7.x"

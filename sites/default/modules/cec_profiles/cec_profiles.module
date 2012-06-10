@@ -1,0 +1,27 @@
+<?php
+
+function cec_profiles_permission() {
+  return array(
+    'access_profile_opus' => array(
+      'title' => t('Access Opus field on profiles'),
+    ),
+  );
+}
+
+function cec_profiles_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#user_category'] == 'profil_joueur') {
+    $voc = taxonomy_vocabulary_machine_name_load('temperament');
+    $terms = taxonomy_get_tree($voc->vid);
+    $exclusion = array();
+    foreach ($terms as $term) {
+      $term = taxonomy_term_load($term->tid);
+      $antonym = field_get_items('taxonomy_term', $term, 'field_antonym');
+      $exclusion[$term->tid] = $antonym[0]['tid'];
+    }
+    drupal_add_js(array('temperaments_exclusion' => $exclusion), 'setting');
+    drupal_add_js(drupal_get_path('module', 'cec_profiles') . '/cec_profiles.js');
+  }
+  if (!empty($form['profile_' . $form['#user_category']]['field_opus'])) {
+    $form['profile_' . $form['#user_category']]['field_opus']['#access'] = user_access('access_profile_opus');
+  }
+}
