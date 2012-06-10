@@ -1217,3 +1217,10 @@ DIVERS
 .field-type-list-boolean .form-item .form-item { display: inline-block; padding-right: 15px; }
 .field-name-field-love-condition .form-item { margin-top: 0; }
 .field-name-field-crimes-condition .form-item { margin-top: 0; }
+
+.page-reglement {}
+.page-reglement .form-wrapper { padding-bottom: 25px; }
+.page-reglement .form-item-block-payment-method-payment-method { display: inline-block; padding: 10px; }
+.page-reglement .highlight span { display: inline-block; border-radius: 10px; background: #D1CBA9; padding: 0 10px; font-weight: bold; }
+.page-reglement .form-submit { background: #E7EBC4; color: #494440; width: 200px; height: 50px; border-radius: 25px; border: none; text-align: center; margin-left: 160px; margin-top: 25px; font-size: 1.2em; font-family: serif; font-weight: bold; }
+.page-reglement .form-submit:hover { background: #A5934D; color: #fff; }
