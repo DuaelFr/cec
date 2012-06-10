@@ -1,0 +1,494 @@
+<?php
+/**
+ * @file
+ * global_filter.module
+ *
+ * Creates in a block a global selector widget for a field, e.g. 'Country', a
+ * distance/proximity, a search term or terms, or the results of a View.
+ *
+ * Stores the user-selected value, e.g. 'Australia', in the $_SESSION so that
+ * it can be passed as a contextual filter argument to any number of Views
+ * or picked up by third-party modules to do something with.
+ */
+define('GLOBAL_FILTER_DEF_NUM_FILTERS', 2);
+
+require_once drupal_get_path('module', 'global_filter') . '/global_filter.blocks.inc';
+require_once drupal_get_path('module', 'global_filter') . '/global_filter.widgets.inc';
+
+/**
+ * Implements hook_help().
+ */
+function global_filter_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#global_filter':
+      $t = t('Configuration and usage instructions are in this <a href="@README">README.txt</a> file.<br/>Known issues and solutions may be found on the <a href="@global_filter">Global Filter</a> project page.', array(
+        '@README' => url(drupal_get_path('module', 'global_filter') . '/README.txt'),
+        '@global_filter' => url('http://drupal.org/project/global_filter')));
+      break;
+  }
+  return empty($t) ? '' : '<p>' . $t . '</p>';
+}
+
+/**
+ * Implements hook_menu().
+ *
+ * Define Global Filter menu options.
+ */
+function global_filter_menu() {
+  $items['admin/config/content/global_filter'] = array(
+    'title' => 'Global Filter',
+    'description' => 'Set the number of global filters you need. Configure the auto-cycle filter, if desired.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('global_filter_admin_config'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'global_filter.admin.inc'
+  );
+  return $items;
+}
+
+function global_filter_get_session_value($name) {
+  return isset($_SESSION) && isset($_SESSION['global_filter'][$name])
+      ? $_SESSION['global_filter'][$name]
+      : ''; // 'All'
+}
+
+
+/**
+ * Get the global default for the filter by the supplied name or index.
+ *
+ * @param $name_or_index
+ */
+function global_filter_get_global_default($name_or_index) {
+  if (is_numeric($name_or_index)) {
+    $i = $name_or_index;
+  }
+  else {
+    // Find filter index $i
+    $num_filters = variable_get('global_filter_num_filters', GLOBAL_FILTER_DEF_NUM_FILTERS);
+    for ($i = 1; $i <= $num_filters; $i++) {
+      if ($found = ($name_or_index == variable_get("global_filter_$i"))) {
+        break;
+      }
+    }
+    if (empty($found)) {
+      return;
+    }
+  }
+  // Trying the textarea for PHP code first...
+  $default = variable_get("global_filter_$i" . '_global_php_default', FALSE);
+  if (strpos($default, '<?php') === 0 && module_exists('php')) {
+    $default = php_eval($default);
+  }
+  if (empty($default)) {
+    // No default value delivered by PHP field. Take it from the global
+    // filter block configuration default selector.
+    $default = variable_get("global_filter_$i" . '_global_field_or_view_default', FALSE);
+  }
+  return $default;
+}
+
+/**
+ * Implements hook_user_login().
+ *
+ * Set global filters from the user profile, if present.
+ */
+function global_filter_user_login(&$edit, $account, $category) {
+  $num_filters = variable_get('global_filter_num_filters', GLOBAL_FILTER_DEF_NUM_FILTERS);
+  for ($i = 1; $i <= $num_filters; $i++) {
+    $name = variable_get("global_filter_$i");
+    if (!empty($name)) {
+      $user_profile_value = global_filter_user_profile_field($name, $account);
+      if (isset($user_profile_value)) {
+        gf_dbg(t('Global Filter setting default for %name from user profile...', array('%name' => $name)));
+        global_filter_set_on_session($name, $user_profile_value);
+      }
+      else {
+        gf_dbg(t('Global Filter %name no value found on user profile, default not set.', array('%name' => $name)));
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_init().
+ *
+ * For any of the code in this function to work, the global filter blocks
+ * in question need to be defined, but do not have to be visible and may be
+ * placed in the <none> region.
+ */
+function global_filter_init() {
+  if (empty($_SESSION)) {
+    gf_dbg(t('Session data cleared.'), NULL, TRUE);
+    return;
+  }
+
+  if (isset($_REQUEST['clear-global-filters'])) {
+    $filter_names = explode(',', $_REQUEST['clear-global-filters']);
+    global_filter_clear_filters($filter_names);
+    return;
+  }
+
+  $num_filters = variable_get('global_filter_num_filters', GLOBAL_FILTER_DEF_NUM_FILTERS);
+  for ($i = 1; $i <= $num_filters; $i++) {
+    $name = variable_get("global_filter_$i");
+    if (!empty($name)) {
+      if (!empty($_POST['from_links_widget']) && $_POST['from_links_widget'] == $name ) {
+        global_filter_set_on_session($name, explode(',', check_plain($_POST[$name])));
+      }
+      elseif (isset($_REQUEST[$name]) && !isset($_POST[$name])) {
+        // URL parameter, if present, overrides all of the below.
+        // Example: http://mysite.com.au?field_country=23,7,12
+        global_filter_set_on_session($name, explode(',', $_REQUEST[$name]));
+      }
+      elseif (isset($_SESSION['global_filter'][$name])) {
+        if (variable_get("global_filter_$i" . '_set_on_init', FALSE)) {
+          // This will set $_SESSION['global_filter'][$name] to the newly
+          // selected value.
+          global_filter_block_view("global_filter_$i");
+        }
+      }
+      else {
+        // This normally happens upon logout, i.e. creation of the anonymous
+        // user session. Sets a global default, possibly multi-valued.
+        $default = global_filter_get_global_default($i);
+        gf_dbg(t('Global Filter setting global default for %name to %default', array(
+          '%name' => $name, '%default' => print_r($default, TRUE))), NULL, TRUE);
+        global_filter_set_on_session($name, $default); // could still be empty
+      }
+    }
+  }
+  // Auto-cycle filter
+  if (variable_get('global_filter_view_autocycle_every_click', FALSE)) {
+    global_filter_get_view_next_value();
+  }
+}
+
+function global_filter_clear_filters($names = array()) {
+  if (!empty($_SESSION['global_filter'])) {
+    foreach (array_keys($_SESSION['global_filter']) as $name) {
+      if (empty($names) || empty($names[0]) || $names[0] == 'all' || in_array($name, $names)) {
+        $_SESSION['global_filter'][$name] = ''; // not NULL or unset()
+        gf_dbg(t('Clearing global filter'), $name);
+      }
+    }
+  }
+}
+
+function global_filter_set_on_session($name, $value) {
+  $prev_value = empty($_SESSION['global_filter'][$name]) ? '"all"' : print_r($_SESSION['global_filter'][$name], TRUE);
+
+  $_SESSION['global_filter'][$name] = $value;
+
+  gf_dbg(t('Global Filter %name value was: %prev_value,',
+    array('%name' => $name, '%prev_value' => $prev_value)), $name);
+
+  if ($name != 'view_autocycle' && variable_get('global_filter_mutex_mode', FALSE)) {
+    gf_dbg(t('Global Filter mutex mode is on, so setting other filters back to their defaults...'));
+    foreach (array_keys($_SESSION['global_filter']) as $n) {
+      if ($n != $name && $n != 'view_autocycle') {
+        $_SESSION['global_filter'][$n] = global_filter_get_global_default($n); // or '', ie "all" ?
+        gf_dbg(t('Global Filter setting global default'), $n);
+      }
+    }
+  }
+}
+
+/**
+ * Retrieve the supplied field value from the user profile.
+ */
+function global_filter_user_profile_field($field_name, $account = NULL) {
+  global $user;
+  if ($field = field_info_field($field_name)) {
+    if (!isset($account)) {
+      $account = user_load($user->uid);
+    }
+    $lang = empty($account->language) ? LANGUAGE_NONE : $account->language;
+    $key = ($field['type'] == 'taxonomy_term_reference') ? 'tid' : 'value';
+    if (isset($account->{$field_name}[$lang][0][$key])) {
+      return  $account->{$field_name}[$lang][0][$key];
+    }
+  }
+  return NULL;
+}
+
+/**
+ * In the supplied view return the successor to the supplied reference value.
+ *
+ * @param $ref_base_value
+ *   the base field value (eg nid, uid), whose successor is to be found and
+ *   returned based on the supplied view
+ * @param $view_id
+ *   the machine_name of the view to be evaluated; defaults to the view set in
+ *   the 'global_filter_view_autocycle' variable
+ * @return
+ *   next value of the specified view; this will be the first value if
+ *   $ref_base_value is empty
+ */
+function global_filter_get_view_next_value($ref_base_value = NULL, $view_id = NULL) {
+  if ($ref_base_value == NULL && isset($_SESSION['global_filter']['view_autocycle'])) {
+    $ref_base_value = $_SESSION['global_filter']['view_autocycle'];
+  }
+  if (empty($view_id)) {
+    $view_id = variable_get('global_filter_view_autocycle');
+    $view_id = drupal_substr($view_id, 5); // prefix=='view_';
+  }
+  $view = views_get_view($view_id);
+  if (!is_object($view)) {
+    drupal_set_message(t('Global Filter: auto-cycle filter could not find view: %view.', array(
+      '%view' => empty($view_id) ? t('no name specified') : $view_id)), 'error');
+    return $ref_base_value;
+  }
+  $view->init_display();
+  $view->pre_execute();
+  $view->execute();
+  if (empty($view->result)) {
+    return $ref_base_value;
+  }
+  // Find $ref_view_value in the view result set; must be a base-field.
+  foreach ($view->result as $row) {
+    if ($row->{$view->base_field} == $ref_base_value) {
+      $next_row = current($view->result);  // current will give us next...
+      break;
+    }
+  }
+  if (empty($next_row)) {
+    if (isset($ref_base_value)) {
+      // Reference value was set, but not found.
+      return FALSE;
+    }
+    // Return first view result
+    $next_row = reset($view->result);
+  }
+  $value = $next_row->{$view->base_field};
+  global_filter_set_on_session('view_autocycle', $value);
+  return $value;
+}
+
+/**
+ * Remove a deleted global filter from any view using it as a contextual filter.
+ *
+ * Note: because the same field/view may be used in more than one block and
+ * passed to the same view as a contextual filter (e.g top and bottom of the
+ * same page), it is not entirely correct to always remove it as a contextual
+ * filter. Should really check if the same argument is used in more than one
+ * global filter.... @todo
+ *
+ * @param $name, name of the filter
+ */
+function _global_filter_remove_default_filter_from_views($name) {
+  $views = views_get_all_views();
+  views_load_display_records($views);
+  // Go through all Views and delete the default global filter if it exists.
+  foreach ($views as $view) {
+    foreach ($view->display as $display_name => $display) {
+      if (isset($display->display_options['arguments'])) {
+        $arguments = $display->display_options['arguments'];
+        if (isset($arguments[$name]) || isset($arguments[$name . '_value']) || isset($arguments[$name . '_tid'])) {
+          unset($view->display[$display_name]->display_options['arguments'][$name]);
+          unset($view->display[$display_name]->display_options['arguments'][$name . '_value']);
+          unset($view->display[$display_name]->display_options['arguments'][$name . '_tid']);
+          drupal_set_message(t('As the global filter %old_filter was deleted, it was removed as the contextual default from the view %view.', array(
+            '%old_filter' => $name,
+            '%view' => empty($view->human_name) ? $view->name : $view->human_name
+          )));
+          views_save_view($view);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Return an array of node properties supported by Views. Properties are pieces
+ * of data common to all node types. This list was hard-coded as it was pre-
+ * filtered by common sensse. Some properties, like node comment count, aren't
+ * very useful as global filters.
+ * All of these will be presented as text boxes as opposed to selectors.
+ * Note that 'body' is not a property, it is a field.
+ *
+ * @return array, indexed alphabetically by machine name as used in Views.
+ */
+function global_filter_get_node_properties() {
+  $node_properties = &drupal_static(__FUNCTION__, array());
+  if (empty($node_properties)) {
+    $node_properties = array(
+      'changed_fulldate'   => t('Updated date (CCYYMMDD)'),
+      'changed_month'      => t('Updated month (MM)'),
+      'changed_year'       => t('Updated year (YYYY)'),
+      'changed_year_month' => t('Updated year + month (YYYYMM)'),
+      'created_fulldate'   => t('Created date (CCYYMMDD)'),
+      'created_month'      => t('Created month (MM)'),
+      'created_year'       => t('Created year (YYYY)'),
+      'created_year_month' => t('Created year + month (YYYYMM)'),
+      'nid'                => t('Node id'),
+      'title'              => t('Title'),
+      'type'               => t('Type'),
+      'uid_touch'          => t('User posted or commented'),
+      'vid'                => t('Revision id'),
+    //'status'             => t('Published?') not available in Views
+    );
+    $prefix = t('Content');
+    foreach ($node_properties as $key => $label) {
+      $node_properties[$key] = $prefix . ': ' . $label;
+    }
+  }
+  return $node_properties;
+}
+
+/**
+ * Implements hook_views_pre_view().
+ *
+ * This hook is called at the very beginning of views processing, before
+ * anything is done.
+ *
+ * This hook was implemented to ensure that a View timely receives its
+ * contextual argument (via $_SESSION['global_filter'][...]) even when it has a:
+ * a) page display, or
+ * b) block display that is rendered by core before the Global Filter block is.
+ * Yes this means that our tiny Global Filter block is rendered twice...so what?
+ *
+ * Note: none if this is necessary if the view is an autocycle view, as this
+ * gets executed in global_filter_init(). However, in the limited context of
+ * this hook we can't easily tell whether we're dealing with an auto-cycle view
+ * or not.
+ */
+function global_filter_views_pre_view(&$view, $display_id, $args) {
+  if (empty($view->display_handler->default_display->options['arguments'])) {
+    return;
+  }
+  $default_arguments = $view->display_handler->default_display->options['arguments'];
+
+  $num_filter_blocks = variable_get('global_filter_num_filters', GLOBAL_FILTER_DEF_NUM_FILTERS);
+  for ($i = 1; $i <= $num_filter_blocks; $i++) {
+    if (variable_get("global_filter_$i" . '_set_on_init')) {
+      continue;
+    }
+    foreach ($default_arguments as $default_argument_name => $default_argument) {
+      // Only look at default arguments of type 'global_filter_....'
+      if (!empty($default_argument['default_argument_type']) && strpos($default_argument['default_argument_type'], 'global_filter') === 0) {
+
+        if ($default_argument['default_argument_type'] == 'global_filter_view') {
+          global_filter_block_view("global_filter_$i");
+          break;
+        }
+
+        // Default field argument names may have suffixes '_value', '_fid', '_tid'
+        // See if default argument field name starts with $name.
+        $name = variable_get("global_filter_$i");
+        if (strpos($default_argument_name, $name) === 0) {
+          global_filter_block_view("global_filter_$i");
+          break;
+        }
+      }
+    }
+  }
+}
+
+function global_filter_views_api() {
+  return array(
+    'api'  => views_api_version(),
+    'path' => drupal_get_path('module', 'global_filter') . '/views',
+  );
+}
+
+/**
+ * Implements hook_slidebox_data_alter().
+ *
+ * Relies on an auto-cycle view to return a list of node ids that will have
+ * the slidebox feature enabled. The view may be filtered by vocabulary,
+ * content type, modification date (eg only recently commented content) etc.
+ * For each node the "next post" mentioned in the slidebox is the next node in
+ * the view, so make sure your view results are in the order you want them.
+ *
+ * @see slidebox.module
+ */
+function global_filter_slidebox_data_alter(&$node_details, $view_mode) {
+  if ($view_mode == 'full' && is_numeric(arg(1))) {
+    // If there's no auto-cycle view, follow normal Slidebox behaviour.
+    $view_id = drupal_substr(variable_get('global_filter_view_autocycle'), 5);
+    if (!views_get_view($view_id)) {
+      return FALSE;
+    }
+    $nid = arg(1);
+    $next_nid = global_filter_get_view_next_value($nid, $view_id);
+    if ($next_nid && ($next_node = node_load($next_nid))) {
+      $node_details['nid'] = $next_node->nid;
+      $node_details['title'] = $next_node->title;
+    }
+    else {
+      $node_details = FALSE; // don't show slidebox
+    }
+  }
+}
+
+function global_filter_get_by_name($full_name) {
+  $num_filter_blocks = variable_get('global_filter_num_filters', GLOBAL_FILTER_DEF_NUM_FILTERS);
+  for ($i = 1; $i <= $num_filter_blocks; $i++) {
+    if ($full_name == variable_get("global_filter_$i")) {
+      return "global_filter_$i";
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Returns names of all views (whether enabled or disabled) that have
+ * "Show: Fields" (as opposed to "Show: Content") set.
+ *
+ * @return array of View names, indexed by view_id
+ */
+function global_filter_get_view_names() {
+  $views = array();
+  foreach (views_get_all_views() as $view) {
+    $view_name = empty($view->human_name) ? $view->name : $view->human_name;
+    if (isset($view->display['default']->display_options['fields'])) {
+      $views['view_' . $view->name] = t('View') . ': ' . $view_name;
+    }
+    else {
+      //drupal_set_message(t('Cannot use view %view as a global filter, as its default display is not set to <strong>Show: Fields
+    }
+  }
+  return $views;
+}
+
+/**
+ * Returns a (short) list of view names that are currently used as global
+ * filters.
+ * @return array of View names, indexed by filter name.
+ */
+function global_filter_get_used_view_names() {
+  $views = array();
+  $num_filter_blocks = variable_get('global_filter_num_filters', GLOBAL_FILTER_DEF_NUM_FILTERS);
+  for ($i = 1; $i <= $num_filter_blocks; $i++) {
+    $filter_name = variable_get("global_filter_$i");
+    if (drupal_substr($filter_name, 0, 4) == 'view') {
+      $view_name = drupal_substr($filter_name, 5);
+      if ($view = views_get_view($view_name)) {
+        $views[$filter_name] = t('View') . ': ' . (empty($view->human_name) ? $view->name : $view->human_name);
+      }
+    }
+  }
+  $autocycle_filter_name = variable_get('global_filter_view_autocycle');
+  if (!empty($autocycle_filter_name)) {
+    $view_name = drupal_substr($autocycle_filter_name, 5);
+    if ($view = views_get_view($view_name)) {
+      $views['view_autocycle'] = t('Auto-cycle View') . ': ' . (empty($view->human_name) ? $view->name : $view->human_name);
+    }
+  }
+  return $views;
+}
+
+function gf_dbg($message, $name = NULL, $show_to_all_users = FALSE) {
+  global $user;
+  if (($show_to_all_users || $user->uid == 1) && variable_get('global_filter_show_debug_messages', FALSE)) {
+    if ($name) {
+      drupal_set_message($message . ' ' . t('%name, new value: %value.', array(
+        '%name' => $name,
+        '%value' => empty($_SESSION['global_filter'][$name]) ? '"all"' : print_r($_SESSION['global_filter'][$name], TRUE)
+      )));
+    }
+    else {
+      drupal_set_message($message);
+    }
+  }
+}

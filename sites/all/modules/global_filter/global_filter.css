@@ -1,0 +1,40 @@
+/* CSS for Global Filter module */
+
+/* Inline some widgets */
+.global-filter .form-checkboxes .form-item,
+.global-filter .form-radios .form-item,
+.global-filter .global-filter-links li,
+.global-filter .start-date-wrapper, .global-filter .end-date-wrapper  {
+  display: inline;
+}
+
+/* Inline simple textfields and simple selects, but not multi-selects */
+.global-filter .form-item.form-type-select,
+.global-filter .form-item.form-type-textfield {
+  display: inline !important;
+}
+.global-filter .form-item.form-type-select select[multiple="multiple"] {
+  display: block;
+}
+
+/* Links widget */
+.global-filter .global-filter-links {
+  margin-left: 0;
+}
+.global-filter .global-filter-links li {
+  margin-right: 2em;
+}
+.global-filter .global-filter-links a.active {
+  font-weight: bold;
+}
+.global-filter .suffix {
+  display: none;
+  font-style: italic;
+}
+
+/* When inheriting field widget don't want to see its label as we already have the block title' */
+.global-filter .form-type-select label {
+  display: none;
+}
+
+
