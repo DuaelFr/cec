@@ -1,5 +1,12 @@
 <?php
+/**
+ * @file
+ * Improve profiles forms.
+ */
 
+/**
+ * Implements hook_permission().
+ */
 function cec_profiles_permission() {
   return array(
     'access_profile_opus' => array(
@@ -8,6 +15,9 @@ function cec_profiles_permission() {
   );
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function cec_profiles_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
   if ($form['#user_category'] == 'profil_joueur') {
     $voc = taxonomy_vocabulary_machine_name_load('temperament');
