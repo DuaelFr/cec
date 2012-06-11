@@ -1172,6 +1172,12 @@ tr.menu-disabled {
         #header ul.nice-menu li ul {
           border: none;
         }
+            #header ul.nice-menu ul li {
+            	width: 220px;
+            }
+                ul.nice-menu-down li ul li ul {
+                	left: 220px;
+                }
                 
 #top_right {
     width: 135px;
@@ -1224,3 +1230,8 @@ DIVERS
 .page-reglement .highlight span { display: inline-block; border-radius: 10px; background: #D1CBA9; padding: 0 10px; font-weight: bold; }
 .page-reglement .form-submit { background: #E7EBC4; color: #494440; width: 200px; height: 50px; border-radius: 25px; border: none; text-align: center; margin-left: 160px; margin-top: 25px; font-size: 1.2em; font-family: serif; font-weight: bold; }
 .page-reglement .form-submit:hover { background: #A5934D; color: #fff; }
+
+body.cke_show_borders {
+  background: transparent;
+  color: #6C6159;
+}
