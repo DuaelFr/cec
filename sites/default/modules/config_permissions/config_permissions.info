@@ -1,0 +1,13 @@
+name = Config Permissions
+core = 7.x
+package = App
+version = 7.x-1.0-alpha1
+project = config_permissions
+dependencies[] = features
+features[features_api][] = api:1
+features[user_role][] = Inscription en liste d'attente
+features[user_role][] = Inscription finalisée
+features[user_role][] = Inscription validée
+features[user_role][] = Joueur
+features[user_role][] = PNJ
+features[user_role][] = Zorga
