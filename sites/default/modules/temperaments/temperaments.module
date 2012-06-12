@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Temperaments feature.
+ */
+
+include_once 'temperaments.features.inc';
