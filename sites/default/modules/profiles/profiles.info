@@ -52,7 +52,6 @@ features[field][] = profile2-profil_joueur-field_job2
 features[field][] = profile2-profil_joueur-field_love
 features[field][] = profile2-profil_joueur-field_love_condition
 features[field][] = profile2-profil_joueur-field_opus
-features[field][] = profile2-profil_joueur-field_origin
 features[field][] = profile2-profil_joueur-field_temperament1
 features[field][] = profile2-profil_joueur-field_temperament2
 features[field][] = profile2-profil_joueur-field_temperament3

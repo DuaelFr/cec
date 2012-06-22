@@ -110,11 +110,8 @@ function profiles_user_default_permissions() {
   $permissions['view own profil_joueur profile'] = array(
     'name' => 'view own profil_joueur profile',
     'roles' => array(
-      0 => 'Inscription finalisée',
-      1 => 'Joueur',
-      2 => 'PNJ',
-      3 => 'Zorga',
-      4 => 'authenticated user',
+      0 => 'Joueur',
+      1 => 'Zorga',
     ),
     'module' => 'profile2',
   );
@@ -123,11 +120,8 @@ function profiles_user_default_permissions() {
   $permissions['view own profil_pnj_orga profile'] = array(
     'name' => 'view own profil_pnj_orga profile',
     'roles' => array(
-      0 => 'Inscription finalisée',
-      1 => 'Joueur',
-      2 => 'PNJ',
-      3 => 'Zorga',
-      4 => 'authenticated user',
+      0 => 'PNJ',
+      1 => 'Zorga',
     ),
     'module' => 'profile2',
   );

@@ -1960,69 +1960,6 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_origin'
-  $fields['profile2-profil_joueur-field_origin'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_origin',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-        'profile2_private' => 0,
-      ),
-      'translatable' => '0',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'profil_joueur',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Si vous n\'avez pas de préférences, laissez ce champ vide. Sinon, les Zorgas essaieront d\'adapter le profil du personnage a vos souhaits.',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 7,
-        ),
-      ),
-      'entity_type' => 'profile2',
-      'field_name' => 'field_origin',
-      'label' => 'Nationalité souhaitée',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '9',
-      ),
-    ),
-  );
-
   // Exported field: 'profile2-profil_joueur-field_temperament1'
   $fields['profile2-profil_joueur-field_temperament1'] = array(
     'field_config' => array(
@@ -3289,7 +3226,6 @@ Format HH:MM');
   t('Les personnes mineures de plus de 16 ans sont admises sous conditions. Merci de nous contacter avant de vous inscrire.');
   t('Mais j\'ai besoin d\'aide!');
   t('Merci de nous fournir une photo en civil au format photo d\'identité sur laquelle on peut vous reconnaître distinctement. Une fois les rôles attribués, nous vous demanderons éventuellement de nous envoyer une photo en costume.');
-  t('Nationalité souhaitée');
   t('Nom');
   t('Nom du personnage');
   t('Numéro de téléphone principal');
@@ -3306,7 +3242,6 @@ Format HH:MM');
   t('Second Tempérament');
   t('Si oui, donnez ici leur nom. Sinon laissez le champ vide.');
   t('Si votre premier choix se révèle impossible...');
-  t('Si vous n\'avez pas de préférences, laissez ce champ vide. Sinon, les Zorgas essaieront d\'adapter le profil du personnage a vos souhaits.');
   t('Si vous ne résidez pas en France, merci de saisir votre numéro de téléphone avec indicatif national.');
   t('Troisième Tempérament');
   t('Vous sentez-vous l\'âme d\'un vrai méchant de roman ?');
