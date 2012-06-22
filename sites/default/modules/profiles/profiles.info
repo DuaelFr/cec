@@ -17,6 +17,7 @@ dependencies[] = markup
 dependencies[] = opus
 dependencies[] = phone
 dependencies[] = profile2
+dependencies[] = profile2_page
 dependencies[] = temperaments
 features[conditional_fields][] = profile2:profil_joueur
 features[ctools][] = field_group:field_group:1
