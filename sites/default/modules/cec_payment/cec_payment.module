@@ -294,7 +294,18 @@ function _cec_payment_reglement() {
  * 
  */
 function _cec_payment_reglement_recu() {
-  return 'Votre règlement a bien été reçu. Merci.';
+  return '<p class="highlight center"><span>Votre règlement a bien été reçu.<br />Merci.</span></p>'
+       . '<h2>Désistement</h2>'
+       . '<p>Si vous êtes finalement dans l\'impossibilité de venir, voici les conditions dans lesquelles nous recevrons votre désistement.</p>'
+       . '<h3>La meilleure solution</h3>'
+       . '<p>Vous trouvez un(e) remplaçant(e) qui reprends votre rôle et vous vous arrangez avec cette personne pour la participation aux frais.</p>'
+       . '<h3>Remboursement</h3>'
+       . '<p>Sauf cas de force majeure :</p>'
+       . '<ul>'
+       . '<li>avant le 01 février 2013 remboursement à 100% ;</li>'
+       . '<li>entre le 01 février et le 01 mars 2013 remboursement de 50% de la PAF ;</li>'
+       . '<li>et à partir du 01/03/2013 plus de remboursement du tout.</li>'
+       . '</ul>';
 }
 
 /**
