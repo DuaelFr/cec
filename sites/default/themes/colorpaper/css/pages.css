@@ -17,6 +17,11 @@ body {
   padding: 0;
 }
 
+#mimemail-body #main {
+  color: #F7F7EB;
+  margin: 25px auto;
+  width: 600px;
+}
 #page {
 }
 
