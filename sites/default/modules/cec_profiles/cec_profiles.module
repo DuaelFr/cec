@@ -52,7 +52,7 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Bonjour ' . $params['firstname'] . ',<br />';
     $msg .= '<br />';
     $msg .= '<br />';
-    $msg .= 'Votre pré-inscription au GN Capes & Crocs Acte II du 09 au 12 mais 2013 a été retenue.<br />';
+    $msg .= 'Votre pré-inscription au GN Capes & Crocs Acte II a été retenue.<br />';
     $msg .= '<br />';
     $msg .= 'Vous pouvez désormais accéder à un espace personnel sur <a href="' . $urlHome . '">le site</a> en utilisant les identifiant suivants :<br />';
     $msg .= 'Identifiant : ' . $params['login'] . '<br />';
@@ -82,10 +82,10 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Bonjour ' . $params['firstname'] . ',<br />';
     $msg .= '<br />';
     $msg .= '<br />';
-    $msg .= 'Nous avons bien reçu votre pré-inscription au GN Capes & Crocs Acte II du 09 au 12 mais 2013.<br />';
+    $msg .= 'Nous avons bien reçu votre pré-inscription au GN Capes & Crocs Acte II.<br />';
     $msg .= '<br />';
     $msg .= 'Elle est pour le moment placée sur la <strong>liste d\'attente</strong>.<br />';
-    $msg .= 'Qu\'est-ce que cela veut dire ? Et bien voilà, le GN est complet mais si nous avons des désistements, nous pourrons vous proposer une place.<br />';
+    $msg .= 'Cela signifie que le GN est complet mais si nous avons des désistements, nous pourrons vous proposer une place.<br />';
     $msg .= '<br />';
     $msg .= 'Pour cela, nous avons besoin que vous complétiez rapidement <a href="' . $urlProfil . '">le formulaire de personnage en ligne</a>.<br />';
     $msg .= '<br />';
