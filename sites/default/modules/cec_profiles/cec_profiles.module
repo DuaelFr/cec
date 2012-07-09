@@ -4,7 +4,7 @@
  * Improve profiles forms.
  */
 
-define('CEC_PROFILES_LIMIT', '20 juillet 2012');
+define('CEC_PROFILES_LIMIT', '15 août 2012');
 
 /**
  * Implements hook_permission().
@@ -18,10 +18,11 @@ function cec_profiles_permission() {
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_form_alter().
  */
-function cec_profiles_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
-  if ($form['#user_category'] == 'profil_joueur') {
+function cec_profiles_form_alter(&$form, &$form_state, $form_id) {
+  // profil_joueur profile form
+  if ($form_id == 'profile2_edit_profil_joueur_form') {
     $voc = taxonomy_vocabulary_machine_name_load('temperament');
     $terms = taxonomy_get_tree($voc->vid);
     $exclusion = array();
@@ -33,8 +34,13 @@ function cec_profiles_form_user_profile_form_alter(&$form, &$form_state, $form_i
     drupal_add_js(array('temperaments_exclusion' => $exclusion), 'setting');
     drupal_add_js(drupal_get_path('module', 'cec_profiles') . '/cec_profiles.js');
   }
-  if (!empty($form['profile_' . $form['#user_category']]['field_opus'])) {
-    $form['profile_' . $form['#user_category']]['field_opus']['#access'] = user_access('access profile opus');
+  
+  // All profile forms
+  if (strpos($form_id, 'profile2_') === 0) {
+    $profile_type = substr($form_id, 14, -5);
+    if (!empty($form['profile_' . $profile_type]['field_opus'])) {
+      $form['profile_' . $profile_type]['field_opus']['#access'] = user_access('access profile opus');
+    }
   }
 }
 
