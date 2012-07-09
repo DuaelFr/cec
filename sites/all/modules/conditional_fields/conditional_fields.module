@@ -1017,7 +1017,7 @@ function conditional_fields_evaluate_dependencies($dependent, $form, $form_state
     $dependee_form_field = drupal_array_get_nested_value($form, $form['#conditional_fields'][$dependee]['parents']);
     $dependee_values_location = conditional_fields_form_field_get_values($form[$dependee_form_field['#parents'][0]], $form_state);
     if (isset($dependee_values_location)) {
-      $values = $dependee_values_location[$dependee_form_field['#language']];
+      $values = $dependee_values_location[$dependee_form_field['#field_name']][$dependee_form_field['#language']];
     }
 
     $evaluated_dependees[$dependent['#field_name']][$dependency['options']['grouping']][] = conditional_fields_evaluate_dependency('edit', $values, $dependency['options']);
