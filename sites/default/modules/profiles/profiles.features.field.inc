@@ -333,7 +333,7 @@ function profiles_field_default_fields() {
       'label' => 'Régime alimentaire spécial',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -395,7 +395,7 @@ function profiles_field_default_fields() {
       'label' => 'Allergies et problèmes de santé',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -1325,7 +1325,7 @@ function profiles_field_default_fields() {
       'label' => 'Autre chose à nous dire ?',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -1387,7 +1387,7 @@ function profiles_field_default_fields() {
       'label' => 'Désirez-vous avoir des interactions spécifiques avec certains joueurs ?',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -1953,7 +1953,10 @@ function profiles_field_default_fields() {
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(),
+        'settings' => array(
+          'autocomplete_path' => 'taxonomy/autocomplete',
+          'size' => 60,
+        ),
         'type' => 'options_buttons',
         'weight' => '5',
       ),
@@ -2556,7 +2559,7 @@ Format HH:MM',
       'label' => 'J\'aurai d\'autres costumes qui iront bien pour l\'époque',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -2740,7 +2743,7 @@ Format HH:MM',
       'label' => 'Autre chose à nous dire ?',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -3044,7 +3047,7 @@ Format HH:MM',
       'label' => 'Compétences utiles particulières',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -3106,7 +3109,7 @@ Format HH:MM',
       'label' => 'J\'aurai du matériel qui peut être utile et que je suis prêt à amener',
       'required' => 0,
       'settings' => array(
-        'text_processing' => '0',
+        'text_processing' => '1',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
