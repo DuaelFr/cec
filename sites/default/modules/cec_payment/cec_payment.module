@@ -11,7 +11,7 @@ define('CEC_PAYMENT_ROLE_PAID', 'Inscription finalisée');
 define('CEC_PAYMENT_ROLE_JOUEUR', 'Joueur');
 if (CEC_PAYMENT_DEBUG) {
   define('CEC_PAYMENT_PAYPAL_EMAIL', 'seller_1339334871_biz@duael.fr');
-  define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://preprod.gn-capes-et-crocs.fr');
+  define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://mtp.duael.fr');
 }
 else {
   define('CEC_PAYMENT_PAYPAL_EMAIL', 'tresorier@terraludis.org');
@@ -246,6 +246,7 @@ function cec_payment_form() {
  */
 function cec_payment_mail($key, &$message, $params) {
   $urlProfil = url('profile-profil_joueur', array('absolute' => TRUE));
+
   $msg = '';
   if ($key == 'payment_received_paypal') {
     $msg .= 'Bonjour ' . $params['user']['firstname'] . ',<br />';
@@ -257,7 +258,8 @@ function cec_payment_mail($key, &$message, $params) {
     $msg .= '<br />';
     $msg .= 'Ludiquement votre,<br />';
     $msg .= 'Les Zorgas';
-  } elseif ($key == 'payment_received_check') {
+  }
+  elseif ($key == 'payment_received_check') {
     $msg .= 'Bonjour ' . $params['user']['firstname'] . ',<br />';
     $msg .= '<br />';
     $msg .= '<br />';
@@ -268,6 +270,7 @@ function cec_payment_mail($key, &$message, $params) {
     $msg .= 'Ludiquement votre,<br />';
     $msg .= 'Les Zorgas';
   }
+
   $message['subject'] = '[GN C&C] Paiement reçu';
   $message['body'] = $msg;
 }
@@ -360,7 +363,7 @@ function _cec_payment_paypal_callback() {
 
   // Format the fields
   $data = array(
-    'name'        => check_plain($_POST['first_name'] .' '. $_POST['last_name'] . ($_POST['payer_business_name'] ? ' ('. $_POST['payer_business_name'] .')' : '')),
+    'name'        => check_plain($_POST['first_name'] .' '. $_POST['last_name'] . (!empty($_POST['payer_business_name']) ? ' ('. $_POST['payer_business_name'] .')' : '')),
     'amount'      => check_plain((float)$_POST['mc_gross'] - (float)$_POST['mc_fee']),
     'fee'         => check_plain($_POST['mc_fee']),
     'timestamp'   => check_plain(strtotime($_POST['payment_date'])),
