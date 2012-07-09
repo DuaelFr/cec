@@ -148,7 +148,7 @@ function cec_profiles_import_from_csv($file) {
   // Process file
   $user_roles = user_roles(TRUE);
   while (($line = fgetcsv($f)) !== FALSE) {
-    if ($line[2] == 'Nom' && $line[4] == 'Adresse email') { continue; } // Jump headers
+    if ($line[2] == 'Nom' && $line[5] == 'Adresse email') { continue; } // Jump headers
     $line = array_map('trim', $line); // Remove trailing spaces
     
     $login = transliteration_clean_filename($line[4] . ' ' . $line[2]);
