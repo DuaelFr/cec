@@ -249,7 +249,7 @@ function cec_payment_mail($key, &$message, $params) {
 
   $msg = '';
   if ($key == 'payment_received_paypal') {
-    $msg .= 'Bonjour ' . $params['user']['firstname'] . ',<br />';
+    $msg .= 'Bonjour ' . $params['user']->data['firstname'] . ',<br />';
     $msg .= '<br />';
     $msg .= '<br />';
     $msg .= 'Nous avons bien reçu votre règlement Paypal pour le GN Capes & Crocs Acte II du 09 au 12 mai 2013.<br />';
@@ -260,7 +260,7 @@ function cec_payment_mail($key, &$message, $params) {
     $msg .= 'Les Zorgas';
   }
   elseif ($key == 'payment_received_check') {
-    $msg .= 'Bonjour ' . $params['user']['firstname'] . ',<br />';
+    $msg .= 'Bonjour ' . $params['user']->data['firstname'] . ',<br />';
     $msg .= '<br />';
     $msg .= '<br />';
     $msg .= 'Nous avons bien reçu votre règlement pour le GN Capes & Crocs Acte II du 09 au 12 mai 2013.<br />';
@@ -396,5 +396,8 @@ function _cec_payment_set_paid($user, $src = 'paypal') {
   user_save($user);
   
   // Send confirmation email
-  drupal_mail('cec_payment', 'payment_received_' . $src, $user->mail, language_default(), array('user' => $user));
+  $params = array(
+    'user' => $user,
+  );
+  drupal_mail('cec_payment', 'payment_received_' . $src, $user->mail, language_default(), $params);
 }
