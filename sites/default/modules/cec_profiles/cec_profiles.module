@@ -43,8 +43,8 @@ function cec_profiles_form_user_profile_form_alter(&$form, &$form_state, $form_i
  */
 function cec_profiles_mail($key, &$message, $params) {
   $urlHome = url('<front>', array('absolute' => TRUE));
-  $urlAdmin = url('user/me/edit/inscription_administrative', array('absolute' => TRUE));
-  $urlProfil = url('user/me/edit/profil_joueur', array('absolute' => TRUE));
+  $urlAdmin = url('profile-inscription_administrative', array('absolute' => TRUE));
+  $urlProfil = url('profile-profil_joueur', array('absolute' => TRUE));
   $urlPaiement = url('reglement', array('absolute' => TRUE));
   $urlEntracte = url('https://docs.google.com/spreadsheet/viewform?fromEmail=true&formkey=dHE1STJzS3ltSjAxTm82VmI3Z25RVEE6MQ', array('external' => TRUE));
   
