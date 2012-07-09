@@ -46,6 +46,7 @@ function cec_profiles_mail($key, &$message, $params) {
   $urlAdmin = url('user/me/edit/inscription_administrative', array('absolute' => TRUE));
   $urlProfil = url('user/me/edit/profil_joueur', array('absolute' => TRUE));
   $urlPaiement = url('reglement', array('absolute' => TRUE));
+  $urlEntracte = url('https://docs.google.com/spreadsheet/viewform?fromEmail=true&formkey=dHE1STJzS3ltSjAxTm82VmI3Z25RVEE6MQ', array('external' => TRUE));
   
   $msg = '';
   if ($key == 'new_subscription') {
@@ -69,6 +70,7 @@ function cec_profiles_mail($key, &$message, $params) {
       $msg .= '<li>le formulaire de personnage complété, <strong>le choix ayant été fait de ne pas conserver celui de l\'Acte précédent</strong>. (<a href="' . $urlProfil . '">y accéder</a>)</li>';
     }
     else {
+      $msg .= '<li>le formulaire d\'Entr\'Acte nous permettant de déterminer les actions de votre personnage durant les quelques mois qui séparent cet Acte du précédent (<a href="' . $urlEntracte . '">y accéder</a>)</li>';
       $msg .= '<li>le formulaire de personnage complété avec les même informations que lors de votre inscription à l\'Acte précédent. Si vous ne vous en souvenez pas, laissez le vide nous le complèterons nous-même. (<a href="' . $urlProfil . '">y accéder</a>)</li>';
     }
     $msg .= '</ol><br />';
