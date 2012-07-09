@@ -4,14 +4,14 @@
  * Handle Paypal payment
  */
 
-define('CEC_PAYMENT_DEBUG', TRUE);
+define('CEC_PAYMENT_DEBUG', FALSE);
 
 define('CEC_PAYMENT_ROLE_BEFORE', 'Inscription validée');
 define('CEC_PAYMENT_ROLE_PAID', 'Inscription finalisée');
 define('CEC_PAYMENT_ROLE_JOUEUR', 'Joueur');
 if (CEC_PAYMENT_DEBUG) {
   define('CEC_PAYMENT_PAYPAL_EMAIL', 'seller_1339334871_biz@duael.fr');
-  define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://mtp.duael.fr');
+  define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://preprod.gn-capes-et-crocs.fr');
 }
 else {
   define('CEC_PAYMENT_PAYPAL_EMAIL', 'tresorier@terraludis.org');
