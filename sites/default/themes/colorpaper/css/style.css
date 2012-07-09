@@ -826,6 +826,7 @@ table.system-status-report tr.ok th {
   position: absolute;
   bottom: 55px;
 }
+/*
 div.messages, div.warning {
   padding: 3px 6px;
   margin: 5px 0;
@@ -845,6 +846,7 @@ div.error {
   background-color: #fbdada;
   border-color: #e8b3b3;
 }
+*/
 .item-list ul {
   margin: 0 0 0 32px;
 }
