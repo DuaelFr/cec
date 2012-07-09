@@ -912,7 +912,6 @@ ul.primary, ul.secondary {
   margin: 0 0 5px 0;
   padding: 0;
   width: 100%;
-  float: left;
   border-bottom: 1px solid #d3d3c9;
 }
 ul.primary li, ul.secondary li {
