@@ -4,10 +4,20 @@
  * Handle Paypal payment
  */
 
+define('CEC_PAYMENT_DEBUG', TRUE);
+
 define('CEC_PAYMENT_ROLE_BEFORE', 'Inscription validée');
 define('CEC_PAYMENT_ROLE_PAID', 'Inscription finalisée');
 define('CEC_PAYMENT_ROLE_JOUEUR', 'Joueur');
-define('CEC_PAYMENT_PAYPAL_EMAIL', 'seller_1339334871_biz@duael.fr');
+if (CEC_PAYMENT_DEBUG) {
+  define('CEC_PAYMENT_PAYPAL_EMAIL', 'seller_1339334871_biz@duael.fr');
+  define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://preprod.gn-capes-et-crocs.fr');
+}
+else {
+  define('CEC_PAYMENT_PAYPAL_EMAIL', 'tresorier@terraludis.org');
+  define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://www.gn-capes-et-crocs.fr');
+}
+
 
 
 //------------------------------------------------------------------------------
@@ -77,12 +87,11 @@ function cec_payment_form() {
   );
   $form['return'] = array(
     '#type' => 'hidden',
-//    '#value' => url('reglement/recu', array('absolute' => TRUE)),
-    '#value' => 'http://mtp.duael.fr/paypal/callback',
+    '#value' => CEC_PAYMENT_PAYPAL_NOTIFY . '/reglement/recu',
   );
   $form['notify_url'] = array(
     '#type' => 'hidden',
-    '#value' => url('paypal/callback', array('absolute' => TRUE)),
+    '#value' => url('paypal/callback', array('absolute' => TRUE, 'base_url' => CEC_PAYMENT_PAYPAL_NOTIFY)),
   );
   $form['amount'] = array(
     '#type' => 'hidden',
