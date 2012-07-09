@@ -851,9 +851,6 @@ div.error {
 .item-list ul li {
   margin: 0;
 }
-.form-item input.error, .form-item textarea.error, .form-item select.error {
-  border: 2px solid #e8b3b3;
-}
 .form-item .description {
   font-size: 11px;
   color: #978b82;
