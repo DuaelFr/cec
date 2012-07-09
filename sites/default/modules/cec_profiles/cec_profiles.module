@@ -68,7 +68,7 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Afin que votre inscription soit validée, nous avons besoin de recevoir <strong>avant le ' . CEC_PROFILES_LIMIT . '</strong> les éléments suivants :<br />';
     $msg .= '<ol>';
     $msg .= '<li>le formulaire d\'inscription administrative complété (<a href="' . $urlAdmin . '">y accéder</a>)</li>';
-    $msg .= '<li>le règlement pour l\inscription au GN (<a href="' . $urlPaiement . '">consulter les détails</a>)</li>';
+    $msg .= '<li>le règlement pour l\'inscription au GN (<a href="' . $urlPaiement . '">consulter les détails</a>)</li>';
     if ($params['is_new_player']) {
       $msg .= '<li>le formulaire de personnage complété (<a href="' . $urlProfil . '">y accéder</a>)</li>';
     } 
