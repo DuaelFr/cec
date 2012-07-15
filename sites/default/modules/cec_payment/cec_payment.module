@@ -378,6 +378,7 @@ function _cec_payment_paypal_callback() {
     'timestamp'   => check_plain(strtotime($_POST['payment_date'])),
     'payer_email' => check_plain($_POST['payer_email']),
     'uid'         => check_plain($_POST['custom']),
+    'receiver'    => $receiver,
   );
 
   $user = user_load($data['uid']);
@@ -406,7 +407,7 @@ function _cec_payment_set_paid($user, $src = 'paypal', $data = array()) {
     '@mail'     => $data['payer_email'],
     '@amount'   => $data['amount'],
     '@uid'      => $data['uid'],
-    '@gateway'  => $src == 'check' ? 'Chèque' : 'Paypal',
+    '@gateway'  => $src == 'check' ? 'Chèque' : 'Paypal [' . $data['receiver'] . ']',
   ));
   
   // Send confirmation email
