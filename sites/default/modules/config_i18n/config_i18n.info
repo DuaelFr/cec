@@ -1,0 +1,16 @@
+name = Config i18n
+core = 7.x
+package = App
+version = 7.x-1.0-alpha1
+project = config_i18n
+dependencies[] = features
+dependencies[] = l10n_update
+dependencies[] = locale
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:1
+features[language][] = en
+features[language][] = fr
+features[variable][] = language_count
+features[variable][] = language_default
+features[variable][] = language_types
