@@ -5,11 +5,3 @@
  */
 
 include_once 'config_base.features.inc';
-
-/**
- * Implements hook_install().
- */
-function config_base_install() {
-  theme_enable(array('colorpaper'));
-  theme_disable(array('bartik'));
-}
