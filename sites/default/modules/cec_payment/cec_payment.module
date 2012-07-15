@@ -10,11 +10,13 @@ define('CEC_PAYMENT_ROLE_BEFORE', 'Inscription validée');
 define('CEC_PAYMENT_ROLE_PAID', 'Inscription finalisée');
 define('CEC_PAYMENT_ROLE_JOUEUR', 'Joueur');
 if (CEC_PAYMENT_DEBUG) {
-  define('CEC_PAYMENT_PAYPAL_EMAIL', 'seller_1339334871_biz@duael.fr');
+  define('CEC_PAYMENT_PAYPAL_EMAIL1', 'seller_1339334871_biz@duael.fr');
+  define('CEC_PAYMENT_PAYPAL_EMAIL2', 'seller_1339334871_biz@duael.fr');
   define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://preprod.gn-capes-et-crocs.fr');
 }
 else {
-  define('CEC_PAYMENT_PAYPAL_EMAIL', 'tresorier@terraludis.org');
+  define('CEC_PAYMENT_PAYPAL_EMAIL1', 'tresorier@terraludis.org');
+  define('CEC_PAYMENT_PAYPAL_EMAIL2', 'e.cunibil@gmail.com');
   define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://www.gn-capes-et-crocs.fr');
 }
 
@@ -75,7 +77,7 @@ function cec_payment_form() {
   // Paypal parameters
   $form['business'] = array(
     '#type' => 'hidden',
-    '#value' => CEC_PAYMENT_PAYPAL_EMAIL,
+    '#value' => constant('CEC_PAYMENT_PAYPAL_EMAIL' . rand(1, 2)),
   );
   $form['cmd'] = array(
     '#type' => 'hidden',
@@ -302,7 +304,14 @@ function cec_payment_bulk_declare_paid($entities, $context = array()) {
   foreach ($entities as $user) {
     $isPaid = array_search(CEC_PAYMENT_ROLE_PAID, $user->roles) !== FALSE;
     if (!$isPaid) {
-      _cec_payment_set_paid($user, 'check');
+      $isJoueur = array_search(CEC_PAYMENT_ROLE_JOUEUR, $user->roles) !== FALSE;
+      $data = array(
+        'name' => $user->data['firstname'] . ' ' . $user->data['lastname'],
+        'payer_email' => $user->email,
+        'amount' => $isJoueur ? 110 : 80,
+        'uid' => $user->uid,
+      );
+      _cec_payment_set_paid($user, 'check', $data);
     }
   }
 }
@@ -356,7 +365,7 @@ function _cec_payment_paypal_callback() {
   }
   
   // Payment is not for the email address configured
-  if ($receiver != CEC_PAYMENT_PAYPAL_EMAIL) {
+  if ($receiver != CEC_PAYMENT_PAYPAL_EMAIL1 && $receiver != CEC_PAYMENT_PAYPAL_EMAIL2) {
     watchdog('cec_payment', 'Payment is not for the email address configured', array(), WATCHDOG_ERROR);
 	return;
   }
@@ -377,23 +386,28 @@ function _cec_payment_paypal_callback() {
 	return;
   }
   
-  _cec_payment_set_paid($user, 'paypal');
-  
-  watchdog('cec_payment', 'Paiement reçu de @name (@mail) [@uid] : @amount €.', array(
-    '@name'     => $data['name'],
-    '@mail'     => $data['payer_email'],
-    '@amount'   => $data['amount'],
-    '@uid'      => $data['uid'],
-  ));
+  _cec_payment_set_paid($user, 'paypal', $data);
 }
 
-function _cec_payment_set_paid($user, $src = 'paypal') {
+/**
+ * 
+ */
+function _cec_payment_set_paid($user, $src = 'paypal', $data = array()) {
   // Change roles
   $role = user_role_load_by_name(CEC_PAYMENT_ROLE_BEFORE);
   unset($user->roles[$role->rid]);
   $role = user_role_load_by_name(CEC_PAYMENT_ROLE_PAID);
   $user->roles[$role->rid] = $role->name;
   user_save($user);
+  
+  // Log payment
+  watchdog('cec_payment', 'Paiement reçu de @name (@mail) [@uid] par @gateway : @amount €.', array(
+    '@name'     => $data['name'],
+    '@mail'     => $data['payer_email'],
+    '@amount'   => $data['amount'],
+    '@uid'      => $data['uid'],
+    '@gateway'  => $src == 'check' ? 'Chèque' : 'Paypal',
+  ));
   
   // Send confirmation email
   $params = array(
