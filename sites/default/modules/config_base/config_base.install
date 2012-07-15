@@ -6,4 +6,5 @@
 function config_base_install() {
   theme_enable(array('colorpaper'));
   theme_disable(array('bartik'));
+  variable_set('theme_default', 'colorpaper');
 }
