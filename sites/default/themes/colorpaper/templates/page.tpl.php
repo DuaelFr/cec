@@ -117,6 +117,9 @@
         <div id="mission-folded-corner">
           <h1 class="page-title"><?php print $site_name; ?></h1>
           <div id="mission"><?php print $site_slogan; ?></div>
+          <div id="page-title-region">
+             <?php print render($page['highlighted']); ?>
+          </div> <!-- /#page-title-region -->
         </div> <!-- /#mission-folded-corner -->
       <?php else: ?>
         <div id="page-title-folded-corner">
@@ -140,7 +143,6 @@
       <?php endif; ?>
       <div id="main">
         <div id="content" class="column" role="main">
-          <?php print render($page['highlighted']); ?>
           <a id="main-content"></a> 
           <?php print $messages; ?>
           <?php print render($tabs); ?>
