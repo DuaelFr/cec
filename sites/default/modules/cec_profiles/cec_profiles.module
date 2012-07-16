@@ -59,6 +59,11 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Bonjour ' . $params['firstname'] . ',<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
+    if ($params['is_apologies']) {
+      $msg .= '<strong>Vous recevez ce mail car il semblerait que le précédent envoi ait été un échec (une demi douzaine de tests préalables n\'y auront rien changé). Vous trouverez donc dans cet email toutes les informations et les liens nécessaires à l\'exception de votre mot de passe qui vous a été envoyé la première fois. Nous vous prions de nous excuser de la confusion que cela risque d\'entrainer.</strong><br />' . "\n";
+      $msg .= '<br />' . "\n";
+      $msg .= '<br />' . "\n";
+    }
     $msg .= 'Votre pré-inscription au GN Capes & Crocs Acte II a été retenue.<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Vous pouvez désormais accéder à un espace personnel sur <a href="' . $urlHome . '">le site</a> en utilisant les identifiant suivants :<br />' . "\n";
@@ -90,6 +95,11 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Bonjour ' . $params['firstname'] . ',<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
+    if ($params['is_apologies']) {
+      $msg .= '<strong>Vous recevez ce mail car il semblerait que le précédent envoi ait été un échec (une demi douzaine de tests préalables n\'y auront rien changé). Vous trouverez donc dans cet email toutes les informations et les liens nécessaires à l\'exception de votre mot de passe qui vous a été envoyé la première fois. Nous vous prions de nous excuser de la confusion que cela risque d\'entrainer.</strong><br />' . "\n";
+      $msg .= '<br />' . "\n";
+      $msg .= '<br />' . "\n";
+    }
     $msg .= 'Nous avons bien reçu votre pré-inscription au GN Capes & Crocs Acte II.<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Elle est pour le moment placée sur la <strong>liste d\'attente</strong>.<br />' . "\n";
@@ -192,12 +202,26 @@ function cec_profiles_import_from_csv($file) {
         'is_accepted' => $line[8] == 'OUI', // Inscrit / Liste attente
         'is_new_player' => $line[7] == 'NON', // Nouveau / Ancien joueur
         'is_new_character' => $line[10] != 'OUI' || $line[11] == 'X', // Change / Garde perso
+        'is_apologies' => FALSE,
       );
       $key = $params['is_accepted'] ? 'new_subscription' : 'new_subscription_awaiting';
       drupal_mail('cec_profiles', $key, $mail, language_default(), $params);
     }
     else {
-      watchdog('cec_profiles', 'Account @mail already exists.', array('@mail' => $mail));
+      // Send mail to new user
+      $params = array(
+        'firstname' => $line[4],
+        'lastname' => $line[2],
+        'login' => $login,
+        'pass' => '-- inchangé --',
+        'email' => $mail,
+        'is_accepted' => $line[8] == 'OUI', // Inscrit / Liste attente
+        'is_new_player' => $line[7] == 'NON', // Nouveau / Ancien joueur
+        'is_new_character' => $line[10] != 'OUI' || $line[11] == 'X', // Change / Garde perso
+        'is_apologies' => TRUE,
+      );
+      $key = $params['is_accepted'] ? 'new_subscription' : 'new_subscription_awaiting';
+      drupal_mail('cec_profiles', $key, $mail, language_default(), $params);
     }
   }
   
