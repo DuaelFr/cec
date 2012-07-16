@@ -16,11 +16,15 @@
         select.find('option[value="' + value + '"]').attr('disabled', true);
       });
       if ($.inArray(tid, disabled) != -1) {
-    	select.val('');
-    	tid = '';
+    	if (select.find('option[value="_none"]').length == 0) {
+          select.val('');
+    	} else {
+          select.val('_none');
+    	}
+    	tid = '_none';
       }
 
-      if (tid != '') {
+      if (tid != '_none') {
         disabled.push(tid);
         disabled.push(Drupal.settings.temperaments_exclusion[tid]);
       }
@@ -29,7 +33,7 @@
 
   Temperaments.init = function() {
 	$('#profile2_profil_joueur_form_group_first .form-select').each(function() {
-	  if ($(this).find('option[value=""]').length == 0) {
+	  if ($(this).find('option[value=""]').length == 0 && $(this).find('option[value="_none"]').length == 0) {
 		$(this).prepend($('<option value="">-- Aucun --</option>'));
 	  }
 	});
