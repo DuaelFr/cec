@@ -16,7 +16,7 @@ if (CEC_PAYMENT_DEBUG) {
 }
 else {
   define('CEC_PAYMENT_PAYPAL_EMAIL1', 'tresorier@terraludis.org');
-  define('CEC_PAYMENT_PAYPAL_EMAIL2', 'e.cunibil@gmail.com');
+  define('CEC_PAYMENT_PAYPAL_EMAIL2', 'tresorier@terraludis.org');
   define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://www.gn-capes-et-crocs.fr');
 }
 
