@@ -365,8 +365,10 @@ function administration_views_default_views() {
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'plus';
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'access user profiles';
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    168020977 => '168020977',
+  );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
@@ -460,14 +462,6 @@ function administration_views_default_views() {
   $handler->display->display_options['relationships']['profile_1']['label'] = 'ProfilJoueur';
   $handler->display->display_options['relationships']['profile_1']['bundle_types'] = array(
     'profil_joueur' => 'profil_joueur',
-  );
-  /* Relation: Utilisateur : Profil */
-  $handler->display->display_options['relationships']['profile_2']['id'] = 'profile_2';
-  $handler->display->display_options['relationships']['profile_2']['table'] = 'users';
-  $handler->display->display_options['relationships']['profile_2']['field'] = 'profile';
-  $handler->display->display_options['relationships']['profile_2']['label'] = 'ProfilPNJ';
-  $handler->display->display_options['relationships']['profile_2']['bundle_types'] = array(
-    'profil_pnj_orga' => 'profil_pnj_orga',
   );
   /* Champ: Opérations en masse : Utilisateur */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
@@ -603,6 +597,50 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['uid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+  /* Champ: Profil : Identifiant de Profil */
+  $handler->display->display_options['fields']['pid']['id'] = 'pid';
+  $handler->display->display_options['fields']['pid']['table'] = 'profile';
+  $handler->display->display_options['fields']['pid']['field'] = 'pid';
+  $handler->display->display_options['fields']['pid']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['pid']['label'] = 'Profil Admin';
+  $handler->display->display_options['fields']['pid']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['pid']['alter']['text'] = 'Rempli';
+  $handler->display->display_options['fields']['pid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['pid']['empty'] = 'Vide';
+  $handler->display->display_options['fields']['pid']['empty_zero'] = TRUE;
+  /* Champ: Profil : URL */
+  $handler->display->display_options['fields']['url']['id'] = 'url';
+  $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
+  $handler->display->display_options['fields']['url']['field'] = 'url';
+  $handler->display->display_options['fields']['url']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['url']['label'] = 'Profils';
+  $handler->display->display_options['fields']['url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['url']['alter']['text'] = 'Inscription Administrative';
+  $handler->display->display_options['fields']['url']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['url']['link_to_entity'] = 0;
+  /* Champ: Profil : Identifiant de Profil */
+  $handler->display->display_options['fields']['pid_1']['id'] = 'pid_1';
+  $handler->display->display_options['fields']['pid_1']['table'] = 'profile';
+  $handler->display->display_options['fields']['pid_1']['field'] = 'pid';
+  $handler->display->display_options['fields']['pid_1']['relationship'] = 'profile_1';
+  $handler->display->display_options['fields']['pid_1']['label'] = 'Profil Joueur';
+  $handler->display->display_options['fields']['pid_1']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['pid_1']['alter']['text'] = 'Rempli';
+  $handler->display->display_options['fields']['pid_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['pid_1']['empty'] = 'Vide';
+  $handler->display->display_options['fields']['pid_1']['empty_zero'] = TRUE;
+  /* Champ: Profil : URL */
+  $handler->display->display_options['fields']['url_1']['id'] = 'url_1';
+  $handler->display->display_options['fields']['url_1']['table'] = 'views_entity_profile2';
+  $handler->display->display_options['fields']['url_1']['field'] = 'url';
+  $handler->display->display_options['fields']['url_1']['relationship'] = 'profile_1';
+  $handler->display->display_options['fields']['url_1']['label'] = 'Profil Joueur';
+  $handler->display->display_options['fields']['url_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['url_1']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['url_1']['alter']['text'] = 'Profil Joueur';
+  $handler->display->display_options['fields']['url_1']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['url_1']['link_to_entity'] = 0;
   /* Champ: Global : Texte personnalisé */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -617,64 +655,6 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['label'] = 'Inscription administrative';
   $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<a href="/profile-inscription_administrative/[uid]">Insciprion administrative</a>';
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
-  /* Champ: Global : Texte personnalisé */
-  $handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
-  $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing_2']['label'] = 'Profil PNJ';
-  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '<a href="/profile-profil_pnj_orga/[uid]">Profil PNJ</a>';
-  $handler->display->display_options['fields']['nothing_2']['element_label_colon'] = FALSE;
-  /* Champ: Profil : Identifiant de Profil */
-  $handler->display->display_options['fields']['pid']['id'] = 'pid';
-  $handler->display->display_options['fields']['pid']['table'] = 'profile';
-  $handler->display->display_options['fields']['pid']['field'] = 'pid';
-  $handler->display->display_options['fields']['pid']['relationship'] = 'profile';
-  $handler->display->display_options['fields']['pid']['label'] = '';
-  $handler->display->display_options['fields']['pid']['element_label_colon'] = FALSE;
-  /* Champ: Profil : URL */
-  $handler->display->display_options['fields']['url']['id'] = 'url';
-  $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
-  $handler->display->display_options['fields']['url']['field'] = 'url';
-  $handler->display->display_options['fields']['url']['relationship'] = 'profile';
-  $handler->display->display_options['fields']['url']['label'] = 'Profils';
-  $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['url']['alter']['text'] = 'Inscription Administrative';
-  $handler->display->display_options['fields']['url']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['url']['link_to_entity'] = 0;
-  /* Champ: Profil : Identifiant de Profil */
-  $handler->display->display_options['fields']['pid_1']['id'] = 'pid_1';
-  $handler->display->display_options['fields']['pid_1']['table'] = 'profile';
-  $handler->display->display_options['fields']['pid_1']['field'] = 'pid';
-  $handler->display->display_options['fields']['pid_1']['relationship'] = 'profile_1';
-  $handler->display->display_options['fields']['pid_1']['label'] = '';
-  $handler->display->display_options['fields']['pid_1']['element_label_colon'] = FALSE;
-  /* Champ: Profil : URL */
-  $handler->display->display_options['fields']['url_1']['id'] = 'url_1';
-  $handler->display->display_options['fields']['url_1']['table'] = 'views_entity_profile2';
-  $handler->display->display_options['fields']['url_1']['field'] = 'url';
-  $handler->display->display_options['fields']['url_1']['relationship'] = 'profile_1';
-  $handler->display->display_options['fields']['url_1']['label'] = 'Profil Joueur';
-  $handler->display->display_options['fields']['url_1']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['url_1']['alter']['text'] = 'Profil Joueur';
-  $handler->display->display_options['fields']['url_1']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['url_1']['link_to_entity'] = 0;
-  /* Champ: Profil : Identifiant de Profil */
-  $handler->display->display_options['fields']['pid_2']['id'] = 'pid_2';
-  $handler->display->display_options['fields']['pid_2']['table'] = 'profile';
-  $handler->display->display_options['fields']['pid_2']['field'] = 'pid';
-  $handler->display->display_options['fields']['pid_2']['relationship'] = 'profile_2';
-  $handler->display->display_options['fields']['pid_2']['label'] = '';
-  $handler->display->display_options['fields']['pid_2']['element_label_colon'] = FALSE;
-  /* Champ: Profil : URL */
-  $handler->display->display_options['fields']['url_2']['id'] = 'url_2';
-  $handler->display->display_options['fields']['url_2']['table'] = 'views_entity_profile2';
-  $handler->display->display_options['fields']['url_2']['field'] = 'url';
-  $handler->display->display_options['fields']['url_2']['relationship'] = 'profile_2';
-  $handler->display->display_options['fields']['url_2']['label'] = 'Profil PNJ';
-  $handler->display->display_options['fields']['url_2']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['url_2']['alter']['text'] = 'Profil PNJ';
-  $handler->display->display_options['fields']['url_2']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['url_2']['link_to_entity'] = 0;
   /* Critère de tri: Utilisateur : Dernière connexion */
   $handler->display->display_options['sorts']['login']['id'] = 'login';
   $handler->display->display_options['sorts']['login']['table'] = 'users';
@@ -692,9 +672,9 @@ function administration_views_default_views() {
   $handler->display->display_options['filters']['rid']['table'] = 'users_roles';
   $handler->display->display_options['filters']['rid']['field'] = 'rid';
   $handler->display->display_options['filters']['rid']['value'] = array(
-    8 => '8',
-    7 => '7',
-    3 => '3',
+    125268670 => '125268670',
+    203293079 => '203293079',
+    247050890 => '247050890',
   );
   $handler->display->display_options['filters']['rid']['group'] = 1;
   $handler->display->display_options['filters']['rid']['reduce_duplicates'] = TRUE;
@@ -725,9 +705,9 @@ function administration_views_default_views() {
   $handler->display->display_options['filters']['rid_1']['table'] = 'users_roles';
   $handler->display->display_options['filters']['rid_1']['field'] = 'rid';
   $handler->display->display_options['filters']['rid_1']['value'] = array(
-    8 => '8',
-    7 => '7',
-    3 => '3',
+    125268670 => '125268670',
+    203293079 => '203293079',
+    247050890 => '247050890',
   );
   $handler->display->display_options['filters']['rid_1']['group'] = 1;
   $handler->display->display_options['filters']['rid_1']['exposed'] = TRUE;
@@ -735,6 +715,17 @@ function administration_views_default_views() {
   $handler->display->display_options['filters']['rid_1']['expose']['label'] = 'Etat de l\'inscription';
   $handler->display->display_options['filters']['rid_1']['expose']['operator'] = 'rid_1_op';
   $handler->display->display_options['filters']['rid_1']['expose']['identifier'] = 'rid_1';
+  $handler->display->display_options['filters']['rid_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
   $handler->display->display_options['filters']['rid_1']['expose']['reduce'] = TRUE;
   $handler->display->display_options['filters']['rid_1']['reduce_duplicates'] = TRUE;
 
@@ -753,23 +744,23 @@ function administration_views_default_views() {
     t('Desc'),
     t('ProfilAdmin'),
     t('ProfilJoueur'),
-    t('ProfilPNJ'),
     t('Utilisateur'),
     t('Nom d\'utilisateur'),
     t('Courriel'),
     t('Rôles'),
     t('Dernière connexion'),
     t('jamais'),
+    t('Profil Admin'),
+    t('Rempli'),
+    t('Vide'),
+    t('.'),
+    t(','),
     t('Profils'),
+    t('Inscription Administrative'),
+    t('Profil Joueur'),
     t('<a href="/profile-profil_joueur/[uid]">Profil joueur</a>'),
     t('Inscription administrative'),
     t('<a href="/profile-inscription_administrative/[uid]">Insciprion administrative</a>'),
-    t('Profil PNJ'),
-    t('<a href="/profile-profil_pnj_orga/[uid]">Profil PNJ</a>'),
-    t('.'),
-    t(','),
-    t('Inscription Administrative'),
-    t('Profil Joueur'),
     t('Etat de l\'inscription'),
     t('Page'),
   );
