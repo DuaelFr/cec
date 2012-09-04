@@ -12,6 +12,10 @@ function profiles_ctools_plugin_api() {
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }
+  list($module, $api) = func_get_args();
+  if ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => "1");
+  }
 }
 
 /**
@@ -32,14 +36,6 @@ function profiles_default_profile2_type() {
     "userView" : false,
     "type" : "profil_joueur",
     "label" : "Profil Joueur",
-    "weight" : "0",
-    "data" : { "registration" : 0, "use_page" : 1 }
-  }');
-  $items['profil_pnj_orga'] = entity_import('profile2_type', '{
-    "userCategory" : false,
-    "userView" : false,
-    "type" : "profil_pnj_orga",
-    "label" : "Profil PNJ\\/Orga",
     "weight" : "0",
     "data" : { "registration" : 0, "use_page" : 1 }
   }');

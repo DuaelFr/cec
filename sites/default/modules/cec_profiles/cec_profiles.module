@@ -4,7 +4,7 @@
  * Improve profiles forms.
  */
 
-define('CEC_PROFILES_LIMIT', '15 août 2012');
+define('CEC_PROFILES_LIMIT_VAR', 'cec_profiles_limit');
 
 /**
  * Implements hook_permission().
@@ -15,6 +15,31 @@ function cec_profiles_permission() {
       'title' => t('Access Opus field on profiles'),
     ),
   );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function cec_profiles_menu() {
+  $menu = array();
+
+  $menu['admin/cec/profiles/settings'] = array(
+    'title' => 'Settings',
+    'page callback' => 'drupal_get_form',
+  	'page arguments' => array('cec_profiles_settings_form'),
+    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array('administer users'),
+  );
+
+  $menu['admin/cec/profiles/create'] = array(
+    'title' => 'Create',
+    'page callback' => 'drupal_get_form',
+  	'page arguments' => array('cec_profiles_create_form'),
+    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array('administer users'),
+  );
+
+  return $menu;
 }
 
 /**
@@ -54,38 +79,43 @@ function cec_profiles_mail($key, &$message, $params) {
   $urlPaiement = url('reglement', array('absolute' => TRUE));
   $urlEntracte = url('http://docs.google.com/spreadsheet/viewform?formkey=dHE1STJzS3ltSjAxTm82VmI3Z25RVEE6MQ', array('external' => TRUE));
 
+  $type = $params['type'];
+  if ($type == 'pnj') { $type = strtoupper($type); }
+  else { $type = ucfirst($type); }
+  
   $msg = '';
   if ($key == 'new_subscription') {
     $msg .= 'Bonjour ' . $params['firstname'] . ',<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
-    if ($params['is_apologies']) {
-      $msg .= '<strong>Vous recevez ce mail car il semblerait que le précédent envoi ait été un échec (une demi douzaine de tests préalables n\'y auront rien changé). Vous trouverez donc dans cet email toutes les informations et les liens nécessaires à l\'exception de votre mot de passe qui vous a été envoyé la première fois. Nous vous prions de nous excuser de la confusion que cela risque d\'entrainer.</strong><br />' . "\n";
-      $msg .= '<br />' . "\n";
-      $msg .= '<br />' . "\n";
-    }
-    $msg .= 'Votre pré-inscription au GN Capes & Crocs Acte II a été retenue.<br />' . "\n";
+    $msg .= 'Votre pré-inscription au GN Capes & Crocs Acte II en tant que ' . $type . ' a été retenue.<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Vous pouvez désormais accéder à un espace personnel sur <a href="' . $urlHome . '">le site</a> en utilisant les identifiant suivants :<br />' . "\n";
     $msg .= 'Identifiant : ' . $params['login'] . '<br />' . "\n";
     $msg .= 'Mot de passe : ' . $params['pass'] . '<br />' . "\n";
     $msg .= '<br />' . "\n";
-    $msg .= 'Afin que votre inscription soit validée, nous avons besoin de recevoir <strong>avant le ' . CEC_PROFILES_LIMIT . '</strong> les éléments suivants :<br />' . "\n";
+    $msg .= 'Afin que votre inscription soit validée, nous avons besoin de recevoir <strong>avant le ' . variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012') . '</strong> les éléments suivants :<br />' . "\n";
     $msg .= '<ol>' . "\n";
     $msg .= '  <li>le formulaire d\'inscription administrative complété (<a href="' . $urlAdmin . '">y accéder</a>)</li>' . "\n";
-    $msg .= '  <li>le règlement pour l\'inscription au GN (<a href="' . $urlPaiement . '">consulter les détails</a>)</li>' . "\n";
-    if ($params['is_new_player']) {
-      $msg .= '  <li>le formulaire de personnage complété (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
-    } 
-    elseif ($params['is_new_character']) {
-      $msg .= '  <li>le formulaire de personnage complété, <strong>le choix ayant été fait de ne pas conserver celui de l\'Acte précédent</strong> (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
+    if ($params['type'] != 'cuisinier') {
+      $msg .= '  <li>le règlement pour l\'inscription au GN (<a href="' . $urlPaiement . '">consulter les détails</a>)</li>' . "\n";
     }
-    else {
-      $msg .= '  <li>le formulaire d\'Entr\'Acte nous permettant de déterminer les actions de votre personnage durant les quelques mois qui séparent cet Acte du précédent (<a href="' . $urlEntracte . '">y accéder</a>)</li>' . "\n";
-      $msg .= '  <li>le formulaire de personnage complété avec les même informations que lors de votre inscription à l\'Acte précédent. Si vous ne vous en souvenez pas, laissez le vide nous le complèterons nous-même (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
+    if ($params['type'] == 'joueur') {
+      if ($params['is_new_player']) {
+        $msg .= '  <li>le formulaire de personnage complété (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
+      } 
+      elseif ($params['is_new_character']) {
+        $msg .= '  <li>le formulaire de personnage complété, <strong>le choix ayant été fait de ne pas conserver celui de l\'Acte précédent</strong> (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
+      }
+      else {
+        $msg .= '  <li>le formulaire d\'Entr\'Acte nous permettant de déterminer les actions de votre personnage durant les quelques mois qui séparent cet Acte du précédent (<a href="' . $urlEntracte . '">y accéder</a>)</li>' . "\n";
+        $msg .= '  <li>le formulaire de personnage complété avec les même informations que lors de votre inscription à l\'Acte précédent. Si vous ne vous en souvenez pas, laissez le vide nous le complèterons nous-même (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
+      }
     }
     $msg .= '</ol><br />' . "\n";
-    $msg .= '<i>Note : comme nous avons beaucoup de joueurs sur liste d\'attente, passé le ' . CEC_PROFILES_LIMIT . ', si nous n\'avons pas de nouvelles de votre part, nous proposerons votre place à un autre joueur.</i><br />' . "\n";
+    if ($params['type'] == 'joueur') {
+      $msg .= '<i>Note : comme nous avons beaucoup de joueurs sur liste d\'attente, passé le ' . variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012') . ', si nous n\'avons pas de nouvelles de votre part, nous proposerons votre place à un autre joueur.</i><br />' . "\n";
+    }
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Ludiquement votre,<br />' . "\n";
@@ -95,11 +125,6 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Bonjour ' . $params['firstname'] . ',<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
-    if ($params['is_apologies']) {
-      $msg .= '<strong>Vous recevez ce mail car il semblerait que le précédent envoi ait été un échec (une demi douzaine de tests préalables n\'y auront rien changé). Vous trouverez donc dans cet email toutes les informations et les liens nécessaires à l\'exception de votre mot de passe qui vous a été envoyé la première fois. Nous vous prions de nous excuser de la confusion que cela risque d\'entrainer.</strong><br />' . "\n";
-      $msg .= '<br />' . "\n";
-      $msg .= '<br />' . "\n";
-    }
     $msg .= 'Nous avons bien reçu votre pré-inscription au GN Capes & Crocs Acte II.<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Elle est pour le moment placée sur la <strong>liste d\'attente</strong>.<br />' . "\n";
@@ -111,7 +136,7 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Identifiant : ' . $params['login'] . '<br />' . "\n";
     $msg .= 'Mot de passe : ' . $params['pass'] . '<br />' . "\n";
     $msg .= '<br />' . "\n";
-    $msg .= 'Nous vous recontacterons après le ' . CEC_PROFILES_LIMIT . ' pour vous tenir informé.<br />' . "\n";
+    $msg .= 'Nous vous recontacterons après le ' . variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012') . ' pour vous tenir informé.<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Ludiquement votre,<br />' . "\n";
@@ -121,6 +146,150 @@ function cec_profiles_mail($key, &$message, $params) {
   $message['subject'] = '[GN C&C] Votre pré-inscription au GN Capes & Crocs Acte II';
   $message['body'] = array($msg);
 }
+
+
+// -----------------------------------------------------------------------------
+// FORMS
+
+/**
+ * Implements hook_form().
+ */
+function cec_profiles_settings_form($form, &$form_state) {
+  $form = array();
+  
+  $form['limit'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Date limite'),
+    '#description' => t('Date limite indiquée dans les prochains envois'),
+    '#default_value' => variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012'),
+    '#required' => TRUE,
+  );
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+  
+  return $form;
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function cec_profiles_settings_form_submit($form, &$form_state) {
+  variable_set(CEC_PROFILES_LIMIT_VAR, $form_state['values']['limit']);
+  drupal_set_message('Paramètres enregistrés', 'status');
+}
+
+/**
+ * Implements hook_form().
+ */
+function cec_profiles_create_form($form, &$form_state) {
+  $form = array();
+  
+  $form['firstname'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Prénom'),
+    '#default_value' => '',
+    '#required' => TRUE,
+  );
+  
+  $form['lastname'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Nom'),
+    '#default_value' => '',
+    '#required' => TRUE,
+  );
+  
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email'),
+    '#default_value' => '',
+    '#required' => TRUE,
+  );
+  
+  $form['type'] = array(
+    '#type' => 'radios',
+    '#title' => t('Type'),
+    '#options' => array(
+      'joueur' => 'Joueur',
+      'pnj' => 'PNJ',
+      'cuisinier' => 'Cuistot',
+    ),
+    '#default_value' => '',
+    '#required' => TRUE,
+  );
+  
+  $form['new_player'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Nouveau joueur'),
+    '#default_value' => TRUE,
+  	'#states' => array(
+      'visible' => array(
+        ':input[name="type"]' => array('value' => 'joueur'),
+      ),
+    ),
+  );
+  
+  $form['keep_character'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Garde son personnage'),
+    '#default_value' => TRUE,
+  	'#states' => array(
+      'visible' => array(
+        ':input[name="type"]' => array('value' => 'joueur'),
+        ':input[name="new_player"]' => array('checked' => FALSE),
+      ),
+    ),
+  );
+  
+  $form['charname'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Nom du personnage'),
+    '#default_value' => '',
+  	'#states' => array(
+      'visible' => array(
+        ':input[name="type"]' => array('value' => 'joueur'),
+        ':input[name="new_player"]' => array('checked' => FALSE),
+  		':input[name="keep_character"]' => array('checked' => TRUE),
+      ),
+    ),
+  );
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+  
+  return $form;
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function cec_profiles_create_form_submit($form, &$form_state) {
+  $data = array(
+    'firstname' => $form_state['values']['firstname'],
+    'lastname' => $form_state['values']['lastname'],
+    'charname' => $form_state['values']['charname'],
+    'type' => $form_state['values']['type'],
+    'email' => $form_state['values']['email'],
+    'is_accepted' => TRUE,
+    'is_new_player' => $form_state['values']['type'] == 'joueur' && $form_state['values']['new_player'],
+    'is_new_character' => $form_state['values']['type'] == 'joueur' && !$form_state['values']['keep_character'],
+  );
+  try {
+    _cec_profiles_add_user($data);
+    drupal_set_message('Utilisateur ajouté avec succès', 'status');
+  }
+  catch (Exception $e) {
+    drupal_set_message($e->getMessage(), 'error');
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// CUSTOM
 
 /**
  * Import users from CSV extracted from GDocs
@@ -156,75 +325,120 @@ function cec_profiles_import_from_csv($file) {
   }
   
   // Process file
-  $user_roles = user_roles(TRUE);
+  $msgs = array();
   while (($line = fgetcsv($f)) !== FALSE) {
     if ($line[2] == 'Nom' && $line[5] == 'Adresse email') { continue; } // Jump headers
     $line = array_map('trim', $line); // Remove trailing spaces
     
-    $login = transliteration_clean_filename($line[4] . ' ' . $line[2]);
+    $data = array(
+      'firstname' => $line[4],
+      'lastname' => $line[2],
+      'charname' => $line[9],
+      'type' => 'joueur',
+      'email' => $line[5],
+      'is_accepted' => $line[8] == 'OUI',
+      'is_new_player' => $line[7] == 'NON',
+      'is_new_character' => $line[10] != 'OUI' || $line[11] == 'X',
+    );
+    try {
+      _cec_profiles_add_user($data);
+    }
+    catch (Exception $e) {
+      $msgs[] = $e->getMessage();
+    }
+  }
+  fclose($f);
+  
+  if (!empty($msgs)) {
+    throw new Exception(implode("\n", $msgs));
+  }
+}
+
+/**
+ * $data = array(
+ *   'firstname' => '',
+ *   'lastname' => '',
+ *   'charname' => '',
+ *   'type' => '', [joueur, pnj, cuisinier, zorga]
+ *   'email' => '',
+ *   'is_accepted' => '', [bool]
+ *   'is_new_player' => '', [bool]
+ *   'is_new_character' => '', [bool]
+ * );
+ */
+function _cec_profiles_add_user($data) {
+  $user_roles = drupal_static(__FUNCTION__, array());
+  if (empty($user_roles)) {
+    $user_roles = user_roles(TRUE);
+  }
+
+  $account = user_load_by_mail($data['email']);
+  if ($account === FALSE) {
+    $firstname = $data['firstname'];
+    $lastname = $data['firstname'];
+    $charname = $data['charname'];
+    $login = transliteration_clean_filename($data['firstname'] . ' ' . $data['lastname']);
     $pass = user_password();
-    $mail = $line[5];
+
     $roles = array();
-    $rid = array_search('Joueur', $user_roles);
-    $roles[$rid] = TRUE;
-    if ($line[8] == 'Liste attente') {
-      $rid = array_search('Inscription en liste d\'attente', $user_roles);
+    if ($data['type'] == 'joueur') {
+      $rid = array_search('Joueur', $user_roles);
       $roles[$rid] = TRUE;
-    } elseif ($line[8] == 'OUI') {
+      if ($data['is_accepted'] == FALSE) {
+        $rid = array_search('Inscription en liste d\'attente', $user_roles);
+        $roles[$rid] = TRUE;
+      } else {
+        $rid = array_search('Inscription validée', $user_roles);
+        $roles[$rid] = TRUE;
+      }
+    }
+    elseif ($data['type'] == 'pnj') {
+      $rid = array_search('PNJ', $user_roles);
+      $roles[$rid] = TRUE;
       $rid = array_search('Inscription validée', $user_roles);
       $roles[$rid] = TRUE;
     }
+    elseif ($data['type'] == 'cuisinier') {
+      $rid = array_search('Cuisinier', $user_roles);
+      $roles[$rid] = TRUE;
+      $rid = array_search('Inscription finalisée', $user_roles);
+      $roles[$rid] = TRUE;
+    }
+    elseif ($data['type'] == 'zorga') {
+      throw new Exception('Il est interdit de créer des Zorgas avec ce script');
+    }
 
-    $account = user_load_by_mail($mail);
-    if ($account === FALSE) {
-      // Account creation
-      $new_user = array(
-        'name' => $login,
-        'pass' => $pass,
-        'mail' => $mail,
-        'status' => 1,
-        'roles' => $roles,
-        'data' => array(
-          'firstname' => $line[4],
-          'lastname' => $line[2],
-          'charname' => $line[9],
-        ),
-      );
-      $account = user_save(null, $new_user);
-      
-      // Send mail to new user
-      $params = array(
-        'firstname' => $line[4],
-        'lastname' => $line[2],
-        'login' => $login,
-        'pass' => $pass,
-        'email' => $mail,
-        'is_accepted' => $line[8] == 'OUI', // Inscrit / Liste attente
-        'is_new_player' => $line[7] == 'NON', // Nouveau / Ancien joueur
-        'is_new_character' => $line[10] != 'OUI' || $line[11] == 'X', // Change / Garde perso
-        'is_apologies' => FALSE,
-      );
-      $key = $params['is_accepted'] ? 'new_subscription' : 'new_subscription_awaiting';
-      drupal_mail('cec_profiles', $key, $mail, language_default(), $params);
-    }
-    else {
-      // Send mail to new user
-      $params = array(
-        'firstname' => $line[4],
-        'lastname' => $line[2],
-        'login' => $login,
-        'pass' => '-- inchangé --',
-        'email' => $mail,
-        'is_accepted' => $line[8] == 'OUI', // Inscrit / Liste attente
-        'is_new_player' => $line[7] == 'NON', // Nouveau / Ancien joueur
-        'is_new_character' => $line[10] != 'OUI' || $line[11] == 'X', // Change / Garde perso
-        'is_apologies' => TRUE,
-      );
-      $key = $params['is_accepted'] ? 'new_subscription' : 'new_subscription_awaiting';
-      drupal_mail('cec_profiles', $key, $mail, language_default(), $params);
-    }
-  }
-  
-  fclose($f);
+    // Account creation
+    $new_user = array(
+      'name' => $login,
+      'pass' => $pass,
+      'mail' => $data['email'],
+      'status' => 1,
+      'roles' => $roles,
+      'data' => array(
+        'firstname' => $data['firstname'],
+        'lastname' => $data['lastname'],
+        'charname' => $data['charname'],
+      ),
+    );
+    $account = user_save(null, $new_user);
     
+    // Send mail to new user
+    $params = array(
+      'firstname' => $data['firstname'],
+      'lastname' => $data['lastname'],
+      'type' => $data['type'],
+      'login' => $login,
+      'pass' => $pass,
+      'email' => $data['email'],
+      'is_accepted' => $data['is_accepted'], // Inscrit / Liste attente
+      'is_new_player' => $data['is_new_player'], // Nouveau / Ancien joueur
+      'is_new_character' => $data['is_new_character'], // Change / Garde perso
+    );
+    $key = $params['is_accepted'] ? 'new_subscription' : 'new_subscription_awaiting';
+    drupal_mail('cec_profiles', $key, $data['email'], language_default(), $params);
+  }
+  else {
+    throw new Exception('Cet email est déjà utilisé');
+  }
 }
