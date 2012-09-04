@@ -78,6 +78,7 @@ function cec_profiles_mail($key, &$message, $params) {
   $urlProfil = url('profile-profil_joueur', array('absolute' => TRUE));
   $urlPaiement = url('reglement', array('absolute' => TRUE));
   $urlEntracte = url('http://docs.google.com/spreadsheet/viewform?formkey=dHE1STJzS3ltSjAxTm82VmI3Z25RVEE6MQ', array('external' => TRUE));
+  $urlPNJ = url('https://docs.google.com/spreadsheet/viewform?formkey=dDlnRVBsNmRUejRYcnczT1BmVjFlY2c6MQ#gid=0', array('external' => TRUE));
 
   $type = $params['type'];
   if ($type == 'pnj') { $type = strtoupper($type); }
@@ -111,6 +112,9 @@ function cec_profiles_mail($key, &$message, $params) {
         $msg .= '  <li>le formulaire d\'Entr\'Acte nous permettant de déterminer les actions de votre personnage durant les quelques mois qui séparent cet Acte du précédent (<a href="' . $urlEntracte . '">y accéder</a>)</li>' . "\n";
         $msg .= '  <li>le formulaire de personnage complété avec les même informations que lors de votre inscription à l\'Acte précédent. Si vous ne vous en souvenez pas, laissez le vide nous le complèterons nous-même (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
       }
+    }
+    elseif ($params['type'] == 'pnj') {
+      $msg .= '  <li>le formulaire de renseignements qui nous permettra de mieux nous organiser pour les mois qui viennent (<a href="' . $urlPNJ . '">y accéder</a>)</li>' . "\n";
     }
     $msg .= '</ol><br />' . "\n";
     if ($params['type'] == 'joueur') {
