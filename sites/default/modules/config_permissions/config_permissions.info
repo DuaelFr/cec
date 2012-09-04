@@ -1,10 +1,13 @@
 name = Config Permissions
 core = 7.x
 package = App
-version = 7.x-1.0-alpha1
+php = 5.2.4
+version = 7.x-1.0-alpha2
 project = config_permissions
 dependencies[] = features
+dependencies[] = role_export
 features[features_api][] = api:1
+features[user_role][] = Cuisinier
 features[user_role][] = Inscription en liste d'attente
 features[user_role][] = Inscription finalisée
 features[user_role][] = Inscription validée
