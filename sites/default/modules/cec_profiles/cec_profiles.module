@@ -113,7 +113,7 @@ function cec_profiles_mail($key, &$message, $params) {
         $msg .= '  <li>le formulaire de personnage complété avec les même informations que lors de votre inscription à l\'Acte précédent. Si vous ne vous en souvenez pas, laissez le vide nous le complèterons nous-même (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
       }
     }
-    elseif ($params['type'] == 'pnj') {
+    else {
       $msg .= '  <li>le formulaire de renseignements qui nous permettra de mieux nous organiser pour les mois qui viennent (<a href="' . $urlPNJ . '">y accéder</a>)</li>' . "\n";
     }
     $msg .= '</ol><br />' . "\n";
