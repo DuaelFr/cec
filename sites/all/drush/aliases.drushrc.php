@@ -3,7 +3,7 @@
 // Sites under this core
 $sites = array(
   array(
-    'base_domain' => 'gn-capes-et-crocs',
+    'base_domain' => 'gn-capes-et-crocs.fr',
     'prefix' => '',
   ),
 );
