@@ -95,7 +95,7 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Identifiant : ' . $params['login'] . '<br />' . "\n";
     $msg .= 'Mot de passe : ' . $params['pass'] . '<br />' . "\n";
     $msg .= '<br />' . "\n";
-    $msg .= 'Afin que votre inscription soit validée, nous avons besoin de recevoir <strong>avant le ' . variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012') . '</strong> les éléments suivants :<br />' . "\n";
+    $msg .= 'Afin que votre inscription soit validée, nous avons besoin de recevoir <strong>avant le ' . $params['limit'] . '</strong> les éléments suivants :<br />' . "\n";
     $msg .= '<ol>' . "\n";
     $msg .= '  <li>le formulaire d\'inscription administrative complété (<a href="' . $urlAdmin . '">y accéder</a>)</li>' . "\n";
     if ($params['type'] != 'cuisinier') {
@@ -118,7 +118,7 @@ function cec_profiles_mail($key, &$message, $params) {
     }
     $msg .= '</ol><br />' . "\n";
     if ($params['type'] == 'joueur') {
-      $msg .= '<i>Note : comme nous avons beaucoup de joueurs sur liste d\'attente, passé le ' . variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012') . ', si nous n\'avons pas de nouvelles de votre part, nous proposerons votre place à un autre joueur.</i><br />' . "\n";
+      $msg .= '<i>Note : comme nous avons beaucoup de joueurs sur liste d\'attente, passé le ' . $params['limit'] . ', si nous n\'avons pas de nouvelles de votre part, nous proposerons votre place à un autre joueur.</i><br />' . "\n";
     }
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
@@ -140,7 +140,7 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Identifiant : ' . $params['login'] . '<br />' . "\n";
     $msg .= 'Mot de passe : ' . $params['pass'] . '<br />' . "\n";
     $msg .= '<br />' . "\n";
-    $msg .= 'Nous vous recontacterons après le ' . variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012') . ' pour vous tenir informé.<br />' . "\n";
+    $msg .= 'Nous vous recontacterons après le ' . $params['limit'] . ' pour vous tenir informé.<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Ludiquement votre,<br />' . "\n";
@@ -190,6 +190,13 @@ function cec_profiles_settings_form_submit($form, &$form_state) {
  */
 function cec_profiles_create_form($form, &$form_state) {
   $form = array();
+  
+  $form['limit'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Date limite'),
+    '#default_value' => variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012'),
+    '#required' => TRUE,
+  );
   
   $form['firstname'] = array(
     '#type' => 'textfield',
@@ -273,6 +280,7 @@ function cec_profiles_create_form($form, &$form_state) {
  */
 function cec_profiles_create_form_submit($form, &$form_state) {
   $data = array(
+    'limit' => $form_state['values']['limit'],
     'firstname' => $form_state['values']['firstname'],
     'lastname' => $form_state['values']['lastname'],
     'charname' => $form_state['values']['charname'],
@@ -335,6 +343,7 @@ function cec_profiles_import_from_csv($file) {
     $line = array_map('trim', $line); // Remove trailing spaces
     
     $data = array(
+      'limit' => variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012'),
       'firstname' => $line[4],
       'lastname' => $line[2],
       'charname' => $line[9],
