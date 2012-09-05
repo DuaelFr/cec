@@ -23,23 +23,50 @@ function cec_profiles_permission() {
 function cec_profiles_menu() {
   $menu = array();
 
+  $menu['admin/cec/profiles'] = array(
+    'title' => 'Profils',
+    'description' => '',
+    'page callback' => '_cec_profiles_home',
+    'access arguments' => array('administer users'),
+  );
+
   $menu['admin/cec/profiles/settings'] = array(
     'title' => 'Settings',
+    'description' => '',
     'page callback' => 'drupal_get_form',
   	'page arguments' => array('cec_profiles_settings_form'),
-    'type' => MENU_NORMAL_ITEM,
     'access arguments' => array('administer users'),
   );
 
   $menu['admin/cec/profiles/create'] = array(
     'title' => 'Create',
+    'description' => '',
     'page callback' => 'drupal_get_form',
   	'page arguments' => array('cec_profiles_create_form'),
-    'type' => MENU_NORMAL_ITEM,
     'access arguments' => array('administer users'),
   );
 
   return $menu;
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function cec_profiles_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  if (preg_match('#^admin/cec/profiles#', $root_path)) {
+    $menu = menu_get_item('admin/cec/profiles');
+    $content = system_admin_menu_block($menu);
+    if (empty($data['tabs'])) { $data['tabs'] = array(); }
+    if (empty($data['tabs'][0])) { $data['tabs'][0] = array('count' => 0, 'output' => array()); }
+    foreach ($content as $item) {
+      $data['tabs'][0]['count']++;
+      $data['tabs'][0]['output'][] = array(
+        '#theme' => 'menu_local_task',
+        '#link' => $item,
+        '#active' => $item['router_path'] == $root_path,
+      );
+    }
+  }
 }
 
 /**
@@ -454,4 +481,24 @@ function _cec_profiles_add_user($data) {
   else {
     throw new Exception('Cet email est déjà utilisé');
   }
+}
+
+
+// -----------------------------------------------------------------------------
+// MENU CALLBACKS
+
+/**
+ * Menu admin/cec/profiles page callback.
+ */
+function _cec_profiles_home() {
+  $menu = menu_get_item('admin/cec/profiles');
+  $content = system_admin_menu_block($menu);
+
+  $build['menu'] = array(
+    '#theme' => 'admin_block_content',
+    '#content' => $content,
+    '#weight' => 5,
+  );
+
+  return $build;
 }
