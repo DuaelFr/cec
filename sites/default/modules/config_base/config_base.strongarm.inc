@@ -267,6 +267,7 @@ function config_base_strongarm() {
   $strongarm->value = array(
     'default-system' => 'MimeMailSystem',
     'mimemail' => 'MimeMailSystem',
+    'print_mail' => 'DefaultMailSystem',
   );
   $export['mail_system'] = $strongarm;
 
@@ -490,7 +491,7 @@ function config_base_strongarm() {
       'html5' => 0,
       'meta' => 0,
     ),
-    'zen_rebuild_registry' => 1,
+    'zen_rebuild_registry' => 0,
     'zen_wireframes' => 0,
     'nice_menus_custom_css' => '',
   );
@@ -793,7 +794,7 @@ Votre compte sur [site:name] a été annulé.
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_register';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['user_register'] = $strongarm;
 
   $strongarm = new stdClass();
