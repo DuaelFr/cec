@@ -45,36 +45,6 @@ function profiles_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_arrival|profile2|profil_pnj_orga|form';
-  $field_group->group_name = 'group_arrival';
-  $field_group->entity_type = 'profile2';
-  $field_group->bundle = 'profil_pnj_orga';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Arrivée',
-    'weight' => '4',
-    'children' => array(
-      0 => 'field_arrival_date',
-      1 => 'field_arrival_time',
-      2 => 'field_unloading',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'label' => 'Arrivée',
-      'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => '',
-        'description' => '',
-      ),
-      'formatter' => 'open',
-    ),
-  );
-  $export['group_arrival|profile2|profil_pnj_orga|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
   $field_group->identifier = 'group_character_profile|profile2|profil_joueur|form';
   $field_group->group_name = 'group_character_profile';
   $field_group->entity_type = 'profile2';
@@ -165,36 +135,6 @@ function profiles_field_group_info() {
     ),
   );
   $export['group_detail|profile2|profil_joueur|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_experience|profile2|profil_pnj_orga|form';
-  $field_group->group_name = 'group_experience';
-  $field_group->entity_type = 'profile2';
-  $field_group->bundle = 'profil_pnj_orga';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Expérience',
-    'weight' => '6',
-    'children' => array(
-      0 => 'field_fight_xp',
-      1 => 'field_pj_count',
-      2 => 'field_pnj_count',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'label' => 'Expérience',
-      'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => '',
-        'description' => '',
-      ),
-      'formatter' => 'open',
-    ),
-  );
-  $export['group_experience|profile2|profil_pnj_orga|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -293,36 +233,6 @@ function profiles_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_logistics|profile2|profil_pnj_orga|form';
-  $field_group->group_name = 'group_logistics';
-  $field_group->entity_type = 'profile2';
-  $field_group->bundle = 'profil_pnj_orga';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Logistique',
-    'weight' => '12',
-    'children' => array(
-      0 => 'field_kitchen',
-      1 => 'field_craft',
-      2 => 'field_skills',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'label' => 'Logistique',
-      'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => '',
-        'description' => '',
-      ),
-      'formatter' => 'open',
-    ),
-  );
-  $export['group_logistics|profile2|profil_pnj_orga|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
   $field_group->identifier = 'group_relationship|profile2|profil_joueur|form';
   $field_group->group_name = 'group_relationship';
   $field_group->entity_type = 'profile2';
@@ -352,36 +262,6 @@ function profiles_field_group_info() {
     ),
   );
   $export['group_relationship|profile2|profil_joueur|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_stuff|profile2|profil_pnj_orga|form';
-  $field_group->group_name = 'group_stuff';
-  $field_group->entity_type = 'profile2';
-  $field_group->bundle = 'profil_pnj_orga';
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Costumes, accessoires et matériel',
-    'weight' => '9',
-    'children' => array(
-      0 => 'field_base',
-      1 => 'field_costumes',
-      2 => 'field_stuff',
-    ),
-    'format_type' => 'fieldset',
-    'format_settings' => array(
-      'label' => 'Costumes, accessoires et matériel',
-      'instance_settings' => array(
-        'required_fields' => 1,
-        'classes' => '',
-        'description' => '',
-      ),
-      'formatter' => 'open',
-    ),
-  );
-  $export['group_stuff|profile2|profil_pnj_orga|form'] = $field_group;
 
   return $export;
 }
