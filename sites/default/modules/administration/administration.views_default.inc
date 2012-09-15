@@ -386,10 +386,14 @@ function administration_views_default_views() {
     'mail' => 'mail',
     'rid' => 'rid',
     'login' => 'login',
+    'fid' => 'fid',
     'uid' => 'uid',
+    'pid' => 'pid',
+    'url' => 'url',
+    'pid_1' => 'pid_1',
+    'url_1' => 'url_1',
     'nothing' => 'nothing',
     'nothing_1' => 'nothing',
-    'nothing_2' => 'nothing',
   );
   $handler->display->display_options['style_options']['default'] = 'login';
   $handler->display->display_options['style_options']['info'] = array(
@@ -424,9 +428,40 @@ function administration_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
+    'fid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'uid' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'pid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'url' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'pid_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'url_1' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -437,11 +472,6 @@ function administration_views_default_views() {
       'empty_column' => 0,
     ),
     'nothing_1' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'nothing_2' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -463,6 +493,12 @@ function administration_views_default_views() {
   $handler->display->display_options['relationships']['profile_1']['bundle_types'] = array(
     'profil_joueur' => 'profil_joueur',
   );
+  /* Relation: Profil : Photo (field_photo:fid) */
+  $handler->display->display_options['relationships']['field_photo_fid']['id'] = 'field_photo_fid';
+  $handler->display->display_options['relationships']['field_photo_fid']['table'] = 'field_data_field_photo';
+  $handler->display->display_options['relationships']['field_photo_fid']['field'] = 'field_photo_fid';
+  $handler->display->display_options['relationships']['field_photo_fid']['relationship'] = 'profile';
+  $handler->display->display_options['relationships']['field_photo_fid']['label'] = 'Photo';
   /* Champ: Opérations en masse : Utilisateur */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'users';
@@ -589,6 +625,16 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['login']['empty'] = 'jamais';
   $handler->display->display_options['fields']['login']['empty_zero'] = TRUE;
   $handler->display->display_options['fields']['login']['date_format'] = 'raw time ago';
+  /* Champ: Fichier : Identifiant (ID) de fichier */
+  $handler->display->display_options['fields']['fid']['id'] = 'fid';
+  $handler->display->display_options['fields']['fid']['table'] = 'file_managed';
+  $handler->display->display_options['fields']['fid']['field'] = 'fid';
+  $handler->display->display_options['fields']['fid']['relationship'] = 'field_photo_fid';
+  $handler->display->display_options['fields']['fid']['label'] = 'Photo';
+  $handler->display->display_options['fields']['fid']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['fid']['alter']['text'] = 'Oui';
+  $handler->display->display_options['fields']['fid']['empty'] = 'Non';
+  $handler->display->display_options['fields']['fid']['empty_zero'] = TRUE;
   /* Champ: Utilisateur : Uid */
   $handler->display->display_options['fields']['uid']['id'] = 'uid';
   $handler->display->display_options['fields']['uid']['table'] = 'users';
@@ -744,12 +790,15 @@ function administration_views_default_views() {
     t('Desc'),
     t('ProfilAdmin'),
     t('ProfilJoueur'),
+    t('Photo'),
     t('Utilisateur'),
     t('Nom d\'utilisateur'),
     t('Courriel'),
     t('Rôles'),
     t('Dernière connexion'),
     t('jamais'),
+    t('Oui'),
+    t('Non'),
     t('Profil Admin'),
     t('Rempli'),
     t('Vide'),
