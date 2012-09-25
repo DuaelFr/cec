@@ -88,6 +88,7 @@ function profiles_field_group_info() {
       0 => 'field_address',
       1 => 'field_phone1',
       2 => 'field_phone2',
+      3 => 'field_phone_international',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

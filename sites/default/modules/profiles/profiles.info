@@ -39,6 +39,7 @@ features[field][] = profile2-inscription_administrative-field_membership
 features[field][] = profile2-inscription_administrative-field_opus
 features[field][] = profile2-inscription_administrative-field_phone1
 features[field][] = profile2-inscription_administrative-field_phone2
+features[field][] = profile2-inscription_administrative-field_phone_international
 features[field][] = profile2-inscription_administrative-field_photo
 features[field][] = profile2-inscription_administrative-field_storage
 features[field][] = profile2-profil_joueur-field_character_name

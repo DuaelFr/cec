@@ -794,7 +794,7 @@ function profiles_field_default_fields() {
       'bundle' => 'inscription_administrative',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Si vous ne résidez pas en France, merci de saisir votre numéro de téléphone avec indicatif national.',
+      'description' => 'Si vous ne résidez pas en France, merci de saisir votre numéro de téléphone dans le champ "Numéro de téléphone international" ci-après.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -807,7 +807,7 @@ function profiles_field_default_fields() {
       'entity_type' => 'profile2',
       'field_name' => 'field_phone1',
       'label' => 'Numéro de téléphone principal',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'ca_phone_parentheses' => 1,
         'ca_phone_separator' => '-',
@@ -848,7 +848,7 @@ function profiles_field_default_fields() {
       'bundle' => 'inscription_administrative',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Si vous ne résidez pas en France, merci de saisir votre numéro de téléphone avec indicatif national.',
+      'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -876,6 +876,69 @@ function profiles_field_default_fields() {
         'settings' => array(),
         'type' => 'phone_textfield',
         'weight' => '6',
+      ),
+    ),
+  );
+
+  // Exported field: 'profile2-inscription_administrative-field_phone_international'
+  $fields['profile2-inscription_administrative-field_phone_international'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_phone_international',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+        'profile2_private' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'inscription_administrative',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Champ a destination des participants ne résidant pas en France.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 20,
+        ),
+      ),
+      'entity_type' => 'profile2',
+      'field_name' => 'field_phone_international',
+      'label' => 'Numéro de téléphone international',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '7',
       ),
     ),
   );
@@ -2346,6 +2409,7 @@ function profiles_field_default_fields() {
   t('Assurance');
   t('Autre chose à nous dire ?');
   t('Ce que vous ne voulez surtout pas faire...');
+  t('Champ a destination des participants ne résidant pas en France.');
   t('Commentaire');
   t('Compétences médicales');
   t('Date de naissance');
@@ -2365,6 +2429,7 @@ function profiles_field_default_fields() {
   t('Merci de nous fournir une photo en civil au format photo d\'identité sur laquelle on peut vous reconnaître distinctement. Une fois les rôles attribués, nous vous demanderons éventuellement de nous envoyer une photo en costume.');
   t('Nom');
   t('Nom du personnage');
+  t('Numéro de téléphone international');
   t('Numéro de téléphone principal');
   t('Numéro de téléphone secondaire');
   t('Occupation principale');
@@ -2379,7 +2444,7 @@ function profiles_field_default_fields() {
   t('Second Tempérament');
   t('Si oui, donnez ici leur nom. Sinon laissez le champ vide.');
   t('Si votre premier choix se révèle impossible...');
-  t('Si vous ne résidez pas en France, merci de saisir votre numéro de téléphone avec indicatif national.');
+  t('Si vous ne résidez pas en France, merci de saisir votre numéro de téléphone dans le champ "Numéro de téléphone international" ci-après.');
   t('Troisième Tempérament');
   t('Vous sentez-vous l\'âme d\'un vrai méchant de roman ?');
 
