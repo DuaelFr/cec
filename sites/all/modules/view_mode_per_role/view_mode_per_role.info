@@ -1,0 +1,4 @@
+name = View Mode per Role
+description = Allow the administrator to choose which view mode is used to display a node regarding to its content type and the user's roles.
+core = 7.x
+package = Content
