@@ -81,13 +81,12 @@ function view_mode_per_role_node_show($node, $message = FALSE) {
  *   A view mode.
  */
 function _view_mode_per_role_get_view_mode($node) {
-  global $user;
-
   $settings = variable_get('view_mode_per_role_' . $node->type, array());
 
   $view_mode = 'full';
   while ($view_mode == 'full' && $setting = current($settings)) {
-    if (!empty($user->roles[$setting['role']])) {
+    list($module, $identifier) = explode('--', $setting['role']);
+    if (module_invoke($module, 'view_mode_per_role_is_active', $node, $identifier)) {
       $view_mode = $setting['view_mode'];
     }
     next($settings);
@@ -108,8 +107,7 @@ function view_mode_per_role_form_node_type_form_alter(&$form, $form_state) {
     $settings = variable_get('view_mode_per_role_' . $form['#node_type']->type, array());
     $settings[] = array('role' => NULL, 'view_mode' => NULL);
     // Prepare roles
-    $roles    = user_roles();
-    $roles = array('_none' => t('Select')) + $roles;
+    $roles = _view_mode_per_role_get_role_options();
     // Prepare view modes
     $infos    = entity_get_info('node');
     $views_modes = array();
@@ -149,7 +147,7 @@ function view_mode_per_role_form_node_type_form_alter(&$form, $form_state) {
       $form['view_mode_per_role']['vmpr_settings'][$order]['#weight'] = $order;
       $form['view_mode_per_role']['vmpr_settings'][$order]['weight'] = array(
         '#type' => 'textfield',
-        '#title' => t('Weight for @title', array('@title' => !empty($setting['role']) ? $roles[$setting['role']] : '')),
+        '#title' => t('Weight'),
         '#title_display' => 'invisible',
         '#size' => 4,
         '#default_value' => $order,
@@ -192,7 +190,8 @@ function view_mode_per_role_form_node_type_form_alter(&$form, $form_state) {
  */
 function view_mode_per_role_form_node_type_form_submit($form, &$form_state) {
   $values = $form_state['values'];
-
+// @todo fix this
+//if (!empty($values['vmpr_settings'])) { var_dump($values);var_dump($_POST);exit; }
   // Delete old settings
   variable_del('view_mode_per_role_' . $values['old_type']);
 
@@ -238,4 +237,63 @@ function theme_view_mode_per_role_settings($variables) {
   $output .= drupal_render_children($form);
 
   return $output;
+}
+
+/**
+ * Callback to retreive "roles" options.
+ */
+function _view_mode_per_role_get_role_options() {
+  $modules = module_implements('view_mode_per_role_get_role_options');
+  $result = array();
+  foreach ($modules as $module) {
+    $options = module_invoke($module, 'view_mode_per_role_get_role_options');
+    foreach ($options as $option) {
+      if (empty($result[$option['group']])) {
+        $result[$option['group']] = array();
+      }
+      $result[$option['group']][$module . '--' . $option['identifier']] = $option['label'];
+    }
+  }
+  ksort($result);
+  $result = array('_none' => t('Select')) + $result;
+  return $result;
+}
+
+/**
+ * Implements hook_view_mode_per_role_get_role_options().
+ */
+function view_mode_per_role_view_mode_per_role_get_role_options() {
+  $roles = user_roles();
+  $result = array();
+  foreach ($roles as $rid => $role) {
+    $result[] = array(
+      'group' => t('Role'),
+      'identifier' => 'role_' . $rid,
+      'label' => $role,
+    );
+  }
+  $result[] = array(
+    'group' => t('Special'),
+    'identifier' => 'special_author',
+    'label' => t('Author'),
+  );
+  return $result;
+}
+
+/**
+ * Implements hook_view_mode_per_role_is_active().
+ */
+function view_mode_per_role_view_mode_per_role_is_active($node, $identifier) {
+  global $user;
+  $result = FALSE;
+  
+  if ($identifier == 'special_author') {
+    $result = $node->uid == $user->uid;
+  }
+  else {
+    list($_, $rid) = explode('_', $identifier);
+    $result = !empty($user->roles[$rid]);
+  }
+  
+  return $result;
 }

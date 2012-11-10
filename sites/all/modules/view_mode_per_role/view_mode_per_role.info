@@ -1,4 +1,5 @@
 name = View Mode per Role
-description = Allow the administrator to choose which view mode is used to display a node regarding to its content type and the user's roles.
+description = Allow to choose differents view modes for different roles instead of 'full' for everybody
 core = 7.x
 package = Content
+version = 7.x-1.x-dev
