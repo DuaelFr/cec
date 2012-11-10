@@ -1,0 +1,43 @@
+<?php
+/**
+ * @file
+ * Code for the Personnages feature.
+ */
+
+include_once 'personnages.features.inc';
+
+/**
+ * Implements hook_permission().
+ */
+function personnages_permission() {
+  return array(
+    'view all playable characters' => array(
+      'title' => t('View all playable character sheets without being restricted.'),
+    ),
+    'view all non-playable characters' => array(
+      'title' => t('View all non-playable character sheets without being restricted.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function personnages_node_access($node, $op, $account) {
+  global $user;
+  $return = NODE_ACCESS_IGNORE;
+
+  if ($op == 'view' && $node->type == 'character') {
+    $return = NODE_ACCESS_DENY;
+    $incarnate = reset(field_get_items('node', $node, 'field_incarnate'));
+    $type = reset(field_get_items('node', $node, 'field_character_type'));
+    if ($type['value'] == 'Joueur' && (user_access('view all playable characters') || $user->uid == $incarnate['target_id'])) {
+      $return = NODE_ACCESS_ALLOW;
+    }
+    elseif ($type['value'] == 'PNJ' && user_access('view all non-playable characters')) {
+      $return = NODE_ACCESS_ALLOW;
+    }
+  }
+
+  return $return;
+}
