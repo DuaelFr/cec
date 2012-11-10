@@ -234,3 +234,26 @@ span.field-label { /* The inline field label used by the Fences module */
 
 .region-bottom { /* Wrapper for any blocks placed in the page bottom region */
 }
+
+/* Fiche personnage */
+
+.node-type-character {}
+.node-type-character .group-left { width: 160px; }
+.node-type-character .field-name-field-photo { float: left; }
+.node-type-character .group-right { float: left; width: 360px; }
+.node-type-character .group-temperaments {}
+.node-type-character .group-temperaments h3 { font-family: Georgia, serif; font-size: 1em; font-style: normal; }
+.node-type-character .group-temperaments h3 span { color: #6C6159; }
+.node-type-character .group-temperaments h3 span:after { content: ":"; }
+.node-type-character .group-temperaments .field { float: left; }
+.node-type-character .group-temperaments .field:last-child { float: none; }
+.node-type-character .group-temperaments .field .field-item:after { content: " > "; display: inline; }
+.node-type-character .group-temperaments .field:last-child .field-item:after { content: none; }
+.node-type-character .group-footer { padding-top: 15px; }
+.node-type-character .group-footer .horizontal-tab-button { list-style: none; }
+/*
+.node-type-character .horizontal-tabs,
+.node-type-character .horizontal-tabs ul.horizontal-tabs-list,
+.node-type-character .horizontal-tabs ul.horizontal-tabs-list li,
+.node-type-character .horizontal-tabs ul.horizontal-tabs-list li.selected { background: none; border: none; }
+*/
