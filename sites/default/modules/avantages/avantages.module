@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Avantages feature.
+ */
+
+include_once 'avantages.features.inc';
