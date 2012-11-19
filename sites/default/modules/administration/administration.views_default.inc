@@ -22,12 +22,13 @@ function administration_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Tous les Groupes';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'plus';
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
-    66570830 => '66570830',
+    168020977 => '168020977',
   );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -37,8 +38,58 @@ function administration_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'path' => 'path',
+    'field_alternate_title' => 'field_alternate_title',
+    'field_alternate_body' => 'field_alternate_body',
+    'field_character' => 'field_character',
+    'field_group_is_technical' => 'field_group_is_technical',
+    'sid' => 'sid',
+  );
+  $handler->display->display_options['style_options']['default'] = 'field_alternate_title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'path' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_alternate_title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_alternate_body' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_character' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_group_is_technical' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
   /* Comportement en l'absence de résultats: Global : Zone de texte */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
@@ -97,7 +148,6 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  $handler->display->display_options['fields']['sid']['label'] = 'Avancement';
   /* Critère de filtrage: Contenu : Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -118,6 +168,27 @@ function administration_views_default_views() {
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
   $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  /* Critère de filtrage: Contenu : Groupe technique (field_group_is_technical) */
+  $handler->display->display_options['filters']['field_group_is_technical_value']['id'] = 'field_group_is_technical_value';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['table'] = 'field_data_field_group_is_technical';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['field'] = 'field_group_is_technical_value';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_group_is_technical_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_group_is_technical_value']['expose']['operator_id'] = 'field_group_is_technical_value_op';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['expose']['label'] = 'Groupe technique';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['expose']['operator'] = 'field_group_is_technical_value_op';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['expose']['identifier'] = 'field_group_is_technical_value';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     125268670 => 0,
@@ -160,73 +231,10 @@ function administration_views_default_views() {
 
   /* Display: Tous les groupes (Page) */
   $handler = $view->new_display('page', 'Tous les groupes (Page)', 'tous_groupes');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Tous les Groupes';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['defaults']['access'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'role';
-  $handler->display->display_options['access']['role'] = array(
-    168020977 => '168020977',
-  );
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'path' => 'path',
-    'field_group_is_technical' => 'field_group_is_technical',
-    'field_alternate_title' => 'field_alternate_title',
-    'field_alternate_body' => 'field_alternate_body',
-    'field_character' => 'field_character',
-    'sid' => 'sid',
-  );
-  $handler->display->display_options['style_options']['default'] = 'field_alternate_title';
-  $handler->display->display_options['style_options']['info'] = array(
-    'path' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_group_is_technical' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_alternate_title' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_alternate_body' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_character' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'sid' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-  );
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['path'] = 'admin/cec/groupes';
   $translatables['admin_groupes'] = array(
     t('Master'),
+    t('Tous les Groupes'),
     t('plus'),
     t('Appliquer'),
     t('Réinitialiser'),
@@ -241,11 +249,9 @@ function administration_views_default_views() {
     t('Descriptif orga'),
     t('Personnages'),
     t('Groupe technique'),
-    t('Avancement'),
-    t('Titre'),
     t('État actuel'),
+    t('Titre'),
     t('Tous les groupes (Page)'),
-    t('Tous les Groupes'),
   );
   $export['admin_groupes'] = $view;
 
@@ -264,6 +270,7 @@ function administration_views_default_views() {
   $handler->display->display_options['title'] = 'Tous les Personnages';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'plus';
+  $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     168020977 => '168020977',
@@ -277,12 +284,188 @@ function administration_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_species' => 'field_species',
+    'field_nationalite' => 'field_nationalite',
+    'field_occupation' => 'field_occupation',
+    'field_confession' => 'field_confession',
+    'field_temperament1' => 'field_temperament1',
+    'field_temperament2' => 'field_temperament1',
+    'field_temperament3' => 'field_temperament1',
+    'field_temperament4' => 'field_temperament1',
+    'field_temperament5' => 'field_temperament1',
+    'item_id' => 'item_id',
+    'sid' => 'sid',
+    'edit_node' => 'edit_node',
+  );
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_species' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_nationalite' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_occupation' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_confession' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_temperament1' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => ' > ',
+      'empty_column' => 0,
+    ),
+    'field_temperament2' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_temperament3' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_temperament4' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_temperament5' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'item_id' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Relation: Entity Reference : Entité référante */
+  $handler->display->display_options['relationships']['reverse_field_character_field_collection_item']['id'] = 'reverse_field_character_field_collection_item';
+  $handler->display->display_options['relationships']['reverse_field_character_field_collection_item']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_character_field_collection_item']['field'] = 'reverse_field_character_field_collection_item';
+  $handler->display->display_options['relationships']['reverse_field_character_field_collection_item']['label'] = 'Groupe';
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Nom du personnage';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Champ: Contenu : Espèce */
+  $handler->display->display_options['fields']['field_species']['id'] = 'field_species';
+  $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
+  $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
+  $handler->display->display_options['fields']['field_species']['type'] = 'text_plain';
+  /* Champ: Contenu : Nationalité */
+  $handler->display->display_options['fields']['field_nationalite']['id'] = 'field_nationalite';
+  $handler->display->display_options['fields']['field_nationalite']['table'] = 'field_data_field_nationalite';
+  $handler->display->display_options['fields']['field_nationalite']['field'] = 'field_nationalite';
+  $handler->display->display_options['fields']['field_nationalite']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Contenu : Occupation */
+  $handler->display->display_options['fields']['field_occupation']['id'] = 'field_occupation';
+  $handler->display->display_options['fields']['field_occupation']['table'] = 'field_data_field_occupation';
+  $handler->display->display_options['fields']['field_occupation']['field'] = 'field_occupation';
+  $handler->display->display_options['fields']['field_occupation']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Contenu : Confession */
+  $handler->display->display_options['fields']['field_confession']['id'] = 'field_confession';
+  $handler->display->display_options['fields']['field_confession']['table'] = 'field_data_field_confession';
+  $handler->display->display_options['fields']['field_confession']['field'] = 'field_confession';
+  $handler->display->display_options['fields']['field_confession']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Champ : Premier Tempérament */
+  $handler->display->display_options['fields']['field_temperament1']['id'] = 'field_temperament1';
+  $handler->display->display_options['fields']['field_temperament1']['table'] = 'field_data_field_temperament1';
+  $handler->display->display_options['fields']['field_temperament1']['field'] = 'field_temperament1';
+  $handler->display->display_options['fields']['field_temperament1']['label'] = 'Tempéraments';
+  $handler->display->display_options['fields']['field_temperament1']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Champ : Second Tempérament */
+  $handler->display->display_options['fields']['field_temperament2']['id'] = 'field_temperament2';
+  $handler->display->display_options['fields']['field_temperament2']['table'] = 'field_data_field_temperament2';
+  $handler->display->display_options['fields']['field_temperament2']['field'] = 'field_temperament2';
+  $handler->display->display_options['fields']['field_temperament2']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Champ : Troisième Tempérament */
+  $handler->display->display_options['fields']['field_temperament3']['id'] = 'field_temperament3';
+  $handler->display->display_options['fields']['field_temperament3']['table'] = 'field_data_field_temperament3';
+  $handler->display->display_options['fields']['field_temperament3']['field'] = 'field_temperament3';
+  $handler->display->display_options['fields']['field_temperament3']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Champ : Quatrième Tempérament */
+  $handler->display->display_options['fields']['field_temperament4']['id'] = 'field_temperament4';
+  $handler->display->display_options['fields']['field_temperament4']['table'] = 'field_data_field_temperament4';
+  $handler->display->display_options['fields']['field_temperament4']['field'] = 'field_temperament4';
+  $handler->display->display_options['fields']['field_temperament4']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Champ : Dernier Tempérament */
+  $handler->display->display_options['fields']['field_temperament5']['id'] = 'field_temperament5';
+  $handler->display->display_options['fields']['field_temperament5']['table'] = 'field_data_field_temperament5';
+  $handler->display->display_options['fields']['field_temperament5']['field'] = 'field_temperament5';
+  $handler->display->display_options['fields']['field_temperament5']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: COUNT(DISTINCT Field collection item : Identifiant de Field collection item) */
+  $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
+  $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['relationship'] = 'reverse_field_character_field_collection_item';
+  $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
+  $handler->display->display_options['fields']['item_id']['label'] = 'Groupes';
+  /* Champ: Processus : État actuel */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  /* Champ: Contenu : Lien de modification */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
   /* Critère de tri: Contenu : Date de publication */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -301,6 +484,234 @@ function administration_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'character' => 'character',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Contenu : Titre */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 1;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Nom du personnage';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  /* Critère de filtrage: Contenu : Nationalité (field_nationalite) */
+  $handler->display->display_options['filters']['field_nationalite_tid']['id'] = 'field_nationalite_tid';
+  $handler->display->display_options['filters']['field_nationalite_tid']['table'] = 'field_data_field_nationalite';
+  $handler->display->display_options['filters']['field_nationalite_tid']['field'] = 'field_nationalite_tid';
+  $handler->display->display_options['filters']['field_nationalite_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_nationalite_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_nationalite_tid']['expose']['operator_id'] = 'field_nationalite_tid_op';
+  $handler->display->display_options['filters']['field_nationalite_tid']['expose']['label'] = 'Nationalité';
+  $handler->display->display_options['filters']['field_nationalite_tid']['expose']['operator'] = 'field_nationalite_tid_op';
+  $handler->display->display_options['filters']['field_nationalite_tid']['expose']['identifier'] = 'field_nationalite_tid';
+  $handler->display->display_options['filters']['field_nationalite_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_nationalite_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_nationalite_tid']['vocabulary'] = 'nationalites';
+  /* Critère de filtrage: Contenu : Occupation (field_occupation) */
+  $handler->display->display_options['filters']['field_occupation_tid']['id'] = 'field_occupation_tid';
+  $handler->display->display_options['filters']['field_occupation_tid']['table'] = 'field_data_field_occupation';
+  $handler->display->display_options['filters']['field_occupation_tid']['field'] = 'field_occupation_tid';
+  $handler->display->display_options['filters']['field_occupation_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_occupation_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_occupation_tid']['expose']['operator_id'] = 'field_occupation_tid_op';
+  $handler->display->display_options['filters']['field_occupation_tid']['expose']['label'] = 'Occupation';
+  $handler->display->display_options['filters']['field_occupation_tid']['expose']['operator'] = 'field_occupation_tid_op';
+  $handler->display->display_options['filters']['field_occupation_tid']['expose']['identifier'] = 'field_occupation_tid';
+  $handler->display->display_options['filters']['field_occupation_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_occupation_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_occupation_tid']['vocabulary'] = 'occupations';
+  /* Critère de filtrage: Contenu : Confession (field_confession) */
+  $handler->display->display_options['filters']['field_confession_tid']['id'] = 'field_confession_tid';
+  $handler->display->display_options['filters']['field_confession_tid']['table'] = 'field_data_field_confession';
+  $handler->display->display_options['filters']['field_confession_tid']['field'] = 'field_confession_tid';
+  $handler->display->display_options['filters']['field_confession_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_confession_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_confession_tid']['expose']['operator_id'] = 'field_confession_tid_op';
+  $handler->display->display_options['filters']['field_confession_tid']['expose']['label'] = 'Confession';
+  $handler->display->display_options['filters']['field_confession_tid']['expose']['operator'] = 'field_confession_tid_op';
+  $handler->display->display_options['filters']['field_confession_tid']['expose']['identifier'] = 'field_confession_tid';
+  $handler->display->display_options['filters']['field_confession_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_confession_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_confession_tid']['vocabulary'] = 'religions';
+  /* Critère de filtrage: Champ : Premier Tempérament (field_temperament1) */
+  $handler->display->display_options['filters']['field_temperament1_tid']['id'] = 'field_temperament1_tid';
+  $handler->display->display_options['filters']['field_temperament1_tid']['table'] = 'field_data_field_temperament1';
+  $handler->display->display_options['filters']['field_temperament1_tid']['field'] = 'field_temperament1_tid';
+  $handler->display->display_options['filters']['field_temperament1_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_temperament1_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_temperament1_tid']['expose']['operator_id'] = 'field_temperament1_tid_op';
+  $handler->display->display_options['filters']['field_temperament1_tid']['expose']['label'] = 'Tempérament 1';
+  $handler->display->display_options['filters']['field_temperament1_tid']['expose']['operator'] = 'field_temperament1_tid_op';
+  $handler->display->display_options['filters']['field_temperament1_tid']['expose']['identifier'] = 'field_temperament1_tid';
+  $handler->display->display_options['filters']['field_temperament1_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_temperament1_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_temperament1_tid']['vocabulary'] = 'temperament';
+  /* Critère de filtrage: Champ : Second Tempérament (field_temperament2) */
+  $handler->display->display_options['filters']['field_temperament2_tid']['id'] = 'field_temperament2_tid';
+  $handler->display->display_options['filters']['field_temperament2_tid']['table'] = 'field_data_field_temperament2';
+  $handler->display->display_options['filters']['field_temperament2_tid']['field'] = 'field_temperament2_tid';
+  $handler->display->display_options['filters']['field_temperament2_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_temperament2_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_temperament2_tid']['expose']['operator_id'] = 'field_temperament2_tid_op';
+  $handler->display->display_options['filters']['field_temperament2_tid']['expose']['label'] = 'Tempérament 2';
+  $handler->display->display_options['filters']['field_temperament2_tid']['expose']['operator'] = 'field_temperament2_tid_op';
+  $handler->display->display_options['filters']['field_temperament2_tid']['expose']['identifier'] = 'field_temperament2_tid';
+  $handler->display->display_options['filters']['field_temperament2_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_temperament2_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_temperament2_tid']['vocabulary'] = 'temperament';
+  /* Critère de filtrage: Champ : Troisième Tempérament (field_temperament3) */
+  $handler->display->display_options['filters']['field_temperament3_tid']['id'] = 'field_temperament3_tid';
+  $handler->display->display_options['filters']['field_temperament3_tid']['table'] = 'field_data_field_temperament3';
+  $handler->display->display_options['filters']['field_temperament3_tid']['field'] = 'field_temperament3_tid';
+  $handler->display->display_options['filters']['field_temperament3_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_temperament3_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_temperament3_tid']['expose']['operator_id'] = 'field_temperament3_tid_op';
+  $handler->display->display_options['filters']['field_temperament3_tid']['expose']['label'] = 'Tempérament 3';
+  $handler->display->display_options['filters']['field_temperament3_tid']['expose']['operator'] = 'field_temperament3_tid_op';
+  $handler->display->display_options['filters']['field_temperament3_tid']['expose']['identifier'] = 'field_temperament3_tid';
+  $handler->display->display_options['filters']['field_temperament3_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_temperament3_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_temperament3_tid']['vocabulary'] = 'temperament';
+  /* Critère de filtrage: Champ : Quatrième Tempérament (field_temperament4) */
+  $handler->display->display_options['filters']['field_temperament4_tid']['id'] = 'field_temperament4_tid';
+  $handler->display->display_options['filters']['field_temperament4_tid']['table'] = 'field_data_field_temperament4';
+  $handler->display->display_options['filters']['field_temperament4_tid']['field'] = 'field_temperament4_tid';
+  $handler->display->display_options['filters']['field_temperament4_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_temperament4_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_temperament4_tid']['expose']['operator_id'] = 'field_temperament4_tid_op';
+  $handler->display->display_options['filters']['field_temperament4_tid']['expose']['label'] = 'Tempérament 4';
+  $handler->display->display_options['filters']['field_temperament4_tid']['expose']['operator'] = 'field_temperament4_tid_op';
+  $handler->display->display_options['filters']['field_temperament4_tid']['expose']['identifier'] = 'field_temperament4_tid';
+  $handler->display->display_options['filters']['field_temperament4_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_temperament4_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_temperament4_tid']['vocabulary'] = 'temperament';
+  /* Critère de filtrage: Champ : Dernier Tempérament (field_temperament5) */
+  $handler->display->display_options['filters']['field_temperament5_tid']['id'] = 'field_temperament5_tid';
+  $handler->display->display_options['filters']['field_temperament5_tid']['table'] = 'field_data_field_temperament5';
+  $handler->display->display_options['filters']['field_temperament5_tid']['field'] = 'field_temperament5_tid';
+  $handler->display->display_options['filters']['field_temperament5_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_temperament5_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_temperament5_tid']['expose']['operator_id'] = 'field_temperament5_tid_op';
+  $handler->display->display_options['filters']['field_temperament5_tid']['expose']['label'] = 'Tempérament 5';
+  $handler->display->display_options['filters']['field_temperament5_tid']['expose']['operator'] = 'field_temperament5_tid_op';
+  $handler->display->display_options['filters']['field_temperament5_tid']['expose']['identifier'] = 'field_temperament5_tid';
+  $handler->display->display_options['filters']['field_temperament5_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_temperament5_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_temperament5_tid']['vocabulary'] = 'temperament';
+  /* Critère de filtrage: Processus : État actuel */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['group'] = 1;
+  $handler->display->display_options['filters']['sid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['sid']['expose']['operator_id'] = 'sid_op';
+  $handler->display->display_options['filters']['sid']['expose']['label'] = 'État actuel';
+  $handler->display->display_options['filters']['sid']['expose']['operator'] = 'sid_op';
+  $handler->display->display_options['filters']['sid']['expose']['identifier'] = 'sid';
+  $handler->display->display_options['filters']['sid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
   );
 
   /* Display: Tous les Personnages (Page) */
@@ -321,7 +732,28 @@ function administration_views_default_views() {
     t('Trier par'),
     t('Asc'),
     t('Desc'),
-    t('Titre'),
+    t('Groupe'),
+    t('Nom du personnage'),
+    t('Espèce'),
+    t('Nationalité'),
+    t('Occupation'),
+    t('Confession'),
+    t('Tempéraments'),
+    t('Second Tempérament'),
+    t('Troisième Tempérament'),
+    t('Quatrième Tempérament'),
+    t('Dernier Tempérament'),
+    t('Groupes'),
+    t('.'),
+    t(','),
+    t('État actuel'),
+    t('Actions'),
+    t('modifier'),
+    t('Tempérament 1'),
+    t('Tempérament 2'),
+    t('Tempérament 3'),
+    t('Tempérament 4'),
+    t('Tempérament 5'),
     t('Tous les Personnages (Page)'),
   );
   $export['admin_personnages'] = $view;
@@ -783,8 +1215,12 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'users';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['entity_load_capacity'] = '10';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['operations'] = array(
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_result'] = 1;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
     'action::system_message_action' => array(
       'selected' => 0,
       'use_queue' => 0,
@@ -877,11 +1313,6 @@ function administration_views_default_views() {
       'label' => '',
     ),
   );
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['enable_select_all_pages'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['display_type'] = '0';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['display_result'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['merge_single_action'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['force_single'] = 0;
   /* Champ: Utilisateur : Nom */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';

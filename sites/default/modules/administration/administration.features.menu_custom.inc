@@ -10,7 +10,7 @@
 function administration_menu_default_menu_custom() {
   $menus = array();
 
-  // Exported menu: menu-zorga-menu
+  // Exported menu: menu-zorga-menu.
   $menus['menu-zorga-menu'] = array(
     'menu_name' => 'menu-zorga-menu',
     'title' => 'Zorga Menu',
