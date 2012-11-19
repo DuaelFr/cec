@@ -35,9 +35,9 @@ function uuid_node_features_export($data, &$export, $module_name = '') {
 
   uuid_features_load_module_includes();
 
-  foreach ($data as $uuid) {
+  $nids = entity_get_id_by_uuid('node', $data);
+  foreach ($nids as $uuid => $nid) {
     // Load the existing node, with a fresh cache.
-    $nid = uuid_node_find($uuid);
     $node = node_load($nid, NULL, TRUE);
 
     $export['features']['uuid_node'][$uuid] = $uuid;
@@ -66,9 +66,9 @@ function uuid_node_features_export_render($module, $data) {
 
   $code[] = '  $nodes = array();';
   $code[] = '';
-  foreach ($data as $uuid) {
+  $nids = entity_get_id_by_uuid('node', $data);
+  foreach ($nids as $uuid => $nid) {
     // Only export the node if it exists.
-    $nid = uuid_node_find($uuid);
     if ($nid === FALSE) {
       continue;
     }
@@ -90,6 +90,7 @@ function uuid_node_features_export_render($module, $data) {
     unset($export->vid);
     unset($export->revision_timestamp);
     unset($export->changed);
+    unset($export->last_comment_timestamp);
 
     // The hook_alter signature is:
     // hook_uuid_node_features_export_render_alter(&$export, $node, $module);
@@ -128,12 +129,14 @@ function uuid_node_features_rebuild($module) {
       node_object_prepare($node);
 
       // Find the matching UUID, with a fresh cache.
-      $nid = uuid_node_find($node->uuid);
-      $existing = node_load($nid, NULL, TRUE);
-
-      if (!empty($existing)) {
-        $node->nid = $existing->nid;
-        $node->vid = $existing->vid;
+      $nids = entity_get_id_by_uuid('node', array($node->uuid));
+      if (isset($nids[$node->uuid])) {
+          $nid = $nids[$node->uuid];
+          $existing = node_load($nid, NULL, TRUE);
+          if (!empty($existing)) {
+            $node->nid = $existing->nid;
+            $node->vid = $existing->vid;
+          }
       }
 
       // The hook_alter signature is:
