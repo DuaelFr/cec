@@ -97,14 +97,17 @@ function global_filter_user_login(&$edit, $account, $category) {
   for ($i = 1; $i <= $num_filters; $i++) {
     $name = variable_get("global_filter_$i");
     if (!empty($name)) {
-      $user_profile_value = global_filter_user_profile_field($name, $account);
-      if (isset($user_profile_value)) {
-        gf_dbg(t('Global Filter setting default for %name from user profile...', array('%name' => $name)));
-        global_filter_set_on_session($name, $user_profile_value);
+      $default = global_filter_user_profile_field($name, $account);
+      if (isset($default)) {
+        gf_dbg(t('Global Filter %name: setting default from user profile: %value', array(
+          '%name' => $name, '%value' => print_r($default, TRUE))));
       }
       else {
-        gf_dbg(t('Global Filter %name no value found on user profile, default not set.', array('%name' => $name)));
+        $default = global_filter_get_global_default($i);
+        gf_dbg(t('Global Filter %name: no value found on user profile, using global default: %value', array(
+          '%name' => $name, '%value' => print_r($default, TRUE))));
       }
+      global_filter_set_on_session($name, $default);
     }
   }
 }
@@ -119,7 +122,6 @@ function global_filter_user_login(&$edit, $account, $category) {
 function global_filter_init() {
   if (empty($_SESSION)) {
     gf_dbg(t('Session data cleared.'), NULL, TRUE);
-    return;
   }
 
   if (isset($_REQUEST['clear-global-filters'])) {
@@ -163,11 +165,16 @@ function global_filter_init() {
   }
 }
 
+/**
+ * Set all or the supplied global filters back to their global defaults.
+ *
+ * @param array $names
+ */
 function global_filter_clear_filters($names = array()) {
   if (!empty($_SESSION['global_filter'])) {
     foreach (array_keys($_SESSION['global_filter']) as $name) {
       if (empty($names) || empty($names[0]) || $names[0] == 'all' || in_array($name, $names)) {
-        $_SESSION['global_filter'][$name] = ''; // not NULL or unset()
+        $_SESSION['global_filter'][$name] = global_filter_get_global_default($name);
         gf_dbg(t('Clearing global filter'), $name);
       }
     }
@@ -180,7 +187,7 @@ function global_filter_set_on_session($name, $value) {
   $_SESSION['global_filter'][$name] = $value;
 
   gf_dbg(t('Global Filter %name value was: %prev_value,',
-    array('%name' => $name, '%prev_value' => $prev_value)), $name);
+    array('%name' => $name, '%prev_value' => print_r($prev_value, TRUE))), $name);
 
   if ($name != 'view_autocycle' && variable_get('global_filter_mutex_mode', FALSE)) {
     gf_dbg(t('Global Filter mutex mode is on, so setting other filters back to their defaults...'));
@@ -194,19 +201,35 @@ function global_filter_set_on_session($name, $value) {
 }
 
 /**
- * Retrieve the supplied field value from the user profile.
+ * Retrieve the supplied field value(s) from the user profile.
  */
 function global_filter_user_profile_field($field_name, $account = NULL) {
   global $user;
-  if ($field = field_info_field($field_name)) {
-    if (!isset($account)) {
-      $account = user_load($user->uid);
+
+  if (empty($account)) {
+    $account = $user;
+  }
+
+  // The first occurrence of field_name, on either one of their profile2 or core
+  // user profiles will be used to return field values from.
+  if (module_exists('profile2')) {
+    $profiles = profile2_load_by_user($account);
+    foreach ($profiles as $profile) {
+      if ($items = field_get_items('profile2', $profile, $field_name)) {
+        break;
+      }
     }
-    $lang = empty($account->language) ? LANGUAGE_NONE : $account->language;
-    $key = ($field['type'] == 'taxonomy_term_reference') ? 'tid' : 'value';
-    if (isset($account->{$field_name}[$lang][0][$key])) {
-      return  $account->{$field_name}[$lang][0][$key];
+  }
+  if (empty($items)) {
+    $items = field_get_items('user', $account, $field_name);
+  }
+
+  if (!empty($items)) {
+    $field_values = array();
+    foreach ($items as $value) {
+      $field_values[] = reset($value);
     }
+    return count($field_values) > 1 ? $field_values : reset($field_values);
   }
   return NULL;
 }
@@ -478,11 +501,81 @@ function global_filter_get_used_view_names() {
   return $views;
 }
 
-function gf_dbg($message, $name = NULL, $show_to_all_users = FALSE) {
+/**
+ * Utility function to convert a term name to its associated taxonomy term id.
+ *
+ * @param $term_name, e.g. 'Amsterdam'
+ * @param $vocabulary_machine_name, e.g. 'city' or simply omit
+ */
+function global_filter_get_tid($term_name, $vocabulary_machine_name = NULL) {
+  if (!module_exists('taxonomy')) {
+    drupal_set_message(t('Global Filter: you must enable the Taxonomy module in order to use function %name.', array('%name' => 'global_filter_get_tid()')), 'error');
+    return '';
+  }
+  foreach (taxonomy_get_vocabularies() as $vid => $vocabulary) {
+    if (empty($vocabulary_machine_name) || $vocabulary_machine_name == $vocabulary->machine_name) {
+      foreach (taxonomy_get_tree($vid) as $term) {
+        if ($term_name == $term->name) {
+          return $term->tid;
+        }
+      }
+    }
+  }
+  return $term_name;
+}
+
+/**
+ * Utility function to convert a list field value to its associated key.
+ *
+ * @param $field, field object as obtained via field_info_field($field_name).
+ * @param $value, e.g. '$100 - $200'
+ * @return key, e.g. 'medium' or 3
+ */
+function global_filter_get_field_value_key($field, $value) {
+  if (!empty($field['settings'])) {
+    $function = $field['settings']['allowed_values_function'];
+    if (!empty($function) && function_exists($function)) {
+      $values = $function($field);
+    }
+    else {
+      $values = $field['settings']['allowed_values'];
+    }
+    if (!empty($values)) {
+      foreach ($values as $key => $val) {
+        if ($val == $value) {
+          return $key;
+        }
+      }
+    }
+  }
+  // Key not found, return original argument.
+  return $value;
+}
+
+/**
+ * Implements MODULE_preprocess().
+ *
+ * Adds classes to each page's <body> tag reflecting the values of the global
+ * filters currently set. This alllows us to affect the rendering of various
+ * elements on the page through CSS, e.g. to display or hide elements based on
+ * the current value of a global filter.
+ */
+function global_filter_preprocess(&$variables, $hook) {
+  if ($hook == 'html' && !empty($_SESSION['global_filter'])) {
+    $variables['classes_array'][] = drupal_html_class('gf');
+    foreach ($_SESSION['global_filter'] as $name => $value) {
+      $class = "$name-" . (is_array($value) ? implode('-', $value) : $value);
+      $variables['classes_array'][] = drupal_html_class($class);
+    }
+  }
+}
+
+function gf_dbg($message, $name = NULL) {
   global $user;
-  if (($show_to_all_users || $user->uid == 1) && variable_get('global_filter_show_debug_messages', FALSE)) {
+  $user_names = check_plain(variable_get('global_filter_show_debug_messages'));
+  if (isset($user->name) && strpos($user_names, $user->name) !== FALSE) { // this is sloppy but quick...
     if ($name) {
-      drupal_set_message($message . ' ' . t('%name, new value: %value.', array(
+      drupal_set_message($message . ' ' . t('%name new value: %value.', array(
         '%name' => $name,
         '%value' => empty($_SESSION['global_filter'][$name]) ? '"all"' : print_r($_SESSION['global_filter'][$name], TRUE)
       )));

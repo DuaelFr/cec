@@ -6,8 +6,10 @@
  */
 
 define('GLOBAL_FILTER_DEF_OPTION_ALL_TEXT', t('All'));
-define('GLOBAL_FILTER_VIEWS_PROXIMITY_FIELD', 'distance');
+define('GLOBAL_FILTER_VIEWS_COUNTRY_FIELD', 'country'); // requires Location module
+define('GLOBAL_FILTER_VIEWS_PROXIMITY_FIELD', 'distance'); // requires Location module
 define('GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD', 'keys');
+define('GLOBAL_FILTER_VIEWS_SEARCH_API_FULLTEXT', 'search_api_views_fulltext'); // requires Search API module
 
 /**
  * Implements hook_forms();
@@ -62,12 +64,12 @@ function global_filter_form($form, &$form_state, $filter) {
  * Based on the requested or field-implied widget there are three main case:
  *
  * o global filter driven by a view: user may request any list widget
- * o global filter driven by a node property: textfield
+ * o global filter driven by a node property, search term or location proximity: textfield
  * o global filter driven by a field: widget default may be overriden by user,
  *   provided the widget default is not a text field or or date field;
  *   autocomplete fields may be overridden.
  *
- * @param $option_all_text
+ * @param $filter
  * @param $form, the form that will be added to
  * @param $form_state
  * @return nothing
@@ -75,15 +77,16 @@ function global_filter_form($form, &$form_state, $filter) {
 function global_filter_create_widget($filter, &$form, &$form_state) {
 
   $option_all_text = variable_get($filter . '_option_all_text');
-  $options = empty($option_all_text) ? array('' => GLOBAL_FILTER_DEF_OPTION_ALL_TEXT):
-    ($option_all_text == '<none>' ? array() : array('' => $option_all_text));
+  $options = empty($option_all_text)
+    ? array('' => GLOBAL_FILTER_DEF_OPTION_ALL_TEXT)
+    : ($option_all_text == '<none>' ? array() : array('' => $option_all_text));
 
   $name = $form_state['global_filter_name'];
 
   // Establish the widget type and create widget form accordingly.
   if (drupal_substr($name, 0, 4) == 'view') {
 
-    $requested_widget = variable_get(global_filter_get_by_name($name) . '_widget');
+    $requested_widget = variable_get($filter . '_widget');
     if (empty($requested_widget) || $requested_widget == 'default') {
       $requested_widget = 'select';
     }
@@ -91,48 +94,69 @@ function global_filter_create_widget($filter, &$form, &$form_state) {
     global_filter_add_view_results($options, $view_name);
 
   }
-  elseif (in_array($name, array(GLOBAL_FILTER_VIEWS_PROXIMITY_FIELD, GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD)) ||
+  elseif (in_array($name, array(GLOBAL_FILTER_VIEWS_PROXIMITY_FIELD, GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD, GLOBAL_FILTER_VIEWS_SEARCH_API_FULLTEXT)) ||
           in_array($name, array_keys(global_filter_get_node_properties()))) {
 
     $requested_widget = 'textfield';
   }
-  else {
-    // Field-based widget
-    $field = field_info_field($name);
-    if (!$field) {
-      if ($name) {
-        drupal_set_message(t('The field %name used for %filter does not exist. Please re-configure the associated Global Filter block.',
-          array('%name' => $name, '%filter' => $filter)), 'error');
+  else { // Probably a field widget
+
+    $requested_widget = variable_get($filter . '_widget', 'default');
+
+    if ($name == GLOBAL_FILTER_VIEWS_COUNTRY_FIELD) {
+
+      if (variable_get('global_filter_take_countries_from_location_module', TRUE) && module_exists('location')) {
+        // Assemble country list based on the 2-letter country codes in the location table
+        $countries = array();
+        $result = db_query('SELECT DISTINCT country FROM {location}');
+        foreach ($result as $country) {
+          $countries[$country->country] = location_country_name($country->country);
+        }
       }
-      return;
+      else {
+        // Use core's list. Note: country codes will be in uppercase
+        include_once DRUPAL_ROOT . '/includes/locale.inc';
+        $countries = country_get_list();
+      }
+      natcasesort($countries);
+      $options = array_merge($options, $countries);
     }
-    $instance = global_filter_get_field_instance($name);
+    else {
+      // Field-based widget
+      $field = field_info_field($name);
+      if (!$field) {
+        if ($name) {
+          drupal_set_message(t('The field %name used for %filter does not exist. Please re-configure the associated Global Filter block.',
+            array('%name' => $name, '%filter' => $filter)), 'error');
+        }
+        return;
+      }
+      $instance = global_filter_get_field_instance($name);
 
-    $requested_widget = variable_get(global_filter_get_by_name($name) . '_widget', 'default');
+      if ($requested_widget == 'default' || drupal_substr($instance['widget']['type'], 0, 4) == 'date') {
+        // Inherit native widget
+        $form_state['widget'] = $instance['widget']['type'];
+        global_filter_create_field_instance_widget($option_all_text, $field, $instance, $form, $form_state);
+        return;
+      }
 
-    if ($requested_widget == 'default' || $instance['widget']['type'] == 'textfield' || drupal_substr($instance['widget']['type'], 0, 4) == 'date') {
-      // This widget is not available as a simple widget.
-      $form_state['widget'] = $instance['widget']['type'];
-      global_filter_create_field_instance_widget($option_all_text, $field, $instance, $form, $form_state);
-      return;
-    }
-
-    // Simple or links widget, load up the $options.
-    if ($field['type'] == 'taxonomy_term_reference') {
-      $vocabulary_name = $field['settings']['allowed_values'][0]['vocabulary'];
-      // Only show hierarchy depth indicators for select and multi-select.
-      $show_depth = drupal_substr($requested_widget, -6) == 'select';
-      _global_filter_add_terms($options, $vocabulary_name, $show_depth);
-    }
-    elseif (!empty($field['settings']['allowed_values'])) {
-      foreach (list_allowed_values($field) as $value => $label) {
-        $options[$value] = $label;
+      // Simple or links widget, load up the $options.
+      if ($field['type'] == 'taxonomy_term_reference') {
+        $vocabulary_name = $field['settings']['allowed_values'][0]['vocabulary'];
+        // Only show hierarchy depth indicators for select and multi-select.
+        $show_depth = drupal_substr($requested_widget, -6) == 'select';
+        _global_filter_add_terms($options, $vocabulary_name, $show_depth);
+      }
+      elseif (!empty($field['settings']['allowed_values'])) {
+        foreach (list_allowed_values($field) as $value => $label) {
+          $options[$value] = $label;
+        }
       }
     }
   }
 
   $form_state['widget'] = $requested_widget;
-  if ($form_state['widget'] == 'links') {
+  if ($requested_widget == 'links') {
     global_filter_create_links_widget($options, $form, $form_state);
   }
   else {
@@ -258,16 +282,19 @@ function global_filter_add_submit_button(&$form, $filter) {
     '#weight' => 4,
   );
   $name = variable_get($filter);
-  if ($form[$name]['#type'] != 'textfield' && variable_get($filter . '_set_on_select')) {
 
-    // Add javascript to auto-submit on select.
-    // We're adding a class rather than an id as it needs to be attached to all
-    // of the <input>'s of each sequence of check boxes or radio buttons.
-    $form[$name]['#attributes']['class'][] = "$filter-$name";
-    drupal_add_js(array($filter => "$filter-$name"), 'setting');
+  // We're adding a class rather than an id as it needs to be attached to all
+  // of the <input>'s of each sequence of check boxes or radio buttons.
+  $form[$name]['#attributes']['class'][] = "$filter-$name";
 
-    $form[$name]['#attached']['js'] = array(drupal_get_path('module', 'global_filter') . '/global_filter.js');
+  $confirm_question = variable_get($filter . '_confirm_question');
+  $auto_submit = variable_get($filter . '_set_on_select');
 
+  if ($confirm_question || $auto_submit) {
+    drupal_add_js(array($filter => array("$filter-$name", $confirm_question, $auto_submit)), 'setting');
+    $form[$name]['#attached']['js'][] = drupal_get_path('module', 'global_filter') . '/global_filter.js';
+  }
+  if ($auto_submit) {
     // Suppress the 'Set' submit button defined above.
     $form['submit']['#attributes']['style'][] = 'display:none';
   }
@@ -345,17 +372,18 @@ function global_filter_set_instance_widget_value($session_value, $field, $form_s
     $value = $session_value;
   }
   // $items is used to set defaults. Must use this format (multi-valued):
-  //   $items[0][value_key] = 4
-  //   $items[1][value_key] = 23
+  //   $items[0][$key] = 4
+  //   $items[1][$key] = 23
+  // where $key tends to equal 'value' or 'tid'
   $items = array();
-  $value_key = key($field['columns']);
-  if (is_array($value)) {
+  $key = key($field['columns']);
+  if (!empty($value) && is_array($value)) {
     foreach (global_filter_array_flatten($value) as $value) {
-      $items[] = array($value_key => $value);
+      $items[] = array($key => $value);
     }
   }
   else {
-    $items[0][$value_key] = $value;
+    $items[0][$key] = $value;
   }
   // If nothing set, return something that represents 'All'. Otherwise the
   // field widget will set the instance default.
@@ -584,11 +612,6 @@ function global_filter_options_none($variables) {
   // Not used in a global filter context or no 'All' text specified, so return
   // the widget default.
   return theme_options_none($variables);
-}
-
-function select_with_style_preprocess_options_none(&$variables) {
-  // $variables['global_filter_context'] = TRUE;
-  return;
 }
 
 function global_filter_options_list($field, $instance) {

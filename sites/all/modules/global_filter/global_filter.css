@@ -32,9 +32,7 @@
   font-style: italic;
 }
 
-/* When inheriting field widget don't want to see its label as we already have the block title' */
+/* When inheriting field widget don't want to see its label as we already have the block title */
 .global-filter .form-type-select label {
   display: none;
 }
-
-

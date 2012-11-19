@@ -33,6 +33,8 @@ function global_filter_block_info() {
 
 /**
  * Implements hook_block_configure().
+ *
+ * $param $delta, e.g. 'global_filter_2'
  */
 function global_filter_block_configure($delta = '') {
 
@@ -68,8 +70,10 @@ function global_filter_block_configure($delta = '') {
   $field_options = array_merge(
     array(
       '' => t('- None -'),
+      GLOBAL_FILTER_VIEWS_COUNTRY_FIELD => t('Location: Country'),
       GLOBAL_FILTER_VIEWS_PROXIMITY_FIELD => t('Location: Distance/Proximity'),
-      GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD => t('Search: Search terms') // as in Views
+      GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD => t('Search: Search terms'), // as in Views
+      GLOBAL_FILTER_VIEWS_SEARCH_API_FULLTEXT => t('Search API: Fulltext Search'),
     ),
     global_filter_get_node_properties(),
     global_filter_get_field_labels()
@@ -105,28 +109,36 @@ function global_filter_block_configure($delta = '') {
     'radios' => t('Single choice radio buttons'),
     'multiselect' => t('Multi choice select box'),
     'checkboxes' => t('Multi choice check boxes'),
-    'links' => t('List of hyperlinks')
+    'links' => t('List of hyperlinks'),
+    'textfield' => t('Text field'),
   );
 
   $form['global_filter']['widget'] = array(
     '#type' => 'fieldset',
     '#title' => 'Widget to render the global filter',
     '#collapsible' => TRUE,
-    '#description' => t('These options apply only if the global filter is not natively rendered as a textfield or date picker widget.')
+    '#description' => t('Not all options apply in all cases, e.g. when the field is natively rendered as a textfield or date picker widget.')
   );
   $form['global_filter']['widget'][$delta . '_widget'] = array(
     '#type' => 'radios',
     '#title' => t('Widget'),
     '#default_value' => variable_get($delta . '_widget', 'default'),
     '#options' => $widget_options,
-    '#description' => t("If you tick one of the multi choice widgets, make sure to tick the <strong>Allow multiple values</strong> box in the <strong>More</strong> section of the view's contextual filter."),
+    '#description' => t("If you tick one of the multi choice widgets, make sure to tick the <strong>Allow multiple values</strong> box in the <strong>More</strong> section of the view's contextual filter. Views does not support multi choice widgets that have non-numeric keys."),
   );
+  $option_all_text = variable_get($delta . '_option_all_text');
   $form['global_filter']['widget'][$delta . '_option_all_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Text to appear as the "all" option (non-field widgets only)'),
-    '#default_value' => variable_get($delta . '_option_all_text'),
-    '#description' => t('Field widgets always use core defaults. Remaining widgets default to <strong>@all</strong>, if left blank.<br/>Enter <em>&lt;none&gt;</em> to omit the "all" option from the widget. <em>&lt;none&gt;</em> is recommended for multi choice widgets.',
+    '#default_value' => $option_all_text,
+    '#description' => t('Inherited field widgets always use core defaults. Remaining widgets default to <strong>@all</strong>, if left blank.<br/>Enter <em>&lt;none&gt;</em> to omit the "all" option from the widget. <em>&lt;none&gt;</em> is recommended for multi choice widgets.',
       array('@all' => GLOBAL_FILTER_DEF_OPTION_ALL_TEXT))
+  );
+  $form['global_filter']['widget'][$delta . '_confirm_question'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Prompt the user to confirm their selection'),
+    '#default_value' => variable_get($delta . '_confirm_question'),
+    '#description' => t('The text you enter here will pop up as an alert box with Cancel and OK buttons, for example: <em>Are you sure you want to change this filter ?</em> If you leave this field blank, there will be no prompt.')
   );
   $form['global_filter']['widget'][$delta . '_set_on_select'] = array(
     '#type' => 'checkbox',
@@ -134,7 +146,6 @@ function global_filter_block_configure($delta = '') {
     '#default_value' => variable_get($delta . '_set_on_select'),
     '#description' => t('When ticked this does away with the Set button next to the widget. Not recommended for multi choice widgets.')
   );
-
   $form['global_filter']['global_defaults'] = array(
     '#type' => 'fieldset',
     '#title' => 'Global filter defaults',
@@ -159,16 +170,23 @@ function global_filter_block_configure($delta = '') {
         $field_or_view_options[$key] = $value;
       }
     }
+    else {
+      // Handle Location:Country.
+      // Final case: free text field?
+    }
   }
+  $first_option = next(array_keys($field_or_view_options));
+
   $form['global_filter']['global_defaults'][$delta . '_global_field_or_view_default'] = array(
     '#type' => 'select',
     '#title' => t('Default value for the field or view selected above'),
     '#multiple' => in_array(variable_get($delta . '_widget'), array('multiselect', 'checkboxes', 'default')),
     '#options' => $field_or_view_options,
     '#size' => 1,
-    '#description' => t('Optionally select default value(s) for the field or view above. These values will be active until the user selects another global filter value.'),
-    '#default_value' => variable_get($delta . '_global_field_or_view_default'),
+    '#description' => t('Optionally select default value(s) for the field or view above. These values will be active until the user selects another global filter value. If your widget does not have an "all" option, then you probably don\'t want to set "all" as the default.'),
+    '#default_value' => variable_get($delta . '_global_field_or_view_default', $option_all_text == '<none>' ? $first_option : NULL),
   );
+
   $description = t("Enclose in PHP 'brackets'. Examples:<br/><code>&lt;?php return 'Beatles'; ?&gt;</code><br/><code>&lt;?php return '20120101--20121231'; ?&gt;</code> (date range, note the double hyphen)<br/>If the selected widget allows multiple choices, then return either an array or a string with choices delimited by plus signs.");
   if (!module_exists('php')) {
     $description .= t('<br/>Enable the core <strong>PHP filter</strong> module for this setting to take effect.');
@@ -201,8 +219,10 @@ function global_filter_block_view($delta = '') {
   }
   elseif (!empty($filter_name)) {
     $all_filters = array_merge(
-      array(GLOBAL_FILTER_VIEWS_PROXIMITY_FIELD => t('Location: Distance/Proximity'),
-            GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD => t('Search: Search terms')),
+      array(GLOBAL_FILTER_VIEWS_COUNTRY_FIELD => t('Location: Country'),
+            GLOBAL_FILTER_VIEWS_PROXIMITY_FIELD => t('Location: Distance/Proximity'),
+            GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD => t('Search: Search terms'),
+            GLOBAL_FILTER_VIEWS_SEARCH_API_FULLTEXT => t('Search API: Fulltext Search')),
       global_filter_get_node_properties(),
       global_filter_get_field_labels()
     );
@@ -230,6 +250,7 @@ function global_filter_block_save($delta = '', $edit = array()) {
   variable_set($delta . '_field', $edit[$delta . '_field']);
   variable_set($delta . '_widget',  $edit[$delta . '_widget']);
   variable_set($delta . '_option_all_text', $edit[$delta . '_option_all_text']);
+  variable_set($delta . '_confirm_question', check_plain($edit[$delta . '_confirm_question']));
   variable_set($delta . '_set_on_select', $edit[$delta . '_set_on_select']);
   variable_set($delta . '_global_field_or_view_default', $edit[$delta . '_global_field_or_view_default']);
   variable_set($delta . '_global_php_default', $edit[$delta . '_global_php_default']);
