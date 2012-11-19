@@ -10,7 +10,7 @@
 function temperaments_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'taxonomy_term-temperament-field_antonym'
+  // Exported field: 'taxonomy_term-temperament-field_antonym'.
   $fields['taxonomy_term-temperament-field_antonym'] = array(
     'field_config' => array(
       'active' => '1',
@@ -31,6 +31,7 @@ function temperaments_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(

@@ -1,6 +1,7 @@
 name = Temperaments
 core = 7.x
 package = App
+php = 5.2.4
 version = 7.x-1.0-alpha1
 project = temperaments
 dependencies[] = ctools
