@@ -10,7 +10,7 @@
 function profiles_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'profile2-inscription_administrative-field_address'
+  // Exported field: 'profile2-inscription_administrative-field_address'.
   $fields['profile2-inscription_administrative-field_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -20,6 +20,7 @@ function profiles_field_default_fields() {
       'field_name' => 'field_address',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'addressfield',
       'settings' => array(
         'profile2_private' => 0,
@@ -83,7 +84,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_birthdate'
+  // Exported field: 'profile2-inscription_administrative-field_birthdate'.
   $fields['profile2-inscription_administrative-field_birthdate'] = array(
     'field_config' => array(
       'active' => '1',
@@ -93,6 +94,7 @@ function profiles_field_default_fields() {
       'field_name' => 'field_birthdate',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '1',
@@ -160,7 +162,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_convention'
+  // Exported field: 'profile2-inscription_administrative-field_convention'.
   $fields['profile2-inscription_administrative-field_convention'] = array(
     'field_config' => array(
       'active' => '1',
@@ -174,6 +176,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -223,7 +226,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_firstname'
+  // Exported field: 'profile2-inscription_administrative-field_firstname'.
   $fields['profile2-inscription_administrative-field_firstname'] = array(
     'field_config' => array(
       'active' => '1',
@@ -244,6 +247,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -286,7 +290,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_food'
+  // Exported field: 'profile2-inscription_administrative-field_food'.
   $fields['profile2-inscription_administrative-field_food'] = array(
     'field_config' => array(
       'active' => '1',
@@ -307,6 +311,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => 0,
@@ -348,7 +353,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_health'
+  // Exported field: 'profile2-inscription_administrative-field_health'.
   $fields['profile2-inscription_administrative-field_health'] = array(
     'field_config' => array(
       'active' => '1',
@@ -369,6 +374,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => 0,
@@ -410,7 +416,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_health_skills'
+  // Exported field: 'profile2-inscription_administrative-field_health_skills'.
   $fields['profile2-inscription_administrative-field_health_skills'] = array(
     'field_config' => array(
       'active' => '1',
@@ -424,6 +430,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -470,7 +477,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_image_right'
+  // Exported field: 'profile2-inscription_administrative-field_image_right'.
   $fields['profile2-inscription_administrative-field_image_right'] = array(
     'field_config' => array(
       'active' => '1',
@@ -484,6 +491,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -528,7 +536,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_insurance'
+  // Exported field: 'profile2-inscription_administrative-field_insurance'.
   $fields['profile2-inscription_administrative-field_insurance'] = array(
     'field_config' => array(
       'active' => '1',
@@ -538,10 +546,14 @@ function profiles_field_default_fields() {
       'field_name' => 'field_insurance',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'markup',
       'settings' => array(
-        'markup' => '<label>Assurance</label>
+        'markup' => array(
+          'format' => 'plain_text',
+          'value' => '<label>Assurance</label>
 <p>Le prix de l\'assurance <strong>est inclus</strong> dans le prix du GN.</p>',
+        ),
         'profile2_private' => 0,
       ),
       'translatable' => '0',
@@ -577,7 +589,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_lastname'
+  // Exported field: 'profile2-inscription_administrative-field_lastname'.
   $fields['profile2-inscription_administrative-field_lastname'] = array(
     'field_config' => array(
       'active' => '1',
@@ -598,6 +610,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -640,7 +653,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_membership'
+  // Exported field: 'profile2-inscription_administrative-field_membership'.
   $fields['profile2-inscription_administrative-field_membership'] = array(
     'field_config' => array(
       'active' => '1',
@@ -654,6 +667,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -703,7 +717,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_opus'
+  // Exported field: 'profile2-inscription_administrative-field_opus'.
   $fields['profile2-inscription_administrative-field_opus'] = array(
     'field_config' => array(
       'active' => '1',
@@ -724,6 +738,7 @@ function profiles_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -772,7 +787,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_phone1'
+  // Exported field: 'profile2-inscription_administrative-field_phone1'.
   $fields['profile2-inscription_administrative-field_phone1'] = array(
     'field_config' => array(
       'active' => '1',
@@ -782,6 +797,7 @@ function profiles_field_default_fields() {
       'field_name' => 'field_phone1',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'phone',
       'settings' => array(
         'country' => 'fr',
@@ -826,7 +842,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_phone2'
+  // Exported field: 'profile2-inscription_administrative-field_phone2'.
   $fields['profile2-inscription_administrative-field_phone2'] = array(
     'field_config' => array(
       'active' => '1',
@@ -836,6 +852,7 @@ function profiles_field_default_fields() {
       'field_name' => 'field_phone2',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'phone',
       'settings' => array(
         'country' => 'fr',
@@ -880,7 +897,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_phone_international'
+  // Exported field: 'profile2-inscription_administrative-field_phone_international'.
   $fields['profile2-inscription_administrative-field_phone_international'] = array(
     'field_config' => array(
       'active' => '1',
@@ -901,6 +918,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -943,7 +961,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_photo'
+  // Exported field: 'profile2-inscription_administrative-field_photo'.
   $fields['profile2-inscription_administrative-field_photo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -951,6 +969,9 @@ function profiles_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_photo',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -964,6 +985,7 @@ function profiles_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -1033,7 +1055,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-inscription_administrative-field_storage'
+  // Exported field: 'profile2-inscription_administrative-field_storage'.
   $fields['profile2-inscription_administrative-field_storage'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1047,6 +1069,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1096,7 +1119,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_character_name'
+  // Exported field: 'profile2-profil_joueur-field_character_name'.
   $fields['profile2-profil_joueur-field_character_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1117,6 +1140,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1159,7 +1183,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_crimes'
+  // Exported field: 'profile2-profil_joueur-field_crimes'.
   $fields['profile2-profil_joueur-field_crimes'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1173,6 +1197,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1220,7 +1245,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_crimes_condition'
+  // Exported field: 'profile2-profil_joueur-field_crimes_condition'.
   $fields['profile2-profil_joueur-field_crimes_condition'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1241,6 +1266,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1283,7 +1309,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_exposure'
+  // Exported field: 'profile2-profil_joueur-field_exposure'.
   $fields['profile2-profil_joueur-field_exposure'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1297,6 +1323,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1341,7 +1368,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_freetalk'
+  // Exported field: 'profile2-profil_joueur-field_freetalk'.
   $fields['profile2-profil_joueur-field_freetalk'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1362,6 +1389,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => 0,
@@ -1403,7 +1431,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_friends'
+  // Exported field: 'profile2-profil_joueur-field_friends'.
   $fields['profile2-profil_joueur-field_friends'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1424,6 +1452,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => 0,
@@ -1465,7 +1494,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_great_costume'
+  // Exported field: 'profile2-profil_joueur-field_great_costume'.
   $fields['profile2-profil_joueur-field_great_costume'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1479,6 +1508,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1528,7 +1558,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_help_costume'
+  // Exported field: 'profile2-profil_joueur-field_help_costume'.
   $fields['profile2-profil_joueur-field_help_costume'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1542,6 +1572,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1591,7 +1622,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_intro'
+  // Exported field: 'profile2-profil_joueur-field_intro'.
   $fields['profile2-profil_joueur-field_intro'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1601,15 +1632,19 @@ function profiles_field_default_fields() {
       'field_name' => 'field_intro',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'markup',
       'settings' => array(
-        'markup' => '<p>Le personnage que vous allez incarner va être construit autour de 3 éléments :</p>
+        'markup' => array(
+          'format' => 'plain_text',
+          'value' => '<p>Le personnage que vous allez incarner va être construit autour de 3 éléments :</p>
 <ol>
 <li>le niveau d\'immersion (fond de scène, milieu de scène ou avant scène) indiquera son degré d\'implication - et donc de responsabilité - dans notre scénario</li>
 <li>les "tempéraments" (ex : calculateur ou candide, cupide ou dévoué…) définiront son caractère général</li>
 <li>les relations en jeu affineront ses interactions avec les autres personnages.</li>
 </ol>
 <p>Une fois ces éléments renseignés lors de votre inscription, nous vous contacterons pour vous proposer un rôle (et les compétences qui vont avec) que nous ajusterons ensemble selon vos envies.</p>',
+        ),
         'profile2_private' => 0,
       ),
       'translatable' => '0',
@@ -1645,7 +1680,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_job0'
+  // Exported field: 'profile2-profil_joueur-field_job0'.
   $fields['profile2-profil_joueur-field_job0'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1659,6 +1694,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1708,7 +1744,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_job1'
+  // Exported field: 'profile2-profil_joueur-field_job1'.
   $fields['profile2-profil_joueur-field_job1'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1722,6 +1758,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1771,7 +1808,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_job2'
+  // Exported field: 'profile2-profil_joueur-field_job2'.
   $fields['profile2-profil_joueur-field_job2'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1785,6 +1822,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1834,7 +1872,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_love'
+  // Exported field: 'profile2-profil_joueur-field_love'.
   $fields['profile2-profil_joueur-field_love'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1848,6 +1886,7 @@ function profiles_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1895,7 +1934,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_love_condition'
+  // Exported field: 'profile2-profil_joueur-field_love_condition'.
   $fields['profile2-profil_joueur-field_love_condition'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1916,6 +1955,7 @@ function profiles_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1958,7 +1998,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_opus'
+  // Exported field: 'profile2-profil_joueur-field_opus'.
   $fields['profile2-profil_joueur-field_opus'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1979,6 +2019,7 @@ function profiles_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -2026,7 +2067,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_temperament1'
+  // Exported field: 'profile2-profil_joueur-field_temperament1'.
   $fields['profile2-profil_joueur-field_temperament1'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2047,6 +2088,7 @@ function profiles_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -2091,7 +2133,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_temperament2'
+  // Exported field: 'profile2-profil_joueur-field_temperament2'.
   $fields['profile2-profil_joueur-field_temperament2'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2112,6 +2154,7 @@ function profiles_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -2156,7 +2199,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_temperament3'
+  // Exported field: 'profile2-profil_joueur-field_temperament3'.
   $fields['profile2-profil_joueur-field_temperament3'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2177,6 +2220,7 @@ function profiles_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -2221,7 +2265,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_temperament4'
+  // Exported field: 'profile2-profil_joueur-field_temperament4'.
   $fields['profile2-profil_joueur-field_temperament4'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2242,6 +2286,7 @@ function profiles_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -2286,7 +2331,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_temperament5'
+  // Exported field: 'profile2-profil_joueur-field_temperament5'.
   $fields['profile2-profil_joueur-field_temperament5'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2307,6 +2352,7 @@ function profiles_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -2351,7 +2397,7 @@ function profiles_field_default_fields() {
     ),
   );
 
-  // Exported field: 'profile2-profil_joueur-field_temperament_intro'
+  // Exported field: 'profile2-profil_joueur-field_temperament_intro'.
   $fields['profile2-profil_joueur-field_temperament_intro'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2361,9 +2407,13 @@ function profiles_field_default_fields() {
       'field_name' => 'field_temperament_intro',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'markup',
       'settings' => array(
-        'markup' => 'Comme tous les personnages romancés de cette époque, les Capecroquiens sont définis à grands traits colorés, en préférant souvent un caractère extrême à une tiède normalité. Cette personnalité fascinante s\'exprime en cinq tempéraments, <a href="/temperaments">dont vous trouverez le détail ici</a>. Le premier tempérament est celui qui donne sa couleur au personnage, les suivants précisent le dessin selon leur ordre d\'importance.',
+        'markup' => array(
+          'format' => 'plain_text',
+          'value' => 'Comme tous les personnages romancés de cette époque, les Capecroquiens sont définis à grands traits colorés, en préférant souvent un caractère extrême à une tiède normalité. Cette personnalité fascinante s\'exprime en cinq tempéraments, <a href="/temperaments">dont vous trouverez le détail ici</a>. Le premier tempérament est celui qui donne sa couleur au personnage, les suivants précisent le dessin selon leur ordre d\'importance.',
+        ),
         'profile2_private' => 0,
       ),
       'translatable' => '0',

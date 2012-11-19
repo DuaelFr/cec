@@ -14,11 +14,11 @@ function profiles_user_default_permissions() {
   $permissions['access payment'] = array(
     'name' => 'access payment',
     'roles' => array(
-      0 => 'Inscription finalisée',
-      1 => 'Inscription validée',
-      2 => 'Joueur',
-      3 => 'PNJ',
-      4 => 'Zorga',
+      'Inscription finalisée' => 'Inscription finalisée',
+      'Inscription validée' => 'Inscription validée',
+      'Joueur' => 'Joueur',
+      'PNJ' => 'PNJ',
+      'Zorga' => 'Zorga',
     ),
     'module' => 'cec_payment',
   );
@@ -27,7 +27,7 @@ function profiles_user_default_permissions() {
   $permissions['access profile opus'] = array(
     'name' => 'access profile opus',
     'roles' => array(
-      0 => 'Zorga',
+      'Zorga' => 'Zorga',
     ),
     'module' => 'cec_profiles',
   );
@@ -36,7 +36,7 @@ function profiles_user_default_permissions() {
   $permissions['edit any inscription_administrative profile'] = array(
     'name' => 'edit any inscription_administrative profile',
     'roles' => array(
-      0 => 'Zorga',
+      'Zorga' => 'Zorga',
     ),
     'module' => 'profile2',
   );
@@ -45,7 +45,7 @@ function profiles_user_default_permissions() {
   $permissions['edit any profil_joueur profile'] = array(
     'name' => 'edit any profil_joueur profile',
     'roles' => array(
-      0 => 'Zorga',
+      'Zorga' => 'Zorga',
     ),
     'module' => 'profile2',
   );
@@ -54,7 +54,7 @@ function profiles_user_default_permissions() {
   $permissions['edit own inscription_administrative profile'] = array(
     'name' => 'edit own inscription_administrative profile',
     'roles' => array(
-      0 => 'authenticated user',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'profile2',
   );
@@ -63,8 +63,8 @@ function profiles_user_default_permissions() {
   $permissions['edit own profil_joueur profile'] = array(
     'name' => 'edit own profil_joueur profile',
     'roles' => array(
-      0 => 'Joueur',
-      1 => 'Zorga',
+      'Joueur' => 'Joueur',
+      'Zorga' => 'Zorga',
     ),
     'module' => 'profile2',
   );
@@ -73,7 +73,7 @@ function profiles_user_default_permissions() {
   $permissions['view any inscription_administrative profile'] = array(
     'name' => 'view any inscription_administrative profile',
     'roles' => array(
-      0 => 'Zorga',
+      'Zorga' => 'Zorga',
     ),
     'module' => 'profile2',
   );
@@ -82,7 +82,7 @@ function profiles_user_default_permissions() {
   $permissions['view any profil_joueur profile'] = array(
     'name' => 'view any profil_joueur profile',
     'roles' => array(
-      0 => 'Zorga',
+      'Zorga' => 'Zorga',
     ),
     'module' => 'profile2',
   );
@@ -91,11 +91,11 @@ function profiles_user_default_permissions() {
   $permissions['view own inscription_administrative profile'] = array(
     'name' => 'view own inscription_administrative profile',
     'roles' => array(
-      0 => 'Inscription finalisée',
-      1 => 'Joueur',
-      2 => 'PNJ',
-      3 => 'Zorga',
-      4 => 'authenticated user',
+      'Inscription finalisée' => 'Inscription finalisée',
+      'Joueur' => 'Joueur',
+      'PNJ' => 'PNJ',
+      'Zorga' => 'Zorga',
+      'authenticated user' => 'authenticated user',
     ),
     'module' => 'profile2',
   );
@@ -104,8 +104,8 @@ function profiles_user_default_permissions() {
   $permissions['view own profil_joueur profile'] = array(
     'name' => 'view own profil_joueur profile',
     'roles' => array(
-      0 => 'Joueur',
-      1 => 'Zorga',
+      'Joueur' => 'Joueur',
+      'Zorga' => 'Zorga',
     ),
     'module' => 'profile2',
   );
