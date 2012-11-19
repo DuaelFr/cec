@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Evenements feature.
+ */
+
+include_once 'evenements.features.inc';
