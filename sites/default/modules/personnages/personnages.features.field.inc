@@ -10,7 +10,158 @@
 function personnages_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-character-body'
+  // Exported field: 'field_collection_item-field_avantages-field_avantage'.
+  $fields['field_collection_item-field_avantages-field_avantage'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_avantage',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'node' => array(
+          'columns' => array(
+            'target_id' => 'nid',
+          ),
+          'table' => 'node',
+        ),
+      ),
+      'indexes' => array(
+        'target_id' => array(
+          0 => 'target_id',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'title',
+            'type' => 'property',
+          ),
+          'target_bundles' => array(
+            'avantage' => 'avantage',
+          ),
+        ),
+        'handler_submit' => 'Changer de gestionnaire',
+        'profile2_private' => FALSE,
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_avantages',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_avantage',
+      'label' => 'Avantage',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_avantages-field_avantage_valide'.
+  $fields['field_collection_item-field_avantages-field_avantage_valide'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_avantage_valide',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'Non',
+          1 => 'Oui',
+        ),
+        'allowed_values_function' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_avantages',
+      'default_value' => array(
+        0 => array(
+          'value' => 0,
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Cocher ce champ fera apparaître l\'avantage sur la feuille du personnage.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_avantage_valide',
+      'label' => 'Validé',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'display_label' => 1,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-character-body'.
   $fields['node-character-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -36,6 +187,7 @@ function personnages_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -94,7 +246,7 @@ function personnages_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-character-field_alternate_body'
+  // Exported field: 'node-character-field_alternate_body'.
   $fields['node-character-field_alternate_body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -118,6 +270,7 @@ function personnages_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -170,7 +323,79 @@ function personnages_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-character-field_canevas'
+  // Exported field: 'node-character-field_avantages'.
+  $fields['node-character-field_avantages'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_avantages',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'field_collection',
+      'settings' => array(
+        'hide_blank_items' => TRUE,
+        'path' => '',
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'field_collection',
+    ),
+    'field_instance' => array(
+      'bundle' => 'character',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'field_collection',
+          'settings' => array(
+            'add' => 'Ajouter',
+            'delete' => 'Supprimer',
+            'description' => TRUE,
+            'edit' => 'Modifier',
+            'view_mode' => 'full',
+          ),
+          'type' => 'field_collection_view',
+          'weight' => 17,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'trombinoscope' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_avantages',
+      'label' => 'Avantages',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'field_collection',
+        'settings' => array(),
+        'type' => 'field_collection_embed',
+        'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-character-field_canevas'.
   $fields['node-character-field_canevas'] = array(
     'field_config' => array(
       'active' => '1',
@@ -194,6 +419,7 @@ function personnages_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -252,7 +478,7 @@ function personnages_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-character-field_character_state'
+  // Exported field: 'node-character-field_character_state'.
   $fields['node-character-field_character_state'] = array(
     'field_config' => array(
       'active' => '1',
@@ -269,6 +495,7 @@ function personnages_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -324,7 +551,7 @@ function personnages_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-character-field_character_type'
+  // Exported field: 'node-character-field_character_type'.
   $fields['node-character-field_character_type'] = array(
     'field_config' => array(
       'active' => '1',
@@ -338,6 +565,7 @@ function personnages_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -392,7 +620,7 @@ function personnages_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-character-field_confession'
+  // Exported field: 'node-character-field_confession'.
   $fields['node-character-field_confession'] = array(
     'field_config' => array(
       'active' => '1',
@@ -416,6 +644,7 @@ function personnages_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -472,7 +701,7 @@ function personnages_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-character-field_incarnate'
+  // Exported field: 'node-character-field_incarnate'.
   $fields['node-character-field_incarnate'] = array(
     'field_config' => array(
       'active' => '1',
@@ -493,6 +722,7 @@ function personnages_field_default_fields() {
           0 => 'target_id',
         ),
       ),
+      'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
         'handler' => 'base',
@@ -563,7 +793,7 @@ function personnages_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-character-field_job'
+  // Exported field: 'node-character-field_job'.
   $fields['node-character-field_job'] = array(
     'field_config' => array(
       'active' => '1',
@@ -584,6 +814,7 @@ function personnages_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -650,7 +881,7 @@ Artiste|Artiste',
     ),
   );
 
-  // Exported field: 'node-character-field_nationalite'
+  // Exported field: 'node-character-field_nationalite'.
   $fields['node-character-field_nationalite'] = array(
     'field_config' => array(
       'active' => '1',
@@ -674,6 +905,7 @@ Artiste|Artiste',
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -730,7 +962,88 @@ Artiste|Artiste',
     ),
   );
 
-  // Exported field: 'node-character-field_photo'
+  // Exported field: 'node-character-field_occupation'.
+  $fields['node-character-field_occupation'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_occupation',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'occupations',
+            'parent' => '0',
+          ),
+        ),
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'character',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '15',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'trombinoscope' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_occupation',
+      'label' => 'Occupation',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '10',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-character-field_photo'.
   $fields['node-character-field_photo'] = array(
     'field_config' => array(
       'active' => '1',
@@ -754,6 +1067,7 @@ Artiste|Artiste',
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -839,7 +1153,7 @@ Artiste|Artiste',
     ),
   );
 
-  // Exported field: 'node-character-field_species'
+  // Exported field: 'node-character-field_species'.
   $fields['node-character-field_species'] = array(
     'field_config' => array(
       'active' => '1',
@@ -863,6 +1177,7 @@ Artiste|Artiste',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -921,7 +1236,7 @@ Artiste|Artiste',
     ),
   );
 
-  // Exported field: 'node-character-field_temperament1'
+  // Exported field: 'node-character-field_temperament1'.
   $fields['node-character-field_temperament1'] = array(
     'field_config' => array(
       'active' => '1',
@@ -942,6 +1257,7 @@ Artiste|Artiste',
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -998,7 +1314,7 @@ Artiste|Artiste',
     ),
   );
 
-  // Exported field: 'node-character-field_temperament2'
+  // Exported field: 'node-character-field_temperament2'.
   $fields['node-character-field_temperament2'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1019,6 +1335,7 @@ Artiste|Artiste',
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -1075,7 +1392,7 @@ Artiste|Artiste',
     ),
   );
 
-  // Exported field: 'node-character-field_temperament3'
+  // Exported field: 'node-character-field_temperament3'.
   $fields['node-character-field_temperament3'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1096,6 +1413,7 @@ Artiste|Artiste',
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -1152,7 +1470,7 @@ Artiste|Artiste',
     ),
   );
 
-  // Exported field: 'node-character-field_temperament4'
+  // Exported field: 'node-character-field_temperament4'.
   $fields['node-character-field_temperament4'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1173,6 +1491,7 @@ Artiste|Artiste',
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -1229,7 +1548,7 @@ Artiste|Artiste',
     ),
   );
 
-  // Exported field: 'node-character-field_temperament5'
+  // Exported field: 'node-character-field_temperament5'.
   $fields['node-character-field_temperament5'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1250,6 +1569,7 @@ Artiste|Artiste',
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -1306,7 +1626,7 @@ Artiste|Artiste',
     ),
   );
 
-  // Exported field: 'node-character-field_view_groups'
+  // Exported field: 'node-character-field_view_groups'.
   $fields['node-character-field_view_groups'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1319,6 +1639,7 @@ Artiste|Artiste',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'viewfield',
       'settings' => array(
         'profile2_private' => FALSE,
@@ -1389,8 +1710,11 @@ Artiste|Artiste',
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Avantage');
+  t('Avantages');
   t('Canevas');
   t('Ce texte est la description publique qui apparaîtra dans le trombinoscope.');
+  t('Cocher ce champ fera apparaître l\'avantage sur la feuille du personnage.');
   t('Confession');
   t('Dernier Tempérament');
   t('Descriptif orga');
@@ -1407,6 +1731,7 @@ Artiste|Artiste',
   t('Statut du Personnage');
   t('Troisième Tempérament');
   t('Type');
+  t('Validé');
 
   return $fields;
 }

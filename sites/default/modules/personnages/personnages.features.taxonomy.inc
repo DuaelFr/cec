@@ -17,6 +17,14 @@ function personnages_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => '0',
     ),
+    'occupations' => array(
+      'name' => 'Occupations',
+      'machine_name' => 'occupations',
+      'description' => '',
+      'hierarchy' => '0',
+      'module' => 'taxonomy',
+      'weight' => '0',
+    ),
     'religions' => array(
       'name' => 'Religions',
       'machine_name' => 'religions',
