@@ -37,7 +37,7 @@ function global_filter_admin_config() {
     '#type' => 'checkbox',
     '#title' => t('Make global filters mutually exclusive'),
     '#default_value' => variable_get('global_filter_mutex_mode', FALSE),
-    '#description' => t('When the user sets one global filter, all other global filters are reset to their global defaults or to "all", where no defaults is set.')
+    '#description' => t('When the user sets one global filter, all other global filters are reset to their global defaults or to "all", where no defaults are set.')
   );
   $options = array_merge(
     array('' => t('None')),
@@ -51,10 +51,10 @@ function global_filter_admin_config() {
     '#description' => ''
   );
   $form['global_filter_settings_advanced']['global_filter_show_debug_messages'] = array(
-    '#type' => 'checkbox',
+    '#type' => 'textfield',
     '#title' => t('Show Global Filter informational messages during execution'),
     '#default_value' => variable_get('global_filter_show_debug_messages', FALSE),
-    '#description' => t('These messages only appear to the super admin, uid=1.')
+    '#description' => t('Enter a comma-separated list of names of users that should see info messages coming from this module, e.g. for debugging purposes.')
   );
   $form['global_filter_settings_advanced']['global_filter_autocycle'] = array(
     '#type' => 'fieldset',

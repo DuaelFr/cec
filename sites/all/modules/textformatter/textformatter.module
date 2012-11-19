@@ -250,7 +250,9 @@ function textformatter_field_formatter_view($entity_type, $entity, $field, $inst
 
     if (isset($textformatters[$module]) && in_array($field['type'], $textformatters[$module]['fields'])) {
       $function = $textformatters[$module]['callback'];
-      $list_items = $function($entity_type, $entity, $field, $instance, $langcode, $items, $display);
+      if (function_exists($function)) {
+        $list_items = $function($entity_type, $entity, $field, $instance, $langcode, $items, $display);
+      }
     }
     else {
       foreach ($items as $delta => $item) {
@@ -275,7 +277,9 @@ function textformatter_field_formatter_view($entity_type, $entity, $field, $inst
           '#theme' => 'item_list',
           '#type' => $settings['textformatter_type'],
           '#items' => $list_items,
-          '#attributes' => array('class' => $classes),
+          '#attributes' => array(
+            'class' => $classes,
+          ),
         );
       break;
       case 'comma':
@@ -284,7 +288,9 @@ function textformatter_field_formatter_view($entity_type, $entity, $field, $inst
           '#theme' => 'textformatter_comma',
           '#items' => $list_items,
           '#settings' => $settings,
-          '#attributes' => array('class' => $classes),
+          '#attributes' => array(
+            'class' => $classes,
+          ),
         );
       break;
     }
@@ -348,8 +354,9 @@ function theme_textformatter_comma($variables) {
 
 /**
  * Wrapper function for invoking hook_textformatter_field_list_info.
- * statically caches $info as this could get called multiple times
- * for different fields using this formatter.
+ *
+ * Statically caches $info as this could get called multiple times
+ * for different fields using this formatter in a request.
  */
 function textformatter_field_list_info() {
   $info = &drupal_static(__FUNCTION__);
@@ -393,6 +400,8 @@ function textformatter_textformatter_field_info() {
  */
 function textformatter_default_field_create_list($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $list_items = array();
+
+  // Use our helper function to get the value key dynamically.
   $value_key = _textformatter_get_field_value_key($field);
 
   foreach ($items as $delta => $item) {
@@ -435,6 +444,7 @@ function textformatter_list_field_create_list($entity_type, $entity, $field, $in
   $settings = $display['settings'];
   $list_items = array();
 
+  // Get allowed values for the field.
   $allowed_values = list_allowed_values($field);
   foreach ($items as $delta => $item) {
     if (isset($allowed_values[$item['value']])) {
@@ -450,10 +460,9 @@ function textformatter_list_field_create_list($entity_type, $entity, $field, $in
  */
 function textformatter_taxonomy_field_create_list($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $settings = $display['settings'];
-  $list_items = array();
+  $list_items = $tids = array();
 
-  $tids = array();
-
+  // Get an array of tids only.
   foreach ($items as $item) { 
     $tids[] = $item['tid']; 
   }
@@ -461,6 +470,7 @@ function textformatter_taxonomy_field_create_list($entity_type, $entity, $field,
   $terms = taxonomy_term_load_multiple($tids);
 
   foreach ($items as $delta => $item) {
+    // Use the item name if autocreating, as there won't be a term object yet.
     $term_name = ($item['tid'] === 'autocreate') ? $item['name'] : $terms[$item['tid']]->name;
     // Check if we should display as term links or not.
     if ($settings['textformatter_term_plain'] || ($item['tid'] === 'autocreate')) {
@@ -508,6 +518,9 @@ function _textformatter_get_field_value_key(array $field) {
 
 /**
  * Helper to return an array of html tags, formatted for a select list.
+ *
+ * @return
+ *   Array of available html tags.
  */
 function _textformatter_wrapper_options() {
   return array(

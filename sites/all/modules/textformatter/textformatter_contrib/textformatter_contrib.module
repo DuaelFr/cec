@@ -25,6 +25,13 @@ function textformatter_contrib_textformatter_field_info() {
     );
   }
 
+  if (module_exists('user_reference')) {
+    $info['user_reference'] = array(
+      'fields' => array('user_reference'),
+      'callback' => 'textformatter_contrib_user_reference_field_create_list',
+    );
+  }
+
   if (module_exists('link')) {
     $info['link'] = array(
       'fields' => array('link_field'),
@@ -42,7 +49,7 @@ function textformatter_contrib_entityreference_field_create_list($entity_type, $
   // Load the target type for the field instance.
   $target_type = $field['settings']['target_type'];
   $contrib_settings = $display['settings']['textformatter_contrib'];
-  $list_items = $target_ids = array();
+  $list_items = $target_ids = $target_entities = array();
 
   // Get an array of entity ids.
   foreach ($items as $delta => $item) {
@@ -87,19 +94,54 @@ function textformatter_contrib_node_reference_field_create_list($entity_type, $e
   }
 
   // Load them all.
-  if ($node_ids) {
+  if (!empty($node_ids)) {
     $nodes = entity_load('node', $node_ids);
+
+    foreach ($nodes as $id => $node) {
+      $label = entity_label('node', $node);
+      $uri = entity_uri('node', $node);
+      if ($contrib_settings['node_reference_link']) {
+        $classes = array('node', 'node-' . $id, 'node-' . drupal_html_class($node->type), 'node-reference');
+        $list_items[$id] = l($label, $uri['path'], array('attributes' => array('class' => $classes)));
+      }
+      else {
+        $list_items[$id] = field_filter_xss($label);
+      }
+    }
   }
 
-  foreach ($nodes as $id => $node) {
-    $label = entity_label('node', $node);
-    $uri = entity_uri('node', $node);
-    if ($contrib_settings['node_reference_link']) {
-      $classes = array('node', 'node-' . $id, 'node-' . drupal_html_class($node->type), 'node-reference');
-      $list_items[$id] = l($label, $uri['path'], array('attributes' => array('class' => $classes)));
+  return $list_items;
+}
+
+/**
+ * User reference field listing callback.
+ */
+function textformatter_contrib_user_reference_field_create_list($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $list_items = $user_ids = array();
+  $contrib_settings = $display['settings']['textformatter_contrib'];
+
+  // Get an array of entity ids.
+  foreach ($items as $delta => $item) {
+    // Only add if the access is TRUE for current user.
+    if ($item['access']) {
+      $user_ids[] = $item['uid'];
     }
-    else {
-      $list_items[$id] = field_filter_xss($label);
+  }
+
+  // Load them all.
+  if (!empty($user_ids)) {
+    $users = entity_load('user', $user_ids);
+
+    foreach ($users as $id => $user) {
+      $label = entity_label('user', $user);
+      $uri = entity_uri('user', $user);
+      if ($contrib_settings['user_reference_link']) {
+        $classes = array('user', 'user-' . $id, 'user-reference');
+        $list_items[$id] = l($label, $uri['path'], array('attributes' => array('class' => $classes)));
+      }
+      else {
+        $list_items[$id] = field_filter_xss($label);
+      }
     }
   }
 
@@ -147,6 +189,15 @@ function textformatter_contrib_textformatter_field_formatter_settings_form_alter
       '#title' => t("Link list items to their node."),
       '#description' => t("Generate item list with links to the node page"),
       '#default_value' => isset($settings['textformatter_contrib']['node_reference_link']) ? $settings['textformatter_contrib']['node_reference_link'] : TRUE,
+    );
+  }
+
+  if ($field['type'] == 'user_reference') {
+    $form['textformatter_contrib']['user_reference_link'] = array(
+      '#type' => 'checkbox',
+      '#title' => t("Link list items to their user page."),
+      '#description' => t("Generate item list with links to the user page"),
+      '#default_value' => isset($settings['textformatter_contrib']['user_reference_link']) ? $settings['textformatter_contrib']['user_reference_link'] : TRUE,
     );
   }
 

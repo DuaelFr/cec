@@ -453,7 +453,7 @@ function me_to_arg($arg, $map, $index) {
   $uid = user_uid_optional_to_arg($arg, $map, $index);
 
   if (me_variable_get('me_rewrite_link') && !_me_user_disabled()) {
-    $uid = $GLOBALS['user']->uid ? _me_get_me_alias() : $uid;
+    $uid = ($uid == $GLOBALS['user']->uid) ? _me_get_me_alias() : $uid;
   }
   return $uid;
 }
@@ -569,7 +569,7 @@ function _me_is_alias($arg) {
 function me_menu() {
   $items = array();
 
-  $items['admin/people/me'] = array(
+  $items['admin/config/people/me'] = array(
     'title' => "'Me' Aliases",
     'description' => "Configure the 'me' aliases, and how they're matched.",
     'page callback' => 'drupal_get_form',
@@ -766,13 +766,9 @@ function me_user_view($account, $view_mode) {
   }
 }
 
-/**
- * Implements hook_ctools_plugin_dierctory().
- *
- * See http://drupal.org/project/ctools for module and hook information.
- */
-// function me_ctools_plugin_directory($module, $plugin) {
-//   if ($module == 'ctools' && $plugin == 'arguments') {
-//     return 'plugins';
-//   }
-// }
+function me_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'me') . '/includes/views',
+  );
+}
