@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Informations feature.
+ */
+
+include_once 'informations.features.inc';
