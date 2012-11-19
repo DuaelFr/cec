@@ -11,6 +11,505 @@ function administration_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'admin_avantages';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Admin Avantages';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Les Avantages';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'plus';
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    168020977 => '168020977',
+  );
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'path' => 'path',
+    'field_alternate_title' => 'field_alternate_title',
+    'title' => 'title',
+    'field_alternate_body' => 'field_alternate_body',
+    'item_id' => 'item_id',
+    'sid' => 'sid',
+    'edit_node' => 'edit_node',
+  );
+  $handler->display->display_options['style_options']['default'] = 'field_alternate_title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'path' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_alternate_title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_alternate_body' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'item_id' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Relation: Entity Reference : Entité référante */
+  $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['id'] = 'reverse_field_avantage_field_collection_item';
+  $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['field'] = 'reverse_field_avantage_field_collection_item';
+  $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['label'] = 'Personnage';
+  /* Champ: Contenu : Chemin */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  /* Champ: Champ : Intitulé orga */
+  $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = '[path]';
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Nom joueurs';
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Champ: Champ : Descriptif orga */
+  $handler->display->display_options['fields']['field_alternate_body']['id'] = 'field_alternate_body';
+  $handler->display->display_options['fields']['field_alternate_body']['table'] = 'field_data_field_alternate_body';
+  $handler->display->display_options['fields']['field_alternate_body']['field'] = 'field_alternate_body';
+  /* Champ: COUNT(DISTINCT Field collection item : Identifiant de Field collection item) */
+  $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
+  $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['relationship'] = 'reverse_field_avantage_field_collection_item';
+  $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
+  $handler->display->display_options['fields']['item_id']['label'] = 'Personnages';
+  /* Champ: Processus : État actuel */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  /* Champ: Contenu : Lien de modification */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
+  /* Critère de tri: Champ : Intitulé orga (field_alternate_title) */
+  $handler->display->display_options['sorts']['field_alternate_title_value']['id'] = 'field_alternate_title_value';
+  $handler->display->display_options['sorts']['field_alternate_title_value']['table'] = 'field_data_field_alternate_title';
+  $handler->display->display_options['sorts']['field_alternate_title_value']['field'] = 'field_alternate_title_value';
+  /* Critère de filtrage: Contenu : Publié */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'avantage' => 'avantage',
+  );
+
+  /* Display: Tous les avantages (Page) */
+  $handler = $view->new_display('page', 'Tous les avantages (Page)', 'page_1');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['path'] = 'admin/cec/avantages';
+
+  /* Display: Sélecteur (Référence) */
+  $handler = $view->new_display('entityreference', 'Sélecteur (Référence)', 'entityreference_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'entityreference_style';
+  $handler->display->display_options['style_options']['search_fields'] = array(
+    'field_alternate_title' => 'field_alternate_title',
+    'title' => 'title',
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'entityreference_fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Champ: Champ : Intitulé orga */
+  $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = '[path]';
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Nom joueurs';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '([title])';
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  $translatables['admin_avantages'] = array(
+    t('Master'),
+    t('Les Avantages'),
+    t('plus'),
+    t('Appliquer'),
+    t('Réinitialiser'),
+    t('Trier par'),
+    t('Asc'),
+    t('Desc'),
+    t('Personnage'),
+    t('Intitulé orga'),
+    t('Nom joueurs'),
+    t('Descriptif orga'),
+    t('Personnages'),
+    t('.'),
+    t(','),
+    t('État actuel'),
+    t('Actions'),
+    t('modifier'),
+    t('Tous les avantages (Page)'),
+    t('Sélecteur (Référence)'),
+    t('([title])'),
+  );
+  $export['admin_avantages'] = $view;
+
+  $view = new view();
+  $view->name = 'admin_evenements';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Admin Evenements';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Timeline';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'plus';
+  $handler->display->display_options['group_by'] = TRUE;
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    168020977 => '168020977',
+  );
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'field_dates_2' => 'field_dates_2',
+    'title' => 'title',
+    'field_dates' => 'field_dates',
+    'field_dates_1' => 'field_dates_1',
+    'field_intrigue' => 'field_intrigue',
+    'sid' => 'sid',
+    'edit_node' => 'edit_node',
+  );
+  $handler->display->display_options['style_options']['default'] = 'field_dates';
+  $handler->display->display_options['style_options']['info'] = array(
+    'field_dates_2' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_dates' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_dates_1' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_intrigue' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Relation: Entity Reference : Entité référencée */
+  $handler->display->display_options['relationships']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
+  $handler->display->display_options['relationships']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
+  $handler->display->display_options['relationships']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
+  $handler->display->display_options['relationships']['field_intrigue_target_id']['label'] = 'Intrigue';
+  /* Relation: Contenu : Interprétation (field_version) */
+  $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
+  $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
+  $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
+  $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
+  $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Champ: Contenu : Dates */
+  $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['label'] = 'Date de début';
+  $handler->display->display_options['fields']['field_dates']['settings'] = array(
+    'format_type' => 'date_only',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Champ: Contenu : Dates */
+  $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
+  $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['label'] = 'Date de fin';
+  $handler->display->display_options['fields']['field_dates_1']['settings'] = array(
+    'format_type' => 'date_only',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Champ: Contenu : Intrigue */
+  $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
+    'link' => 1,
+  );
+  /* Champ: COUNT(DISTINCT Field collection item : Identifiant de Field collection item) */
+  $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
+  $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
+  $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
+  $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
+  $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
+  /* Champ: Processus : État actuel */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  /* Champ: Contenu : Lien de modification */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
+  /* Critère de filtrage: Contenu : Publié */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Contenu : Titre */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['relationship'] = 'field_intrigue_target_id';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 1;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Titre';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  /* Critère de filtrage: Contenu : Dates - date de début (field_dates) */
+  $handler->display->display_options['filters']['field_dates_value']['id'] = 'field_dates_value';
+  $handler->display->display_options['filters']['field_dates_value']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['filters']['field_dates_value']['field'] = 'field_dates_value';
+  $handler->display->display_options['filters']['field_dates_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_dates_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_dates_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_dates_value']['expose']['operator_id'] = 'field_dates_value_op';
+  $handler->display->display_options['filters']['field_dates_value']['expose']['label'] = 'A partir du';
+  $handler->display->display_options['filters']['field_dates_value']['expose']['operator'] = 'field_dates_value_op';
+  $handler->display->display_options['filters']['field_dates_value']['expose']['identifier'] = 'field_dates_value';
+  $handler->display->display_options['filters']['field_dates_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_dates_value']['year_range'] = '1600:1650';
+  /* Critère de filtrage: Contenu : Dates - date de fin (field_dates:value2) */
+  $handler->display->display_options['filters']['field_dates_value2']['id'] = 'field_dates_value2';
+  $handler->display->display_options['filters']['field_dates_value2']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['filters']['field_dates_value2']['field'] = 'field_dates_value2';
+  $handler->display->display_options['filters']['field_dates_value2']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_dates_value2']['group'] = 1;
+  $handler->display->display_options['filters']['field_dates_value2']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_dates_value2']['expose']['operator_id'] = 'field_dates_value2_op';
+  $handler->display->display_options['filters']['field_dates_value2']['expose']['label'] = 'Jusqu\'au';
+  $handler->display->display_options['filters']['field_dates_value2']['expose']['operator'] = 'field_dates_value2_op';
+  $handler->display->display_options['filters']['field_dates_value2']['expose']['identifier'] = 'field_dates_value2';
+  $handler->display->display_options['filters']['field_dates_value2']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_dates_value2']['year_range'] = '1600:1650';
+  /* Critère de filtrage: Processus : État actuel */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['sid']['expose']['operator_id'] = 'sid_op';
+  $handler->display->display_options['filters']['sid']['expose']['label'] = 'État actuel';
+  $handler->display->display_options['filters']['sid']['expose']['operator'] = 'sid_op';
+  $handler->display->display_options['filters']['sid']['expose']['identifier'] = 'sid';
+  $handler->display->display_options['filters']['sid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+
+  /* Display: Tous les évènements (Page) */
+  $handler = $view->new_display('page', 'Tous les évènements (Page)', 'page_1');
+  $handler->display->display_options['path'] = 'admin/cec/evenements';
+  $translatables['admin_evenements'] = array(
+    t('Master'),
+    t('Timeline'),
+    t('plus'),
+    t('Appliquer'),
+    t('Réinitialiser'),
+    t('Trier par'),
+    t('Asc'),
+    t('Desc'),
+    t('Intrigue'),
+    t('Interprétation'),
+    t('Titre'),
+    t('Date de début'),
+    t('Date de fin'),
+    t('Interprétations'),
+    t('.'),
+    t(','),
+    t('État actuel'),
+    t('Actions'),
+    t('modifier'),
+    t('A partir du'),
+    t('Jusqu\'au'),
+    t('Tous les évènements (Page)'),
+  );
+  $export['admin_evenements'] = $view;
+
+  $view = new view();
   $view->name = 'admin_groupes';
   $view->description = '';
   $view->tag = 'admin';
