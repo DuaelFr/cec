@@ -1,5 +1,5 @@
 <?php
-// $Id$
+
 /**
  * @file
  * View for listing nodes by workflow state.

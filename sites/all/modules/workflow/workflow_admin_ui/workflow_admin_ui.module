@@ -1,5 +1,5 @@
 <?php
-// $Id$
+
 /**
  * @file
  * Provides administrative UI for workflow.
@@ -223,7 +223,7 @@ function workflow_admin_ui_delete_form($form, &$form_state, $wid, $sid = NULL) {
     );
   }
   else {
-    drupal_got('admin/config/workflow/workflow');
+    drupal_goto('admin/config/workflow/workflow');
   }
 }
 
@@ -287,7 +287,7 @@ function workflow_admin_ui_view_permissions($wid) {
     return theme('workflow_admin_ui_view_permissions', array('header' => $header, 'all' => $all));
   }
   else {
-    drupal_got('admin/config/workflow/workflow');
+    drupal_goto('admin/config/workflow/workflow');
   }
 }
 
@@ -454,7 +454,7 @@ function theme_workflow_admin_ui_edit_form($variables) {
     return $output;
   }
   else {
-    drupal_got('admin/config/workflow/workflow');
+    drupal_goto('admin/config/workflow/workflow');
   }
 }
 
@@ -546,6 +546,7 @@ function workflow_admin_ui_state_add_form($form, &$form_state, $wid, $sid = NULL
   }
   // If we don't have a state or db_fetch_array() returned FALSE, load defaults.
   if (!$state || $state === FALSE) {
+    $state = new stdClass();
     $state->state = '';
     $state->weight = 0;
     if ($workflow = workflow_get_workflows_by_wid($wid)) {
@@ -753,7 +754,8 @@ function workflow_admin_ui_overview() {
   }
   if ($row) {
     $output = theme('table', array('header' => array(t('Workflow'), t('Operations')), 'rows' => $row));
-    $output .= drupal_render(drupal_get_form('workflow_admin_ui_types_form'));
+    $form = drupal_get_form('workflow_admin_ui_types_form');
+    $output .= drupal_render($form);
   }
   else {
     $output = '<p>' . t('No workflows have been added. Would you like to <a href="@link">add a workflow</a>?', array('@link' => url('admin/config/workflow/workflow/add'))) . '</p>';
@@ -792,7 +794,7 @@ function workflow_admin_ui_state_delete_form($form, $form_state, $wid, $sid) {
     if (count($states) > 0) {
       $state_options = array();
       foreach ($states as $key => $state) {
-        $state_options[$key] = $state->state; 
+        $state_options[$key] = $state->state;
       }
       $form['new_sid'] = array(
         '#type' => 'select',
@@ -990,7 +992,7 @@ function workflow_update_transitions($transitions = array()) {
         }
         else {
           $roles = array();
-          if($transition = workflow_get_workflow_transitions_by_sid_target_sid($from, $to)) {
+          if ($transition = workflow_get_workflow_transitions_by_sid_target_sid($from, $to)) {
             $roles = explode(',', $transition->roles);
             $tid = $transition->tid;
             if (($i = array_search($role, $roles)) !== FALSE) {

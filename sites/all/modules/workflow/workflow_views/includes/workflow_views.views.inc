@@ -1,5 +1,5 @@
 <?php
-// $Id$
+
 /**
  * @file
  * Provide views data and handler information for workflow.module.
@@ -156,7 +156,7 @@ function workflow_views_views_data() {
       'numeric' => TRUE,
     ),
   );
-  
+
   // Workflow node history.
   $data['workflow_node_history']['table']['group']  = t('Workflow');
   $data['workflow_node_history']['table']['join'] = array(
