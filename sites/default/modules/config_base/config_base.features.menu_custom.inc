@@ -10,19 +10,19 @@
 function config_base_menu_default_menu_custom() {
   $menus = array();
 
-  // Exported menu: main-menu
+  // Exported menu: main-menu.
   $menus['main-menu'] = array(
     'menu_name' => 'main-menu',
     'title' => 'Main menu',
     'description' => 'The <em>Main</em> menu is used on many sites to show the major sections of the site, often in a top navigation bar.',
   );
-  // Exported menu: navigation
+  // Exported menu: navigation.
   $menus['navigation'] = array(
     'menu_name' => 'navigation',
     'title' => 'Navigation',
     'description' => 'The <em>Navigation</em> menu contains links intended for site visitors. Links are added to the <em>Navigation</em> menu automatically by some modules.',
   );
-  // Exported menu: user-menu
+  // Exported menu: user-menu.
   $menus['user-menu'] = array(
     'menu_name' => 'user-menu',
     'title' => 'User menu',
