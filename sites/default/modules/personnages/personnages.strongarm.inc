@@ -149,5 +149,21 @@ function personnages_strongarm() {
   $strongarm->value = 0;
   $export['node_submitted_character'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'view_mode_per_role_character';
+  $strongarm->value = array();
+  $export['view_mode_per_role_character'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workflow_character';
+  $strongarm->value = array(
+    0 => 'node',
+  );
+  $export['workflow_character'] = $strongarm;
+
   return $export;
 }
