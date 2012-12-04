@@ -100,5 +100,26 @@ function groupes_strongarm() {
   $strongarm->value = 0;
   $export['node_submitted_group'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'view_mode_per_role_group';
+  $strongarm->value = array(
+    0 => array(
+      'role' => '168020977',
+      'view_mode' => 'full_zorga',
+    ),
+  );
+  $export['view_mode_per_role_group'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workflow_group';
+  $strongarm->value = array(
+    0 => 'node',
+  );
+  $export['workflow_group'] = $strongarm;
+
   return $export;
 }
