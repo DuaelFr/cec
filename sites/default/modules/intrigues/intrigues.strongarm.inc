@@ -124,5 +124,21 @@ function intrigues_strongarm() {
   $strongarm->value = 0;
   $export['node_submitted_intrigue'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'view_mode_per_role_intrigue';
+  $strongarm->value = array();
+  $export['view_mode_per_role_intrigue'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workflow_intrigue';
+  $strongarm->value = array(
+    0 => 'node',
+  );
+  $export['workflow_intrigue'] = $strongarm;
+
   return $export;
 }
