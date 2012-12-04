@@ -1,5 +1,5 @@
 <?php
-// $Id$
+
 /**
  * @file
  *   Provides node access permissions based on workflow states.
@@ -180,15 +180,15 @@ function workflow_access_workflow($op, $old_sid, $sid, $node) {
   // But when it calls node_access_acquire_grants later, it does so without deleting the access
   // set when calling workflow_node_insert because it is an insert and no prior grants are expected.
   // This leads to a SQL error of duplicate grants which causes a rollback of all changes.
-  // Unfortunately, setting access rights isn't the only thing we're doing on node_insert so we 
+  // Unfortunately, setting access rights isn't the only thing we're doing on node_insert so we
   // can't skip the whole thing. So we need to fix it further downstream in order to get this to work.
   // Here we don't want to run this in the case of (and ONLY in the case of) a brand new node.
-  // Node access gratns will be run as part of node_save's own granting after this.
+  // Node access grants will be run as part of node_save's own granting after this.
   //
   // NOTE: Any module that sets node access rights on insert will hit this situation.
   //
   if ($old_state = workflow_get_workflow_states_by_sid($old_sid)) {
-    if ($op == 'transition post' && $old_sid != $sid && $old_state->state !== '(creation)') {
+    if ($op == 'transition post' && $old_sid != $sid && (empty($node->is_new) || !$node->is_new)) {
       node_access_acquire_grants($node);
     }
   }

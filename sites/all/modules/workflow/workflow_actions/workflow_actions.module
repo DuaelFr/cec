@@ -1,5 +1,5 @@
 <?php
-// $Id$
+
 /**
  * @file
  * Provide actions and triggers for workflows.
@@ -153,7 +153,7 @@ function workflow_actions_trigger_info() {
   if (empty($states)) {
     return array();
   }
-  $trigger_page = drupal_substr($_GET['q'], 0, 28) == 'admin/structure/trigger/workflow';
+  $trigger_page = drupal_substr($_GET['q'], 0, 32) == 'admin/structure/trigger/workflow';
   // TODO these should be pulled into their own DB function calls.
   if ($trigger_page && $wid = arg(4)) {
     $result = db_query('SELECT tm.type, w.wid, w.name, ws.state, wt.tid, wt.sid, wt.target_sid ' .
