@@ -55,5 +55,14 @@ function avantages_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: view all avantages.
+  $permissions['view all avantages'] = array(
+    'name' => 'view all avantages',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'avantages',
+  );
+
   return $permissions;
 }

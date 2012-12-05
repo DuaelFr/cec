@@ -5,3 +5,30 @@
  */
 
 include_once 'avantages.features.inc';
+
+/**
+ * Implements hook_permission().
+ */
+function avantages_permission() {
+  return array(
+    'view all avantages' => array(
+      'title' => t('View all avantages without being restricted.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function avantages_node_access($node, $op, $account) {
+  $return = NODE_ACCESS_IGNORE;
+
+  if ($op == 'view' && $node->type == 'avantage') {
+    $return = NODE_ACCESS_DENY;
+    if (user_access('view all avantages')) {
+      $return = NODE_ACCESS_ALLOW;
+    }
+  }
+
+  return $return;
+}
