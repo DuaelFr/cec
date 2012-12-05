@@ -85,7 +85,7 @@ function _view_mode_per_role_get_view_mode($node) {
 
   $view_mode = 'full';
   while ($view_mode == 'full' && $setting = current($settings)) {
-    list($module, $identifier) = explode('--', $setting['role']);
+    @list($module, $identifier) = explode('--', $setting['role']);
     if (module_invoke($module, 'view_mode_per_role_is_active', $node, $identifier)) {
       $view_mode = $setting['view_mode'];
     }
