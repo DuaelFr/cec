@@ -55,5 +55,14 @@ function intrigues_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: view all intrigues.
+  $permissions['view all intrigues'] = array(
+    'name' => 'view all intrigues',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'intrigues',
+  );
+
   return $permissions;
 }

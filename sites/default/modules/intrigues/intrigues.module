@@ -5,3 +5,30 @@
  */
 
 include_once 'intrigues.features.inc';
+
+/**
+ * Implements hook_permission().
+ */
+function intrigues_permission() {
+  return array(
+    'view all intrigues' => array(
+      'title' => t('View all intrigues without being restricted.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function intrigues_node_access($node, $op, $account) {
+  $return = NODE_ACCESS_IGNORE;
+
+  if ($op == 'view' && $node->type == 'intrigue') {
+    $return = NODE_ACCESS_DENY;
+    if (user_access('view all intrigues')) {
+      $return = NODE_ACCESS_ALLOW;
+    }
+  }
+
+  return $return;
+}
