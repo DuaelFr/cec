@@ -39,7 +39,6 @@ features[field][] = node-character-field_character_state
 features[field][] = node-character-field_character_type
 features[field][] = node-character-field_confession
 features[field][] = node-character-field_incarnate
-features[field][] = node-character-field_job
 features[field][] = node-character-field_nationalite
 features[field][] = node-character-field_occupation
 features[field][] = node-character-field_photo

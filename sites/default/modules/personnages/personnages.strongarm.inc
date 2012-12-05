@@ -130,8 +130,7 @@ function personnages_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_character';
   $strongarm->value = array(
-    0 => 'status',
-    1 => 'revision',
+    0 => 'revision',
   );
   $export['node_options_character'] = $strongarm;
 
