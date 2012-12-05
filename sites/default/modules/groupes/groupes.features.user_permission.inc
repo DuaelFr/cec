@@ -55,5 +55,23 @@ function groupes_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: view all groups.
+  $permissions['view all groups'] = array(
+    'name' => 'view all groups',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'groupes',
+  );
+
+  // Exported permission: view technical groups.
+  $permissions['view technical groups'] = array(
+    'name' => 'view technical groups',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'groupes',
+  );
+
   return $permissions;
 }

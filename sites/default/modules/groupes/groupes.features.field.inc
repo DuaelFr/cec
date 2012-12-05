@@ -562,7 +562,7 @@ function groupes_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '33',
+        'weight' => '5',
       ),
     ),
   );

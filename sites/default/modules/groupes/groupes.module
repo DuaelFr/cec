@@ -5,3 +5,50 @@
  */
 
 include_once 'groupes.features.inc';
+
+/**
+ * Implements hook_permission().
+ */
+function groupes_permission() {
+  return array(
+    'view all groups' => array(
+      'title' => t('View all groups without being restricted.'),
+    ),
+    'view technical groups' => array(
+      'title' => t('View technical groups without being restricted.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function groupes_node_access($node, $op, $account) {
+  global $user;
+  $return = NODE_ACCESS_IGNORE;
+
+  if ($op == 'view' && $node->type == 'group') {
+    $return = NODE_ACCESS_DENY;
+    if (user_access('view all groups')) {
+      $return = NODE_ACCESS_ALLOW;
+    }
+    else {
+      $technical = reset(field_get_items('node', $node, 'field_group_is_technical'));
+      $technical = $technical['value'] == 1;
+      if ($technical && user_access('view technical groups')) {
+        $return = NODE_ACCESS_ALLOW;
+      }
+      elseif (!$technical) {
+        $members = field_get_items('node', $node, 'field_group_members');
+        foreach ($members as $member) {
+          $collection = field_collection_item_load($member['value']);
+          $character = reset(field_get_items('field_collection_item', $collection, 'field_character'));
+          $character = node_load($character['target_id']);
+          $return = personnages_node_access($character, $op, $account);
+        }
+      }
+    }
+  }
+
+  return $return;
+}
