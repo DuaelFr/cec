@@ -5,3 +5,30 @@
  */
 
 include_once 'evenements.features.inc';
+
+/**
+ * Implements hook_permission().
+ */
+function evenements_permission() {
+  return array(
+    'view all events' => array(
+      'title' => t('View all evenements without being restricted.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function evenements_node_access($node, $op, $account) {
+  $return = NODE_ACCESS_IGNORE;
+
+  if ($op == 'view' && $node->type == 'event') {
+    $return = NODE_ACCESS_DENY;
+    if (user_access('view all events')) {
+      $return = NODE_ACCESS_ALLOW;
+    }
+  }
+
+  return $return;
+}

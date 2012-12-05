@@ -55,5 +55,14 @@ function evenements_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: view all events.
+  $permissions['view all events'] = array(
+    'name' => 'view all events',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'evenements',
+  );
+
   return $permissions;
 }
