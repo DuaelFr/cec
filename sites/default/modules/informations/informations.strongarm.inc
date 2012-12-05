@@ -13,6 +13,55 @@ function informations_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'comment_anonymous_information';
+  $strongarm->value = 0;
+  $export['comment_anonymous_information'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_mode_information';
+  $strongarm->value = 1;
+  $export['comment_default_mode_information'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_default_per_page_information';
+  $strongarm->value = '50';
+  $export['comment_default_per_page_information'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_form_location_information';
+  $strongarm->value = 1;
+  $export['comment_form_location_information'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_information';
+  $strongarm->value = '2';
+  $export['comment_information'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_preview_information';
+  $strongarm->value = '1';
+  $export['comment_preview_information'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_subject_field_information';
+  $strongarm->value = 1;
+  $export['comment_subject_field_information'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__information';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -59,8 +108,7 @@ function informations_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_information';
   $strongarm->value = array(
-    0 => 'status',
-    1 => 'revision',
+    0 => 'revision',
   );
   $export['node_options_information'] = $strongarm;
 

@@ -55,5 +55,14 @@ function informations_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: view all informations.
+  $permissions['view all informations'] = array(
+    'name' => 'view all informations',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'informations',
+  );
+
   return $permissions;
 }

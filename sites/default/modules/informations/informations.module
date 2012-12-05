@@ -5,3 +5,30 @@
  */
 
 include_once 'informations.features.inc';
+
+/**
+ * Implements hook_permission().
+ */
+function informations_permission() {
+  return array(
+    'view all informations' => array(
+      'title' => t('View all informations without being restricted.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function informations_node_access($node, $op, $account) {
+  $return = NODE_ACCESS_IGNORE;
+
+  if ($op == 'view' && $node->type == 'information') {
+    $return = NODE_ACCESS_DENY;
+    if (user_access('view all informations')) {
+      $return = NODE_ACCESS_ALLOW;
+    }
+  }
+
+  return $return;
+}
