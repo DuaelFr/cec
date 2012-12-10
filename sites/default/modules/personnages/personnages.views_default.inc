@@ -85,77 +85,13 @@ function personnages_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'character' => 'character',
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
   $handler->display->display_options['filters']['sid']['value'] = array(
     6 => '6',
   );
-
-  /* Display: Sélecteur (Reference) */
-  $handler = $view->new_display('entityreference', 'Sélecteur (Reference)', 'character_selector');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'entityreference_style';
-  $handler->display->display_options['style_options']['search_fields'] = array(
-    'title' => 'title',
-    'field_character_type' => 'field_character_type',
-    'sid' => 'sid',
-    'status' => 0,
-  );
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'entityreference_fields';
-  $handler->display->display_options['row_options']['separator'] = ' ';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Contenu : Titre */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Champ: Contenu : Type */
-  $handler->display->display_options['fields']['field_character_type']['id'] = 'field_character_type';
-  $handler->display->display_options['fields']['field_character_type']['table'] = 'field_data_field_character_type';
-  $handler->display->display_options['fields']['field_character_type']['field'] = 'field_character_type';
-  $handler->display->display_options['fields']['field_character_type']['label'] = '';
-  $handler->display->display_options['fields']['field_character_type']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_character_type']['alter']['text'] = '([field_character_type])';
-  $handler->display->display_options['fields']['field_character_type']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_character_type']['settings'] = array(
-    'textformatter_type' => 'ul',
-    'textformatter_comma_and' => 0,
-    'textformatter_comma_full_stop' => 0,
-    'textformatter_comma_override' => 0,
-    'textformatter_separator_custom' => '',
-    'textformatter_separator_custom_tag' => 'span',
-    'textformatter_separator_custom_class' => 'textformatter-separator',
-    'textformatter_comma_tag' => 'div',
-    'textformatter_class' => 'textformatter-list',
-  );
-  /* Champ: Processus : État actuel */
-  $handler->display->display_options['fields']['sid']['id'] = 'sid';
-  $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
-  $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  $handler->display->display_options['fields']['sid']['label'] = '';
-  $handler->display->display_options['fields']['sid']['element_label_colon'] = FALSE;
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'character' => 'character',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
 
   /* Display: Mes Persos (Page) */
   $handler = $view->new_display('page', 'Mes Persos (Page)', 'mes_persos');
@@ -216,8 +152,6 @@ function personnages_views_default_views() {
     t('Nom du Personnage'),
     t('Statut du Personnage'),
     t('voir'),
-    t('Sélecteur (Reference)'),
-    t('([field_character_type])'),
     t('Mes Persos (Page)'),
     t('Mes Personnages'),
     t('Vide'),
