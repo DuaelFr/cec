@@ -17,6 +17,7 @@ features[menu_custom][] = menu-zorga-menu
 features[views_view][] = admin_avantages
 features[views_view][] = admin_evenements
 features[views_view][] = admin_groupes
+features[views_view][] = admin_intrigues
 features[views_view][] = admin_personnages
 features[views_view][] = exports
 features[views_view][] = inscriptions
