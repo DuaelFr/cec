@@ -7,7 +7,6 @@ project = evenements
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = entityreference
-dependencies[] = evenements
 dependencies[] = features
 dependencies[] = field_collection
 dependencies[] = node

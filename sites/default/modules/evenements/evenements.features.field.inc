@@ -170,22 +170,17 @@ function evenements_field_default_fields() {
       'locked' => '0',
       'module' => 'entityreference',
       'settings' => array(
-        'handler' => 'base',
+        'handler' => 'views',
         'handler_settings' => array(
           'behaviors' => array(
             'views-select-list' => array(
               'status' => 0,
             ),
           ),
-          'sort' => array(
-            'direction' => 'ASC',
-            'field' => 'body:value',
-            'property' => 'nid',
-            'type' => 'none',
-          ),
-          'target_bundles' => array(
-            'character' => 'character',
-            'group' => 'group',
+          'view' => array(
+            'args' => array(),
+            'display_name' => 'entityreference_target',
+            'view_name' => 'admin_personnages',
           ),
         ),
         'handler_submit' => 'Changer de gestionnaire',
