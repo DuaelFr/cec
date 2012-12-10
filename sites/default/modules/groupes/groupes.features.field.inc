@@ -46,8 +46,8 @@ function groupes_field_default_fields() {
           ),
           'view' => array(
             'args' => array(),
-            'display_name' => 'character_selector',
-            'view_name' => 'characters',
+            'display_name' => 'entityreference_member',
+            'view_name' => 'admin_personnages',
           ),
         ),
         'handler_submit' => 'Changer de gestionnaire',
