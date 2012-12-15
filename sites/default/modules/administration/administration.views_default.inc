@@ -995,9 +995,10 @@ function administration_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
-    'field_lastname' => 'field_firstname',
-    'field_firstname' => 'field_firstname',
     'field_character_type' => 'field_character_type',
+    'url' => 'url',
+    'field_lastname' => 'field_lastname',
+    'field_firstname' => 'field_firstname',
     'field_species' => 'field_species',
     'field_nationalite' => 'field_nationalite',
     'field_occupation' => 'field_occupation',
@@ -1020,8 +1021,20 @@ function administration_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_lastname' => array(
+    'field_character_type' => array(
       'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'url' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_lastname' => array(
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -1032,13 +1045,6 @@ function administration_views_default_views() {
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => ' ',
-      'empty_column' => 0,
-    ),
-    'field_character_type' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
       'empty_column' => 0,
     ),
     'field_species' => array(
@@ -1150,22 +1156,38 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Nom du personnage';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Champ: Contenu : Type */
+  $handler->display->display_options['fields']['field_character_type']['id'] = 'field_character_type';
+  $handler->display->display_options['fields']['field_character_type']['table'] = 'field_data_field_character_type';
+  $handler->display->display_options['fields']['field_character_type']['field'] = 'field_character_type';
+  /* Champ: Profil : URL */
+  $handler->display->display_options['fields']['url']['id'] = 'url';
+  $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
+  $handler->display->display_options['fields']['url']['field'] = 'url';
+  $handler->display->display_options['fields']['url']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['url']['label'] = '';
+  $handler->display->display_options['fields']['url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['url']['display_as_link'] = FALSE;
+  $handler->display->display_options['fields']['url']['link_to_entity'] = 1;
   /* Champ: Profil : Prénom */
   $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
   $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
   $handler->display->display_options['fields']['field_lastname']['field'] = 'field_lastname';
   $handler->display->display_options['fields']['field_lastname']['relationship'] = 'profile';
-  $handler->display->display_options['fields']['field_lastname']['label'] = 'Prénom Joueur';
+  $handler->display->display_options['fields']['field_lastname']['label'] = '';
+  $handler->display->display_options['fields']['field_lastname']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_lastname']['element_label_colon'] = FALSE;
   /* Champ: Profil : Nom */
   $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
   $handler->display->display_options['fields']['field_firstname']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['fields']['field_firstname']['field'] = 'field_firstname';
   $handler->display->display_options['fields']['field_firstname']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_firstname']['label'] = 'Nom Joueur';
-  /* Champ: Contenu : Type */
-  $handler->display->display_options['fields']['field_character_type']['id'] = 'field_character_type';
-  $handler->display->display_options['fields']['field_character_type']['table'] = 'field_data_field_character_type';
-  $handler->display->display_options['fields']['field_character_type']['field'] = 'field_character_type';
+  $handler->display->display_options['fields']['field_firstname']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_firstname']['alter']['text'] = '[field_lastname] [field_firstname]';
+  $handler->display->display_options['fields']['field_firstname']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_firstname']['alter']['path'] = '[url]';
   /* Champ: Contenu : Espèce */
   $handler->display->display_options['fields']['field_species']['id'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
@@ -1695,9 +1717,9 @@ function administration_views_default_views() {
     t('Joueur'),
     t('ProfilAdministratif'),
     t('Nom du personnage'),
-    t('Prénom Joueur'),
-    t('Nom Joueur'),
     t('Type'),
+    t('Nom Joueur'),
+    t('[field_lastname] [field_firstname]'),
     t('Espèce'),
     t('Nationalité'),
     t('Occupation'),
@@ -1713,6 +1735,7 @@ function administration_views_default_views() {
     t('État actuel'),
     t('Actions'),
     t('modifier'),
+    t('Prénom Joueur'),
     t('Tempérament 1'),
     t('Tempérament 2'),
     t('Tempérament 3'),
