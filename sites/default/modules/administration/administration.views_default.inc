@@ -403,7 +403,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['label'] = 'Date de début';
   $handler->display->display_options['fields']['field_dates']['settings'] = array(
-    'format_type' => 'date_only',
+    'format_type' => 'short',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -415,7 +415,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates_1']['label'] = 'Date de fin';
   $handler->display->display_options['fields']['field_dates_1']['settings'] = array(
-    'format_type' => 'date_only',
+    'format_type' => 'short',
     'fromto' => 'value2',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -498,6 +498,7 @@ function administration_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
+  $handler->display->display_options['filters']['field_dates_value']['granularity'] = 'minute';
   $handler->display->display_options['filters']['field_dates_value']['year_range'] = '1600:1650';
   /* Critère de filtrage: Contenu : Dates - date de fin (field_dates:value2) */
   $handler->display->display_options['filters']['field_dates_value2']['id'] = 'field_dates_value2';
@@ -521,6 +522,7 @@ function administration_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
+  $handler->display->display_options['filters']['field_dates_value2']['granularity'] = 'minute';
   $handler->display->display_options['filters']['field_dates_value2']['year_range'] = '1600:1650';
   /* Critère de filtrage: Processus : État actuel */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';

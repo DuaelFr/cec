@@ -314,6 +314,9 @@ function evenements_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_dates',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
@@ -323,8 +326,8 @@ function evenements_field_default_fields() {
         'cache_enabled' => 0,
         'granularity' => array(
           'day' => 'day',
-          'hour' => 0,
-          'minute' => 0,
+          'hour' => 'hour',
+          'minute' => 'minute',
           'month' => 'month',
           'second' => 0,
           'year' => 'year',
@@ -377,12 +380,14 @@ function evenements_field_default_fields() {
         'active' => 1,
         'module' => 'date',
         'settings' => array(
-          'increment' => '15',
+          'increment' => '1',
           'input_format' => 'd/m/Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
           'text_parts' => array(
             0 => 'year',
+            1 => 'hour',
+            2 => 'minute',
           ),
           'year_range' => '1600:1650',
         ),

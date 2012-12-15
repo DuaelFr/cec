@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Code for the Evenements feature.
+ */
+
+/**
+ * Change dates granularity.
+ */
+function evenements_update_7001(&$sandbox) {
+  $field = field_read_field('field_dates');
+  $field['settings']['granularity']['hour'] = 'hour';
+  $field['settings']['granularity']['minute'] = 'minute';
+  field_update_field($field);
+}
