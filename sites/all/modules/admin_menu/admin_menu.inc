@@ -572,6 +572,28 @@ function admin_menu_links_user() {
 }
 
 /**
+ * Build search widget.
+ *
+ * @see theme_admin_menu_links()
+ */
+function admin_menu_links_search() {
+  $links = array(
+    '#theme' => 'admin_menu_links',
+    '#weight' => 150,
+  );
+  $links['search'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Search'),
+    '#title_display' => 'attribute',
+    '#attributes' => array(
+      'placeholder' => t('Search'),
+      'class' => array('admin-menu-search'),
+    ),
+  );
+  return $links;
+}
+
+/**
  * Form builder function for module settings.
  */
 function admin_menu_theme_settings() {
@@ -584,7 +606,7 @@ function admin_menu_theme_settings() {
   $form['admin_menu_position_fixed'] = array(
     '#type' => 'checkbox',
     '#title' => t('Keep menu at top of page'),
-    '#default_value' => variable_get('admin_menu_position_fixed', 0),
+    '#default_value' => variable_get('admin_menu_position_fixed', 1),
     '#description' => t('Displays the administration menu always at the top of the browser viewport (even when scrolling the page).'),
   );
   // @todo Re-confirm this with latest browser versions.
