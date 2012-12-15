@@ -688,6 +688,11 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_alternate_title']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = '[path]';
   $handler->display->display_options['fields']['field_alternate_title']['alter']['absolute'] = TRUE;
+  /* Champ: Contenu : Type de groupe */
+  $handler->display->display_options['fields']['field_group_type']['id'] = 'field_group_type';
+  $handler->display->display_options['fields']['field_group_type']['table'] = 'field_data_field_group_type';
+  $handler->display->display_options['fields']['field_group_type']['field'] = 'field_group_type';
+  $handler->display->display_options['fields']['field_group_type']['type'] = 'taxonomy_term_reference_plain';
   /* Champ: Champ : Descriptif orga */
   $handler->display->display_options['fields']['field_alternate_body']['id'] = 'field_alternate_body';
   $handler->display->display_options['fields']['field_alternate_body']['table'] = 'field_data_field_alternate_body';
@@ -741,6 +746,31 @@ function administration_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
+  /* Critère de filtrage: Contenu : Type de groupe (field_group_type) */
+  $handler->display->display_options['filters']['field_group_type_tid']['id'] = 'field_group_type_tid';
+  $handler->display->display_options['filters']['field_group_type_tid']['table'] = 'field_data_field_group_type';
+  $handler->display->display_options['filters']['field_group_type_tid']['field'] = 'field_group_type_tid';
+  $handler->display->display_options['filters']['field_group_type_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_group_type_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_group_type_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_group_type_tid']['expose']['operator_id'] = 'field_group_type_tid_op';
+  $handler->display->display_options['filters']['field_group_type_tid']['expose']['label'] = 'Type de groupe';
+  $handler->display->display_options['filters']['field_group_type_tid']['expose']['operator'] = 'field_group_type_tid_op';
+  $handler->display->display_options['filters']['field_group_type_tid']['expose']['identifier'] = 'field_group_type_tid';
+  $handler->display->display_options['filters']['field_group_type_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['field_group_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_group_type_tid']['vocabulary'] = 'type_de_groupe';
+  $handler->display->display_options['filters']['field_group_type_tid']['hierarchy'] = 1;
   /* Critère de filtrage: Contenu : Groupe technique (field_group_is_technical) */
   $handler->display->display_options['filters']['field_group_is_technical_value']['id'] = 'field_group_is_technical_value';
   $handler->display->display_options['filters']['field_group_is_technical_value']['table'] = 'field_data_field_group_is_technical';
@@ -810,6 +840,7 @@ function administration_views_default_views() {
     t('Membres'),
     t('Personnage'),
     t('Intitulé orga'),
+    t('Type de groupe'),
     t('Descriptif orga'),
     t('Personnages'),
     t('Groupe technique'),
