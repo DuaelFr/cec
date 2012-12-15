@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * Code for the Contextes feature.
+ */
+
+include_once 'contextes.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function contextes_block_info() {
+  return array(
+    'introduction' => array(
+      'info' => t('Introduction'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function contextes_block_view($delta = '') {
+  $block = array();
+
+  if ($delta == 'introduction') {
+    $block['subject'] = '';
+    $block['content'] = '<p><em>Se glissant dans l\'ombre de cette fin de journée, le galant presse le pas dans la ruelle en direction de l\'avenue marchande, encore animée d\'étals bruyants et d\'oisifs profitant de la fraîcheur de la soirée. Soudain, au détour d\'une venelle il se trouve face à face avec l\'objet de ses rancœurs du moment&nbsp;: un coquin l\'ayant ridiculisé devant le père de son aimée et une bonne partie de la noblesse de la ville.</em></p><div><a href="/node/28">Lire la suite</a></div>';
+  }
+
+  return $block;
+}
