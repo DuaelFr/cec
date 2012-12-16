@@ -1,0 +1,12 @@
+name = Switchtheme
+description = Allows switching the theme in various means.
+core = 7.x
+package = User interface
+configure = admin/config/user-interface/switchtheme
+
+; Information added by drupal.org packaging script on 2011-02-25
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "switchtheme"
+datestamp = "1298620312"
+
