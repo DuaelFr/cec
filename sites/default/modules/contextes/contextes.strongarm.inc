@@ -38,5 +38,19 @@ function contextes_strongarm() {
   $strongarm->value = 'down';
   $export['nice_menus_type_1'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'switchtheme_colorpaper';
+  $strongarm->value = 'Thème Public';
+  $export['switchtheme_colorpaper'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'switchtheme_rubik';
+  $strongarm->value = 'Thème Admin';
+  $export['switchtheme_rubik'] = $strongarm;
+
   return $export;
 }

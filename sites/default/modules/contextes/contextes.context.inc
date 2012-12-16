@@ -88,6 +88,12 @@ function contextes_context_default_contexts() {
           'region' => 'sidebar_first',
           'weight' => '3',
         ),
+        'switchtheme-switch_form' => array(
+          'module' => 'switchtheme',
+          'delta' => 'switch_form',
+          'region' => 'footer',
+          'weight' => '0',
+        ),
       ),
     ),
   );
