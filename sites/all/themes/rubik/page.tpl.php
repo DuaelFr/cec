@@ -40,4 +40,5 @@
       <?php print $feed_icons ?>
     </div>
   <?php endif; ?>
+  <?php if (!empty($page['footer'])) print render($page['footer']) ?>
 </div>
