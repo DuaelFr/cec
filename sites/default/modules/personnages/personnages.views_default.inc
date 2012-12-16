@@ -85,7 +85,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'character' => 'character',
   );
-  /* Critère de filtrage: Processus : Current state */
+  /* Critère de filtrage: Processus : État actuel */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';

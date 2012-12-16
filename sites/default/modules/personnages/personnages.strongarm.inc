@@ -86,6 +86,9 @@ function personnages_strongarm() {
       'full_zorga' => array(
         'custom_settings' => FALSE,
       ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

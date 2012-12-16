@@ -203,14 +203,17 @@ function personnages_field_default_fields() {
           'type' => 'hidden',
           'weight' => '8',
         ),
+        'full_zorga' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '8',
+        ),
         'teaser' => array(
           'label' => 'hidden',
-          'module' => 'text',
-          'settings' => array(
-            'trim_length' => 600,
-          ),
-          'type' => 'text_summary_or_trimmed',
-          'weight' => 0,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '0',
         ),
         'trombinoscope' => array(
           'label' => 'hidden',
@@ -286,11 +289,17 @@ function personnages_field_default_fields() {
           'type' => 'hidden',
           'weight' => '9',
         ),
+        'full_zorga' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '9',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '16',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -350,22 +359,21 @@ function personnages_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'field_collection',
-          'settings' => array(
-            'add' => 'Ajouter',
-            'delete' => 'Supprimer',
-            'description' => TRUE,
-            'edit' => 'Modifier',
-            'view_mode' => 'full',
-          ),
-          'type' => 'field_collection_view',
-          'weight' => 17,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '17',
+        ),
+        'full_zorga' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '17',
         ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '6',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -441,11 +449,18 @@ function personnages_field_default_fields() {
           'type' => 'text_default',
           'weight' => '8',
         ),
+        'full_zorga' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '8',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '5',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -517,11 +532,17 @@ function personnages_field_default_fields() {
           'type' => 'hidden',
           'weight' => '12',
         ),
+        'full_zorga' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '12',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '8',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -586,11 +607,17 @@ function personnages_field_default_fields() {
           'type' => 'hidden',
           'weight' => '11',
         ),
+        'full_zorga' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '11',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '17',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -667,11 +694,18 @@ function personnages_field_default_fields() {
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '16',
         ),
+        'full_zorga' => array(
+          'label' => 'inline',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '16',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '4',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -755,11 +789,17 @@ function personnages_field_default_fields() {
           'type' => 'hidden',
           'weight' => '10',
         ),
+        'full_zorga' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '10',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '15',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -840,11 +880,18 @@ function personnages_field_default_fields() {
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '14',
         ),
+        'full_zorga' => array(
+          'label' => 'inline',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '14',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '1',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -921,11 +968,18 @@ function personnages_field_default_fields() {
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '15',
         ),
+        'full_zorga' => array(
+          'label' => 'inline',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '15',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '7',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1000,11 +1054,21 @@ function personnages_field_default_fields() {
           'type' => 'image',
           'weight' => '0',
         ),
+        'full_zorga' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => 'trombinoscope',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '9',
         ),
         'trombinoscope' => array(
           'label' => 'hidden',
@@ -1111,11 +1175,18 @@ function personnages_field_default_fields() {
           'type' => 'text_plain',
           'weight' => '13',
         ),
+        'full_zorga' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '13',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '2',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1192,11 +1263,18 @@ function personnages_field_default_fields() {
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '3',
         ),
+        'full_zorga' => array(
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '3',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '12',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1270,11 +1348,18 @@ function personnages_field_default_fields() {
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '4',
         ),
+        'full_zorga' => array(
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '4',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '11',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1348,11 +1433,18 @@ function personnages_field_default_fields() {
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '5',
         ),
+        'full_zorga' => array(
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '5',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '10',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1426,11 +1518,18 @@ function personnages_field_default_fields() {
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '6',
         ),
+        'full_zorga' => array(
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '6',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '13',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1504,11 +1603,18 @@ function personnages_field_default_fields() {
           'type' => 'taxonomy_term_reference_plain',
           'weight' => '7',
         ),
+        'full_zorga' => array(
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '7',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '14',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1573,11 +1679,18 @@ function personnages_field_default_fields() {
           'type' => 'viewfield_default',
           'weight' => '7',
         ),
+        'full_zorga' => array(
+          'label' => 'hidden',
+          'module' => 'viewfield',
+          'settings' => array(),
+          'type' => 'viewfield_default',
+          'weight' => '7',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '3',
         ),
         'trombinoscope' => array(
           'label' => 'above',
