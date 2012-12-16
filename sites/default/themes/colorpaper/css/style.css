@@ -1204,7 +1204,7 @@ tr.menu-disabled {
         text-align: center;
     }
 
-select.form-select {
+#main select.form-select {
     width: 465px;
 }
 
