@@ -24,7 +24,7 @@ function intrigues_node_info() {
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Titre'),
+      'title_label' => t('Intitulé orga'),
       'help' => '',
     ),
   );
