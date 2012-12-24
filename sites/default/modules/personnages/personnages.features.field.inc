@@ -394,7 +394,7 @@ function personnages_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '8',
+        'weight' => '15',
       ),
     ),
   );
@@ -727,6 +727,79 @@ function personnages_field_default_fields() {
         'settings' => array(),
         'type' => 'options_select',
         'weight' => '11',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-character-field_credit'.
+  $fields['node-character-field_credit'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_credit',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'character',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => '19',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'trombinoscope' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_credit',
+      'label' => 'Crédit',
+      'required' => 0,
+      'settings' => array(
+        'max' => '30',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '14',
       ),
     ),
   );
@@ -1121,6 +1194,79 @@ function personnages_field_default_fields() {
         ),
         'type' => 'image_image',
         'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-character-field_pugilat'.
+  $fields['node-character-field_pugilat'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_pugilat',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'number',
+      'settings' => array(
+        'profile2_private' => FALSE,
+      ),
+      'translatable' => '0',
+      'type' => 'number_integer',
+    ),
+    'field_instance' => array(
+      'bundle' => 'character',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => '18',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'trombinoscope' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_pugilat',
+      'label' => 'Pugilat',
+      'required' => 0,
+      'settings' => array(
+        'max' => '30',
+        'min' => '0',
+        'prefix' => '',
+        'suffix' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'number',
+        'settings' => array(),
+        'type' => 'number',
+        'weight' => '13',
       ),
     ),
   );
@@ -1724,7 +1870,7 @@ function personnages_field_default_fields() {
         'module' => 'viewfield',
         'settings' => array(),
         'type' => 'viewfield_select',
-        'weight' => '14',
+        'weight' => '12',
       ),
     ),
   );
@@ -1737,6 +1883,7 @@ function personnages_field_default_fields() {
   t('Ce texte est la description publique qui apparaîtra dans le trombinoscope.');
   t('Cocher ce champ fera apparaître l\'avantage sur la feuille du personnage.');
   t('Confession');
+  t('Crédit');
   t('Dernier Tempérament');
   t('Descriptif orga');
   t('Description');
@@ -1747,6 +1894,7 @@ function personnages_field_default_fields() {
   t('Occupation');
   t('Photo');
   t('Premier Tempérament');
+  t('Pugilat');
   t('Quatrième Tempérament');
   t('Second Tempérament');
   t('Statut du Personnage');

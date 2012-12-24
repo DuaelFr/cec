@@ -99,7 +99,7 @@ function personnages_strongarm() {
           'weight' => '11',
         ),
         'workflow' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
       ),
       'display' => array(),
