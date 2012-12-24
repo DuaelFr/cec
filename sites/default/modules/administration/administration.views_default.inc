@@ -1442,6 +1442,8 @@ function administration_views_default_views() {
     'field_temperament3' => 'field_temperament1',
     'field_temperament4' => 'field_temperament1',
     'field_temperament5' => 'field_temperament1',
+    'field_credit' => 'field_credit',
+    'field_pugilat' => 'field_pugilat',
     'field_value' => 'field_value',
     'nid' => 'nid',
     'item_id' => 'item_id',
@@ -1540,6 +1542,20 @@ function administration_views_default_views() {
       'empty_column' => 0,
     ),
     'field_temperament5' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_credit' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_pugilat' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -1696,6 +1712,22 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_temperament5']['table'] = 'field_data_field_temperament5';
   $handler->display->display_options['fields']['field_temperament5']['field'] = 'field_temperament5';
   $handler->display->display_options['fields']['field_temperament5']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Contenu : Crédit */
+  $handler->display->display_options['fields']['field_credit']['id'] = 'field_credit';
+  $handler->display->display_options['fields']['field_credit']['table'] = 'field_data_field_credit';
+  $handler->display->display_options['fields']['field_credit']['field'] = 'field_credit';
+  $handler->display->display_options['fields']['field_credit']['settings'] = array(
+    'thousand_separator' => ' ',
+    'prefix_suffix' => 1,
+  );
+  /* Champ: Contenu : Pugilat */
+  $handler->display->display_options['fields']['field_pugilat']['id'] = 'field_pugilat';
+  $handler->display->display_options['fields']['field_pugilat']['table'] = 'field_data_field_pugilat';
+  $handler->display->display_options['fields']['field_pugilat']['field'] = 'field_pugilat';
+  $handler->display->display_options['fields']['field_pugilat']['settings'] = array(
+    'thousand_separator' => ' ',
+    'prefix_suffix' => 1,
+  );
   /* Champ: SUM(Contenu : Valeur) */
   $handler->display->display_options['fields']['field_value']['id'] = 'field_value';
   $handler->display->display_options['fields']['field_value']['table'] = 'field_data_field_value';
@@ -2217,6 +2249,8 @@ function administration_views_default_views() {
     t('Troisième Tempérament'),
     t('Quatrième Tempérament'),
     t('Dernier Tempérament'),
+    t('Crédit'),
+    t('Pugilat'),
     t('0 P'),
     t('[nid] ([field_value])'),
     t('Groupes'),
