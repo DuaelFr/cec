@@ -10,6 +10,15 @@
 function informations_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: add terms in 8.
+  $permissions['add terms in 8'] = array(
+    'name' => 'add terms in 8',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
   // Exported permission: create information content.
   $permissions['create information content'] = array(
     'name' => 'create information content',
@@ -37,6 +46,15 @@ function informations_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: delete terms in 8.
+  $permissions['delete terms in 8'] = array(
+    'name' => 'delete terms in 8',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: edit any information content.
   $permissions['edit any information content'] = array(
     'name' => 'edit any information content',
@@ -53,6 +71,15 @@ function informations_user_default_permissions() {
       'Zorga' => 'Zorga',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: edit terms in 8.
+  $permissions['edit terms in 8'] = array(
+    'name' => 'edit terms in 8',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: view all informations.
