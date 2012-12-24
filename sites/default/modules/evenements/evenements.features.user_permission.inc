@@ -10,6 +10,15 @@
 function evenements_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: add terms in 7.
+  $permissions['add terms in 7'] = array(
+    'name' => 'add terms in 7',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
   // Exported permission: create event content.
   $permissions['create event content'] = array(
     'name' => 'create event content',
@@ -37,6 +46,15 @@ function evenements_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: delete terms in 7.
+  $permissions['delete terms in 7'] = array(
+    'name' => 'delete terms in 7',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: edit any event content.
   $permissions['edit any event content'] = array(
     'name' => 'edit any event content',
@@ -53,6 +71,15 @@ function evenements_user_default_permissions() {
       'Zorga' => 'Zorga',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: edit terms in 7.
+  $permissions['edit terms in 7'] = array(
+    'name' => 'edit terms in 7',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: view all events.
