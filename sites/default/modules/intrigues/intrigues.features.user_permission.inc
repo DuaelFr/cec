@@ -10,6 +10,15 @@
 function intrigues_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: add terms in 9.
+  $permissions['add terms in 9'] = array(
+    'name' => 'add terms in 9',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
   // Exported permission: create intrigue content.
   $permissions['create intrigue content'] = array(
     'name' => 'create intrigue content',
@@ -37,6 +46,15 @@ function intrigues_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: delete terms in 9.
+  $permissions['delete terms in 9'] = array(
+    'name' => 'delete terms in 9',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: edit any intrigue content.
   $permissions['edit any intrigue content'] = array(
     'name' => 'edit any intrigue content',
@@ -53,6 +71,15 @@ function intrigues_user_default_permissions() {
       'Zorga' => 'Zorga',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: edit terms in 9.
+  $permissions['edit terms in 9'] = array(
+    'name' => 'edit terms in 9',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: view all intrigues.
