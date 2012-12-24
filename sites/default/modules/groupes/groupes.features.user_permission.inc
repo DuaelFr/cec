@@ -10,6 +10,15 @@
 function groupes_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: add terms in 6.
+  $permissions['add terms in 6'] = array(
+    'name' => 'add terms in 6',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
   // Exported permission: create group content.
   $permissions['create group content'] = array(
     'name' => 'create group content',
@@ -37,6 +46,15 @@ function groupes_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: delete terms in 6.
+  $permissions['delete terms in 6'] = array(
+    'name' => 'delete terms in 6',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: edit any group content.
   $permissions['edit any group content'] = array(
     'name' => 'edit any group content',
@@ -53,6 +71,15 @@ function groupes_user_default_permissions() {
       'Zorga' => 'Zorga',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: edit terms in 6.
+  $permissions['edit terms in 6'] = array(
+    'name' => 'edit terms in 6',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: view all groups.
