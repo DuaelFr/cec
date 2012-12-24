@@ -93,13 +93,13 @@ function avantages_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '4',
+          'weight' => '2',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '5',
         ),
         'workflow' => array(
-          'weight' => '6',
+          'weight' => '4',
         ),
       ),
       'display' => array(),

@@ -388,7 +388,7 @@ function avantages_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'max' => '25',
-        'min' => '0',
+        'min' => '-25',
         'prefix' => '',
         'suffix' => ' P',
         'user_register_form' => FALSE,

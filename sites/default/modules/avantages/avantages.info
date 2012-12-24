@@ -4,7 +4,6 @@ package = App
 php = 5.2.4
 version = 7.x-1.0-alpha3
 project = avantages
-dependencies[] = avantages
 dependencies[] = config_permissions
 dependencies[] = ctools
 dependencies[] = features
