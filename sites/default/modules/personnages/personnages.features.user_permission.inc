@@ -10,6 +10,33 @@
 function personnages_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: add terms in 3.
+  $permissions['add terms in 3'] = array(
+    'name' => 'add terms in 3',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
+  // Exported permission: add terms in 4.
+  $permissions['add terms in 4'] = array(
+    'name' => 'add terms in 4',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
+  // Exported permission: add terms in 5.
+  $permissions['add terms in 5'] = array(
+    'name' => 'add terms in 5',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
   // Exported permission: create character content.
   $permissions['create character content'] = array(
     'name' => 'create character content',
@@ -37,6 +64,33 @@ function personnages_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: delete terms in 3.
+  $permissions['delete terms in 3'] = array(
+    'name' => 'delete terms in 3',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: delete terms in 4.
+  $permissions['delete terms in 4'] = array(
+    'name' => 'delete terms in 4',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: delete terms in 5.
+  $permissions['delete terms in 5'] = array(
+    'name' => 'delete terms in 5',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: edit any character content.
   $permissions['edit any character content'] = array(
     'name' => 'edit any character content',
@@ -53,6 +107,33 @@ function personnages_user_default_permissions() {
       'Zorga' => 'Zorga',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: edit terms in 3.
+  $permissions['edit terms in 3'] = array(
+    'name' => 'edit terms in 3',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: edit terms in 4.
+  $permissions['edit terms in 4'] = array(
+    'name' => 'edit terms in 4',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: edit terms in 5.
+  $permissions['edit terms in 5'] = array(
+    'name' => 'edit terms in 5',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: view all non-playable characters.
