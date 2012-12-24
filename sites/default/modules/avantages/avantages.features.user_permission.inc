@@ -10,6 +10,15 @@
 function avantages_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: add terms in 10.
+  $permissions['add terms in 10'] = array(
+    'name' => 'add terms in 10',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
   // Exported permission: create avantage content.
   $permissions['create avantage content'] = array(
     'name' => 'create avantage content',
@@ -37,6 +46,15 @@ function avantages_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: delete terms in 10.
+  $permissions['delete terms in 10'] = array(
+    'name' => 'delete terms in 10',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: edit any avantage content.
   $permissions['edit any avantage content'] = array(
     'name' => 'edit any avantage content',
@@ -53,6 +71,15 @@ function avantages_user_default_permissions() {
       'Zorga' => 'Zorga',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: edit terms in 10.
+  $permissions['edit terms in 10'] = array(
+    'name' => 'edit terms in 10',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: view all avantages.
