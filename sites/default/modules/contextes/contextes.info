@@ -19,6 +19,7 @@ features[variable][] = nice_menus_depth_1
 features[variable][] = nice_menus_menu_1
 features[variable][] = nice_menus_name_1
 features[variable][] = nice_menus_type_1
+features[variable][] = switchtheme_cecadmin
 features[variable][] = switchtheme_colorpaper
 features[variable][] = switchtheme_rubik
 project path = sites/default/modules

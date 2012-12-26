@@ -41,6 +41,13 @@ function contextes_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'switchtheme_cecadmin';
+  $strongarm->value = 'Thème Admin';
+  $export['switchtheme_cecadmin'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'switchtheme_colorpaper';
   $strongarm->value = 'Thème Public';
   $export['switchtheme_colorpaper'] = $strongarm;
