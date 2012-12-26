@@ -112,7 +112,7 @@ function administration_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relation: Entity Reference : Entité référante */
+  /* Relation: Entity Reference : Referencing entity */
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['id'] = 'reverse_field_avantage_field_collection_item';
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['field'] = 'reverse_field_avantage_field_collection_item';
@@ -161,7 +161,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'reverse_field_avantage_field_collection_item';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Personnages';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -275,7 +275,7 @@ function administration_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -463,7 +463,7 @@ function administration_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['relationships']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['relationships']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
@@ -524,7 +524,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -637,7 +637,7 @@ function administration_views_default_views() {
   );
   $handler->display->display_options['filters']['field_dates_value2']['granularity'] = 'minute';
   $handler->display->display_options['filters']['field_dates_value2']['year_range'] = '1600:1650';
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -681,11 +681,12 @@ function administration_views_default_views() {
     t('Interprétations'),
     t('.'),
     t(','),
-    t('État actuel'),
+    t('Current state'),
     t('Actions'),
     t('modifier'),
     t('A partir du'),
     t('Jusqu\'au'),
+    t('État actuel'),
     t('Tous les évènements (Page)'),
   );
   $export['admin_evenements'] = $view;
@@ -964,20 +965,52 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['type'] = 'published-notpublished';
   $handler->display->display_options['fields']['status']['not'] = 0;
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  /* Champ: Contenu : Date de publication */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'node';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['label'] = 'Création';
+  $handler->display->display_options['fields']['created']['date_format'] = 'short';
+  /* Champ: Contenu : Date de mise à jour */
+  $handler->display->display_options['fields']['changed']['id'] = 'changed';
+  $handler->display->display_options['fields']['changed']['table'] = 'node';
+  $handler->display->display_options['fields']['changed']['field'] = 'changed';
+  $handler->display->display_options['fields']['changed']['label'] = 'Mise à jour';
+  $handler->display->display_options['fields']['changed']['date_format'] = 'short';
+  /* Champ: Contenu : Lien de modification */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
   /* Critère de tri: Contenu : Date de publication */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'avantage' => 'avantage',
+    'event' => 'event',
+    'group' => 'group',
+    'information' => 'information',
+    'intrigue' => 'intrigue',
+    'character' => 'character',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
   /* Critère de filtrage: Contenu : Titre */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
   $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Titre';
@@ -998,6 +1031,15 @@ function administration_views_default_views() {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'avantage' => 'avantage',
+    'event' => 'event',
+    'group' => 'group',
+    'information' => 'information',
+    'intrigue' => 'intrigue',
+    'character' => 'character',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
@@ -1014,10 +1056,33 @@ function administration_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
+  /* Critère de filtrage: Contenu : Publié */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['status']['expose']['label'] = 'Publié';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
+  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['group'] = 1;
   $handler->display->display_options['filters']['sid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['sid']['expose']['operator_id'] = 'sid_op';
   $handler->display->display_options['filters']['sid']['expose']['label'] = 'État actuel';
@@ -1059,8 +1124,13 @@ function administration_views_default_views() {
     t('Type'),
     t('Auteur'),
     t('Publié'),
-    t('État actuel'),
+    t('Current state'),
+    t('Création'),
+    t('Mise à jour'),
+    t('Actions'),
+    t('modifier'),
     t('Titre'),
+    t('État actuel'),
     t('Page'),
   );
   $export['admin_global'] = $view;
@@ -1159,7 +1229,7 @@ function administration_views_default_views() {
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
@@ -1204,7 +1274,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_group_is_technical']['id'] = 'field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['field'] = 'field_group_is_technical';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -1290,7 +1360,7 @@ function administration_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -1342,10 +1412,11 @@ function administration_views_default_views() {
     t('Descriptif orga'),
     t('Personnages'),
     t('Groupe technique'),
-    t('État actuel'),
+    t('Current state'),
     t('Actions'),
     t('modifier'),
     t('Titre'),
+    t('État actuel'),
     t('Tous les groupes (Page)'),
   );
   $export['admin_groupes'] = $view;
@@ -1438,7 +1509,7 @@ function administration_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['relationships']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['relationships']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
@@ -1474,7 +1545,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -1539,7 +1610,7 @@ function administration_views_default_views() {
   $handler->display->display_options['filters']['field_information_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_information_type_tid']['vocabulary'] = 'information_type';
   $handler->display->display_options['filters']['field_information_type_tid']['hierarchy'] = 1;
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -1586,9 +1657,10 @@ function administration_views_default_views() {
     t('Interprétations'),
     t('.'),
     t(','),
-    t('État actuel'),
+    t('Current state'),
     t('Actions'),
     t('modifier'),
+    t('État actuel'),
     t('Toutes les informations (Page)'),
   );
   $export['admin_informations'] = $view;
@@ -1650,7 +1722,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '600',
   );
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -1721,7 +1793,7 @@ function administration_views_default_views() {
   $handler->display->display_options['filters']['field_intrigue_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['vocabulary'] = 'intrigue_type';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['hierarchy'] = 1;
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -1971,12 +2043,12 @@ function administration_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relation: Entity Reference : Entité référante */
+  /* Relation: Entity Reference : Referencing entity */
   $handler->display->display_options['relationships']['reverse_field_character_field_collection_item']['id'] = 'reverse_field_character_field_collection_item';
   $handler->display->display_options['relationships']['reverse_field_character_field_collection_item']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_character_field_collection_item']['field'] = 'reverse_field_character_field_collection_item';
   $handler->display->display_options['relationships']['reverse_field_character_field_collection_item']['label'] = 'Groupe';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
@@ -1996,7 +2068,7 @@ function administration_views_default_views() {
   $handler->display->display_options['relationships']['field_avantages_value']['field'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantages_value']['label'] = 'Avantages';
   $handler->display->display_options['relationships']['field_avantages_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_avantage_target_id']['id'] = 'field_avantage_target_id';
   $handler->display->display_options['relationships']['field_avantage_target_id']['table'] = 'field_data_field_avantage';
   $handler->display->display_options['relationships']['field_avantage_target_id']['field'] = 'field_avantage_target_id';
@@ -2134,7 +2206,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'reverse_field_character_field_collection_item';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Groupes';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -2429,7 +2501,7 @@ function administration_views_default_views() {
   );
   $handler->display->display_options['filters']['field_temperament5_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_temperament5_tid']['vocabulary'] = 'temperament';
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -2499,7 +2571,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -2578,7 +2650,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_group_is_technical']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_group_is_technical']['empty_zero'] = TRUE;
   $handler->display->display_options['fields']['field_group_is_technical']['type'] = 'list_key';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -2631,7 +2703,7 @@ function administration_views_default_views() {
     t('Groupes'),
     t('.'),
     t(','),
-    t('État actuel'),
+    t('Current state'),
     t('Actions'),
     t('modifier'),
     t('Prénom Joueur'),
@@ -2640,6 +2712,7 @@ function administration_views_default_views() {
     t('Tempérament 3'),
     t('Tempérament 4'),
     t('Tempérament 5'),
+    t('État actuel'),
     t('Tous les Personnages (Page)'),
     t('Sélecteur Membre (Reference)'),
     t('[field_character_type] : '),
