@@ -5,3 +5,37 @@
  */
 
 include_once 'administration.features.inc';
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function administration_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  $link = FALSE;
+  switch ($root_path) {
+    case 'admin/cec/avantages':
+      $link = menu_get_item('node/add/avantage');
+      break;
+    case 'admin/cec/evenements':
+      $link = menu_get_item('node/add/event');
+      break;
+    case 'admin/cec/groupes':
+      $link = menu_get_item('node/add/group');
+      break;
+    case 'admin/cec/informations':
+      $link = menu_get_item('node/add/information');
+      break;
+    case 'admin/cec/intrigues':
+      $link = menu_get_item('node/add/intrigue');
+      break;
+    case 'admin/cec/personnages':
+      $link = menu_get_item('node/add/character');
+      break;
+  }
+  if (!empty($link)) {
+    $link['title'] = 'Créer ' . $link['title'];
+    $data['actions']['output'][] = array(
+      '#theme' => 'menu_local_action',
+      '#link' => $link,
+    );
+  }
+}
