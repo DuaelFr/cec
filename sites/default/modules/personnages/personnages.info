@@ -18,7 +18,6 @@ dependencies[] = list
 dependencies[] = node
 dependencies[] = number
 dependencies[] = options
-dependencies[] = select_or_other
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = taxonomy_access_fix
