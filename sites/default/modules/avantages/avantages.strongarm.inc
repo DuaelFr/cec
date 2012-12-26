@@ -96,10 +96,10 @@ function avantages_strongarm() {
           'weight' => '2',
         ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '7',
         ),
         'workflow' => array(
-          'weight' => '4',
+          'weight' => '6',
         ),
       ),
       'display' => array(),

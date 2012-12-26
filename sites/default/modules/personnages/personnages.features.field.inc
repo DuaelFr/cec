@@ -774,7 +774,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1241,7 +1241,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1870,7 +1870,7 @@ function personnages_field_default_fields() {
         'module' => 'viewfield',
         'settings' => array(),
         'type' => 'viewfield_select',
-        'weight' => '12',
+        'weight' => '11',
       ),
     ),
   );

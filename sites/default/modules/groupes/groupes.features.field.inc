@@ -239,7 +239,7 @@ function groupes_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '1',
+        'weight' => '3',
       ),
     ),
   );
@@ -317,7 +317,7 @@ function groupes_field_default_fields() {
           'rows' => '10',
         ),
         'type' => 'text_textarea',
-        'weight' => '4',
+        'weight' => '1',
       ),
     ),
   );
@@ -396,7 +396,7 @@ function groupes_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '2',
+        'weight' => '0',
       ),
     ),
   );
@@ -475,7 +475,7 @@ function groupes_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -558,7 +558,7 @@ function groupes_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '6',
+        'weight' => '4',
       ),
     ),
   );
@@ -639,7 +639,7 @@ function groupes_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '3',
+        'weight' => '5',
       ),
     ),
   );

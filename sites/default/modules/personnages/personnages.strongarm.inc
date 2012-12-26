@@ -96,10 +96,10 @@ function personnages_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '11',
+          'weight' => '10',
         ),
         'workflow' => array(
-          'weight' => '10',
+          'weight' => '9',
         ),
       ),
       'display' => array(),

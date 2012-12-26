@@ -93,7 +93,7 @@ function groupes_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '2',
         ),
         'path' => array(
           'weight' => '9',

@@ -304,7 +304,7 @@ function evenements_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '2',
+        'weight' => '1',
       ),
     ),
   );
@@ -401,7 +401,7 @@ function evenements_field_default_fields() {
           'year_range' => '1600:1650',
         ),
         'type' => 'date_select',
-        'weight' => '3',
+        'weight' => '5',
       ),
     ),
   );
@@ -482,7 +482,7 @@ function evenements_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '1',
+        'weight' => '3',
       ),
     ),
   );
@@ -647,7 +647,7 @@ function evenements_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '5',
+        'weight' => '2',
       ),
     ),
   );

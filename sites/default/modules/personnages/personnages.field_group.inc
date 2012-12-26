@@ -278,7 +278,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Trombinoscope',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'body',
       1 => 'field_photo',
@@ -369,7 +369,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tempéraments',
-    'weight' => '6',
+    'weight' => '5',
     'children' => array(
       0 => 'field_temperament1',
       1 => 'field_temperament2',

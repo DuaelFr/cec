@@ -87,7 +87,7 @@ function avantages_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '5',
+        'weight' => '3',
       ),
     ),
   );
@@ -165,7 +165,7 @@ function avantages_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '3',
+        'weight' => '1',
       ),
     ),
   );
@@ -325,7 +325,7 @@ function avantages_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '1',
+        'weight' => '4',
       ),
     ),
   );
@@ -398,7 +398,7 @@ function avantages_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '2',
+        'weight' => '5',
       ),
     ),
   );
