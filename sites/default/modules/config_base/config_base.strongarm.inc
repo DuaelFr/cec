@@ -14,7 +14,7 @@ function config_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'admin_theme';
-  $strongarm->value = 'rubik';
+  $strongarm->value = 'cecadmin';
   $export['admin_theme'] = $strongarm;
 
   $strongarm = new stdClass();

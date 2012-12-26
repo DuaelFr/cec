@@ -15,6 +15,7 @@ dependencies[] = imce_mkdir
 dependencies[] = imce_wysiwyg
 dependencies[] = l10n_update
 dependencies[] = me
+dependencies[] = menu
 dependencies[] = mimemail
 dependencies[] = module_filter
 dependencies[] = pathauto
