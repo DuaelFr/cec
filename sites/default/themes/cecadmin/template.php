@@ -39,6 +39,8 @@ function cecadmin_preprocess_form_node(&$vars) {
     case 'intrigue_node_form':
       $vars['sidebar']['field_intrigue_type'] = $vars['form']['field_intrigue_type'];
       unset($vars['form']['field_intrigue_type']);
+      $vars['sidebar']['field_intrigue_theme'] = $vars['form']['field_intrigue_theme'];
+      unset($vars['form']['field_intrigue_theme']);
       break;
     case 'group_node_form':
       $vars['sidebar']['field_group_type'] = $vars['form']['field_group_type'];
