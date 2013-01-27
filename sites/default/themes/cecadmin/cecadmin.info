@@ -5,6 +5,7 @@ core = 7.x
 engine = phptemplate
 
 stylesheets[screen][] = css/ckeditor.css
+stylesheets[screen][] = css/cecadmin.css
 
 regions[content] = Content
 regions[help] = Help
