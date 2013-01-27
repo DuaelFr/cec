@@ -58,12 +58,17 @@
 
 .node-unpublished p.unpublished,
 .comment-unpublished p.unpublished { /* The word "Unpublished" displayed underneath the content. */
+/*
   height: 0;
   overflow: visible;
   color: #d8d8d8;
   font-size: 75px;
+*/
   line-height: 1;
-  font-family: Impact, "Arial Narrow", Helvetica, sans-serif;
+  /*font-family: Impact, "Arial Narrow", Helvetica, sans-serif;*/
+  background: #aa0000;
+  color: #ffffff;
+  padding: .5em;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
