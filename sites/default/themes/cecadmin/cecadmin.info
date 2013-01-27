@@ -4,6 +4,8 @@ base theme = rubik
 core = 7.x
 engine = phptemplate
 
+stylesheets[screen][] = ckeditor.css
+
 regions[content] = Content
 regions[help] = Help
 regions[page_top] = Page top

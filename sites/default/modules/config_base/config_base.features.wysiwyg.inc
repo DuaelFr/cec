@@ -64,8 +64,8 @@ function config_base_wysiwyg_default_profiles() {
       'apply_source_formatting' => 0,
       'paste_auto_cleanup_on_paste' => 1,
       'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
-      'css_setting' => 'theme',
-      'css_path' => '',
+      'css_setting' => 'self',
+      'css_path' => '/sites/default/themes/cecadmin/css/ckeditor.css',
       'css_classes' => '',
     ),
   );
