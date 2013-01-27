@@ -4,7 +4,7 @@ base theme = rubik
 core = 7.x
 engine = phptemplate
 
-stylesheets[screen][] = ckeditor.css
+stylesheets[screen][] = css/ckeditor.css
 
 regions[content] = Content
 regions[help] = Help
