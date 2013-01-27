@@ -127,12 +127,8 @@ function rubik_preprocess_page(&$vars) {
     $vars['help'] = '';
   }
 
-  // Process local tasks. Only do this processing if the current theme is
-  // indeed Rubik. Subthemes must reimplement this call.
-  global $theme;
-  if ($theme === 'rubik') {
-    _rubik_local_tasks($vars);
-  }
+  // Process local tasks. This will get called for rubik and its subthemes.
+  _rubik_local_tasks($vars);
 
   // Overlay is enabled.
   $vars['overlay'] = (module_exists('overlay') && overlay_get_mode() === 'child');
