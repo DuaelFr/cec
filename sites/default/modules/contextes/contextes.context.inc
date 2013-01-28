@@ -60,43 +60,5 @@ function contextes_context_default_contexts() {
   t('Layout');
   $export['all'] = $context;
 
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
-  $context->name = 'zorgas';
-  $context->description = '';
-  $context->tag = 'Roles';
-  $context->conditions = array(
-    'user' => array(
-      'values' => array(
-        'Zorga' => 'Zorga',
-      ),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'menu-menu-zorga-menu' => array(
-          'module' => 'menu',
-          'delta' => 'menu-zorga-menu',
-          'region' => 'sidebar_first',
-          'weight' => '3',
-        ),
-        'switchtheme-switch_form' => array(
-          'module' => 'switchtheme',
-          'delta' => 'switch_form',
-          'region' => 'sidebar_first',
-          'weight' => '4',
-        ),
-      ),
-    ),
-  );
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('Roles');
-  $export['zorgas'] = $context;
-
   return $export;
 }

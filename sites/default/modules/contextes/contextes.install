@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Remove zorgas context.
+ */
+function contextes_update_7001(&$sandbox) {
+  context_delete(context_load('zorgas'));
+}

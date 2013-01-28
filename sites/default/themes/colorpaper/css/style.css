@@ -1118,7 +1118,7 @@ tr.menu-disabled {
 }
 .update table.version-security .version-title {
   color: #cf4d4d;
-}  
+}
 .update.checked {
   margin-bottom: 20px;
 }
@@ -1163,8 +1163,8 @@ tr.menu-disabled {
           padding: 0 15px;
           line-height: 26px;
         }
-        #header ul.nice-menu li a:hover, 
-        #header ul.nice-menu li a:active, 
+        #header ul.nice-menu li a:hover,
+        #header ul.nice-menu li a:active,
         #header ul.nice-menu li a.active {
           color: #84aaa3;
         }
@@ -1177,7 +1177,7 @@ tr.menu-disabled {
                 ul.nice-menu-down li ul li ul {
                 	left: 220px;
                 }
-                
+
 #top_right {
     width: 135px;
     height: 135px;
@@ -1234,4 +1234,8 @@ DIVERS
 body.cke_show_borders {
   background: transparent;
   color: #6C6159;
+}
+
+.admin-menu div#admin-toolbar.vertical {
+  top: 32px;
 }

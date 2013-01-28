@@ -410,24 +410,24 @@ function administration_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
-    'field_dates_2' => 'field_dates_2',
     'title' => 'title',
+    'field_event_type' => 'field_event_type',
     'field_dates' => 'field_dates',
     'field_dates_1' => 'field_dates_1',
-    'field_intrigue' => 'field_intrigue',
+    'item_id' => 'item_id',
     'sid' => 'sid',
     'edit_node' => 'edit_node',
   );
   $handler->display->display_options['style_options']['default'] = 'field_dates';
   $handler->display->display_options['style_options']['info'] = array(
-    'field_dates_2' => array(
-      'sortable' => 0,
+    'title' => array(
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'title' => array(
+    'field_event_type' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -448,7 +448,7 @@ function administration_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_intrigue' => array(
+    'item_id' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -650,6 +650,28 @@ function administration_views_default_views() {
   );
   $handler->display->display_options['filters']['field_dates_value2']['granularity'] = 'minute';
   $handler->display->display_options['filters']['field_dates_value2']['year_range'] = '1600:1650';
+  /* Critère de filtrage: Contenu : Intrigue (field_intrigue) */
+  $handler->display->display_options['filters']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
+  $handler->display->display_options['filters']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
+  $handler->display->display_options['filters']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
+  $handler->display->display_options['filters']['field_intrigue_target_id']['relationship'] = 'field_intrigue_target_id';
+  $handler->display->display_options['filters']['field_intrigue_target_id']['group'] = 1;
+  $handler->display->display_options['filters']['field_intrigue_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_intrigue_target_id']['expose']['operator_id'] = 'field_intrigue_target_id_op';
+  $handler->display->display_options['filters']['field_intrigue_target_id']['expose']['label'] = 'Intrigue';
+  $handler->display->display_options['filters']['field_intrigue_target_id']['expose']['operator'] = 'field_intrigue_target_id_op';
+  $handler->display->display_options['filters']['field_intrigue_target_id']['expose']['identifier'] = 'field_intrigue_target_id';
+  $handler->display->display_options['filters']['field_intrigue_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
   /* Critère de filtrage: Processus : État actuel */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
