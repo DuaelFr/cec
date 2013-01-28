@@ -85,8 +85,8 @@ function contextes_context_default_contexts() {
         'switchtheme-switch_form' => array(
           'module' => 'switchtheme',
           'delta' => 'switch_form',
-          'region' => 'footer',
-          'weight' => '0',
+          'region' => 'sidebar_first',
+          'weight' => '4',
         ),
       ),
     ),
