@@ -1,3 +1,24 @@
 .field-type-extra-field-view {
   margin-top: 1em;
 }
+
+.column-side {
+  width: 20%;
+  min-width: 300px;
+}
+.column-main {
+  width: 80%;
+  max-width: calc(100% - 300px);
+}
+.form-layout-default {
+  background-position: 80% 0%;
+}
+
+.column-main .column-main,
+.column-main .column-side {
+  float: none;
+  width: 100%;
+}
+.column-main div.node {
+  background: none;
+}

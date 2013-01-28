@@ -12,3 +12,4 @@ regions[help] = Help
 regions[page_top] = Page top
 regions[page_bottom] = Page bottom
 regions[footer] = Footer
+regions[sidebar_first] = Sidebar

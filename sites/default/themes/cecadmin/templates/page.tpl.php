@@ -29,15 +29,22 @@
 <?php endif; ?>
 
 <div id='page' class="clearfix">
-  <div id='main-content' class='limiter'>
-    <?php if (isset($page['help'])) print render($page['help']) ?>
-    <div id='content' class='page-content clearfix'>
-      <?php if (!empty($page['content'])) print render($page['content']) ?>
-    </div>
+  <div class='form form-layout-default clearfix'>
+    <div class='column-main'><div class='column-wrapper clearfix'>
+      <?php if (isset($page['help'])) print render($page['help']) ?>
+      <div id='content' class='page-content clearfix'>
+        <?php if (!empty($page['content'])) print render($page['content']) ?>
+      </div>
+    </div></div>
+    <?php if (isset($page['sidebar_first'])): ?>
+    <div class='column-side'><div class='column-wrapper clearfix'>
+      <?php print render($page['sidebar_first']); ?>
+    </div></div>
+    <?php endif; ?>
+    <?php if (!empty($footer)): ?>
+    <div class='column-footer'><div class='column-wrapper clearfix'><?php print drupal_render($footer); ?></div></div>
+    <?php endif; ?>
   </div>
-  <?php if (isset($page['sidebar_first'])): ?>
-    <div class="first_sidebar sidebar"><?php print render($page['sidebar_first']); ?> </div>
-  <?php endif; ?>
 
   <?php if (isset($page['sidebar_second'])): ?>
     <div class="second_sidebar sidebar"> <?php print render($page['sidebar_second']) ?> </div>
