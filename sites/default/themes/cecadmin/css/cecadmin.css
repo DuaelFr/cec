@@ -5,3 +5,62 @@
 .admin-menu div#admin-toolbar.vertical {
   top: 32px;
 }
+
+.field-multiple-table tr td {
+  position: relative;
+}
+.field-multiple-table .form-submit {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+table input.fluid.form-autocomplete,
+select.form-select,
+input.form-text {
+  width: 100%;
+}
+
+.form-type-checkboxes {
+  overflow: hidden;
+}
+.form-type-checkboxes .form-type-checkbox {
+  width: 25%;
+  float: left;
+}
+
+#autocomplete {
+  width: auto !important;
+}
+
+.form-type-date-select .form-type-select {
+  margin-right: 5px;
+}
+
+.field-name-field-dates .fieldset .fieldset-content {
+  padding-top: 0;
+}
+.field-name-field-dates .fieldset .fieldset-content .date-padding {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+#edit-workflow .form-item-workflow-scheduled-date {
+  float: left;
+  overflow: hidden;
+  width: 70%;
+}
+#edit-workflow .form-item-workflow-scheduled-date .form-type-select{
+  float: left;
+  width: 30%;
+  margin-right: 10px;
+}
+#edit-workflow .form-item-workflow-scheduled-hour {
+  width: 22%;
+  float: left;
+  margin-top: 9px;
+}
+#edit-workflow .form-item-workflow-comment {
+  clear: left;
+}
+
