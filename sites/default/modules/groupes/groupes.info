@@ -4,6 +4,7 @@ package = App
 php = 5.2.4
 version = 7.x-1.0-alpha3
 project = groupes
+dependencies[] = config_base
 dependencies[] = config_permissions
 dependencies[] = ctools
 dependencies[] = entityreference

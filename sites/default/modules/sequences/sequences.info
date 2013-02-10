@@ -4,6 +4,7 @@ package = App
 php = 5.2.4
 version = 7.x-1.0
 project = sequences
+dependencies[] = config_base
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = entityreference
