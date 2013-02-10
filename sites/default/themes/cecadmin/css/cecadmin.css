@@ -65,6 +65,16 @@ input.form-text {
 }
 
 
+/************************/
+/* Specific : sequences */
+/************************/
+
+.field-name-field-nonplayers .field-type-entityreference {
+  float: left;
+  width: 45%;
+  margin-right: 15px;
+}
+
 /**********************/
 /* Specific : groupes */
 /**********************/

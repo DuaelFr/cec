@@ -6,7 +6,7 @@ function cecadmin_preprocess_form_node(&$vars) {
     $vars['sidebar']['workflow']['#weight'] = 99;
     unset($vars['form']['workflow']);
   }
-  
+
   switch ($vars['form']['#form_id']) {
     case 'character_node_form':
       $vars['sidebar']['field_character_type'] = $vars['form']['field_character_type'];
@@ -55,6 +55,16 @@ function cecadmin_preprocess_form_node(&$vars) {
     case 'location_node_form':
       $vars['sidebar']['field_location_type'] = $vars['form']['field_location_type'];
       unset($vars['form']['field_location_type']);
+      break;
+    case 'sequence_node_form':
+      $vars['sidebar']['field_sequence_type'] = $vars['form']['field_sequence_type'];
+      unset($vars['form']['field_sequence_type']);
+      $vars['sidebar']['field_intrigue'] = $vars['form']['field_intrigue'];
+      unset($vars['form']['field_intrigue']);
+      $vars['sidebar']['field_dates'] = $vars['form']['field_dates'];
+      unset($vars['form']['field_dates']);
+      $vars['sidebar']['field_location'] = $vars['form']['field_location'];
+      unset($vars['form']['field_location']);
       break;
   }
 }
