@@ -15,6 +15,13 @@ function matos_ctools_plugin_api() {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function matos_views_api() {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_node_info().
  */
 function matos_node_info() {
