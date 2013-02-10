@@ -66,7 +66,7 @@ function intrigues_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'full_zorga' => array(
         'custom_settings' => TRUE,
@@ -105,7 +105,7 @@ function intrigues_strongarm() {
       'display' => array(
         'view_events' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -119,7 +119,7 @@ function intrigues_strongarm() {
         ),
         'view_infos' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -128,6 +128,16 @@ function intrigues_strongarm() {
           ),
           'full_zorga' => array(
             'weight' => '4',
+            'visible' => TRUE,
+          ),
+        ),
+        'view_sequences' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '5',
             'visible' => TRUE,
           ),
         ),

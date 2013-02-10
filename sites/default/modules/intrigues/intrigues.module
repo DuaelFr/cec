@@ -53,6 +53,10 @@ function intrigues_field_extra_fields() {
     'label' => t('Views infos'),
     'weight' => 99,
   );
+  $extras['node']['intrigue']['display']['view_sequences'] = array(
+    'label' => t('Views sequences'),
+    'weight' => 99,
+  );
 
   return $extras;
 }
@@ -63,65 +67,12 @@ function intrigues_field_extra_fields() {
 function intrigues_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'intrigue') {
     $view_content = views_embed_view('admin_evenements', 'block_by_intrigue', $node->nid);
-    $node->content['view_events'] = array(
-      '#theme' => 'field',
-      '#label_display' => 'above',
-      '#node' => $node,
-      '#view_mode' => $view_mode,
-      '#language' => $langcode,
-
-      '#entity_type' => 'node',
-      '#bundle' => $node->type,
-
-      '#field_name' => 'extra_field_view_events',
-      '#field_type' => 'extra_field_view',
-      '#field_translatable' => FALSE,
-      '#object' => $node,
-      '#formatter' => NULL,
-
-      '#title' => 'Evènements liés à l\'intrigue',
-      '#access' => user_access('view all intrigues'),
-      '#items' => array(
-        0 => array(
-          'value' => $view_content,
-          'format' => NULL,
-          'safe_value' => $view_content,
-        ),
-      ),
-      0 => array(
-        '#markup' => $view_content,
-      ),
-    );
+    $node->content['view_events'] = _config_base_extra_field_view('view_events', 'Evènements liés à l\'intrigue', $node, $view_mode, $langcode, $view_content, user_access('view all intrigues'));
 
     $view_content = views_embed_view('admin_informations', 'block_by_intrigue', $node->nid);
-    $node->content['view_infos'] = array(
-      '#theme' => 'field',
-      '#label_display' => 'above',
-      '#node' => $node,
-      '#view_mode' => $view_mode,
-      '#language' => $langcode,
+    $node->content['view_infos'] = _config_base_extra_field_view('view_infos', 'Informations liées à l\'intrigue', $node, $view_mode, $langcode, $view_content, user_access('view all intrigues'));
 
-      '#entity_type' => 'node',
-      '#bundle' => $node->type,
-
-      '#field_name' => 'extra_field_view_infos',
-      '#field_type' => 'extra_field_view',
-      '#field_translatable' => FALSE,
-      '#object' => $node,
-      '#formatter' => NULL,
-
-      '#title' => 'Informations liées à l\'intrigue',
-      '#access' => user_access('view all intrigues'),
-      '#items' => array(
-        0 => array(
-          'value' => $view_content,
-          'format' => NULL,
-          'safe_value' => $view_content,
-        ),
-      ),
-      0 => array(
-        '#markup' => $view_content,
-      ),
-    );
+    $view_content = views_embed_view('admin_sequences', 'block_by_intrigue', $node->nid);
+    $node->content['view_sequences'] = _config_base_extra_field_view('view_sequences', 'Séquences liées à l\'intrigue', $node, $view_mode, $langcode, $view_content, user_access('view all intrigues'));
   }
 }
