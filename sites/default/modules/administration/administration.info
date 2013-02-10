@@ -27,7 +27,6 @@ features[variable][] = admin_menu_display
 features[variable][] = admin_menu_show_all
 features[variable][] = admin_toolbar
 features[views_view][] = admin_global
-features[views_view][] = admin_groupes
 features[views_view][] = admin_informations
 features[views_view][] = admin_intrigues
 features[views_view][] = admin_personnages

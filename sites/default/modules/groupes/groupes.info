@@ -58,4 +58,5 @@ features[variable][] = node_submitted_group
 features[variable][] = view_mode_per_role_group
 features[variable][] = workflow_group
 features[views_view][] = groups
+features[views_view][] = admin_groupes
 project path = sites/default/modules
