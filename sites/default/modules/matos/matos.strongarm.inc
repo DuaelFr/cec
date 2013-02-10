@@ -49,7 +49,7 @@ function matos_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_stuff';
-  $strongarm->value = '2';
+  $strongarm->value = '0';
   $export['comment_stuff'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -159,10 +159,6 @@ function matos_strongarm() {
     0 => array(
       'role' => 'view_mode_per_role--role_168020977',
       'view_mode' => 'full_zorga',
-    ),
-    1 => array(
-      'role' => '',
-      'view_mode' => '',
     ),
   );
   $export['view_mode_per_role_stuff'] = $strongarm;
