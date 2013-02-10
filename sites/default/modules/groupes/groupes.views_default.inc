@@ -70,7 +70,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h3';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Body */
+  /* Champ: Contenu : Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -102,6 +102,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
     'character' => 'character',
   );
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
   /* Critère de filtrage: Contenu : Publié */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -116,6 +117,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'group' => 'group',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Critère de filtrage: Processus : État actuel */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
@@ -123,6 +125,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['sid']['value'] = array(
     6 => '6',
   );
+  $handler->display->display_options['filters']['sid']['group'] = 1;
 
   /* Display: Groupes Personnage (Bloc) */
   $handler = $view->new_display('block', 'Groupes Personnage (Bloc)', 'groupes_perso');
@@ -174,7 +177,7 @@ function groupes_views_default_views() {
     'image_style' => 'medium',
     'image_link' => 'content',
   );
-  /* Champ: Contenu : Body */
+  /* Champ: Contenu : Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';

@@ -64,3 +64,17 @@ input.form-text {
   clear: left;
 }
 
+
+/**********************/
+/* Specific : groupes */
+/**********************/
+
+.field-name-field-group-members .field-name-field-character,
+.field-name-field-group-members .field-name-field-member-is-secret {
+  float: left;
+  width: 45%;
+  margin-right: 15px;
+}
+.field-name-field-group-members .field-name-field-member-is-secret {
+  padding-top: 15px;
+}
