@@ -56,7 +56,7 @@ function taxonomy_access_fix_permission() {
   $permissions = array();
 
   foreach (taxonomy_get_vocabularies() as $vid => $vocabulary) {
-    $permissions['add terms in ' . $vid] = array(
+    $permissions['add terms in ' . $vocabulary->machine_name] = array(
       'title' => t('Add terms in %vocabulary', array('%vocabulary' => $vocabulary->name)),
     );
   }
@@ -110,24 +110,22 @@ function taxonomy_access_fix_access($op, $vocabulary = NULL) {
   switch ($op) {
     case 'index':
       // Only if they have >= 1 vocabulary access.
-      foreach (taxonomy_get_vocabularies() as $vid => $vocabulary) {
-        if (user_access('edit terms in ' . $vid) || user_access('delete terms in ' . $vid) || user_access('add terms in ' . $vid)) {
+      foreach (taxonomy_get_vocabularies() as $vocabulary) {
+        if (user_access('edit terms in ' . $vocabulary->machine_name) || user_access('delete terms in ' . $vocabulary->machine_name) || user_access('add terms in ' . $vocabulary->machine_name)) {
           return TRUE;
         }
       }
       break;
     case 'list terms':
       if ($vocabulary) {
-        $vid = $vocabulary->vid;
-        if (user_access('edit terms in ' . $vid) || user_access('delete terms in ' . $vid) || user_access('add terms in ' . $vid)) {
+        if (user_access('edit terms in ' . $vocabulary->machine_name) || user_access('delete terms in ' . $vocabulary->machine_name) || user_access('add terms in ' . $vocabulary->machine_name)) {
           return TRUE;
         }
       }
       break;
     case 'add terms':
       if ($vocabulary) {
-        $vid = $vocabulary->vid;
-        if (user_access('add terms in ' . $vid)) {
+        if (user_access('add terms in ' . $vocabulary->machine_name)) {
           return TRUE;
         }
       }
