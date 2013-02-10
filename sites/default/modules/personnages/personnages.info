@@ -107,4 +107,5 @@ features[variable][] = node_submitted_character
 features[variable][] = view_mode_per_role_character
 features[variable][] = workflow_character
 features[views_view][] = characters
+features[views_view][] = admin_personnages
 project path = sites/default/modules
