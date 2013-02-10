@@ -48,6 +48,10 @@ function cecadmin_preprocess_form_node(&$vars) {
       $vars['sidebar']['field_group_is_technical'] = $vars['form']['field_group_is_technical'];
       unset($vars['form']['field_group_is_technical']);
       break;
+    case 'stuff_node_form':
+      $vars['sidebar']['field_stuff_type'] = $vars['form']['field_stuff_type'];
+      unset($vars['form']['field_stuff_type']);
+      break;
     case 'location_node_form':
       $vars['sidebar']['field_location_type'] = $vars['form']['field_location_type'];
       unset($vars['form']['field_location_type']);

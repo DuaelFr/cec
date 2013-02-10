@@ -177,6 +177,7 @@ function config_base_workflow_default_workflows() {
       4 => 'information',
       5 => 'intrigue',
       6 => 'location',
+      8 => 'stuff',
     ),
   );
 
