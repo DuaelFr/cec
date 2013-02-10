@@ -28,6 +28,10 @@ input.form-text {
   width: 25%;
   float: left;
 }
+#views-ajax-body .form-type-checkboxes .form-type-checkbox {
+  float: none;
+  width: auto;
+}
 
 #autocomplete {
   width: auto !important;
