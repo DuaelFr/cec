@@ -15,6 +15,13 @@ function avantages_ctools_plugin_api() {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function avantages_views_api() {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_node_info().
  */
 function avantages_node_info() {
