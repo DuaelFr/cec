@@ -10,9 +10,9 @@
 function avantages_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in 10.
-  $permissions['add terms in 10'] = array(
-    'name' => 'add terms in 10',
+  // Exported permission: add terms in avantage_type.
+  $permissions['add terms in avantage_type'] = array(
+    'name' => 'add terms in avantage_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -46,9 +46,9 @@ function avantages_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in 10.
-  $permissions['delete terms in 10'] = array(
-    'name' => 'delete terms in 10',
+  // Exported permission: delete terms in avantage_type.
+  $permissions['delete terms in avantage_type'] = array(
+    'name' => 'delete terms in avantage_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -73,9 +73,9 @@ function avantages_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in 10.
-  $permissions['edit terms in 10'] = array(
-    'name' => 'edit terms in 10',
+  // Exported permission: edit terms in avantage_type.
+  $permissions['edit terms in avantage_type'] = array(
+    'name' => 'edit terms in avantage_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),

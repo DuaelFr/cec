@@ -10,9 +10,18 @@
 function intrigues_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in 9.
-  $permissions['add terms in 9'] = array(
-    'name' => 'add terms in 9',
+  // Exported permission: add terms in intrigue_theme.
+  $permissions['add terms in intrigue_theme'] = array(
+    'name' => 'add terms in intrigue_theme',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy_access_fix',
+  );
+
+  // Exported permission: add terms in intrigue_type.
+  $permissions['add terms in intrigue_type'] = array(
+    'name' => 'add terms in intrigue_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -46,9 +55,18 @@ function intrigues_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in 9.
-  $permissions['delete terms in 9'] = array(
-    'name' => 'delete terms in 9',
+  // Exported permission: delete terms in intrigue_theme.
+  $permissions['delete terms in intrigue_theme'] = array(
+    'name' => 'delete terms in intrigue_theme',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: delete terms in intrigue_type.
+  $permissions['delete terms in intrigue_type'] = array(
+    'name' => 'delete terms in intrigue_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -73,9 +91,18 @@ function intrigues_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in 9.
-  $permissions['edit terms in 9'] = array(
-    'name' => 'edit terms in 9',
+  // Exported permission: edit terms in intrigue_theme.
+  $permissions['edit terms in intrigue_theme'] = array(
+    'name' => 'edit terms in intrigue_theme',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: edit terms in intrigue_type.
+  $permissions['edit terms in intrigue_type'] = array(
+    'name' => 'edit terms in intrigue_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),

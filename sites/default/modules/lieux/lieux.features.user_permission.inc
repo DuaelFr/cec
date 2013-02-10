@@ -10,10 +10,12 @@
 function lieux_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in 13.
-  $permissions['add terms in 13'] = array(
-    'name' => 'add terms in 13',
-    'roles' => array(),
+  // Exported permission: add terms in location_type.
+  $permissions['add terms in location_type'] = array(
+    'name' => 'add terms in location_type',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'taxonomy_access_fix',
   );
 
@@ -38,10 +40,12 @@ function lieux_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in 13.
-  $permissions['delete terms in 13'] = array(
-    'name' => 'delete terms in 13',
-    'roles' => array(),
+  // Exported permission: delete terms in location_type.
+  $permissions['delete terms in location_type'] = array(
+    'name' => 'delete terms in location_type',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -59,10 +63,12 @@ function lieux_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in 13.
-  $permissions['edit terms in 13'] = array(
-    'name' => 'edit terms in 13',
-    'roles' => array(),
+  // Exported permission: edit terms in location_type.
+  $permissions['edit terms in location_type'] = array(
+    'name' => 'edit terms in location_type',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'taxonomy',
   );
 

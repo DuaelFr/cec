@@ -10,9 +10,9 @@
 function groupes_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in 6.
-  $permissions['add terms in 6'] = array(
-    'name' => 'add terms in 6',
+  // Exported permission: add terms in type_de_groupe.
+  $permissions['add terms in type_de_groupe'] = array(
+    'name' => 'add terms in type_de_groupe',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -46,9 +46,9 @@ function groupes_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in 6.
-  $permissions['delete terms in 6'] = array(
-    'name' => 'delete terms in 6',
+  // Exported permission: delete terms in type_de_groupe.
+  $permissions['delete terms in type_de_groupe'] = array(
+    'name' => 'delete terms in type_de_groupe',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -73,9 +73,9 @@ function groupes_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in 6.
-  $permissions['edit terms in 6'] = array(
-    'name' => 'edit terms in 6',
+  // Exported permission: edit terms in type_de_groupe.
+  $permissions['edit terms in type_de_groupe'] = array(
+    'name' => 'edit terms in type_de_groupe',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),

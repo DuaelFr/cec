@@ -10,10 +10,12 @@
 function matos_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in 12.
-  $permissions['add terms in 12'] = array(
-    'name' => 'add terms in 12',
-    'roles' => array(),
+  // Exported permission: add terms in stuff_type.
+  $permissions['add terms in stuff_type'] = array(
+    'name' => 'add terms in stuff_type',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'taxonomy_access_fix',
   );
 
@@ -38,10 +40,12 @@ function matos_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in 12.
-  $permissions['delete terms in 12'] = array(
-    'name' => 'delete terms in 12',
-    'roles' => array(),
+  // Exported permission: delete terms in stuff_type.
+  $permissions['delete terms in stuff_type'] = array(
+    'name' => 'delete terms in stuff_type',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -59,10 +63,12 @@ function matos_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in 12.
-  $permissions['edit terms in 12'] = array(
-    'name' => 'edit terms in 12',
-    'roles' => array(),
+  // Exported permission: edit terms in stuff_type.
+  $permissions['edit terms in stuff_type'] = array(
+    'name' => 'edit terms in stuff_type',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'taxonomy',
   );
 

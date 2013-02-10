@@ -10,27 +10,27 @@
 function personnages_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in 3.
-  $permissions['add terms in 3'] = array(
-    'name' => 'add terms in 3',
+  // Exported permission: add terms in nationalites.
+  $permissions['add terms in nationalites'] = array(
+    'name' => 'add terms in nationalites',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
     'module' => 'taxonomy_access_fix',
   );
 
-  // Exported permission: add terms in 4.
-  $permissions['add terms in 4'] = array(
-    'name' => 'add terms in 4',
+  // Exported permission: add terms in occupations.
+  $permissions['add terms in occupations'] = array(
+    'name' => 'add terms in occupations',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
     'module' => 'taxonomy_access_fix',
   );
 
-  // Exported permission: add terms in 5.
-  $permissions['add terms in 5'] = array(
-    'name' => 'add terms in 5',
+  // Exported permission: add terms in religions.
+  $permissions['add terms in religions'] = array(
+    'name' => 'add terms in religions',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -64,27 +64,27 @@ function personnages_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in 3.
-  $permissions['delete terms in 3'] = array(
-    'name' => 'delete terms in 3',
+  // Exported permission: delete terms in nationalites.
+  $permissions['delete terms in nationalites'] = array(
+    'name' => 'delete terms in nationalites',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
     'module' => 'taxonomy',
   );
 
-  // Exported permission: delete terms in 4.
-  $permissions['delete terms in 4'] = array(
-    'name' => 'delete terms in 4',
+  // Exported permission: delete terms in occupations.
+  $permissions['delete terms in occupations'] = array(
+    'name' => 'delete terms in occupations',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
     'module' => 'taxonomy',
   );
 
-  // Exported permission: delete terms in 5.
-  $permissions['delete terms in 5'] = array(
-    'name' => 'delete terms in 5',
+  // Exported permission: delete terms in religions.
+  $permissions['delete terms in religions'] = array(
+    'name' => 'delete terms in religions',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -109,27 +109,27 @@ function personnages_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in 3.
-  $permissions['edit terms in 3'] = array(
-    'name' => 'edit terms in 3',
+  // Exported permission: edit terms in nationalites.
+  $permissions['edit terms in nationalites'] = array(
+    'name' => 'edit terms in nationalites',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
     'module' => 'taxonomy',
   );
 
-  // Exported permission: edit terms in 4.
-  $permissions['edit terms in 4'] = array(
-    'name' => 'edit terms in 4',
+  // Exported permission: edit terms in occupations.
+  $permissions['edit terms in occupations'] = array(
+    'name' => 'edit terms in occupations',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
     'module' => 'taxonomy',
   );
 
-  // Exported permission: edit terms in 5.
-  $permissions['edit terms in 5'] = array(
-    'name' => 'edit terms in 5',
+  // Exported permission: edit terms in religions.
+  $permissions['edit terms in religions'] = array(
+    'name' => 'edit terms in religions',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),

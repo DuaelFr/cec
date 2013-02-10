@@ -10,10 +10,12 @@
 function sequences_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in 14.
-  $permissions['add terms in 14'] = array(
-    'name' => 'add terms in 14',
-    'roles' => array(),
+  // Exported permission: add terms in sequence_type.
+  $permissions['add terms in sequence_type'] = array(
+    'name' => 'add terms in sequence_type',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'taxonomy_access_fix',
   );
 
@@ -38,10 +40,12 @@ function sequences_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in 14.
-  $permissions['delete terms in 14'] = array(
-    'name' => 'delete terms in 14',
-    'roles' => array(),
+  // Exported permission: delete terms in sequence_type.
+  $permissions['delete terms in sequence_type'] = array(
+    'name' => 'delete terms in sequence_type',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -59,10 +63,12 @@ function sequences_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in 14.
-  $permissions['edit terms in 14'] = array(
-    'name' => 'edit terms in 14',
-    'roles' => array(),
+  // Exported permission: edit terms in sequence_type.
+  $permissions['edit terms in sequence_type'] = array(
+    'name' => 'edit terms in sequence_type',
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'taxonomy',
   );
 

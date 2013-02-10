@@ -10,9 +10,9 @@
 function informations_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in 8.
-  $permissions['add terms in 8'] = array(
-    'name' => 'add terms in 8',
+  // Exported permission: add terms in information_type.
+  $permissions['add terms in information_type'] = array(
+    'name' => 'add terms in information_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -46,9 +46,9 @@ function informations_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in 8.
-  $permissions['delete terms in 8'] = array(
-    'name' => 'delete terms in 8',
+  // Exported permission: delete terms in information_type.
+  $permissions['delete terms in information_type'] = array(
+    'name' => 'delete terms in information_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -73,9 +73,9 @@ function informations_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in 8.
-  $permissions['edit terms in 8'] = array(
-    'name' => 'edit terms in 8',
+  // Exported permission: edit terms in information_type.
+  $permissions['edit terms in information_type'] = array(
+    'name' => 'edit terms in information_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),

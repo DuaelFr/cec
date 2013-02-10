@@ -10,9 +10,9 @@
 function evenements_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in 7.
-  $permissions['add terms in 7'] = array(
-    'name' => 'add terms in 7',
+  // Exported permission: add terms in event_type.
+  $permissions['add terms in event_type'] = array(
+    'name' => 'add terms in event_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -46,9 +46,9 @@ function evenements_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in 7.
-  $permissions['delete terms in 7'] = array(
-    'name' => 'delete terms in 7',
+  // Exported permission: delete terms in event_type.
+  $permissions['delete terms in event_type'] = array(
+    'name' => 'delete terms in event_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
@@ -73,9 +73,9 @@ function evenements_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in 7.
-  $permissions['edit terms in 7'] = array(
-    'name' => 'edit terms in 7',
+  // Exported permission: edit terms in event_type.
+  $permissions['edit terms in event_type'] = array(
+    'name' => 'edit terms in event_type',
     'roles' => array(
       'Zorga' => 'Zorga',
     ),
