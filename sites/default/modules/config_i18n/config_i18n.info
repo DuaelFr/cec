@@ -1,6 +1,7 @@
 name = Config i18n
 core = 7.x
 package = App
+php = 5.2.4
 version = 7.x-1.0-alpha1
 project = config_i18n
 dependencies[] = features
