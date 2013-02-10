@@ -75,6 +75,45 @@ input.form-text {
   margin-right: 15px;
 }
 
+/**************************/
+/* Specific : personnages */
+/**************************/
+
+.group-temperaments .field-type-taxonomy-term-reference {
+  float: left;
+  width: 18%;
+  margin-right: 15px;
+}
+.group-canevas .field-name-field-species,
+.group-canevas .field-name-field-nationalite,
+.group-canevas .field-name-field-occupation,
+.group-canevas .field-name-field-confession {
+  float: left;
+  width: 18%;
+  margin-right: 15px;
+}
+.group-canevas .field-name-field-canevas {
+  clear: left;
+}
+.group-avantages .field-name-field-pugilat,
+.group-avantages .field-name-field-credit {
+  float: left;
+  width: 18%;
+  margin-right: 15px;
+}
+.group-avantages .field-name-field-avantages {
+  clear: both;
+}
+.field-name-field-avantages .field-name-field-avantage,
+.field-name-field-avantages .field-name-field-avantage-valide{
+  float: left;
+  width: 45%;
+  margin-right: 15px;
+}
+.field-name-field-avantages .field-name-field-avantage-valide {
+  padding-top: 15px;
+}
+
 /**********************/
 /* Specific : groupes */
 /**********************/
