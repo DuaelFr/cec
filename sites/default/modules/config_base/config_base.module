@@ -5,3 +5,38 @@
  */
 
 include_once 'config_base.features.inc';
+
+/**
+ * Prepare field renderable array for views extra fields.
+ */
+function _config_base_extra_field_view($field_name, $title, $node, $view_mode, $langcode, $view_content, $access = TRUE) {
+  return array(
+    '#theme' => 'field',
+    '#label_display' => 'above',
+    '#node' => $node,
+    '#view_mode' => $view_mode,
+    '#language' => $langcode,
+
+    '#entity_type' => 'node',
+    '#bundle' => $node->type,
+
+    '#field_name' => 'extra_field_' . $field_name,
+    '#field_type' => 'extra_field_view',
+    '#field_translatable' => FALSE,
+    '#object' => $node,
+    '#formatter' => NULL,
+
+    '#title' => $title,
+    '#access' => $access,
+    '#items' => array(
+      0 => array(
+        'value' => $view_content,
+        'format' => NULL,
+        'safe_value' => $view_content,
+      ),
+    ),
+    0 => array(
+      '#markup' => $view_content,
+    ),
+  );
+}
