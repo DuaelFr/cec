@@ -30,6 +30,15 @@ function administration_menu_local_tasks_alter(&$data, $router_item, $root_path)
     case 'admin/cec/personnages':
       $link = menu_get_item('node/add/character');
       break;
+    case 'admin/cec/lieux':
+      $link = menu_get_item('node/add/location');
+      break;
+    case 'admin/cec/materiel':
+      $link = menu_get_item('node/add/stuff');
+      break;
+    case 'admin/cec/sequences':
+      $link = menu_get_item('node/add/sequence');
+      break;
   }
   if (!empty($link)) {
     $link['title'] = 'Créer ' . $link['title'];
