@@ -144,13 +144,34 @@ input.form-text {
 /* States colors */
 /*****************/
 
-.view table .state-Discussion td, .view table .state-Discussion td.active {}
-.view table .state-Discussion.even td, .view table .state-Discussion.even td.active {}
-.view table .state-Validation td, .view table .state-Validation td.active { background: #c8ff8b; }
-.view table .state-Validation.even td, .view table .state-Validation.even td.active { background: #dbffac; }
-.view table .state-Rédaction td, .view table .state-Rédaction td.active { background: #fdff80; }
-.view table .state-Rédaction.even td, .view table .state-Rédaction.even td.active { background: #f8ffa1; }
-.view table .state-Relecture td, .view table .state-Relecture td.active { background: #ffc672; }
-.view table .state-Relecture.even td, .view table .state-Relecture.even td.active { background: #ffd396; }
-.view table .state-Publication td, .view table .state-Publication td.active { background: #ff9294; font-weight: bold; }
-.view table .state-Publication.even td, .view table .state-Publication.even td.active { background: #ffb8b5; }
+.view table .state-Discussion td,
+.view table .state-Discussion td.active,
+.view table .state-Discussion.even td,
+.view table .state-Discussion.even td.active{}
+.view table .state-Discussion:hover td,
+.view table .state-Discussion:hover td.active { background: #cce4ef; }
+.view table .state-Validation td,
+.view table .state-Validation td.active,
+.view table .state-Validation.even td,
+.view table .state-Validation.even td.active { background: #c8ff8b; }
+.view table .state-Validation:hover td,
+.view table .state-Validation:hover td.active { background: #78ef00; }
+.view table .state-Rédaction td,
+.view table .state-Rédaction td.active,
+.view table .state-Rédaction.even td,
+.view table .state-Rédaction.even td.active { background: #fdff80; }
+.view table .state-Rédaction:hover td,
+.view table .state-Rédaction:hover td.active { background: #faff00; }
+.view table .state-Relecture td,
+.view table .state-Relecture td.active,
+.view table .state-Relecture.even td,
+.view table .state-Relecture.even td.active { background: #ffc672; }
+.view table .state-Relecture:hover td,
+.view table .state-Relecture:hover td.active { background: #ff9f00; }
+.view table .state-Publication td,
+.view table .state-Publication td.active,
+.view table .state-Publication.even td,
+.view table .state-Publication.even td.active { background: #ff9294; font-weight: bold; }
+.view table .state-Publication:hover td,
+.view table .state-Publication:hover td.active { background: #ff372a; }
+
