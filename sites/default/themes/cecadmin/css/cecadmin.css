@@ -127,3 +127,11 @@ input.form-text {
 .field-name-field-group-members .field-name-field-member-is-secret {
   padding-top: 15px;
 }
+
+/************************/
+/* Specific : avantages */
+/************************/
+
+.field-name-field-value .form-text {
+  width: 95%;
+}
