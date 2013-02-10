@@ -7,7 +7,7 @@
 /**
  * Implements hook_views_default_views().
  */
-function evenementsn_views_default_views() {
+function evenements_views_default_views() {
   $export = array();
 
   $view = new view();
