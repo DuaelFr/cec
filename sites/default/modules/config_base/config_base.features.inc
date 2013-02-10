@@ -176,6 +176,7 @@ function config_base_workflow_default_workflows() {
       3 => 'group',
       4 => 'information',
       5 => 'intrigue',
+      6 => 'location',
     ),
   );
 

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Lieux feature.
+ */
+
+include_once 'lieux.features.inc';
