@@ -204,12 +204,11 @@ function informations_field_default_fields() {
         'handler_settings' => array(
           'behaviors' => array(
             'views-select-list' => array(
-              'status' => 0,
+              'status' => 1,
             ),
           ),
           'sort' => array(
             'direction' => 'ASC',
-            'field' => 'body:value',
             'property' => 'title',
             'type' => 'property',
           ),
