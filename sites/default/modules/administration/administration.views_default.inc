@@ -351,7 +351,10 @@ function administration_views_default_views() {
     'group' => 'group',
     'information' => 'information',
     'intrigue' => 'intrigue',
+    'location' => 'location',
+    'stuff' => 'stuff',
     'character' => 'character',
+    'sequence' => 'sequence',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 1;
   /* Critère de filtrage: Contenu : Titre */
@@ -863,9 +866,12 @@ function administration_views_default_views() {
     'rid' => 'rid',
     'login' => 'login',
     'uid' => 'uid',
+    'pid' => 'pid',
+    'url' => 'url',
+    'pid_1' => 'pid_1',
+    'url_1' => 'url_1',
     'nothing' => 'nothing',
     'nothing_1' => 'nothing',
-    'nothing_2' => 'nothing',
   );
   $handler->display->display_options['style_options']['default'] = 'login';
   $handler->display->display_options['style_options']['info'] = array(
@@ -907,17 +913,36 @@ function administration_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
+    'pid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'url' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'pid_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'url_1' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'nothing' => array(
       'align' => '',
       'separator' => ' / ',
       'empty_column' => 0,
     ),
     'nothing_1' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'nothing_2' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
