@@ -39,11 +39,13 @@ function evenements_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['row_class'] = 'state-[sid]';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
     'field_event_type' => 'field_event_type',
     'field_dates' => 'field_dates',
     'field_dates_1' => 'field_dates_1',
+    'field_intrigue' => 'field_intrigue',
     'item_id' => 'item_id',
     'sid' => 'sid',
     'edit_node' => 'edit_node',
@@ -74,6 +76,13 @@ function evenements_views_default_views() {
     'field_dates_1' => array(
       'sortable' => 1,
       'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_intrigue' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,

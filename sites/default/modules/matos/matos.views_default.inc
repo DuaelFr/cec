@@ -37,6 +37,7 @@ function matos_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['row_class'] = 'state-[sid]';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
     'field_stuff_type' => 'field_stuff_type',

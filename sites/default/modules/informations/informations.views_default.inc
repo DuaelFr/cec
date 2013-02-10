@@ -39,24 +39,17 @@ function informations_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['row_class'] = 'state-[sid]';
   $handler->display->display_options['style_options']['columns'] = array(
-    'field_dates_2' => 'field_dates_2',
     'title' => 'title',
-    'field_dates' => 'field_dates',
-    'field_dates_1' => 'field_dates_1',
+    'field_information_type' => 'field_information_type',
     'field_intrigue' => 'field_intrigue',
+    'item_id' => 'item_id',
     'sid' => 'sid',
     'edit_node' => 'edit_node',
   );
-  $handler->display->display_options['style_options']['default'] = 'field_dates';
+  $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
-    'field_dates_2' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
     'title' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
@@ -64,22 +57,22 @@ function informations_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_dates' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'desc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_dates_1' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'desc',
+    'field_information_type' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
     'field_intrigue' => array(
       'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'item_id' => array(
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',

@@ -39,6 +39,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['row_class'] = 'state-[sid]';
   $handler->display->display_options['style_options']['columns'] = array(
     'path' => 'path',
     'field_alternate_title' => 'field_alternate_title',

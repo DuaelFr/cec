@@ -39,13 +39,16 @@ function groupes_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['row_class'] = 'state-[sid]';
   $handler->display->display_options['style_options']['columns'] = array(
     'path' => 'path',
     'field_alternate_title' => 'field_alternate_title',
+    'field_group_type' => 'field_group_type',
     'field_alternate_body' => 'field_alternate_body',
     'field_character' => 'field_character',
     'field_group_is_technical' => 'field_group_is_technical',
     'sid' => 'sid',
+    'edit_node' => 'edit_node',
   );
   $handler->display->display_options['style_options']['default'] = 'field_alternate_title';
   $handler->display->display_options['style_options']['info'] = array(
@@ -56,6 +59,13 @@ function groupes_views_default_views() {
     ),
     'field_alternate_title' => array(
       'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_group_type' => array(
+      'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -85,6 +95,11 @@ function groupes_views_default_views() {
     'sid' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
