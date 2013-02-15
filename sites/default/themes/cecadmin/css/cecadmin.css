@@ -175,3 +175,5 @@ input.form-text {
 .view table .state-Publication:hover td,
 .view table .state-Publication:hover td.active { background: #ff372a; }
 
+.cec-columns { overflow: hidden; padding: 1em; }
+.cec-column { float: left; width: 50%; }
