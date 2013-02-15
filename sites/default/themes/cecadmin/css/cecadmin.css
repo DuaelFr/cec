@@ -68,6 +68,22 @@ input.form-text {
   clear: left;
 }
 
+h2 {
+  font-size: 18px;
+  line-height: 27px;
+  min-height: 27px;
+}
+h3 {
+  font-size: 16px;
+  line-height: 24px;
+  min-height: 24px;
+}
+h4 {
+  font-size: 14px;
+  line-height: 21px;
+  min-height: 21px;
+}
+
 
 /************************/
 /* Specific : sequences */
@@ -174,6 +190,10 @@ input.form-text {
 .view table .state-Publication.even td.active { background: #ff9294; font-weight: bold; }
 .view table .state-Publication:hover td,
 .view table .state-Publication:hover td.active { background: #ff372a; }
+
+/**********************/
+/* Views per intrigue */
+/**********************/
 
 .cec-columns { overflow: hidden; padding: 1em; }
 .cec-column { float: left; width: 50%; }
