@@ -45,6 +45,8 @@ function config_base_wysiwyg_default_profiles() {
           'Table' => 1,
           'Find' => 1,
           'Replace' => 1,
+          'SpellChecker' => 1,
+          'Scayt' => 1,
         ),
         'imce' => array(
           'imce' => 1,
