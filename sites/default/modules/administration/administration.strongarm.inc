@@ -31,7 +31,7 @@ function administration_strongarm() {
   $strongarm->value = array(
     'layout' => 'vertical',
     'position' => 'nw',
-    'behavior' => 'ah',
+    'behavior' => 'df',
     'blocks' => array(
       'admin-create' => -1,
       'switchtheme-switch_form' => -1,
