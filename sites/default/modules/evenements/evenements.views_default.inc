@@ -115,11 +115,6 @@ function evenements_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucun évènement pour le moment.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Relation: Entity Reference : Entité référencée */
-  $handler->display->display_options['relationships']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
-  $handler->display->display_options['relationships']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
-  $handler->display->display_options['relationships']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
-  $handler->display->display_options['relationships']['field_intrigue_target_id']['label'] = 'Intrigue';
   /* Relation: Contenu : Interprétation (field_version) */
   $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
@@ -166,9 +161,12 @@ function evenements_views_default_views() {
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['label'] = 'Intrigues';
   $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
     'link' => 1,
   );
+  $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
+  $handler->display->display_options['fields']['field_intrigue']['delta_offset'] = '0';
   /* Champ: COUNT(DISTINCT Field collection item : Identifiant de Field collection item) */
   $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
@@ -208,7 +206,6 @@ function evenements_views_default_views() {
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
-  $handler->display->display_options['filters']['title']['relationship'] = 'field_intrigue_target_id';
   $handler->display->display_options['filters']['title']['operator'] = 'contains';
   $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
@@ -575,12 +572,12 @@ Date de fin : [field_dates_1]
     t('Desc'),
     t('Vide'),
     t('Aucun évènement pour le moment.'),
-    t('Intrigue'),
     t('Interprétation'),
     t('Titre'),
     t('Type d\'évènement'),
     t('Date de début'),
     t('Date de fin'),
+    t('Intrigues'),
     t('Interprétations'),
     t('.'),
     t(','),
@@ -589,6 +586,7 @@ Date de fin : [field_dates_1]
     t('modifier'),
     t('A partir du'),
     t('Jusqu\'au'),
+    t('Intrigue'),
     t('Tous les évènements (Page)'),
     t('Par intrigue (Bloc)'),
     t('Tout'),
