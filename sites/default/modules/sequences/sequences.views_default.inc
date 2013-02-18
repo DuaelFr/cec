@@ -107,11 +107,6 @@ function sequences_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucune séquence pour le moment.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Relation: Entity Reference : Entité référencée */
-  $handler->display->display_options['relationships']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
-  $handler->display->display_options['relationships']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
-  $handler->display->display_options['relationships']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
-  $handler->display->display_options['relationships']['field_intrigue_target_id']['label'] = 'Intrigue';
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -155,6 +150,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
     'link' => 1,
   );
+  $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
   /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
@@ -187,7 +183,6 @@ function sequences_views_default_views() {
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
-  $handler->display->display_options['filters']['title']['relationship'] = 'field_intrigue_target_id';
   $handler->display->display_options['filters']['title']['operator'] = 'contains';
   $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
@@ -547,11 +542,11 @@ Date de fin : [field_dates_1]
     t('Desc'),
     t('Vide'),
     t('Aucune séquence pour le moment.'),
-    t('Intrigue'),
     t('Titre'),
     t('Type de séquence'),
     t('Date de début'),
     t('Date de fin'),
+    t('Intrigue'),
     t('État actuel'),
     t('Actions'),
     t('modifier'),
