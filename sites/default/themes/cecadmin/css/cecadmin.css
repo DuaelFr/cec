@@ -20,6 +20,18 @@ select.form-select,
 input.form-text {
   width: 100%;
 }
+html.js input.throbbing {
+  background-position: 100% 0;
+}
+table input.fluid.form-autocomplete.required {
+  width: -webkit-calc(100% - 20px);
+  width: -moz-calc(100% - 20px);
+}
+.field-multiple-table .form-item label {
+  float: left;
+  width: 20px;
+  text-align: center;
+}
 
 .form-type-checkboxes {
   overflow: hidden;
