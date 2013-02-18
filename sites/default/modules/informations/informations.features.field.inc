@@ -177,7 +177,7 @@ function informations_field_default_fields() {
   $fields['node-information-field_intrigue'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_intrigue',
@@ -260,9 +260,13 @@ function informations_field_default_fields() {
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
+        'module' => 'entityreference',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'size' => 60,
+        ),
+        'type' => 'entityreference_autocomplete',
         'weight' => '4',
       ),
     ),
