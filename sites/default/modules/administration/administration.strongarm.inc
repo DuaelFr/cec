@@ -31,10 +31,11 @@ function administration_strongarm() {
   $strongarm->value = array(
     'layout' => 'vertical',
     'position' => 'nw',
-    'behavior' => 'df',
+    'behavior' => 'ah',
     'blocks' => array(
       'admin-create' => -1,
       'switchtheme-switch_form' => -1,
+      'search-form' => -1,
       'masquerade-masquerade' => -1,
       'menu-menu-zorga-menu' => -1,
     ),
