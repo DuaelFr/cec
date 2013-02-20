@@ -280,7 +280,6 @@ function config_base_strongarm() {
   $strongarm->name = 'mail_system';
   $strongarm->value = array(
     'default-system' => 'MimeMailSystem',
-    'mimemail' => 'MimeMailSystem',
   );
   $export['mail_system'] = $strongarm;
 
