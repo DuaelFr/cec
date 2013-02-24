@@ -154,6 +154,18 @@ function informations_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'view_mode_per_role_information';
+  $strongarm->value = array(
+    0 => array(
+      'role' => 'view_mode_per_role--role_168020977',
+      'view_mode' => 'full_zorga',
+    ),
+  );
+  $export['view_mode_per_role_information'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'workflow_information';
   $strongarm->value = array(
     0 => 'node',

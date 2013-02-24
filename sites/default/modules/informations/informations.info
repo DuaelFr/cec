@@ -48,6 +48,7 @@ features[variable][] = menu_parent_information
 features[variable][] = node_options_information
 features[variable][] = node_preview_information
 features[variable][] = node_submitted_information
+features[variable][] = view_mode_per_role_information
 features[variable][] = workflow_information
 features[views_view][] = admin_informations
 project path = sites/default/modules
