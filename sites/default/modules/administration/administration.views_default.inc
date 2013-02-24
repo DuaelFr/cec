@@ -1293,6 +1293,13 @@ function administration_views_default_views() {
   );
   $handler->display->display_options['filters']['rid']['group'] = 1;
   $handler->display->display_options['filters']['rid']['reduce_duplicates'] = TRUE;
+  /* Critère de filtrage: Utilisateur : Rôles */
+  $handler->display->display_options['filters']['rid_1']['id'] = 'rid_1';
+  $handler->display->display_options['filters']['rid_1']['table'] = 'users_roles';
+  $handler->display->display_options['filters']['rid_1']['field'] = 'rid';
+  $handler->display->display_options['filters']['rid_1']['value'] = array(
+    247050890 => '247050890',
+  );
   $translatables['inscriptions'] = array(
     t('Master'),
     t('Inscriptions'),
