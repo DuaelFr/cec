@@ -119,7 +119,7 @@ function informations_views_default_views() {
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
   $handler->display->display_options['fields']['field_intrigue']['delta_offset'] = '0';
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -215,7 +215,7 @@ function informations_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : Current state */
+  /* Critère de filtrage: Processus : État actuel */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -271,7 +271,7 @@ function informations_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -350,7 +350,7 @@ function informations_views_default_views() {
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -429,13 +429,12 @@ Etat : [sid]
     t('Type d\'information'),
     t('- Aucun -'),
     t('Intrigue'),
-    t('Current state'),
+    t('État actuel'),
     t('Interprétations'),
     t('.'),
     t(','),
     t('Actions'),
     t('modifier'),
-    t('État actuel'),
     t('Toutes les informations (Page)'),
     t('Par intrigue (Bloc)'),
     t('Informations'),
