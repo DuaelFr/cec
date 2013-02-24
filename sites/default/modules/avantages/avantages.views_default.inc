@@ -118,19 +118,19 @@ function avantages_views_default_views() {
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['field'] = 'reverse_field_avantage_field_collection_item';
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['label'] = 'Personnage';
-  /* Champ: Contenu : Chemin */
-  $handler->display->display_options['fields']['path']['id'] = 'path';
-  $handler->display->display_options['fields']['path']['table'] = 'node';
-  $handler->display->display_options['fields']['path']['field'] = 'path';
-  $handler->display->display_options['fields']['path']['label'] = '';
-  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  /* Champ: Contenu : Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Champ: Champ : Intitulé orga */
   $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = '[path]';
+  $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = 'node/[nid]';
   /* Champ: Contenu : Type d'avantage */
   $handler->display->display_options['fields']['field_avantage_type']['id'] = 'field_avantage_type';
   $handler->display->display_options['fields']['field_avantage_type']['table'] = 'field_data_field_avantage_type';
