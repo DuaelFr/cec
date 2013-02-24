@@ -119,7 +119,7 @@ function informations_views_default_views() {
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
   $handler->display->display_options['fields']['field_intrigue']['delta_offset'] = '0';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -215,7 +215,7 @@ function informations_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -271,7 +271,7 @@ function informations_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -282,23 +282,26 @@ function informations_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Filtre contextuel: Contenu : Nid */
-  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
-  $handler->display->display_options['arguments']['nid']['table'] = 'node';
-  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
-  $handler->display->display_options['arguments']['nid']['relationship'] = 'field_intrigue_target_id';
-  $handler->display->display_options['arguments']['nid']['default_action'] = 'empty';
-  $handler->display->display_options['arguments']['nid']['exception']['title'] = 'Tout';
-  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['nid']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['nid']['validate']['type'] = 'node';
-  $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
+  /* Filtre contextuel: Contenu : Intrigue (field_intrigue) */
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['title'] = 'Informations %1';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['types'] = array(
     'intrigue' => 'intrigue',
   );
-  $handler->display->display_options['arguments']['nid']['validate']['fail'] = 'empty';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['access'] = TRUE;
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['access_op'] = 'update';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate']['fail'] = 'empty';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Type */
@@ -347,7 +350,7 @@ function informations_views_default_views() {
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -379,7 +382,7 @@ Etat : [sid]
   $handler->display->display_options['arguments']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
-  $handler->display->display_options['arguments']['field_intrigue_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['default_action'] = 'empty';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['exception']['title'] = 'Tout';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['title_enable'] = TRUE;
   $handler->display->display_options['arguments']['field_intrigue_target_id']['title'] = 'Informations %1';
@@ -392,6 +395,9 @@ Etat : [sid]
   $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['types'] = array(
     'intrigue' => 'intrigue',
   );
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['access'] = TRUE;
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['access_op'] = 'update';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate']['fail'] = 'empty';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Type */
@@ -423,16 +429,18 @@ Etat : [sid]
     t('Type d\'information'),
     t('- Aucun -'),
     t('Intrigue'),
-    t('État actuel'),
+    t('Current state'),
     t('Interprétations'),
     t('.'),
     t(','),
     t('Actions'),
     t('modifier'),
+    t('État actuel'),
     t('Toutes les informations (Page)'),
     t('Par intrigue (Bloc)'),
     t('Informations'),
     t('Tout'),
+    t('Informations %1'),
     t('Par intrigue (Page)'),
     t('<div class="cec-columns">
   <div class="cec-column">
@@ -443,7 +451,6 @@ Etat : [sid]
   <div class="cec-column">
   </div>
 </div>'),
-    t('Informations %1'),
   );
   $export['admin_informations'] = $view;
 

@@ -151,7 +151,7 @@ function sequences_views_default_views() {
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -295,7 +295,7 @@ function sequences_views_default_views() {
     168020977 => 0,
     149933350 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -367,7 +367,7 @@ function sequences_views_default_views() {
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -378,23 +378,26 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Filtre contextuel: Contenu : Nid */
-  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
-  $handler->display->display_options['arguments']['nid']['table'] = 'node';
-  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
-  $handler->display->display_options['arguments']['nid']['relationship'] = 'field_intrigue_target_id';
-  $handler->display->display_options['arguments']['nid']['default_action'] = 'empty';
-  $handler->display->display_options['arguments']['nid']['exception']['title'] = 'Tout';
-  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['nid']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['nid']['validate']['type'] = 'node';
-  $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
+  /* Filtre contextuel: Contenu : Intrigue (field_intrigue) */
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['title'] = 'Séquences %1';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['types'] = array(
     'intrigue' => 'intrigue',
   );
-  $handler->display->display_options['arguments']['nid']['validate']['fail'] = 'empty';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['access'] = TRUE;
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['access_op'] = 'update';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate']['fail'] = 'empty';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Type */
@@ -469,7 +472,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
     'link' => 0,
   );
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -503,7 +506,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['arguments']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
-  $handler->display->display_options['arguments']['field_intrigue_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['default_action'] = 'empty';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['exception']['title'] = 'Tout';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['title_enable'] = TRUE;
   $handler->display->display_options['arguments']['field_intrigue_target_id']['title'] = 'Séquences %1';
@@ -516,6 +519,9 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['types'] = array(
     'intrigue' => 'intrigue',
   );
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['access'] = TRUE;
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate_options']['access_op'] = 'update';
+  $handler->display->display_options['arguments']['field_intrigue_target_id']['validate']['fail'] = 'empty';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Type */
@@ -547,14 +553,16 @@ Date de fin : [field_dates_1]
     t('Date de début'),
     t('Date de fin'),
     t('Intrigue'),
-    t('État actuel'),
+    t('Current state'),
     t('Actions'),
     t('modifier'),
     t('A partir du'),
     t('Jusqu\'au'),
+    t('État actuel'),
     t('Toutes les séquences (Page)'),
     t('Par intrigue (Bloc)'),
     t('Tout'),
+    t('Séquences %1'),
     t('Par intrigue (Page)'),
     t('- Aucun -'),
     t('<div class="cec-columns">
@@ -568,7 +576,6 @@ Date de début : [field_dates]<br />
 Date de fin : [field_dates_1]
   </div>
 </div>'),
-    t('Séquences %1'),
   );
   $export['admin_sequences'] = $view;
 
