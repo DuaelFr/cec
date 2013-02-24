@@ -75,6 +75,75 @@ function transliteration_form_search_admin_settings_alter(&$form, &$form_state) 
 }
 
 /**
+ * Implements hook_field_formatter_info().
+ */
+function transliteration_field_formatter_info() {
+  return array(
+    'transliterate' => array(
+      'label' => t('Transliterate'),
+      'description' => t('Converts non-latin text to US-ASCII and sanitizes file names.'),
+      'field types' => array('text', 'text_long', 'text_with_summary'),
+      'settings' => array('trim_length' => 100),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function transliteration_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $element = array();
+
+  $element['trim_length'] = array(
+    '#title' => t('Trim length'),
+    '#type' => 'textfield',
+    '#size' => 10,
+    '#default_value' => $settings['trim_length'],
+    '#element_validate' => array('element_validate_integer_positive'),
+    '#required' => TRUE,
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function transliteration_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $summary = '';
+
+  if (!empty($settings['trim_length'])) {
+    $summary = t('Trim length') . ': ' . $settings['trim_length'];
+  }
+
+  return $summary;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function transliteration_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+
+  foreach ($items as $delta => $item) {
+    $output = _text_sanitize($instance, $langcode, $item, 'value');
+    if (!empty($display['settings']['trim_length'])) {
+      $output = text_summary($output, $instance['settings']['text_processing'] ? $item['format'] : NULL, $display['settings']['trim_length']);
+    }
+    $output = transliteration_clean_filename($output, $langcode);
+    $element[$delta] = array('#markup' => $output);
+  }
+
+  return $element;
+}
+
+/**
  * Transliterates and sanitizes a file name.
  *
  * The resulting file name has white space replaced with underscores, consists
