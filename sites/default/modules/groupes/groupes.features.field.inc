@@ -531,12 +531,13 @@ function groupes_field_default_fields() {
           'label' => 'above',
           'module' => 'field_collection',
           'settings' => array(
-            'add' => '',
-            'delete' => '',
+            'add' => 'Ajouter',
+            'delete' => 'Supprimer',
             'description' => 1,
-            'edit' => '',
+            'edit' => 'Modifier',
+            'view_mode' => 'full',
           ),
-          'type' => 'field_collection_list',
+          'type' => 'field_collection_view',
           'weight' => '5',
         ),
         'teaser' => array(
