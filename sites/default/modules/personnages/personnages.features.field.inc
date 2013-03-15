@@ -205,9 +205,10 @@ function personnages_field_default_fields() {
         ),
         'full_zorga' => array(
           'label' => 'hidden',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '8',
+          'type' => 'text_default',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -293,7 +294,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '9',
+          'weight' => '15',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -365,9 +366,16 @@ function personnages_field_default_fields() {
         ),
         'full_zorga' => array(
           'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '17',
+          'module' => 'field_collection',
+          'settings' => array(
+            'add' => 'Ajouter',
+            'delete' => 'Supprimer',
+            'description' => TRUE,
+            'edit' => 'Modifier',
+            'view_mode' => 'full',
+          ),
+          'type' => 'field_collection_view',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -451,9 +459,8 @@ function personnages_field_default_fields() {
         ),
         'full_zorga' => array(
           'label' => 'hidden',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '8',
         ),
         'teaser' => array(
@@ -534,9 +541,10 @@ function personnages_field_default_fields() {
         ),
         'full_zorga' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '12',
+          'type' => 'list_default',
+          'weight' => '16',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -609,9 +617,10 @@ function personnages_field_default_fields() {
         ),
         'full_zorga' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '11',
+          'type' => 'list_default',
+          'weight' => '15',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -699,7 +708,7 @@ function personnages_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_plain',
-          'weight' => '16',
+          'weight' => '21',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -769,6 +778,18 @@ function personnages_field_default_fields() {
           ),
           'type' => 'number_integer',
           'weight' => '19',
+        ),
+        'full_zorga' => array(
+          'label' => 'inline',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -864,9 +885,12 @@ function personnages_field_default_fields() {
         ),
         'full_zorga' => array(
           'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '10',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '17',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -958,7 +982,7 @@ function personnages_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_plain',
-          'weight' => '14',
+          'weight' => '19',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1046,7 +1070,7 @@ function personnages_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_plain',
-          'weight' => '15',
+          'weight' => '20',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1237,6 +1261,18 @@ function personnages_field_default_fields() {
           'type' => 'number_integer',
           'weight' => '18',
         ),
+        'full_zorga' => array(
+          'label' => 'inline',
+          'module' => 'number',
+          'settings' => array(
+            'decimal_separator' => '.',
+            'prefix_suffix' => TRUE,
+            'scale' => 0,
+            'thousand_separator' => ' ',
+          ),
+          'type' => 'number_integer',
+          'weight' => '4',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -1326,7 +1362,7 @@ function personnages_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_plain',
-          'weight' => '13',
+          'weight' => '18',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1827,10 +1863,9 @@ function personnages_field_default_fields() {
         ),
         'full_zorga' => array(
           'label' => 'hidden',
-          'module' => 'viewfield',
           'settings' => array(),
-          'type' => 'viewfield_default',
-          'weight' => '7',
+          'type' => 'hidden',
+          'weight' => '14',
         ),
         'teaser' => array(
           'label' => 'above',

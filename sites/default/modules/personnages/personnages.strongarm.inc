@@ -84,7 +84,7 @@ function personnages_strongarm() {
         'custom_settings' => FALSE,
       ),
       'full_zorga' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'revision' => array(
         'custom_settings' => FALSE,
@@ -102,7 +102,26 @@ function personnages_strongarm() {
           'weight' => '9',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'view_events' => array(
+          'full_zorga' => array(
+            'weight' => '5',
+            'visible' => TRUE,
+          ),
+        ),
+        'view_infos' => array(
+          'full_zorga' => array(
+            'weight' => '6',
+            'visible' => TRUE,
+          ),
+        ),
+        'view_sequences' => array(
+          'full_zorga' => array(
+            'weight' => '7',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__character'] = $strongarm;

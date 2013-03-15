@@ -69,6 +69,34 @@ function personnages_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_avantages|node|character|full_zorga';
+  $field_group->group_name = 'group_avantages';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'character';
+  $field_group->mode = 'full_zorga';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Avantages',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_avantages',
+      1 => 'field_pugilat',
+      2 => 'field_credit',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+      ),
+    ),
+  );
+  $export['group_avantages|node|character|full_zorga'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_canevas|node|character|default';
   $field_group->group_name = 'group_canevas';
   $field_group->entity_type = 'node';
@@ -134,13 +162,9 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Canevas',
-    'weight' => '7',
+    'weight' => '13',
     'children' => array(
-      0 => 'field_species',
-      1 => 'field_nationalite',
-      2 => 'field_confession',
-      3 => 'field_canevas',
-      4 => 'field_occupation',
+      0 => 'field_canevas',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -242,6 +266,38 @@ function personnages_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_infos|node|character|full_zorga';
+  $field_group->group_name = 'group_infos';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'character';
+  $field_group->mode = 'full_zorga';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Informations',
+    'weight' => '3',
+    'children' => array(
+      0 => 'field_character_type',
+      1 => 'field_incarnate',
+      2 => 'field_character_state',
+      3 => 'field_species',
+      4 => 'field_nationalite',
+      5 => 'field_confession',
+      6 => 'field_occupation',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+      ),
+    ),
+  );
+  $export['group_infos|node|character|full_zorga'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_onglets|node|character|default';
   $field_group->group_name = 'group_onglets';
   $field_group->entity_type = 'node';
@@ -306,7 +362,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Trombinoscope',
-    'weight' => '5',
+    'weight' => '1',
     'children' => array(
       0 => 'body',
       1 => 'field_photo',
@@ -400,7 +456,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tempéraments',
-    'weight' => '6',
+    'weight' => '4',
     'children' => array(
       0 => 'field_temperament1',
       1 => 'field_temperament2',

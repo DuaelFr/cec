@@ -27,6 +27,7 @@ function personnages_ctools_plugin_api() {
  */
 function personnages_views_api() {
   return array("api" => "3.0");
+  return array("api" => "3.0");
 }
 
 /**

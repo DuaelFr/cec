@@ -22,9 +22,7 @@ function personnages_user_default_permissions() {
   // Exported permission: add terms in occupations.
   $permissions['add terms in occupations'] = array(
     'name' => 'add terms in occupations',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy_access_fix',
   );
 
