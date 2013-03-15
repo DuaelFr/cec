@@ -110,6 +110,8 @@ class views_handler_filter extends views_handler {
     $options['value'] = array('default' => '');
     $options['group'] = array('default' => '1');
     $options['exposed'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['pull_value'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['argument_value'] = array('default' => array());
     $options['expose'] = array(
       'contains' => array(
         'operator_id' => array('default' => FALSE),
@@ -153,6 +155,23 @@ class views_handler_filter extends views_handler {
 
     return $options;
   }
+
+  /**
+   * Define the value format for a specific field type's filter hanlder.
+   *
+   * This function is not required but it may help other views filter handler
+   * implementations better support their specific field types.
+   *
+   * @return array
+   *   An array containing the keys of the $options['value'] array provided by
+   *   the options_definition() function. The value of each key in this array
+   *   is TRUE if the key expects a real value or FALSE if the key contains
+   *   configuration data.
+   *
+   * @see views_handler_filter_numeric::value_definition()
+   * @see views_handler_filter_date::value_definition()
+   */
+  function value_definition() { return array(); }
 
   /**
    * Display the filter on the administrative summary
@@ -215,6 +234,8 @@ class views_handler_filter extends views_handler {
       $this->show_operator_form($form, $form_state);
       // Add the subform from value_form().
       $this->show_value_form($form, $form_state);
+      $this->show_pull_value_form($form, $form_state);
+      $this->show_pull_value_button($form, $form_state);
       $form['clear_markup_end'] = array(
         '#markup' => '</div>',
       );
@@ -311,6 +332,139 @@ class views_handler_filter extends views_handler {
     if (empty($this->no_operator)) {
       $form['value']['#prefix'] = '<div class="views-group-box views-right-70">' . (isset($form['value']['#prefix']) ? $form['value']['#prefix'] : '');
       $form['value']['#suffix'] = (isset($form['value']['#suffix']) ? $form['value']['#suffix'] : '') . '</div>';
+    }
+  }
+
+  /**
+    * Shortcut to display the pull value select elements.
+    */
+  function show_pull_value_form(&$form, &$form_state) {
+    if (empty($this->options['pull_value'])) {
+      return;
+    }
+    $options = array('' => t('None'));
+    foreach ($this->view->display_handler->get_handlers('argument') as $id => $argument) {
+      $options[$id] = $argument->ui_name(TRUE);
+    }
+
+    // Add the filter criterion argument selection form.
+    // If a certain filter handler has multiple form elements both
+    // add the value as possible form element and update the dependency.
+    $option_definition = $this->option_definition();
+    $value_definition = $this->value_definition();
+
+    if (isset($option_definition['value']['contains'])) {
+      foreach ($option_definition['value']['contains'] as $value => $definition) {
+        // Some fields that use 'value' as a key in the form or as a child
+        // element must be handled carefully.
+        if ($value == 'value') {
+          if (isset($form['value']['value'])) {
+            $values[$value] = array(
+              'title' => isset($form['value']['value']['#title']) ? $form['value']['value']['#title'] : '',
+              'weight' => isset($form['value']['value']['#weight']) ? $form['value']['value']['#weight'] : 0,
+              'dependency' => isset($form['value']['value']['#dependency']) ? $form['value']['value']['#dependency'] : array(),
+            );
+            $form['value']['value']['#dependency']['edit-options-argument-value-' . $value] = array('');
+            $form['value']['value']['#dependency_count'] = count($form['value']['value']['#dependency']);
+          }
+          else {
+            $values[$value] = array(
+              'title' => isset($form['value']['#title']) ? $form['value']['#title'] : '',
+              'weight' => isset($form['value']['#weight']) ? $form['value']['#weight'] : 0,
+              'value_single' => TRUE,
+              'dependency' => isset($form['value']['#dependency']) ? $form['value']['#dependency'] : array(),
+            );
+            $form['value']['#dependency']['edit-options-argument-value-' . $value] = array('');
+            $form['value']['#dependency_count'] = count($form['value']['#dependency']);
+          }
+        }
+        else {
+          // If the handler provides a value_definition() use it, otherwise show
+          // the form all the time.
+          if (!isset($value_definition[$value]) || !empty($value_definition[$value])) {
+            $values[$value] = array(
+              'title' => isset($form['value'][$value]['#title']) ? $form['value'][$value]['#title'] : '',
+              'weight' => isset($form['value'][$value]['#weight']) ? $form['value'][$value]['#weight'] : 0,
+              'dependency' => isset($form['value'][$value]['#dependency']) ? $form['value'][$value]['#dependency'] : array(),
+            );
+            $form['value'][$value]['#dependency']['edit-options-argument-value-' . $value] = array('');
+            $form['value'][$value]['#dependency_count'] = count($form['value'][$value]['#dependency']);
+          }
+        }
+      }
+    }
+    else {
+      $values = array('value' => array(
+        'title' => isset($form['value']['#title']) ? $form['value']['#title'] : '',
+        'weight' => isset($form['value']['#weight']) ? $form['value']['#weight'] : 0,
+        'value_single' => TRUE,
+        'dependency' => isset($form['value']['#dependency']) ? $form['value']['#dependency'] : array(),
+      ));
+      $form['value']['#dependency']['edit-options-argument-value-value'] = array('');
+    }
+
+    foreach ($values as $value => $setting) {
+      $setting['value_name'] = $value;
+      $form['argument_value'][$value] = array(
+        '#type' => 'select',
+        '#title' => t('Contextual filter'),
+        '#description' => t('The argument passed to the selected contextual filter will be used as this filter criterion\'s value.'),
+        '#options' => $options,
+        '#default_value' => isset($this->options['argument_value'][$value]) ? $this->options['argument_value'][$value] : '',
+        '#weight' => ++$setting['weight'],
+        '#value_setting' => $setting,
+        '#dependency' => $setting['dependency'],
+        );
+    }
+    // Add a pre_render function to draw the value + the argument value form
+    // in the same container.
+    $form['#pre_render'][] = 'views_handler_filter_form_argument_value_pre_render';
+  }
+
+  /**
+   * Shortcut to display the pull value button.
+   */
+  function show_pull_value_button(&$form, &$form_state) {
+    $form['argument_value_button'] = array(
+      '#prefix' => '<div class="views-argument-value clearfix">',
+      '#suffix' => '</div>',
+      // Should always come after the description and the relationship.
+      '#weight' => -200,
+    );
+    // Add a checkbox for JS users, which will have behavior attached to it
+    // so it can replace the button.
+    $form['argument_value_button']['checkbox'] = array(
+      '#theme_wrappers' => array('container'),
+      '#attributes' => array('class' => array('js-only')),
+    );
+    $form['argument_value_button']['checkbox']['checkbox'] = array(
+      '#title' => t('Use an argument provided by contextual filters'),
+      '#type' => 'checkbox',
+    );
+    // Then add the button itself.
+    if (empty($this->options['pull_value'])) {
+      $form['argument_value_button']['markup'] = array(
+        '#markup' => '<div class="description argument-value-description">' . t("You may use a dynamic arguement provided by a contextual filter as the source for this filter's value.") . ' ' . t('WARNING: This is an experimental configuration and may cause unknown issues if improperly configured.') . '</div>',
+      );
+      $form['argument_value_button']['button'] = array(
+        '#limit_validation_errors' => array(),
+        '#type' => 'submit',
+        '#value' => t('Contextual argument'),
+        '#submit' => array('views_ui_config_item_form_pull_value'),
+      );
+      $form['argument_value_button']['checkbox']['checkbox']['#default_value'] = 0;
+    }
+    else {
+      $form['argument_value_button']['markup'] = array(
+        '#markup' => '<div class="description argument-value-description">' . t("The criteria value for this filter will be provided dynamically by an argument passed to a contextual filter.") . ' ' . t('WARNING: This is an experimental configuration and may cause unknown issues if improperly configured.') . '</div>',
+      );
+      $form['argument_value_button']['button'] = array(
+        '#limit_validation_errors' => array(),
+        '#type' => 'submit',
+        '#value' => t("Remove contextual argument"),
+        '#submit' => array('views_ui_config_item_form_pull_value'),
+      );
+      $form['argument_value_button']['checkbox']['checkbox']['#default_value'] = 1;
     }
   }
 
@@ -1340,6 +1494,18 @@ class views_handler_filter extends views_handler {
       }
 
       $session[$this->options['expose']['identifier']] = $input[$this->options['expose']['identifier']];
+    }
+  }
+
+  /**
+   * If pulling arguments from the filter is set, set $this->value here.
+   */
+  function pre_query() {
+    foreach ($this->options['argument_value'] as $value => $argument) {
+      if (!empty($argument)) {
+        $argument = $this->view->argument[$argument];
+        $this->value[$value] = $argument->get_value();
+      }
     }
   }
 

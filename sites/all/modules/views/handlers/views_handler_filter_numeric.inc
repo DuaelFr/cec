@@ -26,6 +26,14 @@ class views_handler_filter_numeric extends views_handler_filter {
     return $options;
   }
 
+  function value_definition() {
+    return array(
+      'min' => TRUE,
+      'max' => TRUE,
+      'value' => TRUE,
+    );
+  }
+
   function operators() {
     $operators = array(
       '<' => array(

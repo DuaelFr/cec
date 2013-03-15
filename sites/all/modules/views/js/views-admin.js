@@ -830,12 +830,12 @@ Drupal.behaviors.viewsRemoveIconClass.attach = function (context, settings) {
 };
 
 /**
- * Change "Expose filter" buttons into checkboxes.
+ * Change "Expose filter" and "Contextual argument" buttons into checkboxes.
  */
 Drupal.behaviors.viewsUiCheckboxify = {};
 Drupal.behaviors.viewsUiCheckboxify.attach = function (context, settings) {
   var $ = jQuery;
-  var $buttons = $('#edit-options-expose-button-button, #edit-options-group-button-button').once('views-ui-checkboxify');
+  var $buttons = $('#edit-options-expose-button-button, #edit-options-group-button-button, #edit-options-argument-value-button-button').once('views-ui-checkboxify');
   var length = $buttons.length;
   var i;
   for (i = 0; i < length; i++) {
@@ -871,7 +871,7 @@ Drupal.behaviors.viewsUiChangeDefaultWidget.attach = function (context, settings
 };
 
 /**
- * Attaches an expose filter button to a checkbox that triggers its click event.
+ * Attaches a button to a checkbox that triggers its click event.
  *
  * @param button
  *   The DOM object representing the button to be checkboxified.
@@ -879,14 +879,13 @@ Drupal.behaviors.viewsUiChangeDefaultWidget.attach = function (context, settings
 Drupal.viewsUi.Checkboxifier = function (button) {
   var $ = jQuery;
   this.$button = $(button);
-  this.$parent = this.$button.parent('div.views-expose, div.views-grouped');
+  this.$parent = this.$button.parent('div.views-expose, div.views-grouped, div.views-argument-value');
   this.$input = this.$parent.find('input:checkbox, input:radio');
   // Hide the button and its description.
   this.$button.hide();
-  this.$parent.find('.exposed-description, .grouped-description').hide();
+  this.$parent.find('.exposed-description, .grouped-description, .argument-value-description').hide();
 
   this.$input.click($.proxy(this, 'clickHandler'));
-
 };
 
 /**

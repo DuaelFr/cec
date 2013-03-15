@@ -1871,6 +1871,50 @@ function views_ui_pre_render_add_fieldset_markup($form) {
 }
 
 /**
+ * Pre_render function shows an argument_value form below the value form element
+ * in the filter function.
+ *
+ * Each argument_value is wrapped with it's corresponding value form element
+ * inside a container div.
+ */
+function views_handler_filter_form_argument_value_pre_render($form) {
+  foreach (element_children($form['argument_value']) as $element) {
+    $setting = $form['argument_value'][$element]['#value_setting'];
+
+    // Collect the name and the form element of the value and the form element
+    // of the argument, while ensuring the single value exception works as well.
+    if (empty($setting['value_single'])) {
+      $name = $setting['value_name'];
+      $value_form = $form['value'][$name];
+      $argument_form = $form['argument_value'][$name];
+
+      unset($form['value'][$name]);
+      unset($form['argument_value'][$name]);
+    }
+    else {
+      $name = 'value';
+      $value_form = $form['value'];
+      $argument_form = $form['argument_value'][$name];
+
+      unset($form['value']);
+      unset($form['argument_value'][$name]);
+    }
+
+    $form['argument_value_wrappers'][$name] = array(
+      '#theme_wrappers' => array('views_container'),
+      '#attributes' => array('class' => array('views-filter-value-argument-pair')),
+    );
+    $form['argument_value_wrappers'][$name]['argument_value'] = $argument_form;
+    $form['argument_value_wrappers'][$name]['value'] = $value_form;
+  }
+
+  $form['argument_value_wrappers']['#prefix'] = '<div class="views-group-box views-right-70">';
+  $form['argument_value_wrappers']['#suffix'] = '</div>';
+
+  return $form;
+}
+
+/**
  * Flattens the structure of an element containing the #flatten property.
  *
  * If a form element has #flatten = TRUE, then all of it's children
@@ -3316,7 +3360,7 @@ function views_ui_edit_display_form_submit($form, &$form_state) {
 }
 
 /**
- * Override handler for views_ui_edit_display_form
+ * Toggle expose settings on handlers.
  *
  * @TODO: Not currently used. Remove unless we implement an override toggle.
  */
@@ -4613,6 +4657,21 @@ function views_ui_config_item_form_expose($form, &$form_state) {
   $form_state['rerender'] = TRUE;
   $form_state['rebuild'] = TRUE;
   $form_state['force_expose_options'] = TRUE;
+}
+
+/**
+ * Toggle the pull value from argument feature on filters.
+ */
+function views_ui_config_item_form_pull_value($form, &$form_state) {
+  $item = &$form_state['handler']->options;
+  // flip
+  $item['pull_value'] = empty($item['pull_value']);
+
+  $form_state['view']->set_item($form_state['display_id'], $form_state['type'], $form_state['id'], $item);
+
+  views_ui_cache_set($form_state['view']);
+  $form_state['rerender'] = TRUE;
+  $form_state['rebuild'] = TRUE;
 }
 
 /**
