@@ -40,3 +40,20 @@ function _config_base_extra_field_view($field_name, $title, $node, $view_mode, $
     ),
   );
 }
+
+/**
+ * Implements hook_views_api().
+ */
+function config_base_views_api() {
+  return array(
+    'api' => 2,
+    'path' => drupal_get_path('module', 'config_base') . '/includes',
+  );
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function config_base_views_data_alter(&$data) {
+  $data['workflow_node']['sid']['field']['handler'] = 'workflow_views_handler_field_sid_transliterated';
+}
