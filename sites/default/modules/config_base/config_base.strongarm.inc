@@ -27,6 +27,85 @@ function config_base_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'content_lock_admin_cancelbutton';
+  $strongarm->value = 1;
+  $export['content_lock_admin_cancelbutton'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_lock_admin_verbose';
+  $strongarm->value = 1;
+  $export['content_lock_admin_verbose'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_lock_allowed_formats';
+  $strongarm->value = array(
+    'full_html' => 0,
+    'plain_text' => 0,
+    'ds_code' => 0,
+  );
+  $export['content_lock_allowed_formats'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_lock_allowed_node_types';
+  $strongarm->value = array(
+    'avantage' => 0,
+    'event' => 0,
+    'group' => 0,
+    'information' => 0,
+    'intrigue' => 0,
+    'location' => 0,
+    'stuff' => 0,
+    'news' => 0,
+    'page' => 0,
+    'character' => 0,
+    'sequence' => 0,
+  );
+  $export['content_lock_allowed_node_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_lock_timeout_minutes';
+  $strongarm->value = '30';
+  $export['content_lock_timeout_minutes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_lock_timeout_on_edit';
+  $strongarm->value = 1;
+  $export['content_lock_timeout_on_edit'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_lock_unload_js';
+  $strongarm->value = 1;
+  $export['content_lock_unload_js'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_lock_unload_js_message';
+  $strongarm->value = 'If you proceed, ALL of your changes will be lost.';
+  $export['content_lock_unload_js_message'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'content_lock_unload_js_message_enable';
+  $strongarm->value = 1;
+  $export['content_lock_unload_js_message_enable'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'date_api_use_iso8601';
   $strongarm->value = 1;
   $export['date_api_use_iso8601'] = $strongarm;
