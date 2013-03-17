@@ -410,7 +410,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['filters']['type']['group'] = 1;
 
   /* Display: Par intrigue (Page) */
-  $handler = $view->new_display('page', 'Par intrigue (Page)', 'page_2');
+  $handler = $view->new_display('page', 'Par intrigue (Page)', 'page_by_intrigue');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -619,6 +619,134 @@ Date de fin : [field_dates_1]
     'sequence' => 'sequence',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
+
+  /* Display: Par personnage (Page) */
+  $handler = $view->new_display('page', 'Par personnage (Page)', 'page_by_character');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h2';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Champ: Contenu : Type de séquence */
+  $handler->display->display_options['fields']['field_sequence_type']['id'] = 'field_sequence_type';
+  $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
+  $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
+  $handler->display->display_options['fields']['field_sequence_type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_sequence_type']['empty'] = '- Aucun -';
+  $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['label'] = 'Date de début';
+  $handler->display->display_options['fields']['field_dates']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_dates']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
+  $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['label'] = 'Date de fin';
+  $handler->display->display_options['fields']['field_dates_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_dates_1']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
+  /* Champ: Contenu : Intrigue */
+  $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
+    'link' => 0,
+  );
+  /* Champ: Processus : État actuel */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
+  /* Champ: Champs organisés */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Champs organisés';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="cec-columns">
+  <div class="cec-column">
+Type : [field_sequence_type]<br />
+Intrigue : [field_intrigue]<br />
+Etat : [sid]
+  </div>
+  <div class="cec-column">
+Date de début : [field_dates]<br />
+Date de fin : [field_dates_1]
+  </div>
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Champ: Contenu : Description */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Filtre contextuel: Contenu : Joueurs (field_players) */
+  $handler->display->display_options['arguments']['field_players_target_id']['id'] = 'field_players_target_id';
+  $handler->display->display_options['arguments']['field_players_target_id']['table'] = 'field_data_field_players';
+  $handler->display->display_options['arguments']['field_players_target_id']['field'] = 'field_players_target_id';
+  $handler->display->display_options['arguments']['field_players_target_id']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_players_target_id']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['field_players_target_id']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['field_players_target_id']['title'] = 'Séquences %1';
+  $handler->display->display_options['arguments']['field_players_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_players_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_players_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_players_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_players_target_id']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['field_players_target_id']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['field_players_target_id']['validate_options']['types'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['arguments']['field_players_target_id']['validate']['fail'] = 'empty';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'sequence' => 'sequence',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  $handler->display->display_options['path'] = 'admin/cec/sequences/personnage/%';
+  $handler->display->display_options['menu']['title'] = 'Liste des Séquences';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-zorga-menu';
+  $handler->display->display_options['menu']['context'] = 0;
   $translatables['admin_sequences'] = array(
     t('Master'),
     t('Timeline (Séquences)'),
@@ -658,6 +786,7 @@ Date de fin : [field_dates_1]
   </div>
 </div>'),
     t('Par personnage (Bloc)'),
+    t('Par personnage (Page)'),
   );
   $export['admin_sequences'] = $view;
 
