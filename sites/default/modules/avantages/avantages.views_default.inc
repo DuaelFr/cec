@@ -39,9 +39,9 @@ function avantages_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['row_class'] = 'state-[sid]';
+  $handler->display->display_options['style_options']['row_class'] = 'state-[sid_1]';
   $handler->display->display_options['style_options']['columns'] = array(
-    'path' => 'path',
+    'nid' => 'nid',
     'field_alternate_title' => 'field_alternate_title',
     'field_avantage_type' => 'field_avantage_type',
     'field_value' => 'field_value',
@@ -50,10 +50,13 @@ function avantages_views_default_views() {
     'item_id' => 'item_id',
     'sid' => 'sid',
     'edit_node' => 'edit_node',
+    'sid_1' => 'sid_1',
   );
   $handler->display->display_options['style_options']['default'] = 'field_alternate_title';
   $handler->display->display_options['style_options']['info'] = array(
-    'path' => array(
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -108,6 +111,13 @@ function avantages_views_default_views() {
       'empty_column' => 0,
     ),
     'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -173,6 +183,15 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
+  /* Champ: Etat CSS */
+  $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
+  $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid_1']['ui_name'] = 'Etat CSS';
+  $handler->display->display_options['fields']['sid_1']['label'] = '';
+  $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
   /* Critère de tri: Champ : Intitulé orga (field_alternate_title) */
   $handler->display->display_options['sorts']['field_alternate_title_value']['id'] = 'field_alternate_title_value';
   $handler->display->display_options['sorts']['field_alternate_title_value']['table'] = 'field_data_field_alternate_title';
