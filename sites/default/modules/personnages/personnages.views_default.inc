@@ -240,6 +240,13 @@ function personnages_views_default_views() {
   $handler->display->display_options['relationships']['field_avantage_target_id']['field'] = 'field_avantage_target_id';
   $handler->display->display_options['relationships']['field_avantage_target_id']['relationship'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantage_target_id']['label'] = 'Avantage';
+  /* Champ: Contenu : Nid */
+  $handler->display->display_options['fields']['nid_1']['id'] = 'nid_1';
+  $handler->display->display_options['fields']['nid_1']['table'] = 'node';
+  $handler->display->display_options['fields']['nid_1']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid_1']['label'] = '';
+  $handler->display->display_options['fields']['nid_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid_1']['element_label_colon'] = FALSE;
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -382,6 +389,14 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
+  /* Champ: Liens custom */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Liens custom';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="/admin/cec/evenements/personnage/[nid_1]">Evenements</a> / <a href="/admin/cec/informations/personnage/[nid_1]">Informations</a> / <a href="/admin/cec/sequences/personnage/[nid_1]">Séquences</a>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Critère de tri: Contenu : Titre */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
@@ -984,6 +999,7 @@ function personnages_views_default_views() {
     t('État actuel'),
     t('Actions'),
     t('modifier'),
+    t('<a href="/admin/cec/evenements/personnage/[nid_1]">Evenements</a> / <a href="/admin/cec/informations/personnage/[nid_1]">Informations</a> / <a href="/admin/cec/sequences/personnage/[nid_1]">Séquences</a>'),
     t('Prénom Joueur'),
     t('Tempérament 1'),
     t('Tempérament 2'),
