@@ -172,36 +172,54 @@ h4 {
 /* States colors */
 /*****************/
 
-.view table .state-Discussion td,
-.view table .state-Discussion td.active,
-.view table .state-Discussion.even td,
-.view table .state-Discussion.even td.active{}
-.view table .state-Discussion:hover td,
-.view table .state-Discussion:hover td.active { background: #cce4ef; }
-.view table .state-Validation td,
-.view table .state-Validation td.active,
-.view table .state-Validation.even td,
-.view table .state-Validation.even td.active { background: #c8ff8b; }
-.view table .state-Validation:hover td,
-.view table .state-Validation:hover td.active { background: #78ef00; }
-.view table .state-Rédaction td,
-.view table .state-Rédaction td.active,
-.view table .state-Rédaction.even td,
-.view table .state-Rédaction.even td.active { background: #fdff80; }
-.view table .state-Rédaction:hover td,
-.view table .state-Rédaction:hover td.active { background: #faff00; }
-.view table .state-Relecture td,
-.view table .state-Relecture td.active,
-.view table .state-Relecture.even td,
-.view table .state-Relecture.even td.active { background: #ffc672; }
-.view table .state-Relecture:hover td,
-.view table .state-Relecture:hover td.active { background: #ff9f00; }
-.view table .state-Publication td,
-.view table .state-Publication td.active,
-.view table .state-Publication.even td,
-.view table .state-Publication.even td.active { background: #ff9294; font-weight: bold; }
-.view table .state-Publication:hover td,
-.view table .state-Publication:hover td.active { background: #ff372a; }
+.view table .state-en-discussion td,
+.view table .state-en-discussion td.active,
+.view table .state-en-discussion.even td,
+.view table .state-en-discussion.even td.active{}
+.view table .state-en-discussion:hover td,
+.view table .state-en-discussion:hover td.active { background: #cce4ef; }
+
+.view table .state-en-prepa-redaction td,
+.view table .state-en-prepa-redaction td.active,
+.view table .state-en-prepa-redaction.even td,
+.view table .state-en-prepa-redaction.even td.active { background: #c8ff8b; }
+.view table .state-en-prepa-redaction:hover td,
+.view table .state-en-prepa-redaction:hover td.active { background: #78ef00; }
+
+.view table .state-en-validation td,
+.view table .state-en-validation td.active,
+.view table .state-en-validation.even td,
+.view table .state-en-validation.even td.active { background: #c8ff8b; }
+.view table .state-en-validation:hover td,
+.view table .state-en-validation:hover td.active { background: #78ef00; }
+
+.view table .state-en-redaction td,
+.view table .state-en-redaction td.active,
+.view table .state-en-redaction.even td,
+.view table .state-en-redaction.even td.active { background: #fdff80; }
+.view table .state-en-redaction:hover td,
+.view table .state-en-redaction:hover td.active { background: #faff00; }
+
+.view table .state-en-relecture td,
+.view table .state-en-relecture td.active,
+.view table .state-en-relecture.even td,
+.view table .state-en-relecture.even td.active { background: #ffc672; font-weight: bold; }
+.view table .state-en-relecture:hover td,
+.view table .state-en-relecture:hover td.active { background: #ff9f00; }
+
+.view table .state-en-att-publication td,
+.view table .state-en-att-publication td.active,
+.view table .state-en-att-publication.even td,
+.view table .state-en-att-publication.even td.active { background: #ffc672; font-weight: bold; }
+.view table .state-en-att-publication:hover td,
+.view table .state-en-att-publication:hover td.active { background: #ff9f00; }
+
+.view table .state-publie td,
+.view table .state-publie td.active,
+.view table .state-publie.even td,
+.view table .state-publie.even td.active { background: #ff9294; font-weight: bold; }
+.view table .state-publie:hover td,
+.view table .state-publie:hover td.active { background: #ff372a; }
 
 /**********************/
 /* Views per intrigue */
