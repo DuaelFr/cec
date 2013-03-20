@@ -156,7 +156,8 @@ function phone_field_validate($entity_type, $entity, $field, $instance, $langcod
       if (!valid_phone_number($ccode, $value)) {
         $country = phone_country_info($ccode);
         $errors[$field['field_name']][$langcode][$delta][] = array(
-          'error' => t($country['error'], array('%value' => $value)),
+          'error' => 'phone_invalid_number',
+          'message' => t($country['error'], array('%value' => $value)),
         );
       }
     }

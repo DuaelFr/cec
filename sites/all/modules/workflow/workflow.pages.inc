@@ -1,5 +1,5 @@
 <?php
-
+// $Id$
 /**
  * @file
  * Provide user interface for changing workflow state.
@@ -23,8 +23,7 @@ function workflow_tab_page($node = NULL) {
   // theme_workflow_current_state() must run state through check_plain().
   $current_state = theme('workflow_current_state', array('state_name' => $states[$current]));
   $output = t('Current state: !state', array('!state' => $current_state));
-  $form = drupal_get_form('workflow_tab_form', $node, $workflow->wid, $states, $current);
-  $output .= drupal_render($form);
+  $output .= drupal_render(drupal_get_form('workflow_tab_form', $node, $workflow->wid, $states, $current));
   $rows = array();
   foreach (workflow_get_workflow_node_history_by_nid($node->nid) as $history) {
     if ($history->sid == $current && !isset($deleted_states[$history->sid]) && !isset($current_themed)) {
@@ -183,10 +182,8 @@ function workflow_tab_form_submit($form, &$form_state) {
       $node->workflow_scheduled_hour = $form_state['values']['workflow_scheduled_hour'];
     }
   }
-  // ALERT: Rules that use node_save to check the node transition are going to be missed if
-  // the tab form is used to check for the change. It is *always* better practice to use
-  // the transition change itself as your value to check for changes with Rules and other
-  // behaviors. Do NOT rely on node_save() to drive transition changes.
-  workflow_transition($node, $node->workflow);
+  // Call node_save() to make sure any handlers that use the
+  // new workflow values will see them.
+  node_save($node);
   $form_state['redirect'] = 'node/' . $node->nid;
 }

@@ -36,7 +36,7 @@ function files_undo_remove_file_process($element, &$form_state, $form) {
     return $element;
   }
 
-  if (isset($element['fid']) && !empty($element['fid']['#value'])) {
+  if (isset($element['fid']) && !empty($element['fid']['#value']) && !empty($element['#field_name'])) {
 
     $field_info = field_info_field($element['#field_name']);
     if ($field_info['cardinality'] == 1) {
@@ -77,6 +77,11 @@ function files_undo_remove_entity_presave($entity, $entity_type) {
   $instances = field_info_instances($entity_type, $bundle);
   foreach ($instances as $field_name => $field_instance) {
 
+    // Make sure the field exists.
+    if (!isset($entity->{$field_name})) {
+      continue;
+    }
+
     // Check if the modules are file, image or linkimage.
     if (in_array($field_instance['widget']['module'], array('image', 'file', 'linkimagefield'))) {
       foreach ($entity->{$field_name} as $language => $items) {
@@ -92,6 +97,8 @@ function files_undo_remove_entity_presave($entity, $entity_type) {
             unset($entity->{$field_name}[$language][$delta]);
           }
         }
+
+        $entity->{$field_name}[$language] = array_values($entity->{$field_name}[$language]);
       }
     }
   }

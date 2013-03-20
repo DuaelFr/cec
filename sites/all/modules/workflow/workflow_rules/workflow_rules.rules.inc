@@ -1,5 +1,5 @@
 <?php
-
+// $Id$
 /**
  * @file
  * Rules integration for the Workflow module
@@ -104,10 +104,8 @@ function workflow_rules_rules_action_info() {
  */
 function _workflow_rules_condition_select() {
   $options['ANY'] = 'ANY state';
-  foreach (workflow_get_workflows() as $workflow) {
-    foreach (workflow_get_workflow_states_by_wid($workflow->wid) as $state) {
-      $states[$state->sid] = check_plain($workflow->name) . ': ' . check_plain($state->state);
-    }
+  foreach (workflow_get_workflow_states() as $state) {
+    $states[$state->sid] = check_plain($state->state);
   }
   $options = $options + $states;
   return $options;
@@ -117,10 +115,8 @@ function _workflow_rules_condition_select() {
  * Condition callback: gather all workflow states.
  */
 function _workflow_rules_action_select() {
-  foreach (workflow_get_workflows() as $workflow) {
-    foreach (workflow_get_workflow_states_by_wid($workflow->wid) as $state) {
-      $states[$state->sid] = check_plain($workflow->name) . ': ' . check_plain($state->state);
-    }
+  foreach (workflow_get_workflow_states() as $state) {
+    $states[$state->sid] = check_plain($state->state);
   }
   return $states;
 }

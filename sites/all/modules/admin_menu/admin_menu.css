@@ -58,7 +58,8 @@ body.admin-menu {
 #admin-menu .dropdown {
   position: static;
 }
-#admin-menu a {
+#admin-menu a,
+#admin-menu li > span {
   background: transparent none;
   border: none;
   color: #EEE;
@@ -66,7 +67,8 @@ body.admin-menu {
   text-align: left; /* LTR */
   text-decoration: none;
 }
-#admin-menu .dropdown a {
+#admin-menu .dropdown a,
+#admin-menu .dropdown li > span {
   border-right: 1px solid #323232; /* LTR */
   display: block;
   padding: 4px 8px;

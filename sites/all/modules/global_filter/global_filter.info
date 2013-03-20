@@ -1,7 +1,7 @@
 name = Global Filter
-description = Create a global filter that simultaneously drives a number of Views on your site. For instance you can filter your Views content by the country the user selects somewhere on the front page. Or you can filter by year, or by search terms...
+description = Create global filters that simultaneously drive a number of Views on your site. For instance you can filter your Views content by the country the user selects somewhere on the front page. Or you can filter by year, or by search terms...
 package = Views
-; dependencies[] = views
+dependencies[] = session_cache
 files[] = views/global_filter_plugin_argument_default_global_filter_field.inc
 files[] = views/global_filter_plugin_argument_default_global_filter_view.inc
 files[] = views/global_filter_plugin_argument_default_global_filter_proximity.inc
@@ -9,9 +9,9 @@ configure = admin/config/content/global_filter
 core = 7.x
 version = 7.x-1.dev
 
-; Information added by drupal.org packaging script on 2012-09-17
-version = "7.x-1.8"
+; Information added by drupal.org packaging script on 2013-02-01
+version = "7.x-1.10"
 core = "7.x"
 project = "global_filter"
-datestamp = "1347882778"
+datestamp = "1359684932"
 
