@@ -257,7 +257,7 @@ class views_data_export_plugin_display_export extends views_plugin_display_feed 
     // If we were attached to another view, grab that for the final URL.
     if (!empty($_GET['attach']) && isset($this->view->display[$_GET['attach']])) {
       // Get the path of the attached display:
-      $querystring['return-url'] = $this->view->get_url(NULL, $this->view->display[$_GET['attach']]->handler->get_path());
+      $querystring['return-url'] = $this->view->display[$_GET['attach']]->handler->get_path();
     }
 
     //Set the batch off
@@ -675,7 +675,7 @@ class views_data_export_plugin_display_export extends views_plugin_display_feed 
   *   An array containing the file information, or 0 in the event of an error.
   */
   function file_save_file($filepath) {
-    return file_save_data('', $filepath, FILE_EXISTS_REPLACE);
+    return file_save_data('', $filepath);
   }
 
   /**
