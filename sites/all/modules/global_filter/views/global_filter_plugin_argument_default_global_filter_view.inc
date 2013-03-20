@@ -1,4 +1,3 @@
-
 <?php
 /**
  * @file
@@ -6,7 +5,7 @@
  */
 
 /**
- * Default argument plugin to extract the global View filter value set for this
+ * Default argument plugin to extract the View filter values set for this
  * contextual filter.
  */
 class global_filter_plugin_argument_default_global_filter_view extends views_plugin_argument_default {
@@ -29,43 +28,32 @@ class global_filter_plugin_argument_default_global_filter_view extends views_plu
   }
 
   function get_argument() {
-    $exception_value = $this->argument->options['exception']['value']; // e.g. 'all'
-    $view_names = $this->options['global_filter_view'];
 
-    if (is_array($view_names)) {
-      // Multiple views selected  [#1618302]
-      // Note: both default value and the View advanced options need to be set
-      // to support multiple values.
+    $arg = $view_names = $this->options['global_filter_view'];
+
+    if (!empty($view_names)) {
+      if (!is_array($view_names)) {
+        $view_names = array($view_names);
+      }
       $arg = array();
       foreach ($view_names as $view_name) {
-        if (isset($_SESSION['global_filter'][$view_name])) {
-          $arg[] = is_array($_SESSION['global_filter'][$view_name])
-            ? reset($_SESSION['global_filter'][$view_name])
-            : $_SESSION['global_filter'][$view_name];
-          $arg = array_filter($arg);
+        $value = global_filter_get_session_value($view_name);
+        if (isset($value)) {
+          if (is_array($value)) {
+            $arg = array_merge($arg, $value);
+          }
+          else {
+            $arg[] = $value;
+          }
         }
       }
-      if (empty($arg)) {
-        $arg = $exception_value;
-      }
+      $arg = array_filter($arg);
     }
-    else {
-      // One view selected
-      if (isset($_SESSION['global_filter'][$view_names])) {
-        $arg = $_SESSION['global_filter'][$view_names];
-        if (is_array($arg)) {
-          $arg = array_filter($arg);
-        }
-        if (empty($arg)) {
-          $arg = $exception_value;
-        }
-      }
-      else {
-        $arg = $exception_value;
-      }
+    if (empty($arg)) {
+      $arg = $this->argument->options['exception']['value']; // e.g. 'all'
     }
-    // If the argument is multi-valued (combo-box or checkboxes) string the
-    // values together separated by plus-signs.
+    // If the argument is multi-valued, ie multi-select box or check boxes,
+    // string the values together separated by plus-signs.
     // Note this requires the user to tick "Allow multiple values" after
     // expanding the "More" fieldset on the Contextual Filter configuration
     // panel. Otherwise only the first of the values will used.

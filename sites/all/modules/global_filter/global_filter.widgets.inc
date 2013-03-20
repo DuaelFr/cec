@@ -6,25 +6,33 @@
  */
 
 define('GLOBAL_FILTER_DEF_OPTION_ALL_TEXT', t('All'));
-define('GLOBAL_FILTER_VIEWS_COUNTRY_FIELD', 'country'); // requires Location module
+define('GLOBAL_FILTER_VIEWS_COUNTRY_FIELD', 'country'); // does not require Location module
 define('GLOBAL_FILTER_VIEWS_PROXIMITY_FIELD', 'distance'); // requires Location module
-define('GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD', 'keys');
+define('GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD', 'keys'); // core Search module
 define('GLOBAL_FILTER_VIEWS_SEARCH_API_FULLTEXT', 'search_api_views_fulltext'); // requires Search API module
+
+$path = DRUPAL_ROOT . '/' . drupal_get_path('module', 'global_filter');
+include_once $path . '/widgets/global_filter.datewidget.inc';
+include_once $path . '/widgets/global_filter.linkswidget.inc';
+include_once $path . '/widgets/global_filter.simplewidget.inc';
+include_once $path . '/widgets/global_filter.rangewidget.inc';
 
 /**
  * Implements hook_forms();
  *
  * Called as a result of the fact that there are no hard-coded handlers for the
- * unique form_id's ('global_filter_1', 'global_filter_2'...), generated in
- * global_filter_block_info().
- * Here we map these form_id's back to the same 'global_filter_form'.
+ * unique form_id's ('global_filter_block_1', 'global_filter_block_2'...),
+ * generated in global_filter_block_info().
+ * Here we map these form_id's back to the same 'global_filter_block_form'.
  */
 function global_filter_forms($form_id, $args) {
-  if (strpos($form_id, 'global_filter') === 0) {
+  if (strpos($form_id, GLOBAL_FILTER_BLOCK_ID_PREFIX) === 0) {
+    // Convert $form_id to block#
+    $block_number = drupal_substr($form_id, -1);
     $form = array(
       $form_id => array(
-        'callback' => 'global_filter_form',
-        'callback arguments' => array($filter = $form_id)
+        'callback' => 'global_filter_submission_form',
+        'callback arguments' => array($block_number)
       )
     );
     return $form;
@@ -32,31 +40,31 @@ function global_filter_forms($form_id, $args) {
 }
 
 /**
- * Creates the global selector widget, e.g. drop-down, radio-boxes, links...
- *
- * If the filter is driven by a field, then we use the field instance's default
- * widget, unless overridden by the user.
+ * Creates the global selector widgets, e.g. drop-down, radio-boxes, links...
  *
  * @ingroup forms
- *
  */
-function global_filter_form($form, &$form_state, $filter) {
+function global_filter_submission_form($form, &$form_state, $block_number) {
 
-  // Pass filter name and language to other functions that may need it.
-  if ($form_state['global_filter_name'] = variable_get($filter)) {
-
-    $form_state['language'] = LANGUAGE_NONE; // @todo ?
-
-    global_filter_create_widget($filter, $form, $form_state);
-
-    // Complete form with visible or invisible submit button and markup.
-    if ($form_state['widget'] != 'links') {
-      global_filter_add_submit_button($form, $filter);
-    }
-    $path = drupal_get_path('module', 'global_filter');
-    $form['#attached']['css'] = array($path . '/global_filter.css');
-    $form['#attributes']['class'][] = 'global-filter';
+  if (!isset($form_state['language'])) {
+    $form_state['language'] = LANGUAGE_NONE;
   }
+  foreach (global_filter_get_filters_for_block($block_number) as $key => $filter) {
+
+    $form_state['global_filters'][$key]['name'] = $filter['name'];
+    $form_state['global_filters'][$key]['widget'] = $filter['widget'];
+    $form_state['global_filters'][$key]['label'] = $filter['label'];
+
+    global_filter_create_widget($key, $form, $form_state);
+  }
+  // Complete form with markup and visible or invisible submit button (unless
+  // the form contains link widgets only)
+  global_filter_finalise_form($form, $block_number);
+
+  $path = drupal_get_path('module', 'global_filter');
+  $form['#attached']['css'][] = $path . '/global_filter.css';
+  $form['#attributes']['class'][] = drupal_html_class('global-filter');
+
   return $form;
 }
 
@@ -65,47 +73,46 @@ function global_filter_form($form, &$form_state, $filter) {
  *
  * o global filter driven by a view: user may request any list widget
  * o global filter driven by a node property, search term or location proximity: textfield
- * o global filter driven by a field: widget default may be overriden by user,
- *   provided the widget default is not a text field or or date field;
- *   autocomplete fields may be overridden.
+ * o global filter driven by a field: widget default may be overriden by user
  *
- * @param $filter
- * @param $form, the form that will be added to
+ * @param $filter_key, 1, 2, 3..
+ * @param $form, the form that will be added to, cannot be NULL
  * @param $form_state
  * @return nothing
  */
-function global_filter_create_widget($filter, &$form, &$form_state) {
+function global_filter_create_widget($filter_key, &$form, &$form_state) {
 
-  $option_all_text = variable_get($filter . '_option_all_text');
+  $name = $form_state['global_filters'][$filter_key]['name'];
+  $widget_label = $form_state['global_filters'][$filter_key]['label'];
+
+  $option_all_text = global_filter_get_parameter($filter_key, 'option_all_text');
   $options = empty($option_all_text)
     ? array('' => GLOBAL_FILTER_DEF_OPTION_ALL_TEXT)
     : ($option_all_text == '<none>' ? array() : array('' => $option_all_text));
 
-  $name = $form_state['global_filter_name'];
-
   // Establish the widget type and create widget form accordingly.
-  if (drupal_substr($name, 0, 4) == 'view') {
+  if (strpos($name, 'view') === 0) {
 
-    $requested_widget = variable_get($filter . '_widget');
+    $requested_widget = $form_state['global_filters'][$filter_key]['widget'];
     if (empty($requested_widget) || $requested_widget == 'default') {
       $requested_widget = 'select';
     }
     $view_name = drupal_substr($name, 5);
     global_filter_add_view_results($options, $view_name);
-
   }
   elseif (in_array($name, array(GLOBAL_FILTER_VIEWS_PROXIMITY_FIELD, GLOBAL_FILTER_VIEWS_SEARCH_TERMS_FIELD, GLOBAL_FILTER_VIEWS_SEARCH_API_FULLTEXT)) ||
           in_array($name, array_keys(global_filter_get_node_properties()))) {
 
-    $requested_widget = 'textfield';
+    $requested_widget = $form_state['global_filters'][$filter_key]['widget'];
+    if ($requested_widget != 'range') {
+      $requested_widget = 'textfield';
+    }
   }
   else { // Probably a field widget
 
-    $requested_widget = variable_get($filter . '_widget', 'default');
-
     if ($name == GLOBAL_FILTER_VIEWS_COUNTRY_FIELD) {
 
-      if (variable_get('global_filter_take_countries_from_location_module', TRUE) && module_exists('location')) {
+      if (global_filter_get_module_parameter('take_countries_from_location_module', TRUE) && module_exists('location')) {
         // Assemble country list based on the 2-letter country codes in the location table
         $countries = array();
         $result = db_query('SELECT DISTINCT country FROM {location}');
@@ -126,17 +133,60 @@ function global_filter_create_widget($filter, &$form, &$form_state) {
       $field = field_info_field($name);
       if (!$field) {
         if ($name) {
-          drupal_set_message(t('The field %name used for %filter does not exist. Please re-configure the associated Global Filter block.',
-            array('%name' => $name, '%filter' => $filter)), 'error');
+          drupal_set_message(t('The field %name used for filter #@filter does not exist. Please re-configure the associated Global Filter block.',
+            array('%name' => $name, '@filter' => $filter_key)), 'error');
         }
         return;
       }
-      $instance = global_filter_get_field_instance($name);
+      $instances = global_filter_get_field_instances($name);
+      if (empty($instances)) {
+        gf_dbg(t('Global filter: no instances found of field %name', array('%name' => $name)));
+        return;
+      }
+      if (!($requested_widget = $form_state['global_filters'][$filter_key]['widget'])) {
+        $requested_widget = 'default';
+      }
+      foreach ($instances as $instance) {
+        // If there are multiple widget instances, pick the one that was requested.
+        if ('default_' . $instance['widget']['type'] == $requested_widget) {
+          break;
+        }
+      }
+      if (strpos($requested_widget, 'default') === 0 || // starts with 'default' or 'default_'
+        (strpos($instance['widget']['type'], 'date') === 0) && $requested_widget != 'textfield') {
 
-      if ($requested_widget == 'default' || drupal_substr($instance['widget']['type'], 0, 4) == 'date') {
-        // Inherit native widget
-        $form_state['widget'] = $instance['widget']['type'];
+        // Inherit native widget and set back on form
+        $form_state['global_filters'][$filter_key]['widget'] = $instance['widget']['type'];
+
+        gf_dbg(t('Global Filter @name (on %bundle) uses %widget widget', array(
+          '%bundle' => $instance['bundle'], '@name' => $name, '%widget' => $instance['widget']['type'])));
+
+        if (!empty($widget_label)) {
+          $instance['label'] = ($widget_label == '<none>') ? NULL : $widget_label; // field_default_form() does check_plain()
+        }
         global_filter_create_field_instance_widget($option_all_text, $field, $instance, $form, $form_state);
+
+        $lang = $form_state['language'];
+
+        // Don't want to see asterisk in filter
+        $form[$name][$lang]['#required'] = FALSE;
+        if (empty($form[$name][$lang]['#title'])) {
+          // Remove empty title so that it wont' take up any screen space
+          unset($form[$name][$lang]['#title']);
+        }
+        // Repeat the above for children and grand-children, if any
+        foreach (element_children($form[$name][$lang]) as $key0) {
+          $form[$name][$lang][$key0]['#required'] = FALSE;
+          if (empty($form[$name][$lang][$key0]['#title'])) {
+            unset($form[$name][$lang][$key0]['#title']);
+          }
+          foreach (element_children($form[$name][$lang][$key0]) as $key) {
+            $form[$name][$lang][$key0][$key]['#required'] = FALSE;
+            if (empty($form[$name][$lang][$key0][$key]['#title'])) {
+              unset($form[$name][$lang][$key0][$key]['#title']);
+            }
+          }
+        }
         return;
       }
 
@@ -155,12 +205,26 @@ function global_filter_create_widget($filter, &$form, &$form_state) {
     }
   }
 
-  $form_state['widget'] = $requested_widget;
-  if ($requested_widget == 'links') {
-    global_filter_create_links_widget($options, $form, $form_state);
+  gf_dbg(t('Global Filter @name uses %widget widget', array(
+    '@name' => $name, '%widget' => $requested_widget)));
+
+  $form_state['global_filters'][$filter_key]['widget'] = $requested_widget;
+
+  switch ($requested_widget) {
+    case 'links':
+      global_filter_create_links_widget($filter_key, $options, $form, $form_state);
+      break;
+
+    case 'range':
+      global_filter_create_range_widget($filter_key, $form, $form_state);
+      break;
+
+    default:
+      global_filter_create_simple_widget($filter_key, $options, $form, $form_state);
   }
-  else {
-    global_filter_create_simple_widget($options, $form, $form_state);
+
+  if (!empty($widget_label) && $widget_label != '<none>') {
+    $form[$name]['#title'] = check_plain($widget_label);
   }
 }
 
@@ -176,24 +240,20 @@ function global_filter_create_widget($filter, &$form, &$form_state) {
  */
 function global_filter_create_field_instance_widget($option_all_text, $field, $instance, &$form, &$form_state) {
 
-  $name = $form_state['global_filter_name'];
-  $lang = $form_state['language'];
-
   if (!isset($form['#parents'])) {
     $form['#parents'] = array(); // must be set for most widgets before creation
   }
+  // Add some context to the widget. This allows us for instance to make sure
+  // that the Date widget doesn't impose its defaults.
+  $instance['widget']['is_global_filter'] = TRUE;
 
   // $items is used to set the default value on the widget
-  if (drupal_substr($instance['widget']['type'], 0, 4) == 'date') {
-    $items = global_filter_set_instance_widget_date_value($form_state);
-    $form_state['field'][$name][$lang] = array(
-      'field' => $field,
-      'instance' => $instance,
-      'items_count' => 1
-    );
+  if ($instance['widget']['module'] == 'date') {
+    $items = global_filter_set_instance_date_widget_value($field, $instance, $form_state);
   }
   else {
-    $session_value = global_filter_get_session_value($name);
+    // Any widget other than the Date widgets.
+    $session_value = global_filter_get_session_value($field['field_name']);
     $items = global_filter_set_instance_widget_value($session_value, $field, $form_state);
   }
 
@@ -205,98 +265,81 @@ function global_filter_create_field_instance_widget($option_all_text, $field, $i
   // Trying to add/suppress 'All' option. Line below doesn't have desired effect.
   // $instance['required'] = ($option_all_text == '<none>');
 
-  $form += field_default_form($instance['entity_type'], NULL, $field, $instance, $lang, $items, $form, $form_state);
+  $lang = $form_state['language'];
+  // Note last argument, $delta=0, in this call. We don't want multiple
+  // occurrences of a widget, except for Date, which is handled above.
+  $form += field_default_form($instance['entity_type'], NULL, $field, $instance, $lang, $items, $form, $form_state, 0);
 }
 
-function global_filter_create_links_widget($options, &$form, &$form_state) {
-  $post_it = variable_get('global_filter_links_widget_via_post', TRUE);
-  if ($post_it) {
-    $form['#attached']['js'] = array(drupal_get_path('module', 'global_filter') . '/global_filter.js');
-  }
-  $no_language = new stdClass();
-  $no_language->language = FALSE;
-  $name = $form_state['global_filter_name'];
-  $selected_value = global_filter_get_session_value($name);
-  $links = '';
-
-  foreach ($options as $value => $link_text) {
-    $active = is_array($selected_value) ? in_array($value, $selected_value) : $value == $selected_value;
-    $link_options = array(
-      'attributes' => array('title' => $link_text),
-      'language' => $active ? NULL : $no_language // Hack to avoid every link being classed as 'active'
-    );
-    if (empty($value)) {
-      $value = '';
+function global_filter_finalise_form(&$form, $block_number) {
+  // Preserve filter order as selected on the block configuration page
+  $num_filters = 0;
+  foreach ($form as $key => &$filter_element) {
+    if (drupal_substr($key, 0, 1) != '#') {
+      $filter_element['#weight'] = ++$num_filters;
     }
-    if ($post_it) {
-      $link_options['attributes']['id'] = "$name:$value";
-      if ($active) {
-        $link_options['attributes']['class'] = 'active';
+  }
+  $submit_required = $button_required = FALSE;
+  foreach ($filters = global_filter_get_filters_for_block($block_number) as $key => $filter) {
+
+    $name = $filter['name'];
+    $filter_delta = GLOBAL_FILTER_FILTER_KEY_PREFIX . $key;
+
+    // We're adding a class rather than an id as it needs to be attached to all
+    // of the <input>'s of each sequence of check boxes or radio buttons.
+    $form[$name]['#attributes']['class'][] = drupal_html_class("$filter_delta-$name");
+
+    $confirm_question = global_filter_get_parameter($key, 'confirm_question');
+    $autosubmit = global_filter_get_parameter($key, 'set_on_select');
+
+    if ($filter['widget'] != 'links') {
+      $submit_required = TRUE;
+      if (!$autosubmit) {
+        $button_required = TRUE;
       }
     }
-    else {
-      $link_options['query'] = array($name => $value);
-    }
-    $link = $post_it
-      ? '<a href="" ' . drupal_attributes($link_options['attributes']) . ">$link_text</a>"
-      : l($link_text, $_GET['q'], $link_options);
-    $links .= ($active ? '<li class="active">' : '<li>') . $link . '</li>';
-  }
-  $form[$name]['#markup'] = '<ul class="global-filter-links ' . $name . '">' . $links . '</ul>';
-  $form[$name]['#suffix'] = '<div class="suffix">' . t('Click link to filter') . '</div>';
-}
 
-function global_filter_create_simple_widget($options, &$form, &$form_state) {
-  $name = $form_state['global_filter_name'];
-
-  $default_value = isset($form_state['input'][$name])
-    ? $form_state['input'][$name]
-    : global_filter_get_session_value($name);
-
-  if (is_array($default_value)) {
-    if ($form_state['widget'] == 'radios' || $form_state['widget'] == 'textfield') {
-      $default_value = reset($default_value);
+    if ($confirm_question || $autosubmit) {
+      drupal_add_js(array($filter_delta => array(drupal_html_class("$filter_delta-$name"), $confirm_question, $autosubmit)), 'setting');
+      $form[$name]['#attached']['js'][] = drupal_get_path('module', 'global_filter') . '/js/global_filter_all.js';
     }
   }
-  else {
-    if ($form_state['widget'] == 'checkboxes') {
-      $default_value = array($default_value);
+  if ($submit_required) {
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Set'),
+      '#submit' => array('global_filter_set_form_on_session'),
+      '#attributes' => array('class' => array(
+        drupal_html_class('global-filter-set-' . ($num_filters > 1 ? 'all' : $filter['widget']))
+      )),
+      '#weight' => ++$num_filters,
+    );
+    if (!$button_required) {
+      // Suppress the 'Set' submit button defined above.
+      $form['submit']['#attributes']['style'][] = 'display:none';
     }
-  }
-  $form[$name] = array(
-    '#type' => ($form_state['widget'] == 'multiselect') ? 'select' : $form_state['widget'],
-    '#default_value' => $default_value,
-    '#description' => empty($description) ? NULL : $description
-  );
-  if ($form_state['widget'] != 'textfield' && !empty($options)) {
-    $form[$name]['#options'] = $options;
-    $form[$name]['#multiple'] = in_array($form_state['widget'], array('multiselect', 'checkboxes'));
   }
 }
 
-function global_filter_add_submit_button(&$form, $filter) {
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Set'),
-    '#submit' => array('global_filter_set_form_on_session'),
-    '#weight' => 4,
-  );
-  $name = variable_get($filter);
+/**
+ * Implements hook_field_widget_form_alter().
+ *
+ * Called from field_default_form().
+ */
+function global_filter_field_widget_form_alter(&$element, &$form_state, $context) {
 
-  // We're adding a class rather than an id as it needs to be attached to all
-  // of the <input>'s of each sequence of check boxes or radio buttons.
-  $form[$name]['#attributes']['class'][] = "$filter-$name";
-
-  $confirm_question = variable_get($filter . '_confirm_question');
-  $auto_submit = variable_get($filter . '_set_on_select');
-
-  if ($confirm_question || $auto_submit) {
-    drupal_add_js(array($filter => array("$filter-$name", $confirm_question, $auto_submit)), 'setting');
-    $form[$name]['#attached']['js'][] = drupal_get_path('module', 'global_filter') . '/global_filter.js';
+  if (!isset($context['instance']['widget']['is_global_filter'])) {
+    return;
   }
-  if ($auto_submit) {
-    // Suppress the 'Set' submit button defined above.
-    $form['submit']['#attributes']['style'][] = 'display:none';
+  switch ($context['instance']['widget']['module']) {
+
+    case 'date':
+      global_filter_field_date_widget_form_alter($element, $form_state, $context);
+      break;
+
+    case 'slide_with_style':
+      global_filter_field_slider_widget_form_alter($element, $form_state, $context);
+      break;
   }
 }
 
@@ -324,36 +367,27 @@ function global_filter_add_view_results(&$options, $view_id) {
   }
 }
 
-function global_filter_get_field_instance($field_name) {
-  foreach (field_info_instances() as $type_bundles) {
-    foreach ($type_bundles as $bundle_instances) {
+function global_filter_get_field_instances($field_name) {
+  $instances = array();
+  foreach (field_info_instances() as $entity_type => $type_bundles) {
+    // Example: $entity_type == 'file', 'node', 'taxonomy_term' or 'user'
+    // $bundle == 'article' or 'user'
+    foreach ($type_bundles as $bundle => $bundle_instances) { // fields of node, user
       foreach ($bundle_instances as $f_name => $instance) {
         if ($f_name == $field_name) {
-          return $instance;
+          $instances[] = $instance;
         }
       }
     }
   }
-  return NULL;
-}
-
-function global_filter_set_instance_widget_date_value(&$form_state) {
-  $name = $form_state['global_filter_name'];
-  $lang = $form_state['language'];
-
-  if (empty($form_state['input'][$name][$lang])) {
-    // If this is the first time the form is presented or if this form is on
-    // a page with another global filter that was just set, we tell
-    // hook_field_widget_form_alter() to take the date range from the session
-    // and convert it into a format compatible with the widget.
-    $form_state['set_date_from_session'] = TRUE;
-    return array();
-  }
-  return reset($form_state['input'][$name][$lang]);
+  // If the field has instances with different widgets, prefer 'node' over
+  // 'taxonomy_term' or 'user' and with 'node' prefer field names that come
+  // earlier in the alphabet.
+  return array_reverse($instances);
 }
 
 function global_filter_set_instance_widget_value($session_value, $field, $form_state) {
-  $name = $form_state['global_filter_name'];
+  $name = $field['field_name'];
   $lang = $form_state['language'];
 
   $form_input  = isset($form_state['input' ][$name][$lang]) ? $form_state['input' ][$name][$lang] : NULL;
@@ -391,97 +425,66 @@ function global_filter_set_instance_widget_value($session_value, $field, $form_s
 }
 
 /**
- * Stashes the selected global filter value in the user's HTTP session.
- *
- * The form format differs from the session format, which is the one passed to
- * the Views contextual filter. So a conversion needs to take place before
- * storing.
+ * Stashes the selected global filter value(s) in the user's session.
  *
  * @param array $form
  * @param array $form_state
  */
-function global_filter_set_form_on_session($form, $form_state) {
-  $is_done = &drupal_static(__FUNCTION__, array());
+function global_filter_set_form_on_session($form, &$form_state) {
 
-  $name = $form_state['global_filter_name'];
+  foreach ($form_state['global_filters'] as $filter_key => $info) {
 
-  if (empty($is_done[$name])) {
-    $lang = $form_state['language'];
-    $widget = $form_state['widget'];
+    $name = $info['name'];
+    $widget = $info['widget'];
 
-    if (drupal_substr($widget, 0, 4) == 'date') {
-      // If successful this function returns a date range in the format:
-      // YYYYMMDD--YYYYMMDD, which is what the Views contextual filters need.
-      $session_value = global_filter_extract_date_range($form_state);
+    if (strpos($widget, 'date') === 0) {
+      // If successful this function returns a date range in the format
+      // YYYY-MM-DD--YYYY-MM-DD, which is what Views' contextual filters need.
+      $form_value = global_filter_extract_date_range($form_state, $filter_key);
     }
-    elseif (drupal_substr($widget, 0, 8) == 'taxonomy') {
-      // Taxonomy autocomplete
-      $form_values = $form_state['values'][$name];
-      $session_value = empty($form_values[$lang]) ? '' : $form_values[$lang][0]['tid'];
+    elseif ($widget == 'range') {
+      // Extracts from 2 form fields an alphabetical or numeric range, e.g.
+      // a--kz or 1.5--3.5
+      // Only meaningful when used with the contextual_range_filter module.
+      $form_value = global_filter_extract_alphanumeric_range($form_state);
+    }
+    elseif (isset($form_state['values'][$name])) {
+      // The rest of the widgets, both single and multi-choice (i.e array)
+      $form_value = global_filter_extract_values($form_state, $name);
     }
     else {
-      // The rest of the widgets, both single and multi-choice.
-      $form_values = $form_state['values'][$name];
-      if (is_array($form_values)) {
-        // lang level won't be there for simple widgets
-        if (empty($form_values[$lang])) {
-          $session_value = array_values($form_values);
-        }
-        else {
-          $session_value = array();
-          foreach ($form_values[$lang] as $v) {
-            $session_value[] = is_array($v) ? reset($v) : $v;
-          }
-        }
-      }
-      else {
-        $session_value = $form_values;
-      }
+      continue;
     }
-    global_filter_set_on_session($name, $session_value);
-
-    $is_done[$name] = TRUE;
+    global_filter_set_on_session($name, $form_value);
   }
-  // We don't need to rebuild the form values, as the second time round, we
-  // pick them up from where they were dropped the first time, i.e. the session.
-  // $form_state['rebuild'] = TRUE; // to preserve values entered on form
+  // If rebuild==FALSE there will be an unnecessary drupal_goto(), so need to
+  // force it not to redirect.
+  // @see drupal_redirect_form()
+  $form_state['rebuild'] = FALSE;
+  $form_state['no_redirect'] = TRUE; // unless set-on-init==TRUE?
 }
 
-function global_filter_extract_date_range($form_state) {
-  $name = $form_state['global_filter_name'];
+/**
+ * Extract values entered on the form.
+ *
+ * @param $form_state
+ * @return single value or array of values (multi-select0
+ */
+function global_filter_extract_values($form_state, $name) {
+  $form_values = $form_state['values'][$name];
+  if (!is_array($form_values)) {
+    return $form_values;
+  }
   $lang = $form_state['language'];
-  if (empty($form_state['input'][$name][$lang][0]) || !is_array($form_state['input'][$name][$lang][0])) {
-    // Not a date
-    return FALSE;
+  // $lang level won't be there for simple widgets
+  if (empty($form_values[$lang])) {
+    return array_values($form_values);
   }
-  $values = $form_state['input'][$name][$lang][0];
-  if (isset($values['value']['date'])) { // from date_popup
-    $date_string = $values['value']['date'];
-    if (!empty($date_string)) {
-      // Convert to date range of format YYYYMMDD--YYYYMMDD
-      $timestamp = strtotime($date_string);
-      $value = format_date($timestamp, 'custom', 'Ymd');
-      if (!empty($values['value2']['date'])) {
-        $timestamp2 = strtotime($values['value2']['date']);
-        $value .= '--' . format_date($timestamp2, 'custom', 'Ymd');
-      }
-    }
+  $values = array();
+  foreach ($form_values[$lang] as $v) {
+    $values[] = is_array($v) ? reset($v) : $v;
   }
-  elseif (!empty($values['value']['day'])) { // from_date_select
-    // Convert to date range of format YYYYMMDD--YYYYMMDD
-    $value = $form_state['input'][$name][$lang][0]['value'];
-    $day = drupal_strlen($value['day']) == 1 ? ('0' . $value['day']) : $value['day'];
-    $month = drupal_strlen($value['month']) == 1 ? ('0' . $value['month']) : $value['month'];
-    $value = $value['year'] . $month . $day;
-    if (!empty($form_state['input'][$name][$lang][0]['value2']['day'])) {
-      $value2 = $form_state['input'][$name][$lang][0]['value2'];
-      $day = drupal_strlen($value2['day']) == 1 ? ('0' . $value2['day']) : $value2['day'];
-      $month = drupal_strlen($value2['month']) == 1 ? ('0' . $value2['month']) : $value2['month'];
-      $value .= '--' . $value2['year'] . $month . $day;
-    }
-  }
-  // Check for corrupt date and return.
-  return (empty($value) || drupal_strlen($value) < 8) ? '' : $value;
+  return $values;
 }
 
 function _global_filter_add_terms(&$options, $vocabulary_machine_name, $show_depth = TRUE) {
@@ -522,60 +525,6 @@ function global_filter_array_flatten($array) {
   return call_user_func_array('array_merge', $array);
 }
 
-
-/**
- * Implements hook_field_widget_properties_alter().
- *
- * Alters the widget properties of a field instance before it gets displayed.
- * Used here to make sure that no defaults are set on any widget, as we do that
- * ourselves (from the session), thank you very much.
- * This is done in global_filter_field_widget_form_alter().
- */
-function global_filter_field_widget_properties_alter(&$widget, $context) {
-  $widget['is_new'] = FALSE;
-}
-
-/**
- * Implements hook_field_widget_form_alter().
- *
- * Responds to 'set_date_from_session' being set on the $form_state.
- */
-function global_filter_field_widget_form_alter(&$element, $form_state, $context) {
-
-  if (!empty($form_state['set_date_from_session'])) {
-    $session_value = global_filter_get_session_value($form_state['global_filter_name']);
-
-    $date_range = new date_sql_handler();
-    $parts = $date_range->arg_parts($session_value);
-
-    if (!empty($parts[0]['date'])) {
-      $instance = $context['instance'];
-      $instance['settings']['default_value'] = 'strtotime';
-      $instance['settings']['default_value_code']  = implode('-', $parts[0]['date']);
-      if (!empty($parts[1]['date'])) {
-        $instance['settings']['default_value2'] = 'strtotime';
-        $instance['settings']['default_value_code2'] = implode('-', $parts[1]['date']);
-      }
-      $element['#default_value'] = reset(date_default_value($context['field'], $instance, $context['langcode']));
-    }
-  }
-}
-
-/**
- * Implements hook_date_combo_process_alter().
- *
- * Remove the 'Show End Date' checkbox and line up the start and end date boxes.
- */
-function global_filter_date_combo_process_alter(&$element, &$form_state, &$context) {
-  if (!empty($context['form']['#id']) && drupal_substr($context['form']['#id'], 0, 13) == 'global-filter') {
-    unset($element['show_todate']); // remove 'Show End Date' checkbox
-    if (empty($element['value']['#title'])) {
-      // Remove 'to:' from end date box so that it lines up with start date box
-      unset($element['value2']['#title']);
-    }
-  }
-}
-
 /**
  * Implements hook_theme_registry_alter().
  *
@@ -595,7 +544,7 @@ function global_filter_theme_registry_alter(&$theme_registry) {
  * Options module will always prepend a 'none' for non-required fields, whether
  * appearing as a single or multiple-select. We can't intercept this process.
  * We could make the select mandatory and then prepend a 'none' option
- * ourselves, but than we end up with a red asterisk for a select that isn't
+ * ourselves, but then we end up with a red asterisk for a select that isn't
  * really mandatory...
  *
  * Until I can find a way to determine if this is a global filter context,
@@ -603,10 +552,10 @@ function global_filter_theme_registry_alter(&$theme_registry) {
  */
 function global_filter_options_none($variables) {
   if (!empty($variables['global_filter_context'])) { // see comment above
-    $filter = global_filter_get_by_name($variables['instance']['field_name']);
-    $option_all_text = variable_get($filter . '_option_all_text');
+    $filter_key = global_filter_key_by_name($variables['instance']['field_name']);
+    $option_all_text = global_filter_get_parameter($filter_key, 'option_all_text');
     if (!empty($option_all_text)) {
-      return $option_all_text == '<none>' ? '' : check_plain($option_all_text);
+      return $option_all_text == t('<none>') ? '' : check_plain($option_all_text);
     }
   }
   // Not used in a global filter context or no 'All' text specified, so return

@@ -2,38 +2,37 @@
 GLOBAL FILTER CONFIGURATION (7.x)
 =================================
 
-A global filter can be either a field or a view. A search terms text box may
+This module takes advantage of the Session Cache API to store your visitors'
+filter settings during their browsing experience, and beyond. So you need to
+download and enable the small module http://drupal.org/project/session_cache.
+
+A global filter is based on either a field or a view. A search term text box may
 also be used as a global filter. It is treated like a field. Similarly, if you
 have the Location module installed then you may also globally filter by
 distance/proximity. You don't have to define a location field for this, as the
-Location module creates this automatically on the selected content type(s).
+Location module creates this automatically on the selected content type(s). See
+the special section below for details.
 
 Fields execute just that little faster and are slightly more straight-forward
-to use, so maybe use a field unless none are suitable, in which case you'd
-create a view or use an existing one. Follow the instructions below.
+to use, so maybe pick a field unless you want to reduce the set of field values
+that may be selected by your visitors, in which case you'll generally have to
+resort to a View.
 
-Fields can be found on the Structure >> Content types >> Manage fields and
-Configuration >> Account settings >> Manage fields pages.
+Fields are defined on the Structure >> Content types >> Manage fields and
+Configuration >> Account settings >> Manage fields pages. An overview of all
+fields on your system can be viewed via a link on the Administer >> Reports
+page.
 
 0) You normally use this module in the context of Views, so enable that module
 together with Global Filter.
 
-1) A couple of filter blocks, named "Global filter 1" and "Global filter 2" will
-now be available at Structure >> Blocks. If you want to use more than two global
-filters, you can create more filter blocks at Configuration >> Global Filter.
-Click "configure" to select the field or view you want to employ to populate the
-global filter widget. Note that the widget will be a text box, if the field does
-ot represent a list, radio buttons, check box or vocabulary, i.e. a number or
-text. Place the block or blocks anywhere on your site. If in step 2) you choose
-the links widget, you may put the block in the -none- region and place links of
-the form "/somepage?field_myfield=10" anywhere on your site, e.g. in menus, to
-set the global filter. You can set multiple values too, by separating them by
-commas: "/somepage?field_myfield=10,17". You can also insert these links on
-other sites or in emails to direct the reader to a pre-filtered view of your
-site.
+1) A couple of filter blocks, named "Global filter block 1" and "Global filter
+block 2" will now be available at Structure >> Blocks. If you want to use more
+than two global filter blocks, you can create more blocks at Configuration >>
+Global Filter. Place the block or blocks anywhere on your site.
 
-2a) You may use either a field or the output of a view as a global filter. Use
-the radio buttons on the block configuration page to select which one and
+2a) You may use either a field or the output of a view to drive a global filter.
+Use the radio buttons on the block configuration page to select which one and
 inspect the drop-down to see the fields available for use. If none of the node
 properties/fields match what you're after, use a view. If you decide on a view,
 set the Format to Unformatted and select "Show: Fields". Be aware that it will
@@ -43,14 +42,17 @@ ignored. The view does not need to have a page or block display associated with
 it and may even be disabled -- it will still operate correctly as a global
 filter.
 2b) After you have selected a widget, press "Save block". The page will refresh
-and you will be able to enter a default for the field or view you selected. The
-default will be active until the user makes a different filter selection. If
+and you will be able add more filters to the same block by opening the next
+field set under the one just saved.
+2c) After saving the block you can also select global filter defaults. The
+default will remain active until the user makes a different filter selection. If
 the global filter is a field that also appears on user profiles, then
 authenticated users can override the global filter default with their personal
-choice.
+choice on their profile.
 
-3) With the widget in place, you can now use it as the default value in a
-Contextual Filter in any number of Views that you want to pass the filter to.
+3) With the global filters configured, you can now use them as the default
+values in Contextual Filters in any number of Views that you want to pass the
+global filter values to.
 On the View edit page, open the Advanced field-set on the right. Then next to
 Contextual Filters click Add and select the item corresponding to the global
 filter source in the previous step. If you selected a View in step 2) then tick
@@ -59,34 +61,175 @@ a suitable ID option, e.g. if the view outputs taxonomy terms, then tick
 After pressing "Add and configure..." on the next panel, press the radio button
 "Provide default value".
 3a) When you chose a field as the source for the global filter, select Type
-"Global filter (field)".
+"Global filter (field or search term)".
 3b) When you chose a View as the source for the global filter, select Type
-"Global filter (view)" and then select the View driving this filter.
+"Global filter (view)" and then select the View(s) driving this filter.
 
 4) Apply and Save the View.
 
-That's all. Repeat steps 3) and 4) for the remaining Views that need to use the
-global filter.
+When you already have contextual filters defined on the View and want to keep
+them, make sure the Global Filter contextual filter is last in the list and
+that when typing the View's path in your browser you append arguments for the
+contextual filters that precede the global filter.
 
-The initial selection for each filter will be 'all', unless the underlying field
-also appears on the user profile, in which case the value selected there will be
-taken as the default.
+That's all. Repeat steps 3) and 4) for the remaining Views that need to use your
+global filters.
 
 By default each global filter widget comes with a Set button to activate the
-selection. However if you tick the appropriate checkbox on the filter's
+selection. However if you tick the appropriate check-box on the filter's
 block page, the Set button does not appear and the filter is activated
 immediately upon release of the mouse button.
 
+In addition to the regular widgets you can also place links of the form
+"/somepage?field_myfield=10" anywhere on your site, e.g. in menus, to set
+global filters. You can set multiple values too, by separating them by commas:
+"/somepage?field_myfield=10,17". You can also insert these links on other sites
+or in emails to direct the reader to a pre-filtered view of your site.
+
+You can have a total of 9 global filters across 1-9 global filter blocks.
+
+GLOBAL FILTER TAXONOMY WITH HIERARCHICAL SELECT
+===============================================
+If you wish to use the taxonomy selection widget provided by the Hierarchical
+Select module, you can. When configuring the Hierarchical Select widget on the
+field, you will be prompted to press either "Save term lineage" or "Save only
+the deepest term". Both work with Views Global Filter, but "Save term lineage"
+gives you greater flexibility when using the hierarchical select as the widget
+for your global filters.
+Say you have a three-tiered taxonomy of Country, State and City and created a
+field for it on some content type. If you created a piece of content with
+"Australia, Victoria, Melbourne" as the taxonomy lineage on the field, then that
+content will be returned in the view results when the global filter is set to
+either just "Australia" or "Australia, Victoria" or "Australia, Victoria,
+Melbourne". With "Save only the deepest term" pressed on the widget
+configuration page that content will only be returned when the global filter is
+set to "Australia, Victoria, Melbourne".
+When you use the Hierarchical Select widget you do NOT need to tick "Allow
+multiple values" on the contextual filter configuration panel.
+
+GLOBAL FILTER FOR DATE OR DATE RANGE
+====================================
+We assume that in addition to Views you have the Date module enabled.
+If your content does not already have a date field attached, add one as per
+normal via the Manage Fields tab on the content type page. You may pick any of
+three Date types, i.e. plain, ISO or Unix Timestamp. Just be aware of this bug
+in the Date module: drupal.org/project/node/1477180. So until this is fixed,
+maybe avoid Unix Timestamp. When prompted pick any of the available date
+selection widgets, e.g popup calendar or the triple select list. You may tick
+the "Collect an End date" box too, if you wish. After you have configured on
+the block configuration page a global filter for the selected date field or
+range, the global filter will render itself using the same widget you picked for
+the field on the content type. However, the global filter will always appear as
+a date range. Filtering on a single date would be a little restrictive!
+Finally, as with any other global filter you need to hook it into your view as
+a contextual filter. Use either just the field start date or create a second
+contextual filter to also require the content's end date being inside the
+filter range. In either case scroll down the bottom of the contextual filter
+panel to the heading "Dates to compare". Press the button "Only this field".
+
+GLOBAL FILTER FOR SEARCH TERMS
+==============================
+To configure a global filter as a global keyword search, select as the driver
+the pseudo-field "Search: Search terms". The widget will always be a text field
+regardless of which radio button you press.
+In your View, after pressing "Add" in the Contextual Filter tick the check box
+"Search: Search terms", followed as per usual by the "Provide default value"
+radio button. Select "Global filter (field or search terms)" from the drop-down.
+Press Apply at the bottom of the panel.
+If you have the Search API module enabled the process is the same.
+
+GLOBAL FILTER FOR RANGES
+========================
+With the "Contextual Range Filter" module enabled and your contextual filter
+converted to a contextual range filter, you may use any of the following
+widgets to enter filter ranges as opposed to single filter values:
+o text field, enter ranges by separating "from" and "to" by a double hyphen, e.g.
+  0.5--2.5 or a--k or, if the field is a list, use either the keys, e.g. 3--7 or
+  the list names, e.g. toddler--teenager
+o range, i.e. separate "from" and "to" text fields, no need to enter the
+  separator
+o inherit range slider (requires the Slide with Style module from the project
+  http://drupal.org/project/select_with_style)
+
+GLOBAL FILTER FOR PROXIMITY
+===========================
+If you have the Location module enabled you can globally filter content or user
+accounts based on a distance from a postcode or lat,long pair of coordinates
+as entered by the visitor.
+If you wish to base proximity on a postcode the visitor enters, then make sure
+that you are connected to the Internet and have selected an appropriate web
+service on the Location configuration page admin/config/content/location/geocoding.
+When using the Google geocoding service entering a blank API key usually works.
+To configure the global filter block select as the driver the pseudo-field
+"Location: Distance/Proximity". The widget will always be a text field. As far
+as the Contextual Filter in Views is concerned, tick "Provide default value" as
+per normal, then select "Global filter (proximity)" and enter a default
+distance. Scroll down the panel to select whether you want the user to enter a
+lat,long pair or a postcode in the global filter text field. Also select the
+unit (km or mile) and the shape of the proximity area (circular or rectangular).
+Press Apply at the bottom and you're done.
+The proximity filter presents itself as a textfield for the visitor to enter
+their postcode or lat,long pair (separated by a comma). Visitors may optionally
+append a space or underscore and a distance. If the distance is omitted, then
+the default as set on the Views "Global filter (proximity)" configuration panel
+is taken.
+If you have "IP Geolocation Views and Maps" enabled then you can set as an
+initial default the postal code to that of the visitor's location upon first
+visit. To do this enter this code snippet as the global filter global default:
+<?php
+  $location = ip_geoloc_get_visitor_location();
+  return $location['postal_code'];
+?>
+
+GLOBAL FILTER FOR CITY, NOT USING LOCATION MODULE
+=================================================
+Here are three examples. For an IP-based lookup of the visitor's location
+configure either Smart IP or GeoIP API. For an HTML5 (i.e GPS) location based
+approach also configure IP Geolocation. We assume that you have already defined
+a field named "City" (field_city) on one or more of your content types. This
+field may be either a text field or taxonomy term reference.
+At /admin/structure/block find a block named "Global filter block # (not
+configured)". Press "configure".
+Enter <none> in the "Block title" box.
+In the dropdown "Choose the field to be used as a global filter" find your
+city field: "Field: City (field_city)". Widget: "Inherit from field".
+Under "Alternatively specify a default through PHP code" enter a code snippet
+as per below.
+When using Smart IP, enter:
+  <?php return $_SESSION['smart_ip']['location']['city']; ?>
+
+When using GeoIP API enter:
+  <?php $loc = geoip_city(); return empty($loc) ? 'default' : $loc->city; ?>
+
+Or when using IP Geolocation:
+  <?php $loc = ip_geoloc_get_visitor_location(); return $loc['locality']; ?>
+
+For the "Region setting" select "Content". Finally press "Show block only on the
+listed pages" and enter the path to your View. Click "Save block".
+Now go back to edit your View.
+In the "Advanced" fieldset on the right "Add" a Contextual Filter for "Content:
+City (field_city)". On the next panel press "Provide default value", then for
+the Type select "Global filter (field or search terms)". Click "Apply".
+Save the View.
+That should be it. Log out. Go to the URL associated with the View and it
+should be filtered by your city. You should also see a text box there to filter
+the View by any city you type. This should work for both logged-in and anonymous
+users. A further option is that if the same field_city is also added to the user
+profile at admin/config/people/accounts/fields, (e.g. "My favourite city"), then
+the value entered by the account holder on the "Edit account" page will become
+the initial value of the exposed filter.
+Note: this solution may not work when you're not connected to the Internet and
+your IP address is "localhost", 127.0.0.1.
 
 USEFUL VIEW OPTIONS
 ===================
 On the View edit page, in the contextual filter configuration panel, after you
-have selected Global filter block to provide the default value, scroll down the
+have selected a global filter to provide the default value, scroll down the
 panel and expand the More field-set for a couple of additional useful options.
 "Allow multiple values" is MANDATORY when you configured your global filter to
 render as a multi choice widget.
 "Exclude" is nice to populate a view with the compliment of the global filter
-selection (e.g. all countries except European countries).
+selection (e.g. all countries except South American countries).
 
 
 ADVANCED OPTIONS: ROTATING BLOCK CONTENT
@@ -135,9 +278,9 @@ do the following. Don't create a second view. Create a block instead, select
 "PHP code" for the block text format and enter in the block body text area:
 
 <?php
-  $node = node_load($_SESSION['global_filter']['view_autocycle']);
+  $node = node_load(global_filter_get_session_value('view_autocycle'));
   print theme('node',  array('elements' => array('#node' => $node, '#view_mode' => 'teaser')));
 ?>
 
 Depending on how your theme's node.tpl.php is organised this will most likely
-show just the title (hyperlinked) of the next piece of auto-selected content.
+show just the hyperlinked title of the next piece of auto-selected content.

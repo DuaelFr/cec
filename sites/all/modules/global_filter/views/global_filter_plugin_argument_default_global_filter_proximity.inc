@@ -1,4 +1,3 @@
-
 <?php
 /**
  * @file
@@ -32,22 +31,36 @@ class global_filter_plugin_argument_default_global_filter_proximity extends view
   function get_argument() {
     $exception_value = $this->argument->options['exception']['value']; // e.g. 'all'
     $proximity_field_name = $this->argument->field;
-    if (global_filter_get_by_name($proximity_field_name)) {
+    if (global_filter_key_by_name($proximity_field_name)) {
 
-      if (isset($_SESSION['global_filter'][$proximity_field_name])) {
-        $arg = $_SESSION['global_filter'][$proximity_field_name];
+      $arg = global_filter_get_session_value($proximity_field_name);
+      if (!empty($arg)) {
         if (is_array($arg)) { // shouldn't be
           $arg = reset($arg);
         }
+        $arg = trim($arg);
         if (!empty($arg)) {
-          $arg = trim($arg) . '_' . trim($this->options['global_filter_proximity_distance']);
+          // Allow $arg to contain distance as second arg. If not specified
+          // fall back on the administrator default.
+          // Allowed patterns: lat,long_dist and postcode_dist
+          if (strpos($arg, '_')) { // this is the Location native format
+            return $arg;
+          }
+          // Allow a space as a separator, convert to underscore.
+          // Avoid confusion with "lat, long" format.
+          if (($pos_space = strrpos($arg, ' ')) && drupal_substr($arg, $pos_space - 1, 1) != ',') {
+            $arg = drupal_substr($arg, 0, $pos_space) . '_' . drupal_substr($arg, $pos_space + 1);
+          }
+          else { // no distance specified, append the admin default
+            $arg .= '_' . trim($this->options['global_filter_proximity_distance']);
+          }
           return $arg;
         }
       }
       return $exception_value;
     }
     $view_name = empty($this->view->human_name) ? $this->view->name : $this->view->human_name;
-    drupal_set_message(t('The view %view specifies a global filter location proximity field, %name, as its default contextual filter. However there is no associated <strong>Global Filter block</strong> for it. Please configure a global filter <a href="/admin/structure/block">here</a> or remove this contextual filter default argument from the view.', array(
+    drupal_set_message(t('The view %view specifies a global filter location proximity field, %name, as its default contextual filter. However there is no associated <strong>Global Filter block</strong> for it. Please configure a global filter <a href="admin/structure/block">here</a> or remove this contextual filter default argument from the view.', array(
       '%view' => $view_name, '%name' => $proximity_field_name)), 'warning', FALSE);
     return $exception_value;
   }
