@@ -128,6 +128,5 @@ features[variable][] = user_register
 features[variable][] = user_signatures
 features[workflow][] = Avancement
 features[wysiwyg][] = full_html
-project path = sites/default/modules
-
 files[] = includes/workflow_views_handler_field_sid_transliterated.inc
+project path = sites/default/modules
