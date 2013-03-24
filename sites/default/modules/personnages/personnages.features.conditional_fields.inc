@@ -24,9 +24,9 @@ function personnages_conditional_fields_default_fields() {
       'element_view' => array(
         1 => '1',
         2 => '2',
-        4 => '4',
         5 => 0,
         3 => 0,
+        4 => 0,
       ),
       'element_view_per_role' => 0,
       'element_view_roles' => array(
@@ -37,14 +37,14 @@ function personnages_conditional_fields_default_fields() {
           3 => 0,
           4 => 0,
         ),
-        2 => array(
+        125268670 => array(
           1 => '1',
           2 => '2',
           5 => 0,
           3 => 0,
           4 => 0,
         ),
-        125268670 => array(
+        2 => array(
           1 => '1',
           2 => '2',
           5 => 0,
@@ -104,11 +104,11 @@ function personnages_conditional_fields_default_fields() {
           1 => '1',
           3 => 0,
         ),
-        2 => array(
+        125268670 => array(
           1 => '1',
           3 => 0,
         ),
-        125268670 => array(
+        2 => array(
           1 => '1',
           3 => 0,
         ),
