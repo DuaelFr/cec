@@ -28,6 +28,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
+    66570830 => '66570830',
     168020977 => '168020977',
   );
   $handler->display->display_options['cache']['type'] = 'none';
@@ -298,6 +299,175 @@ function groupes_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'menu-zorga-menu';
   $handler->display->display_options['menu']['context'] = 0;
+
+  /* Display: Par personnage Zorga (Block) */
+  $handler = $view->new_display('block', 'Par personnage Zorga (Block)', 'block_by_character');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* Comportement en l'absence de résultats: Global : Zone de texte */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'Vide';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Ce personnage n\'appartient à aucun groupe pour le moment.';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relation: Contenu : Membres (field_group_members) */
+  $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
+  $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
+  $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Champ: Contenu : Chemin */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['path']['absolute'] = TRUE;
+  /* Champ: Champ : Intitulé orga */
+  $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = '[path]';
+  $handler->display->display_options['fields']['field_alternate_title']['alter']['absolute'] = TRUE;
+  /* Champ: Contenu : Type de groupe */
+  $handler->display->display_options['fields']['field_group_type']['id'] = 'field_group_type';
+  $handler->display->display_options['fields']['field_group_type']['table'] = 'field_data_field_group_type';
+  $handler->display->display_options['fields']['field_group_type']['field'] = 'field_group_type';
+  $handler->display->display_options['fields']['field_group_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Contenu : Groupe technique */
+  $handler->display->display_options['fields']['field_group_is_technical']['id'] = 'field_group_is_technical';
+  $handler->display->display_options['fields']['field_group_is_technical']['table'] = 'field_data_field_group_is_technical';
+  $handler->display->display_options['fields']['field_group_is_technical']['field'] = 'field_group_is_technical';
+  /* Champ: Field collection item : Membre secret */
+  $handler->display->display_options['fields']['field_member_is_secret']['id'] = 'field_member_is_secret';
+  $handler->display->display_options['fields']['field_member_is_secret']['table'] = 'field_data_field_member_is_secret';
+  $handler->display->display_options['fields']['field_member_is_secret']['field'] = 'field_member_is_secret';
+  $handler->display->display_options['fields']['field_member_is_secret']['relationship'] = 'field_group_members_value';
+  /* Champ: Processus : État actuel */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  /* Champ: Contenu : Lien de modification */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
+  /* Champ: Etat CSS */
+  $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
+  $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid_1']['ui_name'] = 'Etat CSS';
+  $handler->display->display_options['fields']['sid_1']['label'] = '';
+  $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Filtre contextuel: Field collection item : Personnage (field_character) */
+  $handler->display->display_options['arguments']['field_character_target_id']['id'] = 'field_character_target_id';
+  $handler->display->display_options['arguments']['field_character_target_id']['table'] = 'field_data_field_character';
+  $handler->display->display_options['arguments']['field_character_target_id']['field'] = 'field_character_target_id';
+  $handler->display->display_options['arguments']['field_character_target_id']['relationship'] = 'field_group_members_value';
+  $handler->display->display_options['arguments']['field_character_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_character_target_id']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['field_character_target_id']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['field_character_target_id']['title'] = 'Groupes de %1';
+  $handler->display->display_options['arguments']['field_character_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_character_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_character_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_character_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_character_target_id']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['field_character_target_id']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['field_character_target_id']['validate_options']['types'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['arguments']['field_character_target_id']['validate']['fail'] = 'empty';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'group' => 'group',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+
+  /* Display: Par personnage PJ (Block) */
+  $handler = $view->new_display('block', 'Par personnage PJ (Block)', 'block_by_character_player');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relation: Contenu : Membres (field_group_members) */
+  $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
+  $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
+  $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Filtre contextuel: Field collection item : Personnage (field_character) */
+  $handler->display->display_options['arguments']['field_character_target_id']['id'] = 'field_character_target_id';
+  $handler->display->display_options['arguments']['field_character_target_id']['table'] = 'field_data_field_character';
+  $handler->display->display_options['arguments']['field_character_target_id']['field'] = 'field_character_target_id';
+  $handler->display->display_options['arguments']['field_character_target_id']['relationship'] = 'field_group_members_value';
+  $handler->display->display_options['arguments']['field_character_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_character_target_id']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['field_character_target_id']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['field_character_target_id']['title'] = 'Groupes de %1';
+  $handler->display->display_options['arguments']['field_character_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_character_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_character_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_character_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_character_target_id']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['field_character_target_id']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['field_character_target_id']['validate_options']['types'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['arguments']['field_character_target_id']['validate']['fail'] = 'empty';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'group' => 'group',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Contenu : Groupe technique (field_group_is_technical) */
+  $handler->display->display_options['filters']['field_group_is_technical_value']['id'] = 'field_group_is_technical_value';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['table'] = 'field_data_field_group_is_technical';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['field'] = 'field_group_is_technical_value';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['value'] = array(
+    0 => '0',
+  );
+  /* Critère de filtrage: Contenu : Publié */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  /* Critère de filtrage: Processus : État actuel */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    10 => '10',
+  );
   $translatables['admin_groupes'] = array(
     t('Master'),
     t('Tous les Groupes'),
@@ -321,6 +491,12 @@ function groupes_views_default_views() {
     t('modifier'),
     t('Titre'),
     t('Tous les groupes (Page)'),
+    t('Par personnage Zorga (Block)'),
+    t('Ce personnage n\'appartient à aucun groupe pour le moment.'),
+    t('Membre secret'),
+    t('Tout'),
+    t('Groupes de %1'),
+    t('Par personnage PJ (Block)'),
   );
   $export['admin_groupes'] = $view;
 
