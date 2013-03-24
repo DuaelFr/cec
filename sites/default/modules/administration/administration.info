@@ -33,4 +33,5 @@ features[variable][] = admin_toolbar
 features[views_view][] = admin_global
 features[views_view][] = exports
 features[views_view][] = inscriptions
+features[views_view][] = search
 project path = sites/default/modules

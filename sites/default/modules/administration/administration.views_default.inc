@@ -526,7 +526,7 @@ function administration_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relation: Gestionnaire défectueux/manquant */
+  /* Relation: Profil : Utilisateur uid */
   $handler->display->display_options['relationships']['user']['id'] = 'user';
   $handler->display->display_options['relationships']['user']['table'] = 'profile';
   $handler->display->display_options['relationships']['user']['field'] = 'user';
@@ -549,7 +549,7 @@ function administration_views_default_views() {
   $handler->display->display_options['sorts']['name']['table'] = 'users';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
   $handler->display->display_options['sorts']['name']['relationship'] = 'user';
-  /* Critère de filtrage: Gestionnaire défectueux/manquant */
+  /* Critère de filtrage: Profil : Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'profile';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -660,7 +660,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_image_right']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Gestionnaire défectueux/manquant */
+  /* Critère de filtrage: Profil : Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'profile';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -768,7 +768,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_freetalk']['type'] = 'text_plain';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Gestionnaire défectueux/manquant */
+  /* Critère de filtrage: Profil : Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'profile';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -952,16 +952,22 @@ function administration_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relation: Gestionnaire défectueux/manquant */
+  /* Relation: Utilisateur : Profil */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
   $handler->display->display_options['relationships']['profile']['label'] = 'ProfilAdmin';
-  /* Relation: Gestionnaire défectueux/manquant */
+  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
+    'inscription_administrative' => 'inscription_administrative',
+  );
+  /* Relation: Utilisateur : Profil */
   $handler->display->display_options['relationships']['profile_1']['id'] = 'profile_1';
   $handler->display->display_options['relationships']['profile_1']['table'] = 'users';
   $handler->display->display_options['relationships']['profile_1']['field'] = 'profile';
   $handler->display->display_options['relationships']['profile_1']['label'] = 'ProfilJoueur';
+  $handler->display->display_options['relationships']['profile_1']['bundle_types'] = array(
+    'profil_joueur' => 'profil_joueur',
+  );
   /* Champ: Opérations en masse : Utilisateur */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'users';
@@ -1094,7 +1100,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['uid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
-  /* Champ: Gestionnaire défectueux/manquant */
+  /* Champ: Profil : Identifiant de Profil */
   $handler->display->display_options['fields']['pid']['id'] = 'pid';
   $handler->display->display_options['fields']['pid']['table'] = 'profile';
   $handler->display->display_options['fields']['pid']['field'] = 'pid';
@@ -1105,7 +1111,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['pid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['pid']['empty'] = 'Vide';
   $handler->display->display_options['fields']['pid']['empty_zero'] = TRUE;
-  /* Champ: Gestionnaire défectueux/manquant */
+  /* Champ: Profil : URL */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
   $handler->display->display_options['fields']['url']['field'] = 'url';
@@ -1115,7 +1121,8 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['url']['alter']['text'] = 'Inscription Administrative';
   $handler->display->display_options['fields']['url']['hide_empty'] = TRUE;
-  /* Champ: Gestionnaire défectueux/manquant */
+  $handler->display->display_options['fields']['url']['link_to_entity'] = 0;
+  /* Champ: Profil : Identifiant de Profil */
   $handler->display->display_options['fields']['pid_1']['id'] = 'pid_1';
   $handler->display->display_options['fields']['pid_1']['table'] = 'profile';
   $handler->display->display_options['fields']['pid_1']['field'] = 'pid';
@@ -1126,7 +1133,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['pid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['pid_1']['empty'] = 'Vide';
   $handler->display->display_options['fields']['pid_1']['empty_zero'] = TRUE;
-  /* Champ: Gestionnaire défectueux/manquant */
+  /* Champ: Profil : URL */
   $handler->display->display_options['fields']['url_1']['id'] = 'url_1';
   $handler->display->display_options['fields']['url_1']['table'] = 'views_entity_profile2';
   $handler->display->display_options['fields']['url_1']['field'] = 'url';
@@ -1136,6 +1143,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['url_1']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['url_1']['alter']['text'] = 'Profil Joueur';
   $handler->display->display_options['fields']['url_1']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['url_1']['link_to_entity'] = 0;
   /* Champ: Global : Texte personnalisé */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -1252,11 +1260,14 @@ function administration_views_default_views() {
   $handler->display->display_options['row_options']['separator'] = '';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relation: Gestionnaire défectueux/manquant */
+  /* Relation: Utilisateur : Profil */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
   $handler->display->display_options['relationships']['profile']['label'] = 'ProfilAdmin';
+  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
+    'inscription_administrative' => 'inscription_administrative',
+  );
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Champ: Profil : Nom */
   $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
@@ -1334,6 +1345,8 @@ function administration_views_default_views() {
     t('Profil Admin'),
     t('Rempli'),
     t('Vide'),
+    t('.'),
+    t(','),
     t('Profils'),
     t('Inscription Administrative'),
     t('Profil Joueur'),
@@ -1346,6 +1359,174 @@ function administration_views_default_views() {
     t(' ([name])'),
   );
   $export['inscriptions'] = $view;
+
+  $view = new view();
+  $view->name = 'search';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'search_api_index_default_index';
+  $view->human_name = 'Recherche';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Recherche';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'plus';
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    168020977 => '168020977',
+  );
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Éléments par page';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Tout -';
+  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Décalage';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« premier';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ précédent';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'suivant ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Champ: Nœud indexé(e) : Type de contenu */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'search_api_index_default_index';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['type']['format_name'] = 1;
+  /* Champ: Nœud indexé(e) : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'search_api_index_default_index';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '[title] <span>([type])</span>';
+  $handler->display->display_options['fields']['title']['element_type'] = 'h2';
+  $handler->display->display_options['fields']['title']['element_class'] = 'search-title';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_entity'] = 1;
+  /* Champ: Rechercher : Pertinence */
+  $handler->display->display_options['fields']['search_api_relevance']['id'] = 'search_api_relevance';
+  $handler->display->display_options['fields']['search_api_relevance']['table'] = 'search_api_index_default_index';
+  $handler->display->display_options['fields']['search_api_relevance']['field'] = 'search_api_relevance';
+  $handler->display->display_options['fields']['search_api_relevance']['link_to_entity'] = 0;
+  /* Champ: Le corps du texte : Texte (indexé) */
+  $handler->display->display_options['fields']['body_value']['id'] = 'body_value';
+  $handler->display->display_options['fields']['body_value']['table'] = 'search_api_index_default_index';
+  $handler->display->display_options['fields']['body_value']['field'] = 'body_value';
+  $handler->display->display_options['fields']['body_value']['label'] = '';
+  $handler->display->display_options['fields']['body_value']['alter']['max_length'] = '600';
+  $handler->display->display_options['fields']['body_value']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['body_value']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['body_value']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body_value']['link_to_entity'] = 0;
+  /* Champ: Descriptif orga : Texte (indexé) */
+  $handler->display->display_options['fields']['field_alternate_body_value']['id'] = 'field_alternate_body_value';
+  $handler->display->display_options['fields']['field_alternate_body_value']['table'] = 'search_api_index_default_index';
+  $handler->display->display_options['fields']['field_alternate_body_value']['field'] = 'field_alternate_body_value';
+  $handler->display->display_options['fields']['field_alternate_body_value']['label'] = '';
+  $handler->display->display_options['fields']['field_alternate_body_value']['alter']['max_length'] = '600';
+  $handler->display->display_options['fields']['field_alternate_body_value']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['field_alternate_body_value']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['field_alternate_body_value']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_alternate_body_value']['link_to_entity'] = 0;
+  /* Critère de filtrage: Rechercher : Recherche en texte intégral */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Recherche';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'keys';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  /* Critère de filtrage: Nœud indexé(e) : Type de contenu */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'avantage' => 'avantage',
+    'event' => 'event',
+    'group' => 'group',
+    'information' => 'information',
+    'intrigue' => 'intrigue',
+    'location' => 'location',
+    'stuff' => 'stuff',
+    'character' => 'character',
+    'sequence' => 'sequence',
+  );
+  $handler->display->display_options['filters']['type']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
+  $handler->display->display_options['filters']['type']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+  );
+  $handler->display->display_options['filters']['type']['expose']['reduce'] = 1;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['path'] = 'search';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Recherche Zorga';
+  $handler->display->display_options['menu']['weight'] = '15';
+  $handler->display->display_options['menu']['name'] = 'menu-zorga-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $translatables['search'] = array(
+    t('Master'),
+    t('Recherche'),
+    t('plus'),
+    t('Appliquer'),
+    t('Réinitialiser'),
+    t('Trier par'),
+    t('Asc'),
+    t('Desc'),
+    t('Éléments par page'),
+    t('- Tout -'),
+    t('Décalage'),
+    t('« premier'),
+    t('‹ précédent'),
+    t('suivant ›'),
+    t('dernier »'),
+    t('[title] <span>([type])</span>'),
+    t('Pertinence'),
+    t('.'),
+    t(','),
+    t('Type'),
+    t('Page'),
+  );
+  $export['search'] = $view;
 
   return $export;
 }

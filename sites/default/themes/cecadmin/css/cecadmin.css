@@ -229,3 +229,6 @@ h4 {
 
 .cec-columns { overflow: hidden; padding: 1em; }
 .cec-column { float: left; width: 50%; }
+
+.search-title { margin-top: 1em; }
+.search-title span { font-size: 12px; }

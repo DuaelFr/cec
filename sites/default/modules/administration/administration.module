@@ -39,6 +39,10 @@ function administration_menu_local_tasks_alter(&$data, $router_item, $root_path)
     case 'admin/cec/sequences':
       $link = menu_get_item('node/add/sequence');
       break;
+    case 'search':
+      $data['tabs'][0]['count'] = 0;
+      $data['tabs'][0]['output'] = array();
+      break;
   }
   if (!empty($link)) {
     $link['title'] = 'Créer ' . $link['title'];
