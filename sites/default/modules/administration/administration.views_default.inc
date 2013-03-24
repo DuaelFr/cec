@@ -133,6 +133,11 @@ function administration_views_default_views() {
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  /* Relation: Révision de contenu : Utilisateur */
+  $handler->display->display_options['relationships']['uid_1']['id'] = 'uid_1';
+  $handler->display->display_options['relationships']['uid_1']['table'] = 'node_revision';
+  $handler->display->display_options['relationships']['uid_1']['field'] = 'uid';
+  $handler->display->display_options['relationships']['uid_1']['label'] = 'Revision Author';
   /* Champ: Opérations en masse : Contenu */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
@@ -302,12 +307,6 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  /* Champ: Utilisateur : Nom */
-  $handler->display->display_options['fields']['name']['id'] = 'name';
-  $handler->display->display_options['fields']['name']['table'] = 'users';
-  $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
-  $handler->display->display_options['fields']['name']['label'] = 'Auteur';
   /* Champ: Contenu : Publié */
   $handler->display->display_options['fields']['status']['id'] = 'status';
   $handler->display->display_options['fields']['status']['table'] = 'node';
@@ -318,17 +317,31 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  /* Champ: Utilisateur : Nom */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'Créé par';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
   /* Champ: Contenu : Date de publication */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'node';
   $handler->display->display_options['fields']['created']['field'] = 'created';
-  $handler->display->display_options['fields']['created']['label'] = 'Création';
+  $handler->display->display_options['fields']['created']['label'] = 'Créé le';
   $handler->display->display_options['fields']['created']['date_format'] = 'short';
+  /* Champ: Utilisateur : Nom */
+  $handler->display->display_options['fields']['name_1']['id'] = 'name_1';
+  $handler->display->display_options['fields']['name_1']['table'] = 'users';
+  $handler->display->display_options['fields']['name_1']['field'] = 'name';
+  $handler->display->display_options['fields']['name_1']['relationship'] = 'uid_1';
+  $handler->display->display_options['fields']['name_1']['label'] = 'Modifié par';
+  $handler->display->display_options['fields']['name_1']['link_to_user'] = FALSE;
   /* Champ: Contenu : Date de mise à jour */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
-  $handler->display->display_options['fields']['changed']['label'] = 'Mise à jour';
+  $handler->display->display_options['fields']['changed']['label'] = 'Modifié le';
   $handler->display->display_options['fields']['changed']['date_format'] = 'short';
   /* Champ: Contenu : Lien de modification */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
@@ -462,13 +475,15 @@ function administration_views_default_views() {
     t('dernier »'),
     t('<div class="messages warning"><p><strong>Attention ! </strong>Ne manipulez cette vue qu\'avec d\'extrêmes précautions.</p></div>'),
     t('auteur'),
+    t('Revision Author'),
     t('Selection'),
     t('Type'),
-    t('Auteur'),
     t('Publié'),
     t('État actuel'),
-    t('Création'),
-    t('Mise à jour'),
+    t('Créé par'),
+    t('Créé le'),
+    t('Modifié par'),
+    t('Modifié le'),
     t('Actions'),
     t('modifier'),
     t('Titre'),
@@ -511,10 +526,11 @@ function administration_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relation: Profil : Utilisateur uid */
+  /* Relation: Gestionnaire défectueux/manquant */
   $handler->display->display_options['relationships']['user']['id'] = 'user';
   $handler->display->display_options['relationships']['user']['table'] = 'profile';
   $handler->display->display_options['relationships']['user']['field'] = 'user';
+  $handler->display->display_options['relationships']['user']['label'] = 'utilisateur';
   $handler->display->display_options['relationships']['user']['required'] = TRUE;
   /* Champ: Utilisateur : Nom */
   $handler->display->display_options['fields']['name']['id'] = 'name';
@@ -533,7 +549,7 @@ function administration_views_default_views() {
   $handler->display->display_options['sorts']['name']['table'] = 'users';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
   $handler->display->display_options['sorts']['name']['relationship'] = 'user';
-  /* Critère de filtrage: Profil : Type */
+  /* Critère de filtrage: Gestionnaire défectueux/manquant */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'profile';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -644,7 +660,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_image_right']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Profil : Type */
+  /* Critère de filtrage: Gestionnaire défectueux/manquant */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'profile';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -752,7 +768,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_freetalk']['type'] = 'text_plain';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Profil : Type */
+  /* Critère de filtrage: Gestionnaire défectueux/manquant */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'profile';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -775,7 +791,7 @@ function administration_views_default_views() {
     t('‹ précédent'),
     t('suivant ›'),
     t('dernier »'),
-    t('Utilisateur'),
+    t('utilisateur'),
     t('Nom'),
     t('Courriel'),
     t('Inscriptions Administratives'),
@@ -936,22 +952,16 @@ function administration_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relation: Utilisateur : Profil */
+  /* Relation: Gestionnaire défectueux/manquant */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
   $handler->display->display_options['relationships']['profile']['label'] = 'ProfilAdmin';
-  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
-    'inscription_administrative' => 'inscription_administrative',
-  );
-  /* Relation: Utilisateur : Profil */
+  /* Relation: Gestionnaire défectueux/manquant */
   $handler->display->display_options['relationships']['profile_1']['id'] = 'profile_1';
   $handler->display->display_options['relationships']['profile_1']['table'] = 'users';
   $handler->display->display_options['relationships']['profile_1']['field'] = 'profile';
   $handler->display->display_options['relationships']['profile_1']['label'] = 'ProfilJoueur';
-  $handler->display->display_options['relationships']['profile_1']['bundle_types'] = array(
-    'profil_joueur' => 'profil_joueur',
-  );
   /* Champ: Opérations en masse : Utilisateur */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'users';
@@ -1084,7 +1094,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['uid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
-  /* Champ: Profil : Identifiant de Profil */
+  /* Champ: Gestionnaire défectueux/manquant */
   $handler->display->display_options['fields']['pid']['id'] = 'pid';
   $handler->display->display_options['fields']['pid']['table'] = 'profile';
   $handler->display->display_options['fields']['pid']['field'] = 'pid';
@@ -1095,7 +1105,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['pid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['pid']['empty'] = 'Vide';
   $handler->display->display_options['fields']['pid']['empty_zero'] = TRUE;
-  /* Champ: Profil : URL */
+  /* Champ: Gestionnaire défectueux/manquant */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
   $handler->display->display_options['fields']['url']['field'] = 'url';
@@ -1105,8 +1115,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['url']['alter']['text'] = 'Inscription Administrative';
   $handler->display->display_options['fields']['url']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['url']['link_to_entity'] = 0;
-  /* Champ: Profil : Identifiant de Profil */
+  /* Champ: Gestionnaire défectueux/manquant */
   $handler->display->display_options['fields']['pid_1']['id'] = 'pid_1';
   $handler->display->display_options['fields']['pid_1']['table'] = 'profile';
   $handler->display->display_options['fields']['pid_1']['field'] = 'pid';
@@ -1117,7 +1126,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['pid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['pid_1']['empty'] = 'Vide';
   $handler->display->display_options['fields']['pid_1']['empty_zero'] = TRUE;
-  /* Champ: Profil : URL */
+  /* Champ: Gestionnaire défectueux/manquant */
   $handler->display->display_options['fields']['url_1']['id'] = 'url_1';
   $handler->display->display_options['fields']['url_1']['table'] = 'views_entity_profile2';
   $handler->display->display_options['fields']['url_1']['field'] = 'url';
@@ -1127,7 +1136,6 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['url_1']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['url_1']['alter']['text'] = 'Profil Joueur';
   $handler->display->display_options['fields']['url_1']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['url_1']['link_to_entity'] = 0;
   /* Champ: Global : Texte personnalisé */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -1244,14 +1252,11 @@ function administration_views_default_views() {
   $handler->display->display_options['row_options']['separator'] = '';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relation: Utilisateur : Profil */
+  /* Relation: Gestionnaire défectueux/manquant */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
   $handler->display->display_options['relationships']['profile']['label'] = 'ProfilAdmin';
-  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
-    'inscription_administrative' => 'inscription_administrative',
-  );
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Champ: Profil : Nom */
   $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
@@ -1329,8 +1334,6 @@ function administration_views_default_views() {
     t('Profil Admin'),
     t('Rempli'),
     t('Vide'),
-    t('.'),
-    t(','),
     t('Profils'),
     t('Inscription Administrative'),
     t('Profil Joueur'),
