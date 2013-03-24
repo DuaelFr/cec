@@ -162,7 +162,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Canevas',
-    'weight' => '13',
+    'weight' => '14',
     'children' => array(
       0 => 'field_canevas',
     ),

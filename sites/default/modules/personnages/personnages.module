@@ -65,6 +65,14 @@ function personnages_field_extra_fields() {
     'label' => t('Views sequences'),
     'weight' => 99,
   );
+  $extras['node']['character']['display']['view_groupes_zorga'] = array(
+    'label' => t('Views groupes Zorga'),
+    'weight' => 99,
+  );
+  $extras['node']['character']['display']['view_groupes_player'] = array(
+    'label' => t('Views groupes Player'),
+    'weight' => 99,
+  );
 
   return $extras;
 }
@@ -82,6 +90,12 @@ function personnages_node_view($node, $view_mode, $langcode) {
 
     $view_content = views_embed_view('admin_sequences', 'block_by_character', $node->nid);
     $node->content['view_sequences'] = _config_base_extra_field_view('view_sequences', 'Séquences liées au personnage', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
+
+    $view_content = views_embed_view('admin_groupes', 'block_by_character', $node->nid);
+    $node->content['view_groupes_zorga'] = _config_base_extra_field_view('view_groupes', 'Groupes liés au personnage', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
+
+    $view_content = views_embed_view('admin_groupes', 'block_by_character_player', $node->nid);
+    $node->content['view_groupes_player'] = _config_base_extra_field_view('view_groupes', 'Mes Groupes', $node, $view_mode, $langcode, $view_content);
   }
 }
 

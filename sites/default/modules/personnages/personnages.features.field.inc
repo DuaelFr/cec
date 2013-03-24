@@ -294,7 +294,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '15',
+          'weight' => '16',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1865,7 +1865,7 @@ function personnages_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '14',
+          'weight' => '15',
         ),
         'teaser' => array(
           'label' => 'above',

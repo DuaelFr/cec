@@ -233,15 +233,12 @@ function personnages_views_default_views() {
   $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
-  /* Relation: Utilisateur : Profil */
+  /* Relation: Gestionnaire défectueux/manquant */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
   $handler->display->display_options['relationships']['profile']['relationship'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['profile']['label'] = 'ProfilAdministratif';
-  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
-    'inscription_administrative' => 'inscription_administrative',
-  );
   /* Relation: Contenu : Avantages (field_avantages) */
   $handler->display->display_options['relationships']['field_avantages_value']['id'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantages_value']['table'] = 'field_data_field_avantages';
@@ -272,7 +269,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_character_type']['id'] = 'field_character_type';
   $handler->display->display_options['fields']['field_character_type']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['fields']['field_character_type']['field'] = 'field_character_type';
-  /* Champ: Profil : URL */
+  /* Champ: Gestionnaire défectueux/manquant */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
   $handler->display->display_options['fields']['url']['field'] = 'url';
@@ -280,8 +277,6 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['url']['label'] = '';
   $handler->display->display_options['fields']['url']['exclude'] = TRUE;
   $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['url']['display_as_link'] = FALSE;
-  $handler->display->display_options['fields']['url']['link_to_entity'] = 1;
   /* Champ: Profil : Prénom */
   $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
   $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
@@ -386,7 +381,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['nid']['alter']['text'] = '[nid] ([field_value])';
   $handler->display->display_options['fields']['nid']['separator'] = ' ';
-  /* Champ: COUNT(DISTINCT Field collection item : Identifiant de Field collection item) */
+  /* Champ: Gestionnaire défectueux/manquant */
   $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
   $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
@@ -1017,8 +1012,6 @@ function personnages_views_default_views() {
     t('0 P'),
     t('[nid] ([field_value])'),
     t('Groupes'),
-    t('.'),
-    t(','),
     t('État actuel'),
     t('Actions'),
     t('modifier'),
