@@ -123,7 +123,7 @@ function avantages_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relation: Entity Reference : Entité référante */
+  /* Relation: Entity Reference : Referencing entity */
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['id'] = 'reverse_field_avantage_field_collection_item';
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['field'] = 'reverse_field_avantage_field_collection_item';
@@ -172,7 +172,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'reverse_field_avantage_field_collection_item';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Personnages';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -295,7 +295,7 @@ function avantages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';

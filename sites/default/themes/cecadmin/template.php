@@ -21,6 +21,8 @@ function cecadmin_preprocess_form_node(&$vars) {
       unset($vars['form']['field_avantage_type']);
       $vars['sidebar']['field_value'] = $vars['form']['field_value'];
       unset($vars['form']['field_value']);
+      $vars['sidebar']['field_attachment'] = $vars['form']['field_attachment'];
+      unset($vars['form']['field_attachment']);
       break;
     case 'event_node_form':
       $vars['sidebar']['field_event_type'] = $vars['form']['field_event_type'];

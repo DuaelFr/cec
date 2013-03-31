@@ -89,6 +89,15 @@ function avantages_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -96,10 +105,10 @@ function avantages_strongarm() {
           'weight' => '2',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '8',
         ),
         'workflow' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
       ),
       'display' => array(),

@@ -54,14 +54,14 @@ function avantages_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '1',
         ),
         'full_zorga' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -134,14 +134,14 @@ function avantages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '1',
+          'weight' => '2',
         ),
         'full_zorga' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -213,7 +213,7 @@ function avantages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'full_zorga' => array(
           'label' => 'above',
@@ -245,6 +245,106 @@ function avantages_field_default_fields() {
         ),
         'type' => 'text_textfield',
         'weight' => '0',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-avantage-field_attachment'.
+  $fields['node-avantage-field_attachment'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_attachment',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'file',
+      'settings' => array(
+        'display_default' => 0,
+        'display_field' => 1,
+        'profile2_private' => FALSE,
+        'uri_scheme' => 'private',
+      ),
+      'translatable' => '0',
+      'type' => 'file',
+    ),
+    'field_instance' => array(
+      'bundle' => 'avantage',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '0',
+        ),
+        'full_zorga' => array(
+          'label' => 'above',
+          'module' => 'file',
+          'settings' => array(),
+          'type' => 'file_default',
+          'weight' => '3',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_attachment',
+      'label' => 'Pièce jointe',
+      'required' => 0,
+      'settings' => array(
+        'description_field' => 0,
+        'file_directory' => 'avantages',
+        'file_extensions' => 'txt doc pdf zip mp4 wmv avi',
+        'max_filesize' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'file',
+        'settings' => array(
+          'filefield_sources' => array(
+            'filefield_sources' => array(
+              'attach' => 'attach',
+              'clipboard' => 0,
+              'imce' => 0,
+              'reference' => 0,
+              'remote' => 0,
+            ),
+            'source_attach' => array(
+              'absolute' => '1',
+              'attach_mode' => 'copy',
+              'path' => 'sites/default/private/avantages/escrime',
+            ),
+            'source_imce' => array(
+              'imce_mode' => '0',
+            ),
+            'source_reference' => array(
+              'autocomplete' => '0',
+            ),
+          ),
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'file_generic',
+        'weight' => '6',
       ),
     ),
   );
@@ -297,7 +397,7 @@ function avantages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'full_zorga' => array(
           'label' => 'inline',
@@ -361,7 +461,7 @@ function avantages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'full_zorga' => array(
           'label' => 'inline',
@@ -408,6 +508,7 @@ function avantages_field_default_fields() {
   t('Descriptif orga');
   t('Description joueurs');
   t('Intitulé orga');
+  t('Pièce jointe');
   t('Type d\'avantage');
   t('Valeur');
 
