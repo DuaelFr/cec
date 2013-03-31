@@ -192,6 +192,7 @@ function evenements_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['label'] = '';
   $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
   /* Critère de tri: Contenu : Horaires - date de début (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
