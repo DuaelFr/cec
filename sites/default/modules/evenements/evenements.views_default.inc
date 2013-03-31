@@ -45,13 +45,12 @@ function evenements_views_default_views() {
     'field_event_type' => 'field_event_type',
     'field_dates' => 'field_dates',
     'field_dates_1' => 'field_dates_1',
-    'field_intrigue' => 'field_intrigue',
     'item_id' => 'item_id',
     'sid' => 'sid',
     'edit_node' => 'edit_node',
     'sid_1' => 'sid_1',
   );
-  $handler->display->display_options['style_options']['default'] = 'field_dates';
+  $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'title' => array(
       'sortable' => 1,
@@ -77,11 +76,6 @@ function evenements_views_default_views() {
     'field_dates_1' => array(
       'sortable' => 1,
       'default_sort_order' => 'desc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_intrigue' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -202,12 +196,10 @@ function evenements_views_default_views() {
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
-  $handler->display->display_options['sorts']['field_dates_value']['order'] = 'DESC';
   /* Critère de tri: Contenu : Horaires - date de fin (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
-  $handler->display->display_options['sorts']['field_dates_value2']['order'] = 'DESC';
   /* Critère de filtrage: Contenu : Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
