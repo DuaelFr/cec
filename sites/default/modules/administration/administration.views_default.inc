@@ -313,7 +313,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['type'] = 'published-notpublished';
   $handler->display->display_options['fields']['status']['not'] = 0;
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -431,7 +431,7 @@ function administration_views_default_views() {
     168020977 => 0,
   );
   $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -479,7 +479,7 @@ function administration_views_default_views() {
     t('Selection'),
     t('Type'),
     t('Publié'),
-    t('État actuel'),
+    t('Current state'),
     t('Créé par'),
     t('Créé le'),
     t('Modifié par'),
@@ -487,6 +487,7 @@ function administration_views_default_views() {
     t('Actions'),
     t('modifier'),
     t('Titre'),
+    t('État actuel'),
     t('Page'),
   );
   $export['admin_global'] = $view;
@@ -1396,7 +1397,7 @@ function administration_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Champ: Nœud indexé(e) : Type de contenu */
+  /* Champ: Indexed Nœud : Type de contenu */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['fields']['type']['field'] = 'type';
@@ -1405,7 +1406,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 1;
-  /* Champ: Nœud indexé(e) : Titre */
+  /* Champ: Indexed Nœud : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -1416,12 +1417,12 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['title']['element_class'] = 'search-title';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_entity'] = 1;
-  /* Champ: Rechercher : Pertinence */
+  /* Champ: Rechercher : Relevance */
   $handler->display->display_options['fields']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['fields']['search_api_relevance']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['fields']['search_api_relevance']['field'] = 'search_api_relevance';
   $handler->display->display_options['fields']['search_api_relevance']['link_to_entity'] = 0;
-  /* Champ: Le corps du texte : Texte (indexé) */
+  /* Champ: Le corps du texte : Texte (indexed) */
   $handler->display->display_options['fields']['body_value']['id'] = 'body_value';
   $handler->display->display_options['fields']['body_value']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['fields']['body_value']['field'] = 'body_value';
@@ -1431,7 +1432,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['body_value']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['body_value']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body_value']['link_to_entity'] = 0;
-  /* Champ: Descriptif orga : Texte (indexé) */
+  /* Champ: Descriptif orga : Texte (indexed) */
   $handler->display->display_options['fields']['field_alternate_body_value']['id'] = 'field_alternate_body_value';
   $handler->display->display_options['fields']['field_alternate_body_value']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['fields']['field_alternate_body_value']['field'] = 'field_alternate_body_value';
@@ -1441,7 +1442,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_alternate_body_value']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['field_alternate_body_value']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_alternate_body_value']['link_to_entity'] = 0;
-  /* Critère de filtrage: Rechercher : Recherche en texte intégral */
+  /* Critère de filtrage: Rechercher : Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
@@ -1461,7 +1462,7 @@ function administration_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Nœud indexé(e) : Type de contenu */
+  /* Critère de filtrage: Indexed Nœud : Type de contenu */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -1520,7 +1521,7 @@ function administration_views_default_views() {
     t('suivant ›'),
     t('dernier »'),
     t('[title] <span>([type])</span>'),
-    t('Pertinence'),
+    t('Relevance'),
     t('.'),
     t(','),
     t('Type'),
