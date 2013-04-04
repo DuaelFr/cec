@@ -120,7 +120,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
@@ -165,7 +165,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['field_group_is_technical']['id'] = 'field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['field'] = 'field_group_is_technical';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -260,7 +260,7 @@ function groupes_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -350,7 +350,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['field_member_is_secret']['table'] = 'field_data_field_member_is_secret';
   $handler->display->display_options['fields']['field_member_is_secret']['field'] = 'field_member_is_secret';
   $handler->display->display_options['fields']['field_member_is_secret']['relationship'] = 'field_group_members_value';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -461,7 +461,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '1';
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -486,10 +486,11 @@ function groupes_views_default_views() {
     t('Descriptif orga'),
     t('Personnages'),
     t('Groupe technique'),
-    t('État actuel'),
+    t('Current state'),
     t('Actions'),
     t('modifier'),
     t('Titre'),
+    t('État actuel'),
     t('Tous les groupes (Page)'),
     t('Par personnage Zorga (Block)'),
     t('Ce personnage n\'appartient à aucun groupe pour le moment.'),
@@ -545,7 +546,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
@@ -608,12 +609,12 @@ function groupes_views_default_views() {
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
   $handler->display->display_options['filters']['sid']['value'] = array(
-    6 => '6',
+    13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
 
@@ -720,12 +721,12 @@ function groupes_views_default_views() {
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
   $handler->display->display_options['filters']['sid']['value'] = array(
-    6 => '6',
+    13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
   /* Critère de filtrage: Contenu : Publié */
@@ -742,13 +743,13 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['type_1']['value'] = array(
     'character' => 'character',
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['filters']['sid_1']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid_1']['field'] = 'sid';
   $handler->display->display_options['filters']['sid_1']['relationship'] = 'field_character_target_id';
   $handler->display->display_options['filters']['sid_1']['value'] = array(
-    6 => '6',
+    13 => '13',
   );
   /* Critère de filtrage: Field collection item : Membre secret (field_member_is_secret) */
   $handler->display->display_options['filters']['field_member_is_secret_value']['id'] = 'field_member_is_secret_value';
