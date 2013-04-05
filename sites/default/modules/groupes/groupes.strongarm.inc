@@ -114,7 +114,21 @@ function groupes_strongarm() {
       'display' => array(
         'view_events' => array(
           'default' => array(
-            'weight' => '3',
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '7',
+            'visible' => TRUE,
+          ),
+        ),
+        'view_infos' => array(
+          'default' => array(
+            'weight' => '5',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -122,13 +136,13 @@ function groupes_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '6',
+            'weight' => '8',
             'visible' => TRUE,
           ),
         ),
-        'view_infos' => array(
+        'zorgas_links' => array(
           'default' => array(
-            'weight' => '4',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -136,7 +150,7 @@ function groupes_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '7',
+            'weight' => '6',
             'visible' => TRUE,
           ),
         ),
