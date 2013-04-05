@@ -50,6 +50,8 @@ function groupes_views_default_views() {
     'field_group_is_technical' => 'field_group_is_technical',
     'sid' => 'sid',
     'edit_node' => 'edit_node',
+    'nothing' => 'edit_node',
+    'sid_1' => 'sid_1',
   );
   $handler->display->display_options['style_options']['default'] = 'field_alternate_title';
   $handler->display->display_options['style_options']['info'] = array(
@@ -101,6 +103,18 @@ function groupes_views_default_views() {
       'empty_column' => 0,
     ),
     'edit_node' => array(
+      'align' => '',
+      'separator' => ' / ',
+      'empty_column' => 0,
+    ),
+    'nothing' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -175,6 +189,14 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
+  /* Champ: Liens custom */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Liens custom';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="/admin/cec/evenements/groupe/[nid]">Evenements</a> / <a href="/admin/cec/informations/groupe/[nid]">Informations</a>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Champ: Etat CSS */
   $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
@@ -264,13 +286,6 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
-  $handler->display->display_options['filters']['sid']['value'] = array(
-    2 => '2',
-    3 => '3',
-    4 => '4',
-    5 => '5',
-    6 => '6',
-  );
   $handler->display->display_options['filters']['sid']['group'] = 1;
   $handler->display->display_options['filters']['sid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['sid']['expose']['operator_id'] = 'sid_op';
@@ -287,6 +302,7 @@ function groupes_views_default_views() {
     32775451 => 0,
     199742668 => 0,
     168020977 => 0,
+    149933350 => 0,
   );
   $handler->display->display_options['filters']['sid']['expose']['reduce'] = TRUE;
 
@@ -489,6 +505,7 @@ function groupes_views_default_views() {
     t('Current state'),
     t('Actions'),
     t('modifier'),
+    t('<a href="/admin/cec/evenements/groupe/[nid]">Evenements</a> / <a href="/admin/cec/informations/groupe/[nid]">Informations</a>'),
     t('Titre'),
     t('État actuel'),
     t('Tous les groupes (Page)'),
