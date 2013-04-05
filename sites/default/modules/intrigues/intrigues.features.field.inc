@@ -54,7 +54,7 @@ function intrigues_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'full_zorga' => array(
           'label' => 'hidden',
@@ -140,7 +140,7 @@ function intrigues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'full_zorga' => array(
           'label' => 'inline',
@@ -221,7 +221,7 @@ function intrigues_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '6',
         ),
         'full_zorga' => array(
           'label' => 'inline',

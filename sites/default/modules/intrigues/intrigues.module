@@ -57,6 +57,10 @@ function intrigues_field_extra_fields() {
     'label' => t('Views sequences'),
     'weight' => 99,
   );
+  $extras['node']['intrigue']['display']['zorgas_links'] = array(
+    'label' => t('Zorga Links'),
+    'weight' => 99,
+  );
 
   return $extras;
 }
@@ -74,5 +78,14 @@ function intrigues_node_view($node, $view_mode, $langcode) {
 
     $view_content = views_embed_view('admin_sequences', 'block_by_intrigue', $node->nid);
     $node->content['view_sequences'] = _config_base_extra_field_view('view_sequences', 'Séquences liées à l\'intrigue', $node, $view_mode, $langcode, $view_content, user_access('view all intrigues'));
+
+    $view_content = theme('item_list', array(
+      'items' => array(
+        l('Liste complète des événements de l\'intrigue', 'admin/cec/evenements/intrigue/' . $node->nid),
+        l('Liste complète des informations de l\'intrigue', 'admin/cec/informations/intrigue/' . $node->nid),
+        l('Liste complète des séquences de l\'intrigue', 'admin/cec/informations/intrigue/' . $node->nid),
+      ),
+    ));
+    $node->content['zorgas_links'] = _config_base_extra_field_view('zorgas_links', 'Liens Zorgas', $node, $view_mode, $langcode, $view_content, user_access('view all intrigues'));
   }
 }
