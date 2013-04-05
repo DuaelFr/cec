@@ -80,8 +80,8 @@ function personnages_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'field_avantages',
-      1 => 'field_pugilat',
-      2 => 'field_credit',
+      1 => 'field_credit',
+      2 => 'field_pugilat',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -276,13 +276,14 @@ function personnages_field_group_info() {
     'label' => 'Informations',
     'weight' => '3',
     'children' => array(
-      0 => 'field_character_type',
-      1 => 'field_incarnate',
-      2 => 'field_character_state',
-      3 => 'field_species',
+      0 => 'field_character_state',
+      1 => 'field_character_type',
+      2 => 'field_confession',
+      3 => 'field_incarnate',
       4 => 'field_nationalite',
-      5 => 'field_confession',
-      6 => 'field_occupation',
+      5 => 'field_occupation',
+      6 => 'field_species',
+      7 => 'zorgas_links',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

@@ -218,7 +218,7 @@ function personnages_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '6',
         ),
         'trombinoscope' => array(
           'label' => 'hidden',
@@ -304,7 +304,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '16',
+          'weight' => '24',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -385,7 +385,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '14',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -471,7 +471,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '13',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -554,7 +554,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '8',
+          'weight' => '16',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -630,7 +630,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '17',
+          'weight' => '25',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -718,7 +718,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '4',
+          'weight' => '12',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -799,7 +799,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '7',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -900,7 +900,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '15',
+          'weight' => '23',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -992,7 +992,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '1',
+          'weight' => '9',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1080,7 +1080,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '7',
+          'weight' => '15',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1169,7 +1169,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '9',
+          'weight' => '17',
         ),
         'trombinoscope' => array(
           'label' => 'hidden',
@@ -1281,7 +1281,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '8',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1372,7 +1372,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '2',
+          'weight' => '10',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1460,7 +1460,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '12',
+          'weight' => '20',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1545,7 +1545,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '11',
+          'weight' => '19',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1630,7 +1630,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '18',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1715,7 +1715,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '13',
+          'weight' => '21',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1800,7 +1800,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '14',
+          'weight' => '22',
         ),
         'trombinoscope' => array(
           'label' => 'above',
@@ -1875,7 +1875,7 @@ function personnages_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '11',
         ),
         'trombinoscope' => array(
           'label' => 'above',

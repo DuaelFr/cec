@@ -73,6 +73,10 @@ function personnages_field_extra_fields() {
     'label' => t('Views groupes Player'),
     'weight' => 99,
   );
+  $extras['node']['character']['display']['zorgas_links'] = array(
+    'label' => t('Zorgas Links'),
+    'weight' => 99,
+  );
 
   return $extras;
 }
@@ -96,6 +100,15 @@ function personnages_node_view($node, $view_mode, $langcode) {
 
     $view_content = views_embed_view('admin_groupes', 'block_by_character_player', $node->nid);
     $node->content['view_groupes_player'] = _config_base_extra_field_view('view_groupes_player', 'Mes Groupes', $node, $view_mode, $langcode, $view_content);
+
+    $view_content = theme('item_list', array(
+      'items' => array(
+        l('Liste complète des événements du personnage', 'admin/cec/evenements/personnage/' . $node->nid),
+        l('Liste complète des informations du personnage', 'admin/cec/informations/personnage/' . $node->nid),
+        l('Liste complète des sequences du personnage', 'admin/cec/sequences/personnage/' . $node->nid),
+      ),
+    ));
+    $node->content['zorgas_links'] = _config_base_extra_field_view('zorgas_links', 'Liens Zorgas', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
   }
 }
 

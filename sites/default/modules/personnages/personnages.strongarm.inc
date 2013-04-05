@@ -108,11 +108,19 @@ function personnages_strongarm() {
             'weight' => '6',
             'visible' => TRUE,
           ),
+          'teaser' => array(
+            'weight' => '5',
+            'visible' => FALSE,
+          ),
         ),
         'view_infos' => array(
           'full_zorga' => array(
             'weight' => '7',
             'visible' => TRUE,
+          ),
+          'teaser' => array(
+            'weight' => '1',
+            'visible' => FALSE,
           ),
         ),
         'view_sequences' => array(
@@ -120,17 +128,39 @@ function personnages_strongarm() {
             'weight' => '8',
             'visible' => TRUE,
           ),
+          'teaser' => array(
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
         ),
         'view_groupes_zorga' => array(
           'full_zorga' => array(
             'weight' => '5',
             'visible' => TRUE,
           ),
+          'teaser' => array(
+            'weight' => '3',
+            'visible' => FALSE,
+          ),
         ),
         'view_groupes_player' => array(
           'full_zorga' => array(
             'weight' => '18',
             'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+        'zorgas_links' => array(
+          'teaser' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '22',
+            'visible' => TRUE,
           ),
         ),
       ),
