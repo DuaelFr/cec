@@ -140,6 +140,13 @@ function groupes_views_default_views() {
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['relationship'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_character_target_id']['label'] = 'Personnage';
+  /* Champ: Contenu : Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Champ: Contenu : Chemin */
   $handler->display->display_options['fields']['path']['id'] = 'path';
   $handler->display->display_options['fields']['path']['table'] = 'node';
