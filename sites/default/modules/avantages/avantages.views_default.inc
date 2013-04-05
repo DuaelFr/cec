@@ -400,5 +400,305 @@ function avantages_views_default_views() {
   );
   $export['admin_avantages'] = $view;
 
+  $view = new view();
+  $view->name = 'avantages';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Avantages';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Avantages';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'plus';
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    32775451 => '32775451',
+    66570830 => '66570830',
+    199742668 => '199742668',
+    168020977 => '168020977',
+    149933350 => '149933350',
+  );
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Comportement en l'absence de résultats: Global : Zone de texte */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'Vide';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Aucun avantage validé pour le moment.';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  /* Relation: Contenu : Avantages (field_avantages) */
+  $handler->display->display_options['relationships']['field_avantages_value']['id'] = 'field_avantages_value';
+  $handler->display->display_options['relationships']['field_avantages_value']['table'] = 'field_data_field_avantages';
+  $handler->display->display_options['relationships']['field_avantages_value']['field'] = 'field_avantages_value';
+  $handler->display->display_options['relationships']['field_avantages_value']['label'] = 'Avatanges';
+  $handler->display->display_options['relationships']['field_avantages_value']['delta'] = '-1';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_avantage_target_id']['id'] = 'field_avantage_target_id';
+  $handler->display->display_options['relationships']['field_avantage_target_id']['table'] = 'field_data_field_avantage';
+  $handler->display->display_options['relationships']['field_avantage_target_id']['field'] = 'field_avantage_target_id';
+  $handler->display->display_options['relationships']['field_avantage_target_id']['relationship'] = 'field_avantages_value';
+  $handler->display->display_options['relationships']['field_avantage_target_id']['label'] = 'Avantage';
+  /* Relation: Contenu : Type d&#039;avantage (field_avantage_type) */
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['id'] = 'field_avantage_type_tid';
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['table'] = 'field_data_field_avantage_type';
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['field'] = 'field_avantage_type_tid';
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['label'] = 'TypeAvantage';
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h2';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Champ: Contenu : Description */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  /* Champ: Contenu : Pièce jointe */
+  $handler->display->display_options['fields']['field_attachment']['id'] = 'field_attachment';
+  $handler->display->display_options['fields']['field_attachment']['table'] = 'field_data_field_attachment';
+  $handler->display->display_options['fields']['field_attachment']['field'] = 'field_attachment';
+  $handler->display->display_options['fields']['field_attachment']['label'] = 'Pièces jointes';
+  $handler->display->display_options['fields']['field_attachment']['element_label_type'] = 'strong';
+  $handler->display->display_options['fields']['field_attachment']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_attachment']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_attachment']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_attachment']['multi_type'] = 'ul';
+  /* Critère de tri: Contenu : Titre */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Filtre contextuel: Contenu : Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['relationship'] = 'field_avantages_node';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['nid']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['nid']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['nid']['title'] = 'Avantages de %1';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['nid']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['nid']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['arguments']['nid']['validate_options']['access'] = TRUE;
+  $handler->display->display_options['arguments']['nid']['validate']['fail'] = 'empty';
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'avantage' => 'avantage',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Processus : Current state */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    13 => '13',
+  );
+  $handler->display->display_options['filters']['sid']['group'] = 1;
+  /* Critère de filtrage: Field collection item : Validé (field_avantage_valide) */
+  $handler->display->display_options['filters']['field_avantage_valide_value']['id'] = 'field_avantage_valide_value';
+  $handler->display->display_options['filters']['field_avantage_valide_value']['table'] = 'field_data_field_avantage_valide';
+  $handler->display->display_options['filters']['field_avantage_valide_value']['field'] = 'field_avantage_valide_value';
+  $handler->display->display_options['filters']['field_avantage_valide_value']['relationship'] = 'field_avantages_value';
+  $handler->display->display_options['filters']['field_avantage_valide_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_avantage_valide_value']['group'] = 1;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['relationship'] = 'field_avantages_node';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
+
+  /* Display: Avantages Personnage (Bloc) */
+  $handler = $view->new_display('block', 'Avantages Personnage (Bloc)', 'avantages_perso');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+
+  /* Display: Mes bottes (Page) */
+  $handler = $view->new_display('page', 'Mes bottes (Page)', 'bottes_perso');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Mes bottes';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* Comportement en l'absence de résultats: Global : Zone de texte */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'Vide';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Vous ne disposez d\'aucune botte.';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h2';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Champ: Contenu : Description */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  /* Champ: Contenu : Pièce jointe */
+  $handler->display->display_options['fields']['field_attachment']['id'] = 'field_attachment';
+  $handler->display->display_options['fields']['field_attachment']['table'] = 'field_data_field_attachment';
+  $handler->display->display_options['fields']['field_attachment']['field'] = 'field_attachment';
+  $handler->display->display_options['fields']['field_attachment']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['fields']['field_attachment']['label'] = 'Pièces jointes';
+  $handler->display->display_options['fields']['field_attachment']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_attachment']['element_label_type'] = 'strong';
+  $handler->display->display_options['fields']['field_attachment']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_attachment']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_attachment']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_attachment']['multi_type'] = 'ul';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Critère de tri: Contenu : Épinglé (en haut des listes) */
+  $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['table'] = 'node';
+  $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
+  /* Critère de tri: Contenu : Titre */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['sorts']['title']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Filtre contextuel: Contenu : Incarné par (field_incarnate) */
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['default_argument_type'] = 'current_user';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['validate']['type'] = 'user';
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['validate_options']['restrict_roles'] = TRUE;
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['validate_options']['roles'] = array(
+    66570830 => '66570830',
+    32775451 => '32775451',
+    199742668 => '199742668',
+    168020977 => '168020977',
+    149933350 => '149933350',
+  );
+  $handler->display->display_options['arguments']['field_incarnate_target_id']['validate']['fail'] = 'empty';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Field collection item : Validé (field_avantage_valide) */
+  $handler->display->display_options['filters']['field_avantage_valide_value']['id'] = 'field_avantage_valide_value';
+  $handler->display->display_options['filters']['field_avantage_valide_value']['table'] = 'field_data_field_avantage_valide';
+  $handler->display->display_options['filters']['field_avantage_valide_value']['field'] = 'field_avantage_valide_value';
+  $handler->display->display_options['filters']['field_avantage_valide_value']['relationship'] = 'field_avantages_value';
+  $handler->display->display_options['filters']['field_avantage_valide_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_avantage_valide_value']['group'] = 1;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'avantage' => 'avantage',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
+  /* Critère de filtrage: Processus : Current state */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    13 => '13',
+  );
+  $handler->display->display_options['filters']['sid']['group'] = 1;
+  /* Critère de filtrage: Terme de taxonomie : Nom */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['relationship'] = 'field_avantage_type_tid';
+  $handler->display->display_options['filters']['name']['value'] = 'Botte';
+  $handler->display->display_options['path'] = 'mes-bottes';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Mes bottes';
+  $handler->display->display_options['menu']['weight'] = '10';
+  $handler->display->display_options['menu']['name'] = 'user-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $translatables['avantages'] = array(
+    t('Master'),
+    t('Avantages'),
+    t('plus'),
+    t('Appliquer'),
+    t('Réinitialiser'),
+    t('Trier par'),
+    t('Asc'),
+    t('Desc'),
+    t('Vide'),
+    t('Aucun avantage validé pour le moment.'),
+    t('Avatanges'),
+    t('Avantage'),
+    t('TypeAvantage'),
+    t('Pièces jointes'),
+    t('Tout'),
+    t('Avantages de %1'),
+    t('Avantages Personnage (Bloc)'),
+    t('Mes bottes (Page)'),
+    t('Mes bottes'),
+    t('Vous ne disposez d\'aucune botte.'),
+  );
+  $export['avantages'] = $view;
+
   return $export;
 }

@@ -55,4 +55,5 @@ features[variable][] = node_submitted_avantage
 features[variable][] = view_mode_per_role_avantage
 features[variable][] = workflow_avantage
 features[views_view][] = admin_avantages
+features[views_view][] = avantages
 project path = sites/default/modules
