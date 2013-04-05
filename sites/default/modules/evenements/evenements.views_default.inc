@@ -372,6 +372,8 @@ function evenements_views_default_views() {
 
   /* Display: Tous les évènements inverse (Page) */
   $handler = $view->new_display('page', 'Tous les évènements inverse (Page)', 'page_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Timeline inversée';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Critère de tri: Contenu : Horaires - date de début (field_dates) */
@@ -1050,6 +1052,7 @@ Cible : [field_target]
     t('État actuel'),
     t('Tous les évènements (Page)'),
     t('Tous les évènements inverse (Page)'),
+    t('Timeline inversée'),
     t('Par intrigue (Bloc)'),
     t('Tout'),
     t('Timeline %1'),
