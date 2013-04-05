@@ -619,6 +619,183 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['menu']['name'] = 'menu-zorga-menu';
   $handler->display->display_options['menu']['context'] = 0;
 
+  /* Display: Par personnage (Bloc) */
+  $handler = $view->new_display('block', 'Par personnage (Bloc)', 'block_by_character');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relation: Contenu : Interprétation (field_version) */
+  $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
+  $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
+  $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
+  $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
+  $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
+  $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
+  $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
+  $handler->display->display_options['relationships']['field_target_target_id']['relationship'] = 'field_version_value';
+  $handler->display->display_options['relationships']['field_target_target_id']['label'] = 'Cible';
+  /* Relation: Contenu : Membres (field_group_members) */
+  $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
+  $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_group_members_value']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
+  $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
+  $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
+  $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
+  $handler->display->display_options['relationships']['field_character_target_id']['relationship'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_character_target_id']['label'] = 'Personnage';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['fields']['title_1']['table'] = 'node';
+  $handler->display->display_options['fields']['title_1']['field'] = 'title';
+  $handler->display->display_options['fields']['title_1']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['fields']['title_1']['label'] = 'Cible';
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Champ: Contenu : Type d'évènement */
+  $handler->display->display_options['fields']['field_event_type']['id'] = 'field_event_type';
+  $handler->display->display_options['fields']['field_event_type']['table'] = 'field_data_field_event_type';
+  $handler->display->display_options['fields']['field_event_type']['field'] = 'field_event_type';
+  $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['label'] = 'Date de début';
+  $handler->display->display_options['fields']['field_dates']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
+  $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['label'] = 'Date de fin';
+  $handler->display->display_options['fields']['field_dates_1']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
+  /* Champ: Processus : Current state */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  /* Champ: Contenu : Lien de modification */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
+  /* Champ: Etat CSS */
+  $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
+  $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid_1']['ui_name'] = 'Etat CSS';
+  $handler->display->display_options['fields']['sid_1']['label'] = '';
+  $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Filtre contextuel: Global : Vide */
+  $handler->display->display_options['arguments']['null']['id'] = 'null';
+  $handler->display->display_options['arguments']['null']['table'] = 'views';
+  $handler->display->display_options['arguments']['null']['field'] = 'null';
+  $handler->display->display_options['arguments']['null']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['null']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['null']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['null']['title'] = 'Timeline %1';
+  $handler->display->display_options['arguments']['null']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['null']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['null']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['null']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['null']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['null']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['null']['validate_options']['types'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['arguments']['null']['validate']['fail'] = 'empty';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'group' => 'group',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
+  /* Critère de filtrage: Contenu : Nid */
+  $handler->display->display_options['filters']['nid_1']['id'] = 'nid_1';
+  $handler->display->display_options['filters']['nid_1']['table'] = 'node';
+  $handler->display->display_options['filters']['nid_1']['field'] = 'nid';
+  $handler->display->display_options['filters']['nid_1']['relationship'] = 'field_character_target_id';
+  $handler->display->display_options['filters']['nid_1']['group'] = 1;
+  $handler->display->display_options['filters']['nid_1']['pull_value'] = TRUE;
+  $handler->display->display_options['filters']['nid_1']['argument_value'] = array(
+    'min' => '',
+    'max' => '',
+    'value' => 'null',
+  );
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type_3']['id'] = 'type_3';
+  $handler->display->display_options['filters']['type_3']['table'] = 'node';
+  $handler->display->display_options['filters']['type_3']['field'] = 'type';
+  $handler->display->display_options['filters']['type_3']['value'] = array(
+    'event' => 'event',
+  );
+  $handler->display->display_options['filters']['type_3']['group'] = 2;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type_2']['id'] = 'type_2';
+  $handler->display->display_options['filters']['type_2']['table'] = 'node';
+  $handler->display->display_options['filters']['type_2']['field'] = 'type';
+  $handler->display->display_options['filters']['type_2']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['filters']['type_2']['value'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['filters']['type_2']['group'] = 2;
+  /* Critère de filtrage: Contenu : Nid */
+  $handler->display->display_options['filters']['nid']['id'] = 'nid';
+  $handler->display->display_options['filters']['nid']['table'] = 'node';
+  $handler->display->display_options['filters']['nid']['field'] = 'nid';
+  $handler->display->display_options['filters']['nid']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['filters']['nid']['group'] = 2;
+  $handler->display->display_options['filters']['nid']['pull_value'] = TRUE;
+  $handler->display->display_options['filters']['nid']['argument_value'] = array(
+    'min' => '',
+    'max' => '',
+    'value' => 'null',
+  );
+
   /* Display: Par personnage (Page) */
   $handler = $view->new_display('page', 'Par personnage (Page)', 'page_by_character');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
@@ -661,8 +838,9 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['relationship'] = 'field_version_value';
-  $handler->display->display_options['fields']['field_alternate_title']['label'] = 'Intitulé interprétation';
+  $handler->display->display_options['fields']['field_alternate_title']['label'] = '';
   $handler->display->display_options['fields']['field_alternate_title']['element_type'] = 'h2';
+  $handler->display->display_options['fields']['field_alternate_title']['element_label_colon'] = FALSE;
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -847,8 +1025,8 @@ Cible : [field_target]
   $handler->display->display_options['menu']['name'] = 'menu-zorga-menu';
   $handler->display->display_options['menu']['context'] = 0;
 
-  /* Display: Par personnage (Bloc) */
-  $handler = $view->new_display('block', 'Par personnage (Bloc)', 'block_by_character');
+  /* Display: Par groupe (Bloc) */
+  $handler = $view->new_display('block', 'Par groupe (Bloc)', 'block_by_group');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
@@ -864,19 +1042,6 @@ Cible : [field_target]
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_target_target_id']['label'] = 'Cible';
-  /* Relation: Contenu : Membres (field_group_members) */
-  $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
-  $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
-  $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
-  $handler->display->display_options['relationships']['field_group_members_value']['relationship'] = 'field_target_target_id';
-  $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
-  $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
-  $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
-  $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
-  $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
-  $handler->display->display_options['relationships']['field_character_target_id']['relationship'] = 'field_group_members_value';
-  $handler->display->display_options['relationships']['field_character_target_id']['label'] = 'Personnage';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
@@ -955,15 +1120,11 @@ Cible : [field_target]
   $handler->display->display_options['arguments']['null']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['null']['validate']['type'] = 'node';
   $handler->display->display_options['arguments']['null']['validate_options']['types'] = array(
-    'character' => 'character',
+    'group' => 'group',
   );
   $handler->display->display_options['arguments']['null']['validate']['fail'] = 'empty';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['operator'] = 'OR';
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'AND',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -983,46 +1144,200 @@ Cible : [field_target]
   );
   $handler->display->display_options['filters']['type_1']['group'] = 1;
   /* Critère de filtrage: Contenu : Nid */
-  $handler->display->display_options['filters']['nid_1']['id'] = 'nid_1';
-  $handler->display->display_options['filters']['nid_1']['table'] = 'node';
-  $handler->display->display_options['filters']['nid_1']['field'] = 'nid';
-  $handler->display->display_options['filters']['nid_1']['relationship'] = 'field_character_target_id';
-  $handler->display->display_options['filters']['nid_1']['group'] = 1;
-  $handler->display->display_options['filters']['nid_1']['pull_value'] = TRUE;
-  $handler->display->display_options['filters']['nid_1']['argument_value'] = array(
-    'min' => '',
-    'max' => '',
-    'value' => 'null',
-  );
-  /* Critère de filtrage: Contenu : Type */
-  $handler->display->display_options['filters']['type_3']['id'] = 'type_3';
-  $handler->display->display_options['filters']['type_3']['table'] = 'node';
-  $handler->display->display_options['filters']['type_3']['field'] = 'type';
-  $handler->display->display_options['filters']['type_3']['value'] = array(
-    'event' => 'event',
-  );
-  $handler->display->display_options['filters']['type_3']['group'] = 2;
-  /* Critère de filtrage: Contenu : Type */
-  $handler->display->display_options['filters']['type_2']['id'] = 'type_2';
-  $handler->display->display_options['filters']['type_2']['table'] = 'node';
-  $handler->display->display_options['filters']['type_2']['field'] = 'type';
-  $handler->display->display_options['filters']['type_2']['relationship'] = 'field_target_target_id';
-  $handler->display->display_options['filters']['type_2']['value'] = array(
-    'character' => 'character',
-  );
-  $handler->display->display_options['filters']['type_2']['group'] = 2;
-  /* Critère de filtrage: Contenu : Nid */
   $handler->display->display_options['filters']['nid']['id'] = 'nid';
   $handler->display->display_options['filters']['nid']['table'] = 'node';
   $handler->display->display_options['filters']['nid']['field'] = 'nid';
   $handler->display->display_options['filters']['nid']['relationship'] = 'field_target_target_id';
-  $handler->display->display_options['filters']['nid']['group'] = 2;
+  $handler->display->display_options['filters']['nid']['group'] = 1;
   $handler->display->display_options['filters']['nid']['pull_value'] = TRUE;
   $handler->display->display_options['filters']['nid']['argument_value'] = array(
     'min' => '',
     'max' => '',
     'value' => 'null',
   );
+
+  /* Display: Par groupe (Page) */
+  $handler = $view->new_display('page', 'Par groupe (Page)', 'page_by_group');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relation: Contenu : Interprétation (field_version) */
+  $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
+  $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
+  $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
+  $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
+  $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
+  $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
+  $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
+  $handler->display->display_options['relationships']['field_target_target_id']['relationship'] = 'field_version_value';
+  $handler->display->display_options['relationships']['field_target_target_id']['label'] = 'Cible';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Champ: Champ : Intitulé orga */
+  $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
+  $handler->display->display_options['fields']['field_alternate_title']['relationship'] = 'field_version_value';
+  $handler->display->display_options['fields']['field_alternate_title']['label'] = '';
+  $handler->display->display_options['fields']['field_alternate_title']['element_type'] = 'h2';
+  $handler->display->display_options['fields']['field_alternate_title']['element_label_colon'] = FALSE;
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Champ: Contenu : Type d'évènement */
+  $handler->display->display_options['fields']['field_event_type']['id'] = 'field_event_type';
+  $handler->display->display_options['fields']['field_event_type']['table'] = 'field_data_field_event_type';
+  $handler->display->display_options['fields']['field_event_type']['field'] = 'field_event_type';
+  $handler->display->display_options['fields']['field_event_type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_event_type']['empty'] = '- Aucun -';
+  $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['label'] = 'Date de début';
+  $handler->display->display_options['fields']['field_dates']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_dates']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
+  $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['label'] = 'Date de fin';
+  $handler->display->display_options['fields']['field_dates_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_dates_1']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
+  /* Champ: Contenu : Intrigue */
+  $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
+  $handler->display->display_options['fields']['field_intrigue']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
+    'link' => 0,
+  );
+  /* Champ: Processus : Current state */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
+  /* Champ: Field collection item : Cible Interprétation */
+  $handler->display->display_options['fields']['field_target']['id'] = 'field_target';
+  $handler->display->display_options['fields']['field_target']['table'] = 'field_data_field_target';
+  $handler->display->display_options['fields']['field_target']['field'] = 'field_target';
+  $handler->display->display_options['fields']['field_target']['relationship'] = 'field_version_value';
+  $handler->display->display_options['fields']['field_target']['label'] = '';
+  $handler->display->display_options['fields']['field_target']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_target']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_target']['settings'] = array(
+    'link' => 1,
+  );
+  /* Champ: Champs organisés */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Champs organisés';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="cec-columns">
+  <div class="cec-column">
+Type : [field_event_type]<br />
+Intrigue : [field_intrigue]<br />
+Etat : [sid]
+  </div>
+  <div class="cec-column">
+Date de début : [field_dates]<br />
+Date de fin : [field_dates_1]<br />
+Intitulé zorga : [title]<br />
+Cible : [field_target]
+  </div>
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Champ: Champ : Descriptif orga */
+  $handler->display->display_options['fields']['field_alternate_body']['id'] = 'field_alternate_body';
+  $handler->display->display_options['fields']['field_alternate_body']['table'] = 'field_data_field_alternate_body';
+  $handler->display->display_options['fields']['field_alternate_body']['field'] = 'field_alternate_body';
+  $handler->display->display_options['fields']['field_alternate_body']['relationship'] = 'field_version_value';
+  $handler->display->display_options['fields']['field_alternate_body']['label'] = '';
+  $handler->display->display_options['fields']['field_alternate_body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Filtre contextuel: Global : Vide */
+  $handler->display->display_options['arguments']['null']['id'] = 'null';
+  $handler->display->display_options['arguments']['null']['table'] = 'views';
+  $handler->display->display_options['arguments']['null']['field'] = 'null';
+  $handler->display->display_options['arguments']['null']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['null']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['null']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['null']['title'] = 'Timeline %1';
+  $handler->display->display_options['arguments']['null']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['null']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['null']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['null']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['null']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['null']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['null']['validate_options']['types'] = array(
+    'group' => 'group',
+  );
+  $handler->display->display_options['arguments']['null']['validate']['fail'] = 'empty';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'event' => 'event',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type_3']['id'] = 'type_3';
+  $handler->display->display_options['filters']['type_3']['table'] = 'node';
+  $handler->display->display_options['filters']['type_3']['field'] = 'type';
+  $handler->display->display_options['filters']['type_3']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['filters']['type_3']['value'] = array(
+    'group' => 'group',
+  );
+  $handler->display->display_options['filters']['type_3']['group'] = 1;
+  /* Critère de filtrage: Contenu : Nid */
+  $handler->display->display_options['filters']['nid']['id'] = 'nid';
+  $handler->display->display_options['filters']['nid']['table'] = 'node';
+  $handler->display->display_options['filters']['nid']['field'] = 'nid';
+  $handler->display->display_options['filters']['nid']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['filters']['nid']['group'] = 1;
+  $handler->display->display_options['filters']['nid']['pull_value'] = TRUE;
+  $handler->display->display_options['filters']['nid']['argument_value'] = array(
+    'min' => '',
+    'max' => '',
+    'value' => 'null',
+  );
+  $handler->display->display_options['path'] = 'admin/cec/evenements/groupe/%';
+  $handler->display->display_options['menu']['title'] = 'Liste des Evènements';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'menu-zorga-menu';
+  $handler->display->display_options['menu']['context'] = 0;
   $translatables['admin_evenements'] = array(
     t('Master'),
     t('Timeline'),
@@ -1069,11 +1384,11 @@ Date de début : [field_dates]<br />
 Date de fin : [field_dates_1]
   </div>
 </div>'),
-    t('Par personnage (Page)'),
+    t('Par personnage (Bloc)'),
     t('Cible'),
     t('Membres'),
     t('Personnage'),
-    t('Intitulé interprétation'),
+    t('Par personnage (Page)'),
     t('<div class="cec-columns">
   <div class="cec-column">
 Type : [field_event_type]<br />
@@ -1087,7 +1402,8 @@ Intitulé zorga : [title]<br />
 Cible : [field_target]
   </div>
 </div>'),
-    t('Par personnage (Bloc)'),
+    t('Par groupe (Bloc)'),
+    t('Par groupe (Page)'),
   );
   $export['admin_evenements'] = $view;
 
