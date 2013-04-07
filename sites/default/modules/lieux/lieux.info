@@ -16,6 +16,7 @@ dependencies[] = views
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
+features[field][] = comment-comment_node_location-comment_body
 features[field][] = node-location-body
 features[field][] = node-location-field_location_type
 features[node][] = location
