@@ -6,11 +6,12 @@ Author: John VanDyk
 Maintainers: Mark Fredrickson <mark.m.fredrickson at gmail dot com>
              John VanDyk drupal.org/user/2375
              Bastlynn http://drupal.org/user/275249
+             Nancy Wichmann (NancyDru) http://drupal.org/user/101412
 Drupal: 7
 ********************************************************************
 DESCRIPTION:
 
-The workflow module enables you to create arbitrary workflows in 
+The workflow module enables you to create arbitrary workflows in
 Drupal and associate them with node types.
 
 Workflows are made up of workflow states.
@@ -27,24 +28,27 @@ and generally enhanced this module.
 INSTALLATION:
 
 1. Place the entire workflow directory into your Drupal
-   sites/all/modules directory.
-
+   sites/all/modules directory (or appropriate alternative).
 
 2. Enable the workflow module by navigating to:
 
      Administer > Site building > Modules
 
-   Enabling the workflow module will create the necessary database 
+   Enabling the workflow module will create the necessary database
    tables for you.
 
-3. If you want anyone besides the administrative user to be able
+3. If you wish to use the administrative UI, then enable the
+   Workflow UI module. There are several other optional modules
+   that you may also enable, if needed.
+
+4. If you want anyone besides the administrative user to be able
    to configure workflows (usually a bad idea), they must be given
    the "administer workflow" access permission:
-   
+
      Administer > User management > Permissions
 
    When the module is enabled and the user has the "administer
-   workflow" permission, a "Workflow" menu should appear in the 
+   workflow" permission, a "Workflow" menu should appear in the
    menu system under Administer -> Site building.
 
    You may also allow only some users to schedule transitions. Select
@@ -53,8 +57,8 @@ INSTALLATION:
 ********************************************************************
 GETTING STARTED:
 
-Let's create a new workflow. Click on Administer -> Site building -> 
-Workflow and click on the "Add workflow" tab.
+Let's create a new workflow. Click on Administer -> Configuration ->
+Workflow -> Workflow and click on the "Add workflow" tab.
 
 We'll start simple. Call our workflow "Draft-Done" and click Add Workflow.
 
@@ -86,18 +90,19 @@ would turn in drafts and editors would say when they are "done".
 Be sure to click the Save button to save your settings.
 
 Now let's tell Drupal which node types should use this workflow. Click
-on Administer -> Site building -> Workflow. Let's assign the Draft-Done
-workflow to the story node type and click Save Workflow Mapping.
+on Administer -> Configuration -> Workflow -> Workflow. Let's assign
+the Draft-Done workflow to the article node type and click Save Workflow
+Mapping.
 
 Now we could add an action (previously configured using the trigger
 module). Click on the Actions link above
 your workflow. Add the action to the transition.
 
-Now create a new story by going to Create content -> Story. If there
+Now create a new article by going to Create content -> article. If there
 is no sign of a workflow interface here, don't panic. The interface
 is only displayed if there is more than one state to which the user
 can move the node (why bother the user with a form with only one
-selection?) Click Submit to create the story.
+selection?) Click Submit to create the article.
 
 You can see the state the node is in and the history of state changes
 by clicking on the Workflow tab while viewing a node.

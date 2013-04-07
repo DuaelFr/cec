@@ -1,5 +1,4 @@
 <?php
-// $Id$
 /**
  * @file
  * Provide actions and triggers for workflows.
@@ -8,138 +7,6 @@
  * Additional creadit to gcassie ( http://drupal.org/user/80260 ) for
  * the initial push to split actions out of core workflow.
  */
-
-/**
- * Implements hook_theme().
- */
-function workflow_actions_theme() {
-  return array(
-    'workflow_actions_form' => array(
-      'render element' => 'form',
-    ),
-  );
-}
-
-/**
- * Implements hook_action_info().
- */
-function workflow_action_info() {
-  return array(
-    'workflow_select_next_state_action' => array(
-      'type' => 'node',
-      'label' => t('Change workflow state of post to next state'),
-      'configurable' => FALSE,
-      'triggers' => array('any'),
-    ),
-    'workflow_select_given_state_action' => array(
-      'type' => 'node',
-      'label' => t('Change workflow state of post to new state'),
-      'configurable' => TRUE,
-      'triggers' => array('any'),
-    ),
-  );
-}
-
-/**
- * Implements a Drupal action. Move a node to the next state in the workfow.
- */
-function workflow_select_next_state_action($node, $context) {
-  // If this action is being fired because it's attached to a workflow transition
-  // then the node's new state (now its current state) should be in $node->workflow
-  // because that is where the value from the workflow form field is stored;
-  // otherwise the current state is placed in $node->workflow by our nodeapi load.
-  if (!isset($node->nid)) {
-    watchdog('workflow', 'Unable to get current node id state of node - node is not yet saved.');
-    return;
-  }
-  if (!isset($node->workflow)) {
-    watchdog('workflow', 'Unable to get current workflow state of node %nid.',
-      array('%nid' => $node->nid));
-    return;
-  }
-  $current_state = $node->workflow;
-  $new_state = $current_state;
-  // Get the node's new state.
-  $choices = workflow_field_choices($node);
-  foreach ($choices as $sid => $name) {
-    if (isset($flag)) {
-      $new_state = $sid;
-      $new_state_name = $name;
-      break;
-    }
-    if ($sid == $current_state) {
-      $flag = TRUE;
-    }
-  }
-  // Fire the transition.
-  workflow_execute_transition($node, $new_state);
-}
-
-/**
- * Implements a Drupal action. Move a node to a specified state.
- */
-function workflow_select_given_state_action($node, $context) {
-  if (!isset($node->nid)) {
-    watchdog('workflow', 'Unable to get current node id state of node - node is not yet saved.');
-    return;
-  }
-  $comment = t($context['workflow_comment'],
-    array('%title' => check_plain($node->title), '%state' => check_plain($context['state_name'])));
-  workflow_execute_transition($node, $context['target_sid'], $comment, $context['force']);
-}
-
-/**
- * Configuration form for "Change workflow state of post to new state" action.
- *
- * @see workflow_select_given_state_action()
- */
-function workflow_select_given_state_action_form($context) {
-  $previous_workflow = '';
-  $options = array();
-  // Get all states, only where active.
-  foreach (workflow_get_workflow_states(array('status' => 1)) as $data) {
-    $options[$data->state][$data->sid] = check_plain($data->state);
-  }
-  $form['target_sid'] = array(
-    '#type' => 'select',
-    '#title' => t('Target state'),
-    '#description' => t('Please select that state that should be assigned when this action runs.'),
-    '#default_value' => isset($context['target_sid']) ? $context['target_sid'] : '',
-    '#options' => $options,
-  );
-  $form['force'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Force transition'),
-    '#description' => t('If this box is checked, the new state will be assigned even if workflow ' .
-      'permissions disallow it.'),
-    '#default_value' => isset($context['force']) ? $context['force'] : '',
-  );
-  $form['workflow_comment'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Message'),
-    '#description' => t('This message will be written into the workflow history log when the action ' .
-      'runs. You may include the following variables: %state, %title'),
-    '#default_value' => isset($context['workflow_history']) ? $context['workflow_history'] : t('Action set %title to %state.'),
-  );
-  return $form;
-}
-
-/**
- * Submit handler for "Change workflow state of post to new state" action
- * configuration form.
- *
- * @see workflow_select_given_state_action_form()
- */
-function workflow_select_given_state_action_submit($form_id, $form_state) {
-  if ($state = workflow_get_workflow_states_by_sid($form_state['values']['target_sid'])) {
-    return array(
-      'target_sid' => $form_state['values']['target_sid'],
-      'state_name' => check_plain($state->state),
-      'force' => $form_state['values']['force'],
-      'workflow_comment' => $form_state['values']['workflow_comment'],
-    );
-  }
-}
 
 /**
  * Implements hook_hook_info().
@@ -153,7 +20,8 @@ function workflow_actions_trigger_info() {
   if (empty($states)) {
     return array();
   }
-  $trigger_page = drupal_substr($_GET['q'], 0, 28) == 'admin/structure/trigger/workflow';
+  $trigger_page = drupal_substr($_GET['q'], 0, 32) == 'admin/structure/trigger/workflow';
+
   // TODO these should be pulled into their own DB function calls.
   if ($trigger_page && $wid = arg(4)) {
     $result = db_query('SELECT tm.type, w.wid, w.name, ws.state, wt.tid, wt.sid, wt.target_sid ' .
@@ -173,11 +41,20 @@ function workflow_actions_trigger_info() {
     'WHERE ws.status = 1 AND wt.target_sid IS NOT NULL ' .
     'ORDER BY tm.type, ws.weight');
   }
+
+  $creation_state = t('(creation)');
   foreach ($result as $data) {
+    $creation_flag = FALSE;
+    if ($states[$data->sid] == $creation_state) {
+      $creation_flag = TRUE;
+    }
     $pseudohooks['workflow-' . $data->type . '-' . $data->tid] =
       array('label' => t('When %type moves from %state to %target_state',
-        array('%type' => $data->type, '%state' => $states[$data->sid], '%target_state' => $states[$data->target_sid])));
+        array('%type' => $data->type, '%state' => $states[$data->sid], '%target_state' => $states[$data->target_sid])),
+        'workflow_creation_state' => $creation_flag,
+      );
   }
+
   // $pseudohooks will not be set if no workflows have been assigned
   // to node types.
   if (isset($pseudohooks)) {
@@ -235,6 +112,7 @@ function workflow_actions_workflow($op, $old_state, $new_state, $node) {
         }
       }
     break;
+
     case 'transition delete':
       if ($transition = workflow_get_workflow_transitions_by_sid_target_sid($old_state, $new_state) ) {
         $actions = workflow_actions_get_actions_by_tid($transition->tid);
@@ -250,11 +128,13 @@ function workflow_actions_workflow($op, $old_state, $new_state, $node) {
  * Implements hook_workflow_operations().
  * Called in workflow.admin.inc to add actions for states.
  */
-function workflow_actions_workflow_operations($level, $wid) {
-  return array('workflow_overview_actions' => array(
-    'title' => t('Actions'),
-    'href' => 'admin/structure/trigger/workflow/' . $wid),
-  );
+function workflow_actions_workflow_operations($level, $workflow = NULL, $state = NULL) {
+  if ($workflow) {
+    return array('workflow_overview_actions' => array(
+      'title' => t('Actions'),
+      'href' => 'admin/structure/trigger/workflow/' . $workflow->wid),
+      );
+  }
 }
 
 /**
@@ -341,4 +221,22 @@ function workflow_actions_get_actions_by_tid($tid) {
     }
   }
   return $aids;
+}
+
+/**
+ * Implementation of hook_drupal_alter().
+ */
+function workflow_actions_action_info_alter(&$info) {
+  $transitions = workflow_actions_trigger_info();
+  foreach ((array)$transitions['workflow'] as $transition => $data) {
+    // Loop through all available node actions and add them as triggers.
+    // But not if this has been flagged as a creation state.
+    if ($data['workflow_creation_state'] != TRUE) {
+      foreach (node_action_info() as $action => $data) {
+        $info[$action]['triggers'][] = $transition;
+      }
+    }
+    // Either way, unset the creation flag so we don't confuse anyone later.
+    unset($transitions['workflow'][$transition]['workflow_creation_state']);
+  }
 }

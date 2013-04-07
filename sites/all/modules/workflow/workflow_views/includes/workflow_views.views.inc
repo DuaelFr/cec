@@ -1,5 +1,5 @@
 <?php
-// $Id$
+
 /**
  * @file
  * Provide views data and handler information for workflow.module.
@@ -108,6 +108,30 @@ function workflow_views_views_data() {
     ),
   );
 
+  $data['workflow_node_current']['table']['group']  = t('Workflow');
+  // Explain how this table joins to others.
+  $data['workflow_node_current']['table']['join'] = array(
+    'node' => array(
+      'table' => 'workflow_node_history',
+      'field' => 'nid',
+      'left_table' => 'workflow_node',
+      'left_field' => 'nid',
+      'extra' => 'workflow_node.stamp = workflow_node_current.stamp AND workflow_node.nid = workflow_node_current.nid',
+    ),
+  );
+  // Workflow node current comment.
+  $data['workflow_node_current']['comment'] = array(
+    'title' => t('Current comment'),
+    'help' => t('The comment describing why the node was moved from the last state to the current state.'),
+    'field' => array(
+      'handler' => 'views_handler_field_xss',
+      'click sortable' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+      'numeric' => TRUE,
+    ),
+  );
   // Workflow scheduled transition.
   $data['workflow_scheduled_transition']['table']['group']  = t('Workflow');
   $data['workflow_scheduled_transition']['table']['join'] = array(
@@ -156,7 +180,7 @@ function workflow_views_views_data() {
       'numeric' => TRUE,
     ),
   );
-  
+
   // Workflow node history.
   $data['workflow_node_history']['table']['group']  = t('Workflow');
   $data['workflow_node_history']['table']['join'] = array(
@@ -203,6 +227,28 @@ function workflow_views_views_data() {
     'filter' => array(
       'handler' => 'views_handler_filter_string',
       'numeric' => TRUE,
+    ),
+  );
+  $data['workflow_node_history']['uid'] = array(
+    'title' => t('Previous comment author'),
+    'help' => t('The author of a comment describing why the node was moved from one state to another in the past.'),
+    'field' => array(
+      'handler' => 'workflow_views_handler_field_username',
+      'click sortable' => TRUE,
+    ),
+    'relationship' => array(
+      'title' => t('Author'),
+      'help' => t("The User ID of the comment's author."),
+      'base' => 'users',
+      'base field' => 'uid',
+      'handler' => 'views_handler_relationship',
+      'label' => t('author'),
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_user_name',
     ),
   );
   return $data;

@@ -1,6 +1,7 @@
-name = Workflow access
-description = Content access control based on workflows and roles.
+name = Workflow VBO
+description = Provides workflow actions for VBO.
 dependencies[] = workflow
+dependencies[] = views_bulk_operations
 package = Workflow
 core = 7.x
 ; Information added by drupal.org packaging script on 2013-04-03
