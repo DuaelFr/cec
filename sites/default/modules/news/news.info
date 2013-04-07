@@ -10,6 +10,7 @@ dependencies[] = node
 dependencies[] = strongarm
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:1
+features[field][] = comment-comment_node_news-comment_body
 features[field][] = node-news-body
 features[node][] = news
 features[variable][] = comment_anonymous_news
