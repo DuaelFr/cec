@@ -18,6 +18,7 @@ dependencies[] = views
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
+features[field][] = comment-comment_node_sequence-comment_body
 features[field][] = field_collection_item-field_nonplayers-field_incarnate_npc
 features[field][] = field_collection_item-field_nonplayers-field_nonplayer_role
 features[field][] = node-sequence-body
