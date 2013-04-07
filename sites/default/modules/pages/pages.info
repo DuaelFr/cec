@@ -11,6 +11,7 @@ dependencies[] = node
 dependencies[] = strongarm
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:1
+features[field][] = comment-comment_node_page-comment_body
 features[field][] = node-page-body
 features[node][] = page
 features[variable][] = book_allowed_types
