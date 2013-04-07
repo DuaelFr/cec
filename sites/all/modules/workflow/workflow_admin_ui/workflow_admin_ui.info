@@ -4,9 +4,11 @@ package = Workflow
 dependencies[] = workflow
 core = 7.x
 configure = admin/config/workflow/workflow
-; Information added by drupal.org packaging script on 2012-01-05
-version = "7.x-1.0"
+stylesheets[all][] = workflow_admin_ui.css
+
+; Information added by drupal.org packaging script on 2013-04-03
+version = "7.x-1.1"
 core = "7.x"
 project = "workflow"
-datestamp = "1325791244"
+datestamp = "1365021320"
 

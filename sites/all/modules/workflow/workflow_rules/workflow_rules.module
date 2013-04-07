@@ -1,5 +1,4 @@
 <?php
-// $Id$
 /**
  * @file
  * Provide rules for workflows.
@@ -27,7 +26,7 @@ function workflow_rules_workflow($op, $old_state, $new_state, $node) {
     case 'transition post':
       // Rules are updated on after the transition.
       if ($old_state == $new_state) {
-        rules_invoke_event('workflow_comment_added', $node, $options['from'], $options['to']);
+        rules_invoke_event('workflow_comment_added', $node, $old_state, $new_state);
         return;
       }
       rules_invoke_event('workflow_state_changed', $node);
