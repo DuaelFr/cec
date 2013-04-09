@@ -89,6 +89,15 @@ function personnages_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -109,7 +118,11 @@ function personnages_strongarm() {
             'visible' => TRUE,
           ),
           'teaser' => array(
-            'weight' => '5',
+            'weight' => '8',
+            'visible' => FALSE,
+          ),
+          'default' => array(
+            'weight' => '99',
             'visible' => FALSE,
           ),
         ),
@@ -119,7 +132,11 @@ function personnages_strongarm() {
             'visible' => TRUE,
           ),
           'teaser' => array(
-            'weight' => '1',
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
+          'default' => array(
+            'weight' => '99',
             'visible' => FALSE,
           ),
         ),
@@ -129,7 +146,11 @@ function personnages_strongarm() {
             'visible' => TRUE,
           ),
           'teaser' => array(
-            'weight' => '4',
+            'weight' => '7',
+            'visible' => FALSE,
+          ),
+          'default' => array(
+            'weight' => '99',
             'visible' => FALSE,
           ),
         ),
@@ -139,28 +160,82 @@ function personnages_strongarm() {
             'visible' => TRUE,
           ),
           'teaser' => array(
-            'weight' => '3',
+            'weight' => '6',
+            'visible' => FALSE,
+          ),
+          'default' => array(
+            'weight' => '99',
             'visible' => FALSE,
           ),
         ),
         'view_groupes_player' => array(
           'full_zorga' => array(
-            'weight' => '18',
+            'weight' => '19',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '3',
+            'visible' => FALSE,
+          ),
+          'default' => array(
+            'weight' => '99',
+            'visible' => FALSE,
+          ),
+        ),
+        'zorgas_links' => array(
+          'teaser' => array(
+            'weight' => '5',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '22',
+            'visible' => TRUE,
+          ),
+          'default' => array(
+            'weight' => '99',
+            'visible' => FALSE,
+          ),
+        ),
+        'comments' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '9',
+            'visible' => TRUE,
+          ),
+        ),
+        'workflow_current_state' => array(
+          'default' => array(
+            'weight' => '-99',
             'visible' => FALSE,
           ),
           'teaser' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),
+          'full_zorga' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
         ),
-        'zorgas_links' => array(
+        'workflow' => array(
+          'default' => array(
+            'weight' => '99',
+            'visible' => FALSE,
+          ),
           'teaser' => array(
-            'weight' => '2',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '22',
-            'visible' => TRUE,
+            'weight' => '21',
+            'visible' => FALSE,
           ),
         ),
       ),

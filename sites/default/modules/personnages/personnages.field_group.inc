@@ -80,8 +80,8 @@ function personnages_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'field_avantages',
-      1 => 'field_credit',
-      2 => 'field_pugilat',
+      1 => 'field_pugilat',
+      2 => 'field_credit',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -162,7 +162,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Canevas',
-    'weight' => '14',
+    'weight' => '16',
     'children' => array(
       0 => 'field_canevas',
     ),
@@ -276,13 +276,13 @@ function personnages_field_group_info() {
     'label' => 'Informations',
     'weight' => '3',
     'children' => array(
-      0 => 'field_character_state',
-      1 => 'field_character_type',
-      2 => 'field_confession',
-      3 => 'field_incarnate',
+      0 => 'field_character_type',
+      1 => 'field_incarnate',
+      2 => 'field_character_state',
+      3 => 'field_species',
       4 => 'field_nationalite',
-      5 => 'field_occupation',
-      6 => 'field_species',
+      5 => 'field_confession',
+      6 => 'field_occupation',
       7 => 'zorgas_links',
     ),
     'format_type' => 'fieldset',
@@ -309,9 +309,9 @@ function personnages_field_group_info() {
     'label' => '',
     'weight' => '0',
     'children' => array(
-      0 => 'group_canevas',
-      1 => 'group_groupes',
-      2 => 'group_avantages',
+      0 => 'group_avantages',
+      1 => 'group_canevas',
+      2 => 'group_groupes',
       3 => 'group_informations',
     ),
     'format_type' => 'htabs',
