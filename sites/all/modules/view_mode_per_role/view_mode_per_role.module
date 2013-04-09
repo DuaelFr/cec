@@ -6,12 +6,12 @@
  */
 
 /**
- * Implements hook_menu_alter().
- *
- * Change default node/%node callback to allow us to alter default view mode.
+ * Implements hook_entity_view_mode_alter().
  */
-function view_mode_per_role_menu_alter(&$items) {
-  $items['node/%node']['page callback'] = 'view_mode_per_role_node_page_view';
+function view_mode_per_role_entity_view_mode_alter(&$view_mode, $context) {
+  if ($context['entity_type'] == 'node') {
+    $view_mode = _view_mode_per_role_get_view_mode($context['entity']);
+  }
 }
 
 /**
@@ -23,53 +23,6 @@ function view_mode_per_role_theme() {
       'render element' => 'form',
     ),
   );
-}
-
-/**
- * Menu callback; view a single node.
- *
- * Rewriting node_page_view() function to call view_mode_per_role_node_show()
- * instead of node_show().
- */
-function view_mode_per_role_node_page_view($node) {
-  // If there is a menu link to this node, the link becomes the last part
-  // of the active trail, and the link name becomes the page title.
-  // Thus, we must explicitly set the page title to be the node title.
-  drupal_set_title($node->title);
-  $uri = entity_uri('node', $node);
-  // Set the node path as the canonical URL to prevent duplicate content.
-  drupal_add_html_head_link(array('rel' => 'canonical', 'href' => url($uri['path'], $uri['options'])), TRUE);
-  // Set the non-aliased path as a default shortlink.
-  drupal_add_html_head_link(array('rel' => 'shortlink', 'href' => url($uri['path'], array_merge($uri['options'], array('alias' => TRUE)))), TRUE);
-  return view_mode_per_role_node_show($node);
-}
-
-/**
- * Generate an array which displays a node detail page.
- *
- * Rewriting node_show() function to allow to change the default view_mode.
- *
- * @param $node
- *   A node object.
- * @param $message
- *   A flag which sets a page title relevant to the revision being viewed.
- * @return
- *   A $page element suitable for use by drupal_render().
- */
-function view_mode_per_role_node_show($node, $message = FALSE) {
-  if ($message) {
-    drupal_set_title(t('Revision of %title from %date', array('%title' => $node->title, '%date' => format_date($node->revision_timestamp))), PASS_THROUGH);
-  }
-
-  $view_mode = _view_mode_per_role_get_view_mode($node);
-
-  // For markup consistency with other pages, use node_view_multiple() rather than node_view().
-  $nodes = node_view_multiple(array($node->nid => $node), $view_mode);
-
-  // Update the history table, stating that this user viewed this node.
-  node_tag_new($node);
-
-  return $nodes;
 }
 
 /**
