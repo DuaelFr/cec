@@ -114,11 +114,11 @@ function groupes_strongarm() {
       'display' => array(
         'view_events' => array(
           'default' => array(
-            'weight' => '4',
+            'weight' => '7',
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '2',
+            'weight' => '5',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
@@ -128,11 +128,11 @@ function groupes_strongarm() {
         ),
         'view_infos' => array(
           'default' => array(
-            'weight' => '5',
+            'weight' => '8',
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '1',
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
@@ -146,12 +146,54 @@ function groupes_strongarm() {
             'visible' => FALSE,
           ),
           'teaser' => array(
-            'weight' => '0',
+            'weight' => '3',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
             'weight' => '6',
             'visible' => TRUE,
+          ),
+        ),
+        'comments' => array(
+          'default' => array(
+            'weight' => '5',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '9',
+            'visible' => TRUE,
+          ),
+        ),
+        'workflow_current_state' => array(
+          'default' => array(
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
+        ),
+        'workflow' => array(
+          'default' => array(
+            'weight' => '3',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '11',
+            'visible' => FALSE,
           ),
         ),
       ),

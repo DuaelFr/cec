@@ -13,9 +13,9 @@ function groupes_taxonomy_default_vocabularies() {
       'name' => 'Type de groupe',
       'machine_name' => 'type_de_groupe',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }
