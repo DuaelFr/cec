@@ -13,9 +13,9 @@ function sequences_taxonomy_default_vocabularies() {
       'name' => 'Type de séquence',
       'machine_name' => 'sequence_type',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }

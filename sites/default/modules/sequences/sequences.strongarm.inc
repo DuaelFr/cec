@@ -89,6 +89,15 @@ function sequences_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -102,7 +111,38 @@ function sequences_strongarm() {
           'weight' => '9',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'comments' => array(
+          'default' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '8',
+            'visible' => TRUE,
+          ),
+        ),
+        'workflow_current_state' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '9',
+            'visible' => FALSE,
+          ),
+        ),
+        'workflow' => array(
+          'default' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__sequence'] = $strongarm;
