@@ -13,9 +13,9 @@ function avantages_taxonomy_default_vocabularies() {
       'name' => 'Type d\'avantage',
       'machine_name' => 'avantage_type',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }
