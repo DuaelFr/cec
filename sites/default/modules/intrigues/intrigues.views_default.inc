@@ -145,7 +145,7 @@ function intrigues_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '600',
   );
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -257,7 +257,7 @@ function intrigues_views_default_views() {
   $handler->display->display_options['filters']['field_intrigue_theme_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_intrigue_theme_tid']['vocabulary'] = 'intrigue_theme';
   $handler->display->display_options['filters']['field_intrigue_theme_tid']['hierarchy'] = 1;
-  /* Critère de filtrage: Processus : Current state */
+  /* Critère de filtrage: Processus : État actuel */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';

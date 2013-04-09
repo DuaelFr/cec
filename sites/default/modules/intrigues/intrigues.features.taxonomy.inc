@@ -13,17 +13,17 @@ function intrigues_taxonomy_default_vocabularies() {
       'name' => 'Thématique d\'intrigue',
       'machine_name' => 'intrigue_theme',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
     'intrigue_type' => array(
       'name' => 'Type d\'intrigue',
       'machine_name' => 'intrigue_type',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }
