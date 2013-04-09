@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Code for the Administration feature installation.
+ */
+
+/**
+ * Implements hook_update_N(). Activate comments on needed content types.
+ */
+function administration_update_7001(&$sandbox) {
+  $types = array(
+    'avantage', 'event', 'group', 'information', 'intrigue',
+    'location', 'stuff', 'character', 'sequence',
+  );
+  db_update('node')
+    ->fields(array('comment' => 2))
+    ->condition('type', $types, 'IN')
+    ->execute();
+}

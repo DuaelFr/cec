@@ -52,3 +52,33 @@ function administration_menu_local_tasks_alter(&$data, $router_item, $root_path)
     );
   }
 }
+// -----------------------------------------------------------------------------
+// EXTRA FIELDS
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function administration_field_extra_fields() {
+  $extras = array();
+
+  $types = node_type_get_types();
+  unset($types['news']);
+  unset($types['page']);
+  foreach ($types  as $machine_name => $type) {
+    $extras['node'][$machine_name]['display']['comments'] = array(
+      'label' => t('Comments'),
+      'weight' => 99,
+    );
+  }
+
+  return $extras;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function administration_node_view($node, $view_mode, $langcode) {
+  if (!empty($node->comment)) {
+    $node->content['comments'] = comment_node_page_additions($node);
+  }
+}
