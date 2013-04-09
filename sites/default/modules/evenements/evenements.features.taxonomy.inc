@@ -13,9 +13,9 @@ function evenements_taxonomy_default_vocabularies() {
       'name' => 'Type d\'évènement',
       'machine_name' => 'event_type',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }

@@ -174,7 +174,7 @@ function evenements_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -329,7 +329,7 @@ function evenements_views_default_views() {
     168020977 => 0,
     149933350 => 0,
   );
-  /* Critère de filtrage: Processus : Current state */
+  /* Critère de filtrage: Processus : État actuel */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -440,7 +440,7 @@ function evenements_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -553,7 +553,7 @@ function evenements_views_default_views() {
   $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
     'link' => 0,
   );
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -630,7 +630,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relation: Entity Reference : Entité référencée */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
@@ -643,7 +643,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['relationships']['field_group_members_value']['relationship'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relation: Entity Reference : Entité référencée */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
@@ -692,7 +692,7 @@ Date de fin : [field_dates_1]
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -813,7 +813,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relation: Entity Reference : Entité référencée */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
@@ -826,7 +826,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['relationships']['field_group_members_value']['relationship'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relation: Entity Reference : Entité référencée */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
@@ -892,7 +892,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
     'link' => 0,
   );
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -1036,7 +1036,7 @@ Cible : [field_target]
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relation: Entity Reference : Entité référencée */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
@@ -1085,7 +1085,7 @@ Cible : [field_target]
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -1173,7 +1173,7 @@ Cible : [field_target]
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relation: Entity Reference : Entité référencée */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
@@ -1239,7 +1239,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
     'link' => 0,
   );
-  /* Champ: Processus : Current state */
+  /* Champ: Processus : État actuel */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -1358,13 +1358,12 @@ Cible : [field_target]
     t('Interprétations'),
     t('.'),
     t(','),
-    t('Current state'),
+    t('État actuel'),
     t('Actions'),
     t('modifier'),
     t('A partir du'),
     t('Jusqu\'au'),
     t('Intrigue'),
-    t('État actuel'),
     t('Tous les évènements (Page)'),
     t('Tous les évènements inverse (Page)'),
     t('Timeline inversée'),
