@@ -13,9 +13,9 @@ function matos_taxonomy_default_vocabularies() {
       'name' => 'Type de matériel',
       'machine_name' => 'stuff_type',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }
