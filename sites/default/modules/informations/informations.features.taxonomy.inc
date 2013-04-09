@@ -13,9 +13,9 @@ function informations_taxonomy_default_vocabularies() {
       'name' => 'Type d\'information',
       'machine_name' => 'information_type',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }
