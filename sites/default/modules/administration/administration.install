@@ -12,8 +12,20 @@ function administration_update_7001(&$sandbox) {
     'avantage', 'event', 'group', 'information', 'intrigue',
     'location', 'stuff', 'character', 'sequence',
   );
+  $vids = db_select('node', 'n')
+    ->fields('n', array('vid'))
+    ->condition('type', $types, 'IN')
+    ->execute()
+    ->fetchCol();
+
   db_update('node')
     ->fields(array('comment' => 2))
-    ->condition('type', $types, 'IN')
+    ->condition('vid', $vids, 'IN')
+    ->execute();
+
+  db_update('node_revision')
+    ->fields(array('comment' => 2))
+    ->condition('vid', $vids, 'IN')
     ->execute();
 }
+
