@@ -13,9 +13,9 @@ function temperaments_taxonomy_default_vocabularies() {
       'name' => 'Tempérament',
       'machine_name' => 'temperament',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }
