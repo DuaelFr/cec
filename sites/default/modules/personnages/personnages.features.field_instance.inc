@@ -43,6 +43,80 @@ function personnages_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'field_collection_item-field_avantages-field_avantage'
+  $field_instances['field_collection_item-field_avantages-field_avantage'] = array(
+    'bundle' => 'field_avantages',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_avantage',
+    'label' => 'Avantage',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'field_collection_item-field_avantages-field_avantage_valide'
+  $field_instances['field_collection_item-field_avantages-field_avantage_valide'] = array(
+    'bundle' => 'field_avantages',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Cocher ce champ fera apparaître l\'avantage sur la feuille du personnage.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_avantage_valide',
+    'label' => 'Validé',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'node-character-body'
   $field_instances['node-character-body'] = array(
     'bundle' => 'character',
@@ -1154,9 +1228,11 @@ function personnages_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Avantage');
   t('Avantages');
   t('Canevas');
   t('Ce texte est la description publique qui apparaîtra dans le trombinoscope.');
+  t('Cocher ce champ fera apparaître l\'avantage sur la feuille du personnage.');
   t('Comment');
   t('Confession');
   t('Crédit');
@@ -1176,6 +1252,7 @@ function personnages_field_default_field_instances() {
   t('Statut du Personnage');
   t('Troisième Tempérament');
   t('Type');
+  t('Validé');
 
   return $field_instances;
 }
