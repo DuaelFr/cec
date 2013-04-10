@@ -43,6 +43,80 @@ function sequences_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'field_collection_item-field_nonplayers-field_incarnate_npc'
+  $field_instances['field_collection_item-field_nonplayers-field_incarnate_npc'] = array(
+    'bundle' => 'field_nonplayers',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_incarnate_npc',
+    'label' => 'Incarné par',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'options_select',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'field_collection_item-field_nonplayers-field_nonplayer_role'
+  $field_instances['field_collection_item-field_nonplayers-field_nonplayer_role'] = array(
+    'bundle' => 'field_nonplayers',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_nonplayer_role',
+    'label' => 'Rôle',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'node-sequence-body'
   $field_instances['node-sequence-body'] = array(
     'bundle' => 'sequence',
@@ -393,11 +467,13 @@ function sequences_field_default_field_instances() {
   t('Comment');
   t('Description');
   t('Horaires');
+  t('Incarné par');
   t('Intrigue');
   t('Joueurs');
   t('Lieu');
   t('Matériel');
   t('PNJ');
+  t('Rôle');
   t('Type de séquence');
 
   return $field_instances;
