@@ -43,6 +43,80 @@ function groupes_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'field_collection_item-field_group_members-field_character'
+  $field_instances['field_collection_item-field_group_members-field_character'] = array(
+    'bundle' => 'field_group_members',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_character',
+    'label' => 'Personnage',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'field_collection_item-field_group_members-field_member_is_secret'
+  $field_instances['field_collection_item-field_group_members-field_member_is_secret'] = array(
+    'bundle' => 'field_group_members',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Si coché, le personnage n\'apparaîtra pas dans la liste des membres du groupe.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_member_is_secret',
+    'label' => 'Membre secret',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'node-group-body'
   $field_instances['node-group-body'] = array(
     'bundle' => 'group',
@@ -405,9 +479,12 @@ function groupes_field_default_field_instances() {
   t('Descriptif orga');
   t('Groupe technique');
   t('Intitulé orga');
+  t('Membre secret');
   t('Membres');
   t('Membres connus du Groupe');
+  t('Personnage');
   t('Si cette case est cochée, le groupe n\'apparaîtra pas dans la liste des groupes de ses membres. Utile pour les groupes purement hors jeu (groupes par nationalité, par corps de métier...)');
+  t('Si coché, le personnage n\'apparaîtra pas dans la liste des membres du groupe.');
   t('Type de groupe');
 
   return $field_instances;
