@@ -57,3 +57,15 @@ function config_base_views_api() {
 function config_base_views_data_alter(&$data) {
   $data['workflow_node']['sid']['field']['handler'] = 'workflow_views_handler_field_sid_transliterated';
 }
+
+/**
+ * Implementation of hook_wysiwyg_editor_settings_alter().
+ */
+function config_base_wysiwyg_editor_settings_alter(&$settings, $context) {
+  if($context['profile']->editor == 'ckeditor') {
+    $settings['disableNativeSpellChecker'] = FALSE;
+    $settings['scayt_autoStartup'] = TRUE;
+    $settings['scayt_sLang'] = 'fr_FR';
+    $settings['scayt_userDictionaryName'] = 'GN_CeC';
+  }
+}
