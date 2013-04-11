@@ -216,12 +216,12 @@ h4 {
 .view table .state-en-att-publication:hover td,
 .view table .state-en-att-publication:hover td.active { background: #ff9f00; }
 
-.view table .state-publie td,
-.view table .state-publie td.active,
-.view table .state-publie.even td,
-.view table .state-publie.even td.active { background: #ff9294; font-weight: bold; }
-.view table .state-publie:hover td,
-.view table .state-publie:hover td.active { background: #ff372a; }
+.view table .state-publie- td,
+.view table .state-publie- td.active,
+.view table .state-publie-.even td,
+.view table .state-publie-.even td.active { background: #ff9294; font-weight: bold; }
+.view table .state-publie-:hover td,
+.view table .state-publie-:hover td.active { background: #ff372a; }
 
 /**********************/
 /* Views per intrigue */
