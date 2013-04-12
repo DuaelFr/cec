@@ -19,7 +19,6 @@ dependencies[] = list
 dependencies[] = node
 dependencies[] = number
 dependencies[] = options
-dependencies[] = personnages
 dependencies[] = sequences
 dependencies[] = strongarm
 dependencies[] = taxonomy

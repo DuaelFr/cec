@@ -1043,10 +1043,23 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_photo']['field'] = 'field_photo';
   $handler->display->display_options['fields']['field_photo']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_photo']['label'] = '';
+  $handler->display->display_options['fields']['field_photo']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_photo']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_photo']['empty'] = '-Pas de photo-';
   $handler->display->display_options['fields']['field_photo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_photo']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => '',
+  );
+  /* Champ: Champ : Photo */
+  $handler->display->display_options['fields']['field_photo_1']['id'] = 'field_photo_1';
+  $handler->display->display_options['fields']['field_photo_1']['table'] = 'field_data_field_photo';
+  $handler->display->display_options['fields']['field_photo_1']['field'] = 'field_photo';
+  $handler->display->display_options['fields']['field_photo_1']['label'] = '';
+  $handler->display->display_options['fields']['field_photo_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_photo_1']['empty'] = '[field_photo]';
+  $handler->display->display_options['fields']['field_photo_1']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_photo_1']['settings'] = array(
     'image_style' => 'medium',
     'image_link' => '',
   );
@@ -1132,6 +1145,7 @@ function personnages_views_default_views() {
     t('Profil'),
     t('[title] ([field_lastname] [field_firstname])'),
     t('-Pas de photo-'),
+    t('[field_photo]'),
     t('-Pas de description-'),
   );
   $export['admin_personnages'] = $view;
