@@ -1474,8 +1474,17 @@ function node_show($node, $message = FALSE) {
     drupal_set_title(t('Revision of %title from %date', array('%title' => $node->title, '%date' => format_date($node->revision_timestamp))), PASS_THROUGH);
   }
 
+  // Allow modules to change the view mode.
+  $view_mode = 'full';
+  $context = array(
+    'entity_type' => 'node',
+    'entity' => $node,
+    'langcode' => $GLOBALS['language_content']->language,
+  );
+  drupal_alter('entity_view_mode', $view_mode, $context);
+
   // For markup consistency with other pages, use node_view_multiple() rather than node_view().
-  $nodes = node_view_multiple(array($node->nid => $node), 'full');
+  $nodes = node_view_multiple(array($node->nid => $node), $view_mode);
 
   // Update the history table, stating that this user viewed this node.
   node_tag_new($node);
