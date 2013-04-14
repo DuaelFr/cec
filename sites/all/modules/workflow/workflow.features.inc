@@ -122,7 +122,7 @@ function workflow_update_workflows_full_object($workflow) {
   foreach ($states as $state) {
     $state = (object) $state;
     $state->wid = $workflow->wid;
-    if ($orig_state = workflow_get_workflow_states_by_wid_state($state->wid, $state->state)) {
+    if ($orig_state = reset(workflow_get_workflow_states_by_wid_state($state->wid, $state->state))) {
       $state->sid = $orig_state->sid;
     }
     workflow_update_workflow_states($state);
