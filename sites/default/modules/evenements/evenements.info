@@ -57,4 +57,5 @@ features[variable][] = node_submitted_event
 features[variable][] = view_mode_per_role_event
 features[variable][] = workflow_event
 features[views_view][] = admin_evenements
+features[views_view][] = evenements
 project path = sites/default/modules
