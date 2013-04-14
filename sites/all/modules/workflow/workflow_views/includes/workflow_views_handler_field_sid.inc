@@ -43,7 +43,7 @@ class workflow_views_handler_field_sid extends views_handler_field {
           $states[$state->sid] = check_plain($state->state);
         }
       }
-      $output = $states[$values->{$this->field_alias}];
+      $output = t($states[$values->{$this->field_alias}]);
       if (empty($output)) {
         $output = t('Unknown state');
       }

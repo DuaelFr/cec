@@ -870,10 +870,11 @@ function workflow_admin_ui_overview_form($form, $form_state, $workflow) {
         ),
       );
 
-    // Don't let the creation state change weight or status.
-    if ($state->state == '(creation)') {
+    // Don't let the creation state change weight or status or name.
+    if ($state->sid == $workflow->creation_state) {
       $form['states'][$state->sid]['weight']['#value'] = -50;
       $form['states'][$state->sid]['sysid']['#value'] = 1;
+      $form['states'][$state->sid]['state']['#disabled'] = TRUE;
       $form['states'][$state->sid]['status']['#disabled'] = TRUE;
       $form['states'][$state->sid]['reassign']['#disabled'] = TRUE;
      }

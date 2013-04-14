@@ -164,7 +164,7 @@ function workflow_node_load($nodes, $types) {
 
   foreach ($nodes as $node) {
     // If it's not a workflow type, exit immediately.
-    if (array_key_exists($node->type, $workflow_types)) {
+    if (!array_key_exists($node->type, $workflow_types)) {
       return;
     }
 
@@ -1330,8 +1330,8 @@ function workflow_get_workflow_by_sid($sid) {
 function workflow_get_workflow_states_by_sid($sid, $options = array()) {
   static $sids = array();
   if (!isset($sids[$sid])) {
-    $options['sid'] = $sid;
-    $sids[$sid] = array_shift(workflow_get_workflow_states($options));
+    $states = workflow_get_workflow_states(array('sid' => $sid));
+    $sids[$sid] = reset($states);
   }
   return $sids[$sid];
 }
