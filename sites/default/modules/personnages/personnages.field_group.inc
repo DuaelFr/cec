@@ -21,10 +21,10 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Avantages',
-    'weight' => '11',
+    'weight' => '25',
     'children' => array(
-      0 => 'field_pugilat',
-      1 => 'field_credit',
+      0 => 'field_credit',
+      1 => 'field_pugilat',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -51,8 +51,8 @@ function personnages_field_group_info() {
     'weight' => '8',
     'children' => array(
       0 => 'field_avantages',
-      1 => 'field_pugilat',
-      2 => 'field_credit',
+      1 => 'field_credit',
+      2 => 'field_pugilat',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -105,7 +105,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Canevas',
-    'weight' => '9',
+    'weight' => '27',
     'children' => array(
       0 => 'field_canevas',
     ),
@@ -133,11 +133,11 @@ function personnages_field_group_info() {
     'label' => 'Canevas',
     'weight' => '7',
     'children' => array(
-      0 => 'field_species',
-      1 => 'field_nationalite',
-      2 => 'field_confession',
-      3 => 'field_canevas',
-      4 => 'field_occupation',
+      0 => 'field_canevas',
+      1 => 'field_confession',
+      2 => 'field_nationalite',
+      3 => 'field_occupation',
+      4 => 'field_species',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -191,10 +191,10 @@ function personnages_field_group_info() {
     'label' => 'Compléments',
     'weight' => '0',
     'children' => array(
-      0 => 'field_species',
+      0 => 'field_confession',
       1 => 'field_nationalite',
-      2 => 'field_confession',
-      3 => 'field_occupation',
+      2 => 'field_occupation',
+      3 => 'field_species',
       4 => 'group_temperaments',
     ),
     'format_type' => 'div',
@@ -224,7 +224,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Groupes',
-    'weight' => '10',
+    'weight' => '24',
     'children' => array(
       0 => 'field_view_groups',
     ),
@@ -250,7 +250,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Informations',
-    'weight' => '12',
+    'weight' => '26',
     'children' => array(),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -309,10 +309,11 @@ function personnages_field_group_info() {
     'label' => '',
     'weight' => '0',
     'children' => array(
-      0 => 'group_avantages',
-      1 => 'group_canevas',
-      2 => 'group_groupes',
-      3 => 'group_informations',
+      0 => 'group_background',
+      1 => 'group_avantages',
+      2 => 'group_canevas',
+      3 => 'group_groupes',
+      4 => 'group_informations',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(

@@ -63,49 +63,46 @@ function personnages_ds_layout_settings_info() {
   $ds_layout->layout = 'ds_2col_stacked';
   $ds_layout->settings = array(
     'regions' => array(
+      'left' => array(
+        0 => 'field_photo',
+      ),
       'right' => array(
-        0 => 'group_complements',
+        1 => 'group_complements',
         3 => 'field_temperament1',
         4 => 'field_temperament2',
         5 => 'field_temperament3',
         6 => 'field_temperament4',
-        7 => 'field_temperament5',
-        14 => 'group_temperaments',
-        15 => 'field_species',
-        16 => 'field_nationalite',
-        17 => 'field_occupation',
-        18 => 'field_confession',
-      ),
-      'left' => array(
-        1 => 'field_photo',
+        8 => 'field_temperament5',
+        10 => 'group_temperaments',
+        11 => 'field_species',
+        12 => 'field_nationalite',
+        13 => 'field_occupation',
+        14 => 'field_confession',
       ),
       'footer' => array(
         2 => 'group_onglets',
-        8 => 'field_view_groups',
+        7 => 'field_view_groups',
         9 => 'field_canevas',
-        10 => 'group_canevas',
-        11 => 'group_groupes',
-        12 => 'group_avantages',
-        13 => 'group_informations',
-        19 => 'field_pugilat',
-        20 => 'field_credit',
+        15 => 'field_pugilat',
+        16 => 'field_credit',
+        17 => 'group_background',
+        18 => 'group_groupes',
+        19 => 'group_avantages',
+        20 => 'group_informations',
+        21 => 'group_canevas',
       ),
     ),
     'fields' => array(
-      'group_complements' => 'right',
       'field_photo' => 'left',
+      'group_complements' => 'right',
       'group_onglets' => 'footer',
       'field_temperament1' => 'right',
       'field_temperament2' => 'right',
       'field_temperament3' => 'right',
       'field_temperament4' => 'right',
-      'field_temperament5' => 'right',
       'field_view_groups' => 'footer',
+      'field_temperament5' => 'right',
       'field_canevas' => 'footer',
-      'group_canevas' => 'footer',
-      'group_groupes' => 'footer',
-      'group_avantages' => 'footer',
-      'group_informations' => 'footer',
       'group_temperaments' => 'right',
       'field_species' => 'right',
       'field_nationalite' => 'right',
@@ -113,12 +110,13 @@ function personnages_ds_layout_settings_info() {
       'field_confession' => 'right',
       'field_pugilat' => 'footer',
       'field_credit' => 'footer',
+      'group_background' => 'footer',
+      'group_groupes' => 'footer',
+      'group_avantages' => 'footer',
+      'group_informations' => 'footer',
+      'group_canevas' => 'footer',
     ),
-    'classes' => array(
-      'layout_class' => array(
-        '' => '',
-      ),
-    ),
+    'classes' => array(),
     'wrappers' => array(
       'header' => 'div',
       'left' => 'div',
@@ -232,17 +230,15 @@ function personnages_ds_layout_settings_info() {
   $ds_layout->view_mode = 'trombinoscope';
   $ds_layout->layout = 'ds_2col_stacked';
   $ds_layout->settings = array(
-    'hide_empty_regions' => 0,
-    'hide_sidebars' => 0,
     'regions' => array(
       'header' => array(
         0 => 'title',
       ),
       'left' => array(
-        0 => 'field_photo',
+        1 => 'field_photo',
       ),
       'right' => array(
-        0 => 'body',
+        2 => 'body',
       ),
     ),
     'fields' => array(
@@ -251,6 +247,15 @@ function personnages_ds_layout_settings_info() {
       'body' => 'right',
     ),
     'classes' => array(),
+    'wrappers' => array(
+      'header' => 'div',
+      'left' => 'div',
+      'right' => 'div',
+      'footer' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
   );
   $export['node|character|trombinoscope'] = $ds_layout;
 

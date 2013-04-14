@@ -790,7 +790,7 @@ function personnages_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => 'trombinoscope',
+          'image_style' => 'large',
         ),
         'type' => 'image',
         'weight' => 1,
