@@ -112,7 +112,7 @@ function personnages_strongarm() {
         ),
       ),
       'display' => array(
-        'view_events' => array(
+        'view_events_zorga' => array(
           'full_zorga' => array(
             'weight' => '6',
             'visible' => TRUE,
@@ -126,7 +126,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
         ),
-        'view_infos' => array(
+        'view_infos_zorga' => array(
           'full_zorga' => array(
             'weight' => '7',
             'visible' => TRUE,
@@ -140,7 +140,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
         ),
-        'view_sequences' => array(
+        'view_sequences_zorga' => array(
           'full_zorga' => array(
             'weight' => '8',
             'visible' => TRUE,

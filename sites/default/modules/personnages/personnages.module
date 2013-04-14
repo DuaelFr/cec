@@ -53,16 +53,16 @@ function personnages_node_access($node, $op, $account) {
 function personnages_field_extra_fields() {
   $extras = array();
 
-  $extras['node']['character']['display']['view_events'] = array(
-    'label' => t('Views events'),
+  $extras['node']['character']['display']['view_events_zorga'] = array(
+    'label' => t('Views events Zorga'),
     'weight' => 99,
   );
-  $extras['node']['character']['display']['view_infos'] = array(
-    'label' => t('Views infos'),
+  $extras['node']['character']['display']['view_infos_zorga'] = array(
+    'label' => t('Views infos Zorga'),
     'weight' => 99,
   );
-  $extras['node']['character']['display']['view_sequences'] = array(
-    'label' => t('Views sequences'),
+  $extras['node']['character']['display']['view_sequences_zorga'] = array(
+    'label' => t('Views sequences Zorga'),
     'weight' => 99,
   );
   $extras['node']['character']['display']['view_groupes_zorga'] = array(
@@ -87,13 +87,13 @@ function personnages_field_extra_fields() {
 function personnages_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'character') {
     $view_content = views_embed_view('admin_evenements', 'block_by_character', $node->nid);
-    $node->content['view_events'] = _config_base_extra_field_view('view_events', 'Evènements liés au personnage', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
+    $node->content['view_events_zorga'] = _config_base_extra_field_view('view_events_zorga', 'Evènements liés au personnage', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
 
     $view_content = views_embed_view('admin_informations', 'block_by_character', $node->nid);
-    $node->content['view_infos'] = _config_base_extra_field_view('view_infos', 'Informations liées au personnage', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
+    $node->content['view_infos_zorga'] = _config_base_extra_field_view('view_infos_zorga', 'Informations liées au personnage', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
 
     $view_content = views_embed_view('admin_sequences', 'block_by_character', $node->nid);
-    $node->content['view_sequences'] = _config_base_extra_field_view('view_sequences', 'Séquences liées au personnage', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
+    $node->content['view_sequences_zorga'] = _config_base_extra_field_view('view_sequences_zorga', 'Séquences liées au personnage', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
 
     $view_content = views_embed_view('admin_groupes', 'block_by_character', $node->nid);
     $node->content['view_groupes_zorga'] = _config_base_extra_field_view('view_groupes_zorga', 'Groupes liés au personnage', $node, $view_mode, $langcode, $view_content, user_access('view all playable characters'));
