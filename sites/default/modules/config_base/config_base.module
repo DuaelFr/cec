@@ -69,3 +69,36 @@ function config_base_wysiwyg_editor_settings_alter(&$settings, $context) {
     $settings['scayt_userDictionaryName'] = 'GN_CeC';
   }
 }
+
+/*
+ * Implements hook_date_format_types().
+ */
+function serignan_commons_date_format_types() {
+  variable_set('date_format_date_only', 'd/m/Y');
+  variable_set('date_format_date_only_evt', 'd F Y');
+  return array(
+    'date_only' => t('Date only'),
+    'date_only_evt' => t('Date only event'),
+  );
+}
+
+/*
+ * Implements hook_date_formats().
+ */
+function serignan_commons_date_formats() {
+  $formats = array();
+
+  // Short date formats.
+  $formats[] = array(
+    'type' => 'date_only',
+    'format' => 'd/m/Y',
+    'locales' => array(),
+  );
+  $formats[] = array(
+    'type' => 'date_only_evt',
+    'format' => 'd F Y',
+    'locales' => array(),
+  );
+
+  return $formats;
+}
