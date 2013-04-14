@@ -4,7 +4,26 @@ function cecadmin_preprocess_form_node(&$vars) {
   if (!empty($vars['form']['workflow'])) {
     $vars['sidebar']['workflow'] = $vars['form']['workflow'];
     $vars['sidebar']['workflow']['#weight'] = 99;
+    unset($vars['sidebar']['workflow']['#group']);
+    unset($vars['sidebar']['workflow']['#groups']);
     unset($vars['form']['workflow']);
+
+    $vars['sidebar']['#wf'] = $vars['form']['#wf'];
+    unset($vars['form']['#wf']);
+
+    $vars['sidebar']['#wf_options'] = $vars['form']['#wf_options'];
+    unset($vars['form']['#wf_options']);
+
+    $i = 0;
+    while (!empty($vars['form']['additional_settings']['group']['#groups']['additional_settings'][$i])) {
+      if ($vars['form']['additional_settings']['group']['#groups']['additional_settings'][$i]['#id'] == 'edit-workflow') {
+        unset($vars['form']['additional_settings']['group']['#groups']['additional_settings'][$i]);
+        $i = -1;
+      }
+      else {
+        ++$i;
+      }
+    }
   }
 
   switch ($vars['form']['#form_id']) {
