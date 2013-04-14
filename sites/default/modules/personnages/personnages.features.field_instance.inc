@@ -652,6 +652,57 @@ function personnages_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-character-field_objectifs_hj'
+  $field_instances['node-character-field_objectifs_hj'] = array(
+    'bundle' => 'character',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
+      ),
+      'full_zorga' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'trombinoscope' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_objectifs_hj',
+    'label' => 'Objectifs / Hors-Jeu',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 16,
+    ),
+  );
+
   // Exported field_instance: 'node-character-field_occupation'
   $field_instances['node-character-field_occupation'] = array(
     'bundle' => 'character',
@@ -1243,6 +1294,7 @@ function personnages_field_default_field_instances() {
   t('Incarné par');
   t('Mes groupes');
   t('Nationalité');
+  t('Objectifs / Hors-Jeu');
   t('Occupation');
   t('Photo');
   t('Premier Tempérament');
