@@ -125,7 +125,7 @@ function informations_views_default_views() {
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
   $handler->display->display_options['fields']['field_intrigue']['delta_offset'] = '0';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -230,7 +230,7 @@ function informations_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -286,7 +286,7 @@ function informations_views_default_views() {
   $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -374,7 +374,7 @@ function informations_views_default_views() {
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -401,6 +401,7 @@ Etat : [sid]
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['empty'] = '- Description orgas manquante -';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Filtre contextuel: Contenu : Intrigue (field_intrigue) */
   $handler->display->display_options['arguments']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
@@ -451,7 +452,7 @@ Etat : [sid]
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
@@ -464,7 +465,7 @@ Etat : [sid]
   $handler->display->display_options['relationships']['field_group_members_value']['relationship'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
@@ -488,7 +489,7 @@ Etat : [sid]
   $handler->display->display_options['fields']['field_information_type']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['fields']['field_information_type']['field'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -609,7 +610,7 @@ Etat : [sid]
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
@@ -622,7 +623,7 @@ Etat : [sid]
   $handler->display->display_options['relationships']['field_group_members_value']['relationship'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
@@ -637,6 +638,7 @@ Etat : [sid]
   $handler->display->display_options['fields']['field_alternate_title']['label'] = '';
   $handler->display->display_options['fields']['field_alternate_title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['field_alternate_title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_alternate_title']['empty'] = '- Titre d\'interprétation manquant -';
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -663,7 +665,7 @@ Etat : [sid]
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -704,6 +706,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_body']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['field_alternate_body']['label'] = '';
   $handler->display->display_options['fields']['field_alternate_body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_alternate_body']['empty'] = '- Contenu d\'interprétation manquant -';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Filtre contextuel: Global : Vide */
   $handler->display->display_options['arguments']['null']['id'] = 'null';
@@ -807,7 +810,7 @@ Cible : [field_target]
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
@@ -831,7 +834,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_information_type']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['fields']['field_information_type']['field'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -919,7 +922,7 @@ Cible : [field_target]
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
@@ -934,6 +937,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_title']['label'] = '';
   $handler->display->display_options['fields']['field_alternate_title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['field_alternate_title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_alternate_title']['empty'] = '- Titre d\'interprétation manquant -';
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -960,7 +964,7 @@ Cible : [field_target]
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -1001,6 +1005,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_body']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['field_alternate_body']['label'] = '';
   $handler->display->display_options['fields']['field_alternate_body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_alternate_body']['empty'] = '- Contenu d\'interprétation manquant -';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Filtre contextuel: Global : Vide */
   $handler->display->display_options['arguments']['null']['id'] = 'null';
@@ -1073,12 +1078,13 @@ Cible : [field_target]
     t('Type d\'information'),
     t('- Aucun -'),
     t('Intrigue'),
-    t('État actuel'),
+    t('Current state'),
     t('Interprétations'),
     t('.'),
     t(','),
     t('Actions'),
     t('modifier'),
+    t('État actuel'),
     t('Toutes les informations (Page)'),
     t('Par intrigue (Bloc)'),
     t('Informations'),
@@ -1094,12 +1100,14 @@ Etat : [sid]
   <div class="cec-column">
   </div>
 </div>'),
+    t('- Description orgas manquante -'),
     t('Par personnage (Bloc)'),
     t('Groupe'),
     t('Membres'),
     t('Personnage'),
     t('Cible'),
     t('Par personnage (Page)'),
+    t('- Titre d\'interprétation manquant -'),
     t('<div class="cec-columns">
   <div class="cec-column">
 Type : [field_information_type]<br />
@@ -1111,6 +1119,7 @@ Intitulé zorga : [title]<br/>
 Cible : [field_target]
   </div>
 </div>'),
+    t('- Contenu d\'interprétation manquant -'),
     t('Par groupe (Bloc)'),
     t('Par groupe (Page)'),
   );
