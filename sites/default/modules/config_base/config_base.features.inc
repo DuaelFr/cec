@@ -19,189 +19,173 @@ function config_base_ctools_plugin_api() {
 }
 
 /**
- * Implements hook_workflow_features_default_workflow().
+ * Implements hook_workflow_default_workflows().
  */
-function config_base_workflow_features_default_workflow() {
-  return array(
-    'Avancement' => array(
-      'name' => 'Avancement',
-      'tab_roles' => '168020977',
-      'options' => 'a:3:{s:16:"comment_log_node";i:1;s:15:"comment_log_tab";i:1;s:13:"name_as_title";i:1;}',
-      'states' => array(
-        0 => array(
-          'state' => '(création)',
-          'weight' => '-50',
-          'sysid' => '1',
-          'status' => '1',
-        ),
-        1 => array(
-          'state' => 'En discussion',
-          'weight' => '0',
-          'sysid' => '0',
-          'status' => '1',
-        ),
-        2 => array(
-          'state' => 'En prépa rédaction',
-          'weight' => '1',
-          'sysid' => '0',
-          'status' => '1',
-        ),
-        3 => array(
-          'state' => 'En validation',
-          'weight' => '2',
-          'sysid' => '0',
-          'status' => '1',
-        ),
-        4 => array(
-          'state' => 'En rédaction',
-          'weight' => '4',
-          'sysid' => '0',
-          'status' => '1',
-        ),
-        5 => array(
-          'state' => 'En relecture',
-          'weight' => '5',
-          'sysid' => '0',
-          'status' => '1',
-        ),
-        6 => array(
-          'state' => 'En att publication',
-          'weight' => '6',
-          'sysid' => '0',
-          'status' => '1',
-        ),
-        7 => array(
-          'state' => 'Publié !',
-          'weight' => '7',
-          'sysid' => '0',
-          'status' => '1',
-        ),
+function config_base_workflow_default_workflows() {
+  $workflows = array();
+
+  // Exported workflow: Avancement
+  $workflows['Avancement'] = array(
+    'name' => 'Avancement',
+    'tab_roles' => 168020977,
+    'options' => 'a:3:{s:16:"comment_log_node";i:1;s:15:"comment_log_tab";i:1;s:13:"name_as_title";i:1;}',
+    'states' => array(
+      0 => array(
+        'state' => '(création)',
+        'weight' => -50,
+        'sysid' => 1,
+        'status' => 1,
+        'name' => 'Avancement',
       ),
-      'transitions' => array(
-        0 => array(
-          'sid' => '(création)',
-          'target_sid' => 'En discussion',
-          'roles' => 'author,168020977',
-        ),
-        1 => array(
-          'sid' => '(création)',
-          'target_sid' => 'En prépa rédaction',
-          'roles' => '168020977',
-        ),
-        2 => array(
-          'sid' => '(création)',
-          'target_sid' => 'En validation',
-          'roles' => '168020977',
-        ),
-        3 => array(
-          'sid' => 'En discussion',
-          'target_sid' => 'En prépa rédaction',
-          'roles' => '168020977',
-        ),
-        4 => array(
-          'sid' => 'En discussion',
-          'target_sid' => 'En validation',
-          'roles' => '168020977',
-        ),
-        5 => array(
-          'sid' => 'En prépa rédaction',
-          'target_sid' => 'En discussion',
-          'roles' => '168020977',
-        ),
-        6 => array(
-          'sid' => 'En prépa rédaction',
-          'target_sid' => 'En validation',
-          'roles' => '168020977',
-        ),
-        7 => array(
-          'sid' => 'En validation',
-          'target_sid' => 'En prépa rédaction',
-          'roles' => '168020977',
-        ),
-        8 => array(
-          'sid' => 'En validation',
-          'target_sid' => 'En rédaction',
-          'roles' => '168020977',
-        ),
-        9 => array(
-          'sid' => 'En validation',
-          'target_sid' => 'En discussion',
-          'roles' => '168020977',
-        ),
-        10 => array(
-          'sid' => 'En rédaction',
-          'target_sid' => 'En relecture',
-          'roles' => '168020977,199742668',
-        ),
-        11 => array(
-          'sid' => 'En relecture',
-          'target_sid' => 'En rédaction',
-          'roles' => '168020977',
-        ),
-        12 => array(
-          'sid' => 'En relecture',
-          'target_sid' => 'En att publication',
-          'roles' => '199742668,168020977',
-        ),
-        13 => array(
-          'sid' => 'En relecture',
-          'target_sid' => 'Publié !',
-          'roles' => '168020977',
-        ),
-        14 => array(
-          'sid' => 'En att publication',
-          'target_sid' => 'En rédaction',
-          'roles' => '168020977',
-        ),
-        15 => array(
-          'sid' => 'En att publication',
-          'target_sid' => 'En relecture',
-          'roles' => '168020977',
-        ),
-        16 => array(
-          'sid' => 'En att publication',
-          'target_sid' => 'Publié !',
-          'roles' => '168020977',
-        ),
+      1 => array(
+        'state' => 'En discussion',
+        'weight' => 0,
+        'sysid' => 0,
+        'status' => 1,
+        'name' => 'Avancement',
       ),
-      'node_types' => array(
-        0 => array(
-          'type' => 'avantage',
-          'wid' => '1',
-        ),
-        1 => array(
-          'type' => 'character',
-          'wid' => '1',
-        ),
-        2 => array(
-          'type' => 'event',
-          'wid' => '1',
-        ),
-        3 => array(
-          'type' => 'group',
-          'wid' => '1',
-        ),
-        4 => array(
-          'type' => 'information',
-          'wid' => '1',
-        ),
-        5 => array(
-          'type' => 'intrigue',
-          'wid' => '1',
-        ),
-        6 => array(
-          'type' => 'location',
-          'wid' => '1',
-        ),
-        7 => array(
-          'type' => 'sequence',
-          'wid' => '1',
-        ),
-        8 => array(
-          'type' => 'stuff',
-          'wid' => '1',
-        ),
+      2 => array(
+        'state' => 'En prépa rédaction',
+        'weight' => 1,
+        'sysid' => 0,
+        'status' => 1,
+        'name' => 'Avancement',
+      ),
+      3 => array(
+        'state' => 'En validation',
+        'weight' => 2,
+        'sysid' => 0,
+        'status' => 1,
+        'name' => 'Avancement',
+      ),
+      4 => array(
+        'state' => 'En rédaction',
+        'weight' => 4,
+        'sysid' => 0,
+        'status' => 1,
+        'name' => 'Avancement',
+      ),
+      5 => array(
+        'state' => 'En relecture',
+        'weight' => 5,
+        'sysid' => 0,
+        'status' => 1,
+        'name' => 'Avancement',
+      ),
+      6 => array(
+        'state' => 'En att publication',
+        'weight' => 6,
+        'sysid' => 0,
+        'status' => 1,
+        'name' => 'Avancement',
+      ),
+      7 => array(
+        'state' => 'Publié !',
+        'weight' => 7,
+        'sysid' => 0,
+        'status' => 1,
+        'name' => 'Avancement',
       ),
     ),
+    'transitions' => array(
+      0 => array(
+        'roles' => 'workflow_features_author_name,Zorga',
+        'state' => '(création)',
+        'target_state' => 'En discussion',
+      ),
+      1 => array(
+        'roles' => 'Zorga',
+        'state' => '(création)',
+        'target_state' => 'En prépa rédaction',
+      ),
+      2 => array(
+        'roles' => 'Zorga',
+        'state' => '(création)',
+        'target_state' => 'En validation',
+      ),
+      3 => array(
+        'roles' => 'Zorga',
+        'state' => 'En discussion',
+        'target_state' => 'En prépa rédaction',
+      ),
+      4 => array(
+        'roles' => 'Zorga',
+        'state' => 'En discussion',
+        'target_state' => 'En validation',
+      ),
+      5 => array(
+        'roles' => 'Zorga',
+        'state' => 'En prépa rédaction',
+        'target_state' => 'En discussion',
+      ),
+      6 => array(
+        'roles' => 'Zorga',
+        'state' => 'En prépa rédaction',
+        'target_state' => 'En validation',
+      ),
+      7 => array(
+        'roles' => 'Zorga',
+        'state' => 'En validation',
+        'target_state' => 'En prépa rédaction',
+      ),
+      8 => array(
+        'roles' => 'Zorga',
+        'state' => 'En validation',
+        'target_state' => 'En rédaction',
+      ),
+      9 => array(
+        'roles' => 'Zorga',
+        'state' => 'En validation',
+        'target_state' => 'En discussion',
+      ),
+      10 => array(
+        'roles' => 'PNJ,Zorga',
+        'state' => 'En rédaction',
+        'target_state' => 'En relecture',
+      ),
+      11 => array(
+        'roles' => 'Zorga',
+        'state' => 'En relecture',
+        'target_state' => 'En rédaction',
+      ),
+      12 => array(
+        'roles' => 'PNJ,Zorga',
+        'state' => 'En relecture',
+        'target_state' => 'En att publication',
+      ),
+      13 => array(
+        'roles' => 'Zorga',
+        'state' => 'En relecture',
+        'target_state' => 'Publié !',
+      ),
+      14 => array(
+        'roles' => 'Zorga',
+        'state' => 'En att publication',
+        'target_state' => 'En rédaction',
+      ),
+      15 => array(
+        'roles' => 'Zorga',
+        'state' => 'En att publication',
+        'target_state' => 'En relecture',
+      ),
+      16 => array(
+        'roles' => 'Zorga',
+        'state' => 'En att publication',
+        'target_state' => 'Publié !',
+      ),
+    ),
+    'node_types' => array(
+      0 => 'avantage',
+      1 => 'character',
+      2 => 'event',
+      3 => 'group',
+      4 => 'information',
+      5 => 'intrigue',
+      6 => 'location',
+      7 => 'sequence',
+      8 => 'stuff',
+    ),
   );
+
+  return $workflows;
 }
