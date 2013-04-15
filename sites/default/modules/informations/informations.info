@@ -55,4 +55,5 @@ features[variable][] = node_submitted_information
 features[variable][] = view_mode_per_role_information
 features[variable][] = workflow_information
 features[views_view][] = admin_informations
+features[views_view][] = informations
 project path = sites/default/modules
