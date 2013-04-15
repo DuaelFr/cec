@@ -652,14 +652,6 @@ function groupes_views_default_views() {
   $handler->display->display_options['title'] = 'Membres connus du Groupe';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Entête: Global : Zone de texte */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['label'] = 'Titre';
-  $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = '<h2>Membres connus du Groupe</h2>';
-  $handler->display->display_options['header']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* Comportement en l'absence de résultats: Global : Zone de texte */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -783,8 +775,6 @@ function groupes_views_default_views() {
     t('Groupes Personnage (Bloc)'),
     t('Membres Groupe (Bloc)'),
     t('Membres connus du Groupe'),
-    t('Titre'),
-    t('<h2>Membres connus du Groupe</h2>'),
     t('Aucun des membres de ce groupe n\'est connu.'),
   );
   $export['groups'] = $view;
