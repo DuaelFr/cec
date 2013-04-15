@@ -293,12 +293,6 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  /* Champ: Contenu : Publié */
-  $handler->display->display_options['fields']['status']['id'] = 'status';
-  $handler->display->display_options['fields']['status']['table'] = 'node';
-  $handler->display->display_options['fields']['status']['field'] = 'status';
-  $handler->display->display_options['fields']['status']['type'] = 'published-notpublished';
-  $handler->display->display_options['fields']['status']['not'] = 0;
   /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
@@ -464,7 +458,6 @@ function administration_views_default_views() {
     t('Revision Author'),
     t('Selection'),
     t('Type'),
-    t('Publié'),
     t('Current state'),
     t('Créé par'),
     t('Créé le'),
