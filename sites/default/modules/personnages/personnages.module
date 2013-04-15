@@ -44,6 +44,43 @@ function personnages_node_access($node, $op, $account) {
   return $return;
 }
 
+/**
+ * Implements hook_menu().
+ */
+function personnages_menu() {
+  return array(
+    'node/%node/zpreview' => array(
+      'page callback' => 'node_page_view',
+      'page arguments' => array(1),
+      'access arguments' => array('view all playable characters'),
+      'title' => 'ZorgAperçu',
+      'weight' => 0,
+      'type' => MENU_LOCAL_TASK,
+      'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_entity_view_mode_alter().
+ */
+function personnages_entity_view_mode_alter(&$view_mode, $context) {
+  if ($context['entity_type'] == 'node' && $context['entity']->type == 'character' && arg(2) == 'zpreview') {
+    $view_mode = 'full';
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function personnages_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'entity_view_mode_alter') {
+    $group = $implementations['personnages'];
+    unset($implementations['personnages']);
+    $implementations['personnages'] = $group;
+  }
+}
+
 // -----------------------------------------------------------------------------
 // EXTRA FIELDS
 
@@ -118,6 +155,7 @@ function personnages_node_view($node, $view_mode, $langcode) {
 
       $view_content = theme('item_list', array(
         'items' => array(
+          l('Aperçu vision joueur', 'node/' . $node->nid . '/zpreview'),
           l('Liste complète des événements du personnage', 'admin/cec/evenements/personnage/' . $node->nid),
           l('Liste complète des informations du personnage', 'admin/cec/informations/personnage/' . $node->nid),
           l('Liste complète des sequences du personnage', 'admin/cec/sequences/personnage/' . $node->nid),
