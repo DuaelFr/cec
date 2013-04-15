@@ -12,7 +12,7 @@ include_once 'config_base.features.inc';
 function _config_base_extra_field_view($field_name, $title, $node, $view_mode, $langcode, $view_content, $access = TRUE) {
   return array(
     '#theme' => 'field',
-    '#label_display' => 'above',
+    '#label_display' => empty($title) ? 'hidden' : 'above',
     '#node' => $node,
     '#view_mode' => $view_mode,
     '#language' => $langcode,
