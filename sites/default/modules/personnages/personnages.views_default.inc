@@ -1044,11 +1044,13 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_photo']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_photo']['label'] = '';
   $handler->display->display_options['fields']['field_photo']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_photo']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_photo']['alter']['text'] = '[field_photo]*';
   $handler->display->display_options['fields']['field_photo']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_photo']['empty'] = '-Pas de photo-';
   $handler->display->display_options['fields']['field_photo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_photo']['settings'] = array(
-    'image_style' => 'medium',
+    'image_style' => 'trombinoscope',
     'image_link' => '',
   );
   /* Champ: Champ : Photo */
@@ -1060,7 +1062,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_photo_1']['empty'] = '[field_photo]';
   $handler->display->display_options['fields']['field_photo_1']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_photo_1']['settings'] = array(
-    'image_style' => 'medium',
+    'image_style' => 'trombinoscope',
     'image_link' => '',
   );
   /* Champ: Contenu : Description */
@@ -1145,6 +1147,7 @@ function personnages_views_default_views() {
     t('Admin Trombinoscope'),
     t('Profil'),
     t('[title] ([field_lastname] [field_firstname])'),
+    t('[field_photo]*'),
     t('-Pas de photo-'),
     t('[field_photo]'),
     t('-Pas de description-'),
