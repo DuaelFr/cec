@@ -1155,7 +1155,7 @@ Cible : [field_target]
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'Aucun événement validé pour le moment.';
+  $handler->display->display_options['empty']['area']['content'] = 'Aucune information validée pour le moment.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
   /* Relation: Contenu : Interprétation (field_version) */
   $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
@@ -1312,7 +1312,7 @@ Cible : [field_target]
     t('Trier par'),
     t('Asc'),
     t('Desc'),
-    t('Aucun événement validé pour le moment.'),
+    t('Aucune information validée pour le moment.'),
     t('Interprétation'),
     t('Cible'),
     t('Membres'),
