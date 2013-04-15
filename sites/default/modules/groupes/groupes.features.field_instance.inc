@@ -411,67 +411,6 @@ function groupes_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-group-field_view_members'
-  $field_instances['node-group-field_view_members'] = array(
-    'bundle' => 'group',
-    'default_value' => array(
-      0 => array(
-        'vname' => 'groups|membres_groupe',
-        'vargs' => '[node:nid]',
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'viewfield',
-        'settings' => array(),
-        'type' => 'viewfield_default',
-        'weight' => 1,
-      ),
-      'full_zorga' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 12,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 9,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_view_members',
-    'label' => 'Membres connus du Groupe',
-    'required' => 1,
-    'settings' => array(
-      'allowed_views' => array(
-        'admin_groupes' => 0,
-        'admin_personnages' => 0,
-        'characters' => 0,
-        'exports' => 0,
-        'groups' => 'groups',
-        'inscriptions' => 0,
-        'temperaments' => 0,
-        'users' => 0,
-        'workflow_pending' => 0,
-        'workflow_summary' => 0,
-      ),
-      'force_default' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'viewfield',
-      'settings' => array(),
-      'type' => 'viewfield_select',
-      'weight' => 8,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Comment');
@@ -481,7 +420,6 @@ function groupes_field_default_field_instances() {
   t('Intitulé orga');
   t('Membre secret');
   t('Membres');
-  t('Membres connus du Groupe');
   t('Personnage');
   t('Si cette case est cochée, le groupe n\'apparaîtra pas dans la liste des groupes de ses membres. Utile pour les groupes purement hors jeu (groupes par nationalité, par corps de métier...)');
   t('Si coché, le personnage n\'apparaîtra pas dans la liste des membres du groupe.');
