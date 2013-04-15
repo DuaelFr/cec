@@ -134,7 +134,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
@@ -186,7 +186,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['field_group_is_technical']['id'] = 'field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['field'] = 'field_group_is_technical';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -289,7 +289,7 @@ function groupes_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -373,7 +373,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['field_member_is_secret']['table'] = 'field_data_field_member_is_secret';
   $handler->display->display_options['fields']['field_member_is_secret']['field'] = 'field_member_is_secret';
   $handler->display->display_options['fields']['field_member_is_secret']['relationship'] = 'field_group_members_value';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -484,7 +484,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '1';
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -509,11 +509,12 @@ function groupes_views_default_views() {
     t('Descriptif orga'),
     t('Personnages'),
     t('Groupe technique'),
-    t('État actuel'),
+    t('Current state'),
     t('Actions'),
     t('modifier'),
     t('<a href="/admin/cec/evenements/groupe/[nid]">Evenements</a> / <a href="/admin/cec/informations/groupe/[nid]">Informations</a>'),
     t('Titre'),
+    t('État actuel'),
     t('Tous les groupes (Page)'),
     t('Par personnage Zorga (Block)'),
     t('Ce personnage n\'appartient à aucun groupe pour le moment.'),
@@ -569,7 +570,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Entité référencée */
+  /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
@@ -617,13 +618,6 @@ function groupes_views_default_views() {
     'character' => 'character',
   );
   $handler->display->display_options['filter_groups']['operator'] = 'OR';
-  /* Critère de filtrage: Contenu : Publié */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Critère de filtrage: Contenu : Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -632,7 +626,7 @@ function groupes_views_default_views() {
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -640,6 +634,13 @@ function groupes_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
+  /* Critère de filtrage: Contenu : Groupe technique (field_group_is_technical) */
+  $handler->display->display_options['filters']['field_group_is_technical_value']['id'] = 'field_group_is_technical_value';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['table'] = 'field_data_field_group_is_technical';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['field'] = 'field_group_is_technical_value';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['value'] = array(
+    0 => '0',
+  );
 
   /* Display: Groupes Personnage (Bloc) */
   $handler = $view->new_display('block', 'Groupes Personnage (Bloc)', 'groupes_perso');
@@ -679,6 +680,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h3';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Champ: Champ : Photo */
   $handler->display->display_options['fields']['field_photo']['id'] = 'field_photo';
   $handler->display->display_options['fields']['field_photo']['table'] = 'field_data_field_photo';
@@ -688,8 +690,8 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['field_photo']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_photo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_photo']['settings'] = array(
-    'image_style' => 'medium',
-    'image_link' => 'content',
+    'image_style' => 'trombinoscope',
+    'image_link' => '',
   );
   /* Champ: Contenu : Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
@@ -698,13 +700,6 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['body']['relationship'] = 'field_character_target_id';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Lien */
-  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['relationship'] = 'field_character_target_id';
-  $handler->display->display_options['fields']['view_node']['label'] = '';
-  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Critère de tri: Contenu : Titre */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
@@ -729,13 +724,6 @@ function groupes_views_default_views() {
   );
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Publié */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Critère de filtrage: Contenu : Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -744,7 +732,7 @@ function groupes_views_default_views() {
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -752,12 +740,6 @@ function groupes_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
-  /* Critère de filtrage: Contenu : Publié */
-  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
-  $handler->display->display_options['filters']['status_1']['table'] = 'node';
-  $handler->display->display_options['filters']['status_1']['field'] = 'status';
-  $handler->display->display_options['filters']['status_1']['relationship'] = 'field_character_target_id';
-  $handler->display->display_options['filters']['status_1']['value'] = '1';
   /* Critère de filtrage: Contenu : Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
@@ -766,7 +748,8 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['type_1']['value'] = array(
     'character' => 'character',
   );
-  /* Critère de filtrage: Processus : État actuel */
+  $handler->display->display_options['filters']['type_1']['group'] = 1;
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['filters']['sid_1']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid_1']['field'] = 'sid';
@@ -774,6 +757,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['sid_1']['value'] = array(
     13 => '13',
   );
+  $handler->display->display_options['filters']['sid_1']['group'] = 1;
   /* Critère de filtrage: Field collection item : Membre secret (field_member_is_secret) */
   $handler->display->display_options['filters']['field_member_is_secret_value']['id'] = 'field_member_is_secret_value';
   $handler->display->display_options['filters']['field_member_is_secret_value']['table'] = 'field_data_field_member_is_secret';
@@ -782,6 +766,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['field_member_is_secret_value']['value'] = array(
     0 => '0',
   );
+  $handler->display->display_options['filters']['field_member_is_secret_value']['group'] = 1;
   $translatables['groups'] = array(
     t('Master'),
     t('plus'),
