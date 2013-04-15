@@ -65,7 +65,8 @@ function personnages_menu() {
  * Implements hook_entity_view_mode_alter().
  */
 function personnages_entity_view_mode_alter(&$view_mode, $context) {
-  if ($context['entity_type'] == 'node' && $context['entity']->type == 'character' && arg(2) == 'zpreview') {
+  $allowed = array('character', 'group');
+  if ($context['entity_type'] == 'node' && in_array($context['entity']->type, $allowed) && arg(2) == 'zpreview') {
     $view_mode = 'full';
   }
 }
