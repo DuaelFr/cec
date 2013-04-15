@@ -1439,6 +1439,13 @@ Cible : [field_target]
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_dates',
+      'rendered' => 1,
+      'rendered_strip' => 1,
+    ),
+  );
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Comportement en l'absence de résultats: Global : Zone de texte */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -1478,6 +1485,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['label'] = '';
   $handler->display->display_options['fields']['field_dates']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_dates']['element_type'] = 'h2';
   $handler->display->display_options['fields']['field_dates']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_dates']['settings'] = array(
     'format_type' => 'date_only_evt',
@@ -1492,9 +1500,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['field_alternate_title']['label'] = '';
-  $handler->display->display_options['fields']['field_alternate_title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_alternate_title']['alter']['text'] = '[field_dates] : [field_alternate_title]';
-  $handler->display->display_options['fields']['field_alternate_title']['element_type'] = 'h2';
+  $handler->display->display_options['fields']['field_alternate_title']['element_type'] = 'h3';
   $handler->display->display_options['fields']['field_alternate_title']['element_label_colon'] = FALSE;
   /* Champ: Champ : Descriptif orga */
   $handler->display->display_options['fields']['field_alternate_body']['id'] = 'field_alternate_body';
@@ -1628,7 +1634,6 @@ Cible : [field_target]
     t('Cible'),
     t('Membres'),
     t('Personnage'),
-    t('[field_dates] : [field_alternate_title]'),
     t('Tout'),
   );
   $export['evenements'] = $view;
