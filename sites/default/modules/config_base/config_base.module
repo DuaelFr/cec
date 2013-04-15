@@ -73,7 +73,7 @@ function config_base_wysiwyg_editor_settings_alter(&$settings, $context) {
 /*
  * Implements hook_date_format_types().
  */
-function serignan_commons_date_format_types() {
+function config_base_date_format_types() {
   variable_set('date_format_date_only', 'd/m/Y');
   variable_set('date_format_date_only_evt', 'l d F Y');
   return array(
@@ -85,7 +85,7 @@ function serignan_commons_date_format_types() {
 /*
  * Implements hook_date_formats().
  */
-function serignan_commons_date_formats() {
+function config_base_date_formats() {
   $formats = array();
 
   // Short date formats.
