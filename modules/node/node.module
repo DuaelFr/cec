@@ -1405,12 +1405,7 @@ function node_build_content($node, $view_mode = 'full', $langcode = NULL) {
   $node->content = array();
 
   // Allow modules to change the view mode.
-  $context = array(
-    'entity_type' => 'node',
-    'entity' => $node,
-    'langcode' => $langcode,
-  );
-  drupal_alter('entity_view_mode', $view_mode, $context);
+  $view_mode = key(entity_view_mode_prepare('node', array($node->nid => $node), $view_mode, $langcode));
 
   // The 'view' hook can be implemented to overwrite the default function
   // to display nodes.
@@ -1474,17 +1469,8 @@ function node_show($node, $message = FALSE) {
     drupal_set_title(t('Revision of %title from %date', array('%title' => $node->title, '%date' => format_date($node->revision_timestamp))), PASS_THROUGH);
   }
 
-  // Allow modules to change the view mode.
-  $view_mode = 'full';
-  $context = array(
-    'entity_type' => 'node',
-    'entity' => $node,
-    'langcode' => $GLOBALS['language_content']->language,
-  );
-  drupal_alter('entity_view_mode', $view_mode, $context);
-
   // For markup consistency with other pages, use node_view_multiple() rather than node_view().
-  $nodes = node_view_multiple(array($node->nid => $node), $view_mode);
+  $nodes = node_view_multiple(array($node->nid => $node), 'full');
 
   // Update the history table, stating that this user viewed this node.
   node_tag_new($node);
@@ -2678,8 +2664,12 @@ function node_feed($nids = FALSE, $channel = array()) {
  *   An array in the format expected by drupal_render().
  */
 function node_view_multiple($nodes, $view_mode = 'teaser', $weight = 0, $langcode = NULL) {
-  field_attach_prepare_view('node', $nodes, $view_mode, $langcode);
-  entity_prepare_view('node', $nodes, $langcode);
+  $nodes_by_view_mode = entity_view_mode_prepare('node', $nodes, $view_mode, $langcode);
+  foreach ($nodes_by_view_mode as $view_mode => $nodes) {
+    field_attach_prepare_view('node', $nodes, $view_mode, $langcode);
+    entity_prepare_view('node', $nodes, $langcode);
+  }
+
   $build = array();
   foreach ($nodes as $node) {
     $build['nodes'][$node->nid] = node_view($node, $view_mode, $langcode);
