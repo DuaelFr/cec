@@ -1210,73 +1210,6 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_view_groups'
-  $field_instances['node-character-field_view_groups'] = array(
-    'bundle' => 'character',
-    'default_value' => array(
-      0 => array(
-        'vname' => 'groups|groupes_perso',
-        'vargs' => '[node:nid]',
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'viewfield',
-        'settings' => array(),
-        'type' => 'viewfield_default',
-        'weight' => 7,
-      ),
-      'full_zorga' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 17,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 14,
-      ),
-      'trombinoscope' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_view_groups',
-    'label' => 'Mes groupes',
-    'required' => 1,
-    'settings' => array(
-      'allowed_views' => array(
-        'admin_groupes' => 0,
-        'admin_personnages' => 0,
-        'characters' => 0,
-        'exports' => 0,
-        'groups' => 'groups',
-        'inscriptions' => 0,
-        'temperaments' => 0,
-        'users' => 0,
-        'workflow_pending' => 0,
-        'workflow_summary' => 0,
-      ),
-      'force_default' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'viewfield',
-      'settings' => array(),
-      'type' => 'viewfield_select',
-      'weight' => 11,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Avantage');
@@ -1292,7 +1225,6 @@ function personnages_field_default_field_instances() {
   t('Description');
   t('Espèce');
   t('Incarné par');
-  t('Mes groupes');
   t('Nationalité');
   t('Objectifs / Hors-Jeu');
   t('Occupation');
