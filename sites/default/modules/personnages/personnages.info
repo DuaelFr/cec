@@ -56,6 +56,7 @@ features[field_base][] = field_species
 features[field_group][] = group_avantages|node|character|default
 features[field_group][] = group_avantages|node|character|form
 features[field_group][] = group_avantages|node|character|full_zorga
+features[field_group][] = group_background|node|character|default
 features[field_group][] = group_canevas|node|character|default
 features[field_group][] = group_canevas|node|character|form
 features[field_group][] = group_canevas|node|character|full_zorga

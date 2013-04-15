@@ -98,6 +98,32 @@ function personnages_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_background|node|character|default';
+  $field_group->group_name = 'group_background';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'character';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_onglets';
+  $field_group->data = array(
+    'label' => 'Background',
+    'weight' => '23',
+    'children' => array(
+      0 => 'view_events_player',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+      ),
+    ),
+  );
+  $export['group_background|node|character|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_canevas|node|character|default';
   $field_group->group_name = 'group_canevas';
   $field_group->entity_type = 'node';
