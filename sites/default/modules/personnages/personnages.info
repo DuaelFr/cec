@@ -95,6 +95,7 @@ features[field_instance][] = node-character-field_temperament3
 features[field_instance][] = node-character-field_temperament4
 features[field_instance][] = node-character-field_temperament5
 features[field_instance][] = node-character-field_view_groups
+features[image][] = trombinoscope
 features[node][] = character
 features[taxonomy][] = nationalites
 features[taxonomy][] = occupations
