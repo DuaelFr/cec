@@ -63,7 +63,8 @@ function personnages_views_default_views() {
     'item_id' => 'item_id',
     'sid' => 'sid',
     'edit_node' => 'edit_node',
-    'nothing' => 'nothing',
+    'nothing' => 'edit_node',
+    'sid_1' => 'sid_1',
   );
   $handler->display->display_options['style_options']['default'] = 'title';
   $handler->display->display_options['style_options']['info'] = array(
@@ -214,10 +215,17 @@ function personnages_views_default_views() {
     ),
     'edit_node' => array(
       'align' => '',
-      'separator' => '',
+      'separator' => ' / ',
       'empty_column' => 0,
     ),
     'nothing' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
