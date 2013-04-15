@@ -25,6 +25,7 @@ function personnages_field_group_info() {
     'children' => array(
       0 => 'field_credit',
       1 => 'field_pugilat',
+      2 => 'view_avantages_player',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -80,8 +81,8 @@ function personnages_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'field_avantages',
-      1 => 'field_pugilat',
-      2 => 'field_credit',
+      1 => 'field_credit',
+      2 => 'field_pugilat',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -102,10 +103,10 @@ function personnages_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'character';
   $field_group->mode = 'default';
-  $field_group->parent_name = 'group_onglets';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Canevas',
-    'weight' => '27',
+    'weight' => '3',
     'children' => array(
       0 => 'field_canevas',
     ),
@@ -138,6 +139,7 @@ function personnages_field_group_info() {
       2 => 'field_nationalite',
       3 => 'field_occupation',
       4 => 'field_species',
+      5 => 'field_objectifs_hj',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -189,7 +191,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Compléments',
-    'weight' => '0',
+    'weight' => '1',
     'children' => array(
       0 => 'field_confession',
       1 => 'field_nationalite',
@@ -224,9 +226,9 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Groupes',
-    'weight' => '24',
+    'weight' => '26',
     'children' => array(
-      0 => 'field_view_groups',
+      0 => 'view_groupes_player',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -250,8 +252,10 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Informations',
-    'weight' => '26',
-    'children' => array(),
+    'weight' => '27',
+    'children' => array(
+      0 => 'view_infos_player',
+    ),
     'format_type' => 'htab',
     'format_settings' => array(
       'formatter' => 'closed',
@@ -276,13 +280,13 @@ function personnages_field_group_info() {
     'label' => 'Informations',
     'weight' => '3',
     'children' => array(
-      0 => 'field_character_type',
-      1 => 'field_incarnate',
-      2 => 'field_character_state',
-      3 => 'field_species',
+      0 => 'field_character_state',
+      1 => 'field_character_type',
+      2 => 'field_confession',
+      3 => 'field_incarnate',
       4 => 'field_nationalite',
-      5 => 'field_confession',
-      6 => 'field_occupation',
+      5 => 'field_occupation',
+      6 => 'field_species',
       7 => 'zorgas_links',
     ),
     'format_type' => 'fieldset',
@@ -299,6 +303,32 @@ function personnages_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_objectifs|node|character|default';
+  $field_group->group_name = 'group_objectifs';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'character';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_onglets';
+  $field_group->data = array(
+    'label' => 'Objectifs',
+    'weight' => '24',
+    'children' => array(
+      0 => 'field_objectifs_hj',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+      ),
+    ),
+  );
+  $export['group_objectifs|node|character|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_onglets|node|character|default';
   $field_group->group_name = 'group_onglets';
   $field_group->entity_type = 'node';
@@ -307,13 +337,13 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => '',
-    'weight' => '0',
+    'weight' => '2',
     'children' => array(
       0 => 'group_background',
       1 => 'group_avantages',
-      2 => 'group_canevas',
-      3 => 'group_groupes',
-      4 => 'group_informations',
+      2 => 'group_groupes',
+      3 => 'group_informations',
+      4 => 'group_objectifs',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -368,6 +398,7 @@ function personnages_field_group_info() {
     'children' => array(
       0 => 'body',
       1 => 'field_photo',
+      2 => 'field_objectifs_hj',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

@@ -63,6 +63,7 @@ features[field_group][] = group_complements|node|character|default
 features[field_group][] = group_groupes|node|character|default
 features[field_group][] = group_informations|node|character|default
 features[field_group][] = group_infos|node|character|full_zorga
+features[field_group][] = group_objectifs|node|character|default
 features[field_group][] = group_onglets|node|character|default
 features[field_group][] = group_public_data|node|character|form
 features[field_group][] = group_public_data|node|character|full_zorga

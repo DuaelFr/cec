@@ -112,7 +112,7 @@ function personnages_strongarm() {
         ),
       ),
       'display' => array(
-        'view_events_zorga' => array(
+        'view_events' => array(
           'full_zorga' => array(
             'weight' => '6',
             'visible' => TRUE,
@@ -130,7 +130,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
         ),
-        'view_infos_zorga' => array(
+        'view_infos' => array(
           'full_zorga' => array(
             'weight' => '7',
             'visible' => TRUE,
@@ -148,7 +148,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
         ),
-        'view_sequences_zorga' => array(
+        'view_sequences' => array(
           'full_zorga' => array(
             'weight' => '8',
             'visible' => TRUE,
@@ -176,7 +176,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
           'default' => array(
-            'weight' => '99',
+            'weight' => '22',
             'visible' => FALSE,
           ),
           'trombinoscope' => array(
@@ -195,7 +195,7 @@ function personnages_strongarm() {
           ),
           'default' => array(
             'weight' => '99',
-            'visible' => FALSE,
+            'visible' => TRUE,
           ),
           'trombinoscope' => array(
             'weight' => '99',
@@ -212,7 +212,7 @@ function personnages_strongarm() {
             'visible' => TRUE,
           ),
           'default' => array(
-            'weight' => '99',
+            'weight' => '23',
             'visible' => FALSE,
           ),
           'trombinoscope' => array(
@@ -222,7 +222,7 @@ function personnages_strongarm() {
         ),
         'comments' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '8',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -240,7 +240,7 @@ function personnages_strongarm() {
         ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '-99',
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -258,7 +258,7 @@ function personnages_strongarm() {
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '99',
+            'weight' => '20',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -270,6 +270,66 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
           'trombinoscope' => array(
+            'weight' => '99',
+            'visible' => FALSE,
+          ),
+        ),
+        'view_events_zorga' => array(
+          'default' => array(
+            'weight' => '19',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '99',
+            'visible' => TRUE,
+          ),
+        ),
+        'view_events_player' => array(
+          'default' => array(
+            'weight' => '99',
+            'visible' => TRUE,
+          ),
+          'full_zorga' => array(
+            'weight' => '99',
+            'visible' => FALSE,
+          ),
+        ),
+        'view_infos_zorga' => array(
+          'default' => array(
+            'weight' => '21',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '99',
+            'visible' => TRUE,
+          ),
+        ),
+        'view_infos_player' => array(
+          'default' => array(
+            'weight' => '99',
+            'visible' => TRUE,
+          ),
+          'full_zorga' => array(
+            'weight' => '99',
+            'visible' => FALSE,
+          ),
+        ),
+        'view_sequences_zorga' => array(
+          'default' => array(
+            'weight' => '18',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '99',
+            'visible' => TRUE,
+          ),
+        ),
+        'view_avantages_player' => array(
+          'default' => array(
+            'weight' => '20',
+            'visible' => TRUE,
+          ),
+          'full_zorga' => array(
             'weight' => '99',
             'visible' => FALSE,
           ),
