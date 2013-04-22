@@ -297,6 +297,12 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid']['label'] = 'Etat';
+  /* Champ: Processus : Current comment */
+  $handler->display->display_options['fields']['comment']['id'] = 'comment';
+  $handler->display->display_options['fields']['comment']['table'] = 'workflow_node_current';
+  $handler->display->display_options['fields']['comment']['field'] = 'comment';
+  $handler->display->display_options['fields']['comment']['label'] = 'Commentaire Etat';
   /* Champ: Utilisateur : Nom */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -458,7 +464,8 @@ function administration_views_default_views() {
     t('Revision Author'),
     t('Selection'),
     t('Type'),
-    t('Current state'),
+    t('Etat'),
+    t('Commentaire Etat'),
     t('Créé par'),
     t('Créé le'),
     t('Modifié par'),
