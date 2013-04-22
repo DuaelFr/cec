@@ -432,6 +432,58 @@ function personnages_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-character-field_characters'
+  $field_instances['node-character-field_characters'] = array(
+    'bundle' => 'character',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'trombinoscope',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 29,
+      ),
+      'full_zorga' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'trombinoscope' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_characters',
+    'label' => 'Personnages connus',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 9,
+    ),
+  );
+
   // Exported field_instance: 'node-character-field_confession'
   $field_instances['node-character-field_confession'] = array(
     'bundle' => 'character',
@@ -1229,6 +1281,7 @@ function personnages_field_default_field_instances() {
   t('Nationalité');
   t('Objectifs / Hors-Jeu');
   t('Occupation');
+  t('Personnages connus');
   t('Photo');
   t('Premier Tempérament');
   t('Pugilat');

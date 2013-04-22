@@ -133,6 +133,11 @@ function personnages_field_extra_fields() {
     'weight' => 99,
   );
 
+  $extras['node']['character']['display']['view_trombi'] = array(
+    'label' => t('View trombi'),
+    'weight' => 99,
+  );
+
   return $extras;
 }
 
@@ -183,6 +188,9 @@ function personnages_node_view($node, $view_mode, $langcode) {
 
       $view_content = views_embed_view('groups', 'groupes_perso', $node->nid);
       $node->content['view_groupes_player'] = _config_base_extra_field_view('view_groupes_player', '', $node, $view_mode, $langcode, $view_content);
+
+      $view_content = views_embed_view('characters', 'block_trombi', $node->nid);
+      $node->content['view_trombi'] = _config_base_extra_field_view('view_trombi', '', $node, $view_mode, $langcode, $view_content);
     }
   }
 }

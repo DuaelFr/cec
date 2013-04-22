@@ -222,7 +222,7 @@ function personnages_strongarm() {
         ),
         'comments' => array(
           'default' => array(
-            'weight' => '8',
+            'weight' => '0',
             'visible' => FALSE,
           ),
           'teaser' => array(
