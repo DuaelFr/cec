@@ -1258,13 +1258,6 @@ function personnages_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'character' => 'character',
   );
-  /* Critère de filtrage: Processus : Current state */
-  $handler->display->display_options['filters']['sid']['id'] = 'sid';
-  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
-  $handler->display->display_options['filters']['sid']['field'] = 'sid';
-  $handler->display->display_options['filters']['sid']['value'] = array(
-    13 => '13',
-  );
 
   /* Display: Mes Persos (Page) */
   $handler = $view->new_display('page', 'Mes Persos (Page)', 'mes_persos');
