@@ -1141,7 +1141,32 @@ Cible : [field_target]
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'plus';
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'views_content_cache';
+  $handler->display->display_options['cache']['results_min_lifespan'] = '300';
+  $handler->display->display_options['cache']['results_max_lifespan'] = '518400';
+  $handler->display->display_options['cache']['output_min_lifespan'] = '300';
+  $handler->display->display_options['cache']['output_max_lifespan'] = '518400';
+  $handler->display->display_options['cache']['keys'] = array(
+    'comment' => array(
+      'changed' => 0,
+    ),
+    'node' => array(
+      'information' => 'information',
+      'character' => 'character',
+      'news' => 0,
+      'avantage' => 0,
+      'event' => 0,
+      'group' => 0,
+      'intrigue' => 0,
+      'location' => 0,
+      'stuff' => 0,
+      'page' => 0,
+      'sequence' => 0,
+    ),
+    'node_only' => array(
+      'node_changed' => 0,
+    ),
+  );
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
