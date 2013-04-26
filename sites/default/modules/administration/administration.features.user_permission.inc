@@ -23,6 +23,7 @@ function administration_user_default_permissions() {
   $permissions['access comments'] = array(
     'name' => 'access comments',
     'roles' => array(
+      'Joueur' => 'Joueur',
       'Zorga' => 'Zorga',
     ),
     'module' => 'comment',
@@ -69,6 +70,7 @@ function administration_user_default_permissions() {
   $permissions['post comments'] = array(
     'name' => 'post comments',
     'roles' => array(
+      'Joueur' => 'Joueur',
       'Zorga' => 'Zorga',
     ),
     'module' => 'comment',
@@ -88,6 +90,7 @@ function administration_user_default_permissions() {
   $permissions['skip comment approval'] = array(
     'name' => 'skip comment approval',
     'roles' => array(
+      'Joueur' => 'Joueur',
       'Zorga' => 'Zorga',
     ),
     'module' => 'comment',
