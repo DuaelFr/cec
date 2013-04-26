@@ -1330,10 +1330,11 @@ function personnages_views_default_views() {
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
     'last_comment_name' => 'last_comment_name',
-    'last_updated' => 'last_updated',
+    'last_comment_timestamp' => 'last_comment_timestamp',
+    'last_comment_timestamp_1' => 'last_comment_timestamp_1',
     'comment_count' => 'comment_count',
   );
-  $handler->display->display_options['style_options']['default'] = 'last_updated';
+  $handler->display->display_options['style_options']['default'] = 'last_comment_timestamp';
   $handler->display->display_options['style_options']['info'] = array(
     'title' => array(
       'sortable' => 1,
@@ -1349,9 +1350,16 @@ function personnages_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'last_updated' => array(
+    'last_comment_timestamp' => array(
       'sortable' => 1,
       'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'last_comment_timestamp_1' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -1380,12 +1388,17 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['last_comment_name']['id'] = 'last_comment_name';
   $handler->display->display_options['fields']['last_comment_name']['table'] = 'node_comment_statistics';
   $handler->display->display_options['fields']['last_comment_name']['field'] = 'last_comment_name';
-  /* Champ: Contenu : Date de mise à jour/commentaire */
-  $handler->display->display_options['fields']['last_updated']['id'] = 'last_updated';
-  $handler->display->display_options['fields']['last_updated']['table'] = 'node_comment_statistics';
-  $handler->display->display_options['fields']['last_updated']['field'] = 'last_updated';
-  $handler->display->display_options['fields']['last_updated']['label'] = 'Date commentaire';
-  $handler->display->display_options['fields']['last_updated']['date_format'] = 'short';
+  /* Champ: Contenu : Heure du dernier commentaire */
+  $handler->display->display_options['fields']['last_comment_timestamp']['id'] = 'last_comment_timestamp';
+  $handler->display->display_options['fields']['last_comment_timestamp']['table'] = 'node_comment_statistics';
+  $handler->display->display_options['fields']['last_comment_timestamp']['field'] = 'last_comment_timestamp';
+  $handler->display->display_options['fields']['last_comment_timestamp']['date_format'] = 'time ago';
+  /* Champ: Contenu : Heure du dernier commentaire */
+  $handler->display->display_options['fields']['last_comment_timestamp_1']['id'] = 'last_comment_timestamp_1';
+  $handler->display->display_options['fields']['last_comment_timestamp_1']['table'] = 'node_comment_statistics';
+  $handler->display->display_options['fields']['last_comment_timestamp_1']['field'] = 'last_comment_timestamp';
+  $handler->display->display_options['fields']['last_comment_timestamp_1']['label'] = 'Date du dernier commentaire';
+  $handler->display->display_options['fields']['last_comment_timestamp_1']['date_format'] = 'short';
   /* Champ: Contenu : Nombre de commentaires */
   $handler->display->display_options['fields']['comment_count']['id'] = 'comment_count';
   $handler->display->display_options['fields']['comment_count']['table'] = 'node_comment_statistics';
@@ -1482,7 +1495,8 @@ function personnages_views_default_views() {
     t('Comment Persos (Page)'),
     t('Commentaires Joueurs'),
     t('Auteur du dernier commentaire'),
-    t('Date commentaire'),
+    t('Heure du dernier commentaire'),
+    t('Date du dernier commentaire'),
     t('Nombre de commentaires'),
   );
   $export['admin_personnages'] = $view;
