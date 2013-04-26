@@ -128,7 +128,7 @@ function personnages_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 17,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -183,7 +183,7 @@ function personnages_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 18,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -234,7 +234,7 @@ function personnages_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 22,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -345,7 +345,7 @@ function personnages_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 21,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -394,7 +394,7 @@ function personnages_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 20,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -441,13 +441,9 @@ function personnages_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'entityreference',
-        'settings' => array(
-          'links' => 0,
-          'view_mode' => 'trombinoscope',
-        ),
-        'type' => 'entityreference_entity_view',
-        'weight' => 29,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -543,14 +539,8 @@ function personnages_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 19,
       ),
       'full_zorga' => array(
@@ -609,7 +599,7 @@ function personnages_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 19,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -712,9 +702,8 @@ function personnages_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 28,
       ),
       'full_zorga' => array(
@@ -901,14 +890,8 @@ function personnages_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 18,
       ),
       'full_zorga' => array(

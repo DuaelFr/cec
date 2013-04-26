@@ -26,6 +26,7 @@ dependencies[] = taxonomy_access_fix
 dependencies[] = temperaments
 dependencies[] = text
 dependencies[] = views
+dependencies[] = views_content_cache
 features[conditional_fields][] = node:character
 features[ctools][] = ds:ds:1
 features[ctools][] = field_group:field_group:1

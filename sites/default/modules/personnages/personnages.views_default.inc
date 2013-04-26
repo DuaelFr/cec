@@ -1096,6 +1096,283 @@ function personnages_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '10';
   $handler->display->display_options['menu']['name'] = 'menu-zorga-menu';
   $handler->display->display_options['menu']['context'] = 0;
+
+  /* Display: Verif Personnages (Page) */
+  $handler = $view->new_display('page', 'Verif Personnages (Page)', 'page_verif');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['row_class'] = 'state-[sid_1]';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'nid_1' => 'nid_1',
+    'field_photo' => 'field_photo',
+    'field_photo_1' => 'field_photo_1',
+    'title' => 'title',
+    'url' => 'url',
+    'field_lastname' => 'field_lastname',
+    'field_firstname' => 'field_firstname',
+    'sid' => 'sid',
+    'edit_node' => 'edit_node',
+    'nothing' => 'edit_node',
+    'sid_1' => 'sid_1',
+  );
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'nid_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_photo' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_photo_1' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'url' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_lastname' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_firstname' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => ' ',
+      'empty_column' => 0,
+    ),
+    'sid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => ' / ',
+      'empty_column' => 0,
+    ),
+    'nothing' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
+  $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
+  $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
+  $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
+  /* Relation: Utilisateur : Profil */
+  $handler->display->display_options['relationships']['profile']['id'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['table'] = 'users';
+  $handler->display->display_options['relationships']['profile']['field'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['relationship'] = 'field_incarnate_target_id';
+  $handler->display->display_options['relationships']['profile']['label'] = 'ProfilAdministratif';
+  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
+    'inscription_administrative' => 'inscription_administrative',
+  );
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Champ: Contenu : Nid */
+  $handler->display->display_options['fields']['nid_1']['id'] = 'nid_1';
+  $handler->display->display_options['fields']['nid_1']['table'] = 'node';
+  $handler->display->display_options['fields']['nid_1']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid_1']['label'] = '';
+  $handler->display->display_options['fields']['nid_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid_1']['element_label_colon'] = FALSE;
+  /* Champ: Champ : Photo */
+  $handler->display->display_options['fields']['field_photo']['id'] = 'field_photo';
+  $handler->display->display_options['fields']['field_photo']['table'] = 'field_data_field_photo';
+  $handler->display->display_options['fields']['field_photo']['field'] = 'field_photo';
+  $handler->display->display_options['fields']['field_photo']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['field_photo']['label'] = '';
+  $handler->display->display_options['fields']['field_photo']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_photo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_photo']['empty'] = '<strong>-Aucune-</strong>';
+  $handler->display->display_options['fields']['field_photo']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_photo']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => '',
+  );
+  /* Champ: Champ : Photo */
+  $handler->display->display_options['fields']['field_photo_1']['id'] = 'field_photo_1';
+  $handler->display->display_options['fields']['field_photo_1']['table'] = 'field_data_field_photo';
+  $handler->display->display_options['fields']['field_photo_1']['field'] = 'field_photo';
+  $handler->display->display_options['fields']['field_photo_1']['empty'] = '[field_photo]';
+  $handler->display->display_options['fields']['field_photo_1']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_photo_1']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => '',
+  );
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Nom du personnage';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Champ: Profil : URL */
+  $handler->display->display_options['fields']['url']['id'] = 'url';
+  $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
+  $handler->display->display_options['fields']['url']['field'] = 'url';
+  $handler->display->display_options['fields']['url']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['url']['label'] = '';
+  $handler->display->display_options['fields']['url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['url']['display_as_link'] = FALSE;
+  $handler->display->display_options['fields']['url']['link_to_entity'] = 1;
+  /* Champ: Profil : Prénom */
+  $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
+  $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
+  $handler->display->display_options['fields']['field_lastname']['field'] = 'field_lastname';
+  $handler->display->display_options['fields']['field_lastname']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['field_lastname']['label'] = '';
+  $handler->display->display_options['fields']['field_lastname']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_lastname']['element_label_colon'] = FALSE;
+  /* Champ: Profil : Nom */
+  $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
+  $handler->display->display_options['fields']['field_firstname']['table'] = 'field_data_field_firstname';
+  $handler->display->display_options['fields']['field_firstname']['field'] = 'field_firstname';
+  $handler->display->display_options['fields']['field_firstname']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['field_firstname']['label'] = 'Nom Joueur';
+  $handler->display->display_options['fields']['field_firstname']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_firstname']['alter']['text'] = '[field_lastname] [field_firstname]';
+  $handler->display->display_options['fields']['field_firstname']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_firstname']['alter']['path'] = '[url]';
+  /* Champ: Processus : Current state */
+  $handler->display->display_options['fields']['sid']['id'] = 'sid';
+  $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid']['field'] = 'sid';
+  /* Champ: Contenu : Lien de modification */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
+  $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
+  /* Champ: Etat CSS */
+  $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
+  $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
+  $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
+  $handler->display->display_options['fields']['sid_1']['ui_name'] = 'Etat CSS';
+  $handler->display->display_options['fields']['sid_1']['label'] = '';
+  $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Contenu : Type (field_character_type) */
+  $handler->display->display_options['filters']['field_character_type_value']['id'] = 'field_character_type_value';
+  $handler->display->display_options['filters']['field_character_type_value']['table'] = 'field_data_field_character_type';
+  $handler->display->display_options['filters']['field_character_type_value']['field'] = 'field_character_type_value';
+  $handler->display->display_options['filters']['field_character_type_value']['value'] = array(
+    'Joueur' => 'Joueur',
+  );
+  $handler->display->display_options['path'] = 'admin/cec/verif-persos';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Vérif Personnages';
+  $handler->display->display_options['menu']['weight'] = '1';
+  $handler->display->display_options['menu']['name'] = 'menu-zorga-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+
+  /* Display: Comment Persos (Page) */
+  $handler = $view->new_display('page', 'Comment Persos (Page)', 'page_2');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['group_by'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+  );
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Nom du personnage';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Contenu : Type (field_character_type) */
+  $handler->display->display_options['filters']['field_character_type_value']['id'] = 'field_character_type_value';
+  $handler->display->display_options['filters']['field_character_type_value']['table'] = 'field_data_field_character_type';
+  $handler->display->display_options['filters']['field_character_type_value']['field'] = 'field_character_type_value';
+  $handler->display->display_options['filters']['field_character_type_value']['value'] = array(
+    'Joueur' => 'Joueur',
+  );
+  $handler->display->display_options['path'] = 'admin/cec/comment-persos';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Commentaires Persos';
+  $handler->display->display_options['menu']['weight'] = '1';
+  $handler->display->display_options['menu']['name'] = 'menu-zorga-menu';
+  $handler->display->display_options['menu']['context'] = 0;
   $translatables['admin_personnages'] = array(
     t('Master'),
     t('Tous les Personnages'),
@@ -1159,6 +1436,10 @@ function personnages_views_default_views() {
     t('-Pas de photo-'),
     t('[field_photo]'),
     t('-Pas de description-'),
+    t('Verif Personnages (Page)'),
+    t('<strong>-Aucune-</strong>'),
+    t('Photo'),
+    t('Comment Persos (Page)'),
   );
   $export['admin_personnages'] = $view;
 
@@ -1183,7 +1464,32 @@ function personnages_views_default_views() {
     199742668 => '199742668',
     168020977 => '168020977',
   );
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'views_content_cache';
+  $handler->display->display_options['cache']['results_min_lifespan'] = '300';
+  $handler->display->display_options['cache']['results_max_lifespan'] = '518400';
+  $handler->display->display_options['cache']['output_min_lifespan'] = '300';
+  $handler->display->display_options['cache']['output_max_lifespan'] = '518400';
+  $handler->display->display_options['cache']['keys'] = array(
+    'comment' => array(
+      'changed' => 0,
+    ),
+    'node' => array(
+      'character' => 'character',
+      'news' => 0,
+      'avantage' => 0,
+      'event' => 0,
+      'group' => 0,
+      'information' => 0,
+      'intrigue' => 0,
+      'location' => 0,
+      'stuff' => 0,
+      'page' => 0,
+      'sequence' => 0,
+    ),
+    'node_only' => array(
+      'node_changed' => 0,
+    ),
+  );
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
@@ -1257,6 +1563,13 @@ function personnages_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'character' => 'character',
+  );
+  /* Critère de filtrage: Processus : Current state */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    13 => '13',
   );
 
   /* Display: Mes Persos (Page) */

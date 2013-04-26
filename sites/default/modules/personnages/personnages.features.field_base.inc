@@ -337,9 +337,8 @@ function personnages_field_default_field_bases() {
         ),
         'sort' => array(
           'direction' => 'ASC',
-          'field' => 'none',
-          'property' => 'uid',
-          'type' => 'none',
+          'property' => 'name',
+          'type' => 'property',
         ),
         'target_bundles' => array(),
       ),

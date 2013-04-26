@@ -18,10 +18,10 @@ function personnages_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'character';
   $field_group->mode = 'default';
-  $field_group->parent_name = 'group_onglets';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Avantages',
-    'weight' => '25',
+    'weight' => '11',
     'children' => array(
       0 => 'field_credit',
       1 => 'field_pugilat',
@@ -132,7 +132,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Canevas',
-    'weight' => '3',
+    'weight' => '15',
     'children' => array(
       0 => 'field_canevas',
     ),
@@ -249,10 +249,10 @@ function personnages_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'character';
   $field_group->mode = 'default';
-  $field_group->parent_name = 'group_onglets';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Groupes',
-    'weight' => '26',
+    'weight' => '12',
     'children' => array(
       0 => 'view_groupes_player',
     ),
@@ -275,10 +275,10 @@ function personnages_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'character';
   $field_group->mode = 'default';
-  $field_group->parent_name = 'group_onglets';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Informations',
-    'weight' => '27',
+    'weight' => '13',
     'children' => array(
       0 => 'view_infos_player',
     ),
@@ -334,10 +334,10 @@ function personnages_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'character';
   $field_group->mode = 'default';
-  $field_group->parent_name = 'group_onglets';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Objectifs',
-    'weight' => '24',
+    'weight' => '10',
     'children' => array(
       0 => 'field_objectifs_hj',
     ),
@@ -365,12 +365,8 @@ function personnages_field_group_info() {
     'label' => '',
     'weight' => '2',
     'children' => array(
-      0 => 'group_trombi',
-      1 => 'group_avantages',
-      2 => 'group_background',
-      3 => 'group_groupes',
-      4 => 'group_informations',
-      5 => 'group_objectifs',
+      0 => 'group_background',
+      1 => 'group_comments',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -545,10 +541,10 @@ function personnages_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'character';
   $field_group->mode = 'default';
-  $field_group->parent_name = 'group_onglets';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Trombinoscope',
-    'weight' => '28',
+    'weight' => '14',
     'children' => array(
       0 => 'field_characters',
     ),
