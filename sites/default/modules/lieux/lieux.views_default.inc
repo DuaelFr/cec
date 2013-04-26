@@ -111,7 +111,7 @@ function lieux_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '600',
   );
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -190,7 +190,7 @@ function lieux_views_default_views() {
   $handler->display->display_options['filters']['field_location_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_location_type_tid']['vocabulary'] = 'location_type';
   $handler->display->display_options['filters']['field_location_type_tid']['hierarchy'] = 1;
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
