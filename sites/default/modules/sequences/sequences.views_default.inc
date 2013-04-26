@@ -149,7 +149,7 @@ function sequences_views_default_views() {
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -302,7 +302,7 @@ function sequences_views_default_views() {
     168020977 => 0,
     149933350 => 0,
   );
-  /* Critère de filtrage: Processus : État actuel */
+  /* Critère de filtrage: Processus : Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -374,7 +374,7 @@ function sequences_views_default_views() {
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -488,7 +488,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
     'link' => 0,
   );
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -596,7 +596,7 @@ Date de fin : [field_dates_1]
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -708,7 +708,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
     'link' => 0,
   );
-  /* Champ: Processus : État actuel */
+  /* Champ: Processus : Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
@@ -788,11 +788,12 @@ Date de fin : [field_dates_1]
     t('Date de début'),
     t('Date de fin'),
     t('Intrigue'),
-    t('État actuel'),
+    t('Current state'),
     t('Actions'),
     t('modifier'),
     t('A partir du'),
     t('Jusqu\'au'),
+    t('État actuel'),
     t('Toutes les séquences (Page)'),
     t('Par intrigue (Bloc)'),
     t('Tout'),
