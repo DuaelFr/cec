@@ -21,7 +21,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Avantages',
-    'weight' => '11',
+    'weight' => '12',
     'children' => array(
       0 => 'field_credit',
       1 => 'field_pugilat',
@@ -132,7 +132,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Canevas',
-    'weight' => '15',
+    'weight' => '16',
     'children' => array(
       0 => 'field_canevas',
     ),
@@ -190,7 +190,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Canevas',
-    'weight' => '16',
+    'weight' => '18',
     'children' => array(
       0 => 'field_canevas',
     ),
@@ -205,6 +205,33 @@ function personnages_field_group_info() {
     ),
   );
   $export['group_canevas|node|character|full_zorga'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_comments|node|character|default';
+  $field_group->group_name = 'group_comments';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'character';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_onglets';
+  $field_group->data = array(
+    'label' => 'Commentaires',
+    'weight' => '24',
+    'children' => array(
+      0 => 'cec_comments',
+    ),
+    'format_type' => 'htab',
+    'format_settings' => array(
+      'label' => 'Commentaires',
+      'instance_settings' => array(
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $export['group_comments|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -252,7 +279,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Groupes',
-    'weight' => '12',
+    'weight' => '13',
     'children' => array(
       0 => 'view_groupes_player',
     ),
@@ -278,7 +305,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Informations',
-    'weight' => '13',
+    'weight' => '14',
     'children' => array(
       0 => 'view_infos_player',
     ),
@@ -337,7 +364,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Objectifs',
-    'weight' => '10',
+    'weight' => '11',
     'children' => array(
       0 => 'field_objectifs_hj',
     ),
@@ -544,9 +571,9 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Trombinoscope',
-    'weight' => '14',
+    'weight' => '15',
     'children' => array(
-      0 => 'field_characters',
+      0 => 'view_trombi',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

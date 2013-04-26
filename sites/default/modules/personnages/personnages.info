@@ -62,6 +62,7 @@ features[field_group][] = group_background|node|character|default
 features[field_group][] = group_canevas|node|character|default
 features[field_group][] = group_canevas|node|character|form
 features[field_group][] = group_canevas|node|character|full_zorga
+features[field_group][] = group_comments|node|character|default
 features[field_group][] = group_complements|node|character|default
 features[field_group][] = group_groupes|node|character|default
 features[field_group][] = group_informations|node|character|default

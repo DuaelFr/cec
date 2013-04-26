@@ -1321,16 +1321,42 @@ function personnages_views_default_views() {
 
   /* Display: Comment Persos (Page) */
   $handler = $view->new_display('page', 'Comment Persos (Page)', 'page_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Commentaires Joueurs';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
+    'last_comment_name' => 'last_comment_name',
+    'last_updated' => 'last_updated',
+    'comment_count' => 'comment_count',
   );
-  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['default'] = 'last_updated';
   $handler->display->display_options['style_options']['info'] = array(
     'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'last_comment_name' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'last_updated' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'comment_count' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -1350,6 +1376,20 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Nom du personnage';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Champ: Contenu : Auteur du dernier commentaire */
+  $handler->display->display_options['fields']['last_comment_name']['id'] = 'last_comment_name';
+  $handler->display->display_options['fields']['last_comment_name']['table'] = 'node_comment_statistics';
+  $handler->display->display_options['fields']['last_comment_name']['field'] = 'last_comment_name';
+  /* Champ: Contenu : Date de mise à jour/commentaire */
+  $handler->display->display_options['fields']['last_updated']['id'] = 'last_updated';
+  $handler->display->display_options['fields']['last_updated']['table'] = 'node_comment_statistics';
+  $handler->display->display_options['fields']['last_updated']['field'] = 'last_updated';
+  $handler->display->display_options['fields']['last_updated']['label'] = 'Date commentaire';
+  $handler->display->display_options['fields']['last_updated']['date_format'] = 'short';
+  /* Champ: Contenu : Nombre de commentaires */
+  $handler->display->display_options['fields']['comment_count']['id'] = 'comment_count';
+  $handler->display->display_options['fields']['comment_count']['table'] = 'node_comment_statistics';
+  $handler->display->display_options['fields']['comment_count']['field'] = 'comment_count';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Type */
@@ -1440,6 +1480,10 @@ function personnages_views_default_views() {
     t('<strong>-Aucune-</strong>'),
     t('Photo'),
     t('Comment Persos (Page)'),
+    t('Commentaires Joueurs'),
+    t('Auteur du dernier commentaire'),
+    t('Date commentaire'),
+    t('Nombre de commentaires'),
   );
   $export['admin_personnages'] = $view;
 
