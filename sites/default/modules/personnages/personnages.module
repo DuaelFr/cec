@@ -82,6 +82,41 @@ function personnages_module_implements_alter(&$implementations, $hook) {
   }
 }
 
+/**
+ * Implements hook_comment_insert().
+ */
+function personnages_comment_insert($comment) {
+  if ($comment->node_type == 'comment_node_character') {
+    $node = node_load($comment->nid);
+    $wrapper = entity_metadata_wrapper('node', $node);
+    if ($wrapper->field_incarnate->uid->value() != $comment->uid) {
+      $to = $wrapper->field_incarnate->mail->value();
+      $lang = language_default();
+      $params = array(
+        'char' => $wrapper->title->value(),
+        'url' => url('node/' . $comment->nid, array('absolute' => TRUE, 'fragment' => 'comment-' . $comment->cid)),
+      );
+      $mail = drupal_mail('personnages', 'new_comment', $to, $lang, $params);
+      if (empty($mail['result'])) {
+        watchdog('mail', 'Unable to send mail to ' . $to);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function personnages_mail($key, &$message, $params) {
+  if ($key == 'new_comment') {
+    $message['subject'] .= '[GNCEC] Commentaire sur ton perso ' . $params['char'];
+    $message['body'][] = 'Un commentaire vient d\'être déposé sur <a href="' . $params['url'] . '">ton personnage</a>.<br />
+<br />
+Ludiquement,<br />
+Les Zorgas';
+  }
+}
+
 // -----------------------------------------------------------------------------
 // EXTRA FIELDS
 
