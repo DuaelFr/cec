@@ -11,6 +11,7 @@ dependencies[] = ctools
 dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = field_collection
+dependencies[] = groupes
 dependencies[] = list
 dependencies[] = node
 dependencies[] = options
