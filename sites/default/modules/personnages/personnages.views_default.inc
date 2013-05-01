@@ -1674,6 +1674,13 @@ function personnages_views_default_views() {
 
   /* Display: Trombinoscope (Block) */
   $handler = $view->new_display('block', 'Trombinoscope (Block)', 'block_trombi');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'grid';
+  $handler->display->display_options['style_options']['columns'] = '2';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relation: Entity Reference : Referenced Entity */
   $handler->display->display_options['relationships']['field_characters_target_id']['id'] = 'field_characters_target_id';
@@ -1706,6 +1713,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h3';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Champ: Champ : Photo */
   $handler->display->display_options['fields']['field_photo_1']['id'] = 'field_photo_1';
   $handler->display->display_options['fields']['field_photo_1']['table'] = 'field_data_field_photo';
