@@ -177,7 +177,7 @@ function groupes_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -223,7 +223,7 @@ function groupes_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -273,7 +273,7 @@ function groupes_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -330,7 +330,7 @@ function groupes_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -379,7 +379,7 @@ function groupes_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'full_zorga' => array(
         'label' => 'above',

@@ -114,7 +114,7 @@ function groupes_strongarm() {
       'display' => array(
         'view_events' => array(
           'default' => array(
-            'weight' => '7',
+            'weight' => '8',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -128,7 +128,7 @@ function groupes_strongarm() {
         ),
         'view_infos' => array(
           'default' => array(
-            'weight' => '8',
+            'weight' => '9',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -142,7 +142,7 @@ function groupes_strongarm() {
         ),
         'zorgas_links' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '3',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -156,7 +156,7 @@ function groupes_strongarm() {
         ),
         'comments' => array(
           'default' => array(
-            'weight' => '5',
+            'weight' => '6',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -170,7 +170,7 @@ function groupes_strongarm() {
         ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '4',
+            'weight' => '5',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -184,7 +184,7 @@ function groupes_strongarm() {
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '3',
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -198,7 +198,7 @@ function groupes_strongarm() {
         ),
         'view_members_player' => array(
           'default' => array(
-            'weight' => '99',
+            'weight' => '1',
             'visible' => TRUE,
           ),
           'teaser' => array(
@@ -207,6 +207,12 @@ function groupes_strongarm() {
           ),
           'full_zorga' => array(
             'weight' => '10',
+            'visible' => FALSE,
+          ),
+        ),
+        'cec_comments' => array(
+          'default' => array(
+            'weight' => '2',
             'visible' => FALSE,
           ),
         ),
