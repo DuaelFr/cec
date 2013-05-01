@@ -478,12 +478,6 @@ function avantages_views_default_views() {
   $handler->display->display_options['relationships']['field_avantage_target_id']['field'] = 'field_avantage_target_id';
   $handler->display->display_options['relationships']['field_avantage_target_id']['relationship'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantage_target_id']['label'] = 'Avantage';
-  /* Relation: Contenu : Type d&#039;avantage (field_avantage_type) */
-  $handler->display->display_options['relationships']['field_avantage_type_tid']['id'] = 'field_avantage_type_tid';
-  $handler->display->display_options['relationships']['field_avantage_type_tid']['table'] = 'field_data_field_avantage_type';
-  $handler->display->display_options['relationships']['field_avantage_type_tid']['field'] = 'field_avantage_type_tid';
-  $handler->display->display_options['relationships']['field_avantage_type_tid']['relationship'] = 'field_avantage_target_id';
-  $handler->display->display_options['relationships']['field_avantage_type_tid']['label'] = 'TypeAvantage';
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -604,6 +598,25 @@ function avantages_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Vous ne disposez d\'aucune botte.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relation: Contenu : Avantages (field_avantages) */
+  $handler->display->display_options['relationships']['field_avantages_value']['id'] = 'field_avantages_value';
+  $handler->display->display_options['relationships']['field_avantages_value']['table'] = 'field_data_field_avantages';
+  $handler->display->display_options['relationships']['field_avantages_value']['field'] = 'field_avantages_value';
+  $handler->display->display_options['relationships']['field_avantages_value']['label'] = 'Avatanges';
+  $handler->display->display_options['relationships']['field_avantages_value']['delta'] = '-1';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_avantage_target_id']['id'] = 'field_avantage_target_id';
+  $handler->display->display_options['relationships']['field_avantage_target_id']['table'] = 'field_data_field_avantage';
+  $handler->display->display_options['relationships']['field_avantage_target_id']['field'] = 'field_avantage_target_id';
+  $handler->display->display_options['relationships']['field_avantage_target_id']['relationship'] = 'field_avantages_value';
+  $handler->display->display_options['relationships']['field_avantage_target_id']['label'] = 'Avantage';
+  /* Relation: Contenu : Type d&#039;avantage (field_avantage_type) */
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['id'] = 'field_avantage_type_tid';
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['table'] = 'field_data_field_avantage_type';
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['field'] = 'field_avantage_type_tid';
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['relationships']['field_avantage_type_tid']['label'] = 'TypeAvantage';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -730,7 +743,6 @@ function avantages_views_default_views() {
     t('Aucun avantage validé pour le moment.'),
     t('Avatanges'),
     t('Avantage'),
-    t('TypeAvantage'),
     t('Pièces jointes'),
     t('Tout'),
     t('Avantages de %1'),
@@ -738,6 +750,7 @@ function avantages_views_default_views() {
     t('Mes bottes (Page)'),
     t('Mes bottes'),
     t('Vous ne disposez d\'aucune botte.'),
+    t('TypeAvantage'),
   );
   $export['avantages'] = $view;
 
