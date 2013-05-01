@@ -45,6 +45,9 @@ function groupes_node_access($node, $op, $account) {
           $character = reset(field_get_items('field_collection_item', $collection, 'field_character'));
           $character = node_load($character['target_id']);
           $return = personnages_node_access($character, $op, $account);
+          if ($return == NODE_ACCESS_ALLOW) {
+            return $return;
+          }
         }
       }
     }
