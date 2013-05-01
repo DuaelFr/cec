@@ -195,7 +195,7 @@ function personnages_strongarm() {
           ),
           'default' => array(
             'weight' => '99',
-            'visible' => FALSE,
+            'visible' => TRUE,
           ),
           'trombinoscope' => array(
             'weight' => '99',
@@ -347,7 +347,7 @@ function personnages_strongarm() {
         'view_avantages_player' => array(
           'default' => array(
             'weight' => '20',
-            'visible' => FALSE,
+            'visible' => TRUE,
           ),
           'full_zorga' => array(
             'weight' => '24',
@@ -361,7 +361,7 @@ function personnages_strongarm() {
         'view_trombi' => array(
           'default' => array(
             'weight' => '29',
-            'visible' => FALSE,
+            'visible' => TRUE,
           ),
           'trombinoscope' => array(
             'weight' => '99',
