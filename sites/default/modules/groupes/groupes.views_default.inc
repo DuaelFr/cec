@@ -615,20 +615,13 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['alter']['max_length'] = '300';
-  $handler->display->display_options['fields']['body']['alter']['strip_tags'] = TRUE;
-  $handler->display->display_options['fields']['body']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '300',
-  );
   /* Champ: Contenu : Lien */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['view_node']['text'] = 'Voir le détail et les membres';
   /* Critère de tri: Contenu : Titre */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
@@ -683,6 +676,13 @@ function groupes_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Membres connus du Groupe';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'grid';
+  $handler->display->display_options['style_options']['columns'] = '2';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['header'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* Comportement en l'absence de résultats: Global : Zone de texte */
@@ -693,6 +693,34 @@ function groupes_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucun des membres de ce groupe n\'est connu.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relation: Contenu : Membres (field_group_members) */
+  $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
+  $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
+  $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
+  $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
+  $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
+  $handler->display->display_options['relationships']['field_character_target_id']['relationship'] = 'field_group_members_value';
+  $handler->display->display_options['relationships']['field_character_target_id']['label'] = 'Personnage';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
+  $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
+  $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
+  $handler->display->display_options['relationships']['field_incarnate_target_id']['relationship'] = 'field_character_target_id';
+  $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
+  /* Relation: Utilisateur : Profil */
+  $handler->display->display_options['relationships']['profile']['id'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['table'] = 'users';
+  $handler->display->display_options['relationships']['profile']['field'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['relationship'] = 'field_incarnate_target_id';
+  $handler->display->display_options['relationships']['profile']['label'] = 'ProfilAdmin';
+  $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
+    'inscription_administrative' => 'inscription_administrative',
+  );
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -706,12 +734,26 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   /* Champ: Champ : Photo */
+  $handler->display->display_options['fields']['field_photo_1']['id'] = 'field_photo_1';
+  $handler->display->display_options['fields']['field_photo_1']['table'] = 'field_data_field_photo';
+  $handler->display->display_options['fields']['field_photo_1']['field'] = 'field_photo';
+  $handler->display->display_options['fields']['field_photo_1']['relationship'] = 'profile';
+  $handler->display->display_options['fields']['field_photo_1']['label'] = '';
+  $handler->display->display_options['fields']['field_photo_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_photo_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_photo_1']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_photo_1']['settings'] = array(
+    'image_style' => 'trombinoscope',
+    'image_link' => '',
+  );
+  /* Champ: Champ : Photo */
   $handler->display->display_options['fields']['field_photo']['id'] = 'field_photo';
   $handler->display->display_options['fields']['field_photo']['table'] = 'field_data_field_photo';
   $handler->display->display_options['fields']['field_photo']['field'] = 'field_photo';
   $handler->display->display_options['fields']['field_photo']['relationship'] = 'field_character_target_id';
   $handler->display->display_options['fields']['field_photo']['label'] = '';
   $handler->display->display_options['fields']['field_photo']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_photo']['empty'] = '[field_photo_1]';
   $handler->display->display_options['fields']['field_photo']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_photo']['settings'] = array(
     'image_style' => 'trombinoscope',
@@ -803,12 +845,14 @@ function groupes_views_default_views() {
     t('Ce personnage n\'appartient à aucun groupe pour le moment.'),
     t('Membres'),
     t('Personnage'),
-    t('Voir le détail et les membres'),
     t('Tout'),
     t('Groupes Personnage (Bloc)'),
     t('Membres Groupe (Bloc)'),
     t('Membres connus du Groupe'),
     t('Aucun des membres de ce groupe n\'est connu.'),
+    t('Joueur'),
+    t('ProfilAdmin'),
+    t('[field_photo_1]'),
   );
   $export['groups'] = $view;
 
