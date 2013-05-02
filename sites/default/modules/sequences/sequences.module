@@ -11,7 +11,7 @@ include_once 'sequences.features.inc';
  */
 function sequences_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'sequence_node_form') {
-    if (empty($form['field_dates'][LANGUAGE_NONE][0]['#default_value'])) {
+    if (empty($form['field_dates'][LANGUAGE_NONE][0]['#default_value']['value'])) {
       $form['field_dates'][LANGUAGE_NONE][0]['#default_value'] = array(
         'value' => '2013-05-08 16:00:00',
         'value2' => '2013-05-08 16:00:00',
