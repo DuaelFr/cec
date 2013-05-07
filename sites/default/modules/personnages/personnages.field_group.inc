@@ -21,7 +21,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Avantages',
-    'weight' => '25',
+    'weight' => '26',
     'children' => array(
       0 => 'field_credit',
       1 => 'field_pugilat',
@@ -217,7 +217,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Commentaires',
-    'weight' => '28',
+    'weight' => '29',
     'children' => array(
       0 => 'cec_comments',
     ),
@@ -279,7 +279,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Groupes',
-    'weight' => '26',
+    'weight' => '27',
     'children' => array(
       0 => 'view_groupes_player',
     ),
@@ -302,10 +302,10 @@ function personnages_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'character';
   $field_group->mode = 'default';
-  $field_group->parent_name = '';
+  $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Informations',
-    'weight' => '14',
+    'weight' => '24',
     'children' => array(
       0 => 'view_infos_player',
     ),
@@ -364,7 +364,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Objectifs',
-    'weight' => '24',
+    'weight' => '25',
     'children' => array(
       0 => 'field_objectifs_hj',
     ),
@@ -396,8 +396,9 @@ function personnages_field_group_info() {
       1 => 'group_background',
       2 => 'group_comments',
       3 => 'group_groupes',
-      4 => 'group_objectifs',
-      5 => 'group_trombi',
+      4 => 'group_informations',
+      5 => 'group_objectifs',
+      6 => 'group_trombi',
     ),
     'format_type' => 'htabs',
     'format_settings' => array(
@@ -575,7 +576,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = 'group_onglets';
   $field_group->data = array(
     'label' => 'Trombinoscope',
-    'weight' => '27',
+    'weight' => '28',
     'children' => array(
       0 => 'view_trombi',
     ),
