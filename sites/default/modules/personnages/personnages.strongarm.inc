@@ -319,7 +319,7 @@ function personnages_strongarm() {
         'view_infos_player' => array(
           'default' => array(
             'weight' => '99',
-            'visible' => FALSE,
+            'visible' => TRUE,
           ),
           'full_zorga' => array(
             'weight' => '25',

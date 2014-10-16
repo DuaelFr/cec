@@ -1553,14 +1553,8 @@ function personnages_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Éléments par page';
-  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Tout -';
-  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Décalage';
-  $handler->display->display_options['pager']['options']['tags']['first'] = '« premier';
-  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ précédent';
-  $handler->display->display_options['pager']['options']['tags']['next'] = 'suivant ›';
-  $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Comportement en l'absence de résultats: Global : Zone de texte */
@@ -1635,9 +1629,6 @@ function personnages_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Mes Personnages';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -1799,13 +1790,6 @@ function personnages_views_default_views() {
     t('Trier par'),
     t('Asc'),
     t('Desc'),
-    t('Éléments par page'),
-    t('- Tout -'),
-    t('Décalage'),
-    t('« premier'),
-    t('‹ précédent'),
-    t('suivant ›'),
-    t('dernier »'),
     t('Aucun personnage validé pour le moment'),
     t('Nom du Personnage'),
     t('Statut du Personnage'),

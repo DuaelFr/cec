@@ -232,3 +232,17 @@ h4 {
 
 .search-title { margin-top: 1em; }
 .search-title span { font-size: 12px; }
+
+
+/*************************/
+/* Views print sequences */
+/*************************/
+
+.view-admin-sequences.view-display-id-page_print {}
+.view-admin-sequences.view-display-id-page_print .column-side { display: none; }
+.view-admin-sequences.view-display-id-page_print .column-main { float: none; width: auto; }
+.view-admin-sequences.view-display-id-page_print .comment-wrapper { display: none; }
+.view-admin-sequences.view-display-id-page_print .page-break-me { page-break-after: always; }
+.view-admin-sequences.view-display-id-page_print .field-collection-view-links { display: none; }
+.view-admin-sequences.view-display-id-page_print .action-links-field-collection-add { display: none; }
+

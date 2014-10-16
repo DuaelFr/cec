@@ -816,5 +816,236 @@ Date de fin : [field_dates_1]
   );
   $export['admin_sequences'] = $view;
 
+  $view = new view();
+  $view->name = 'export_sequences';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Export Sequences';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'plus';
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    168020977 => '168020977',
+  );
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Éléments par page';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Tout -';
+  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Décalage';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« premier';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ précédent';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'suivant ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relation: Contenu : Type de séquence (field_sequence_type) */
+  $handler->display->display_options['relationships']['field_sequence_type_tid']['id'] = 'field_sequence_type_tid';
+  $handler->display->display_options['relationships']['field_sequence_type_tid']['table'] = 'field_data_field_sequence_type';
+  $handler->display->display_options['relationships']['field_sequence_type_tid']['field'] = 'field_sequence_type_tid';
+  $handler->display->display_options['relationships']['field_sequence_type_tid']['label'] = 'Type';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
+  $handler->display->display_options['relationships']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
+  $handler->display->display_options['relationships']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
+  $handler->display->display_options['relationships']['field_intrigue_target_id']['label'] = 'Intrigue';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_location_target_id']['id'] = 'field_location_target_id';
+  $handler->display->display_options['relationships']['field_location_target_id']['table'] = 'field_data_field_location';
+  $handler->display->display_options['relationships']['field_location_target_id']['field'] = 'field_location_target_id';
+  $handler->display->display_options['relationships']['field_location_target_id']['label'] = 'Emplacement';
+  /* Champ: Contenu : Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'ID Séquence';
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Champ: Terme de taxonomie : Nom */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'field_sequence_type_tid';
+  $handler->display->display_options['fields']['name']['label'] = 'Type';
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['label'] = 'Début';
+  $handler->display->display_options['fields']['field_dates']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
+  $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['label'] = 'Fin';
+  $handler->display->display_options['fields']['field_dates_1']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['fields']['title_1']['table'] = 'node';
+  $handler->display->display_options['fields']['title_1']['field'] = 'title';
+  $handler->display->display_options['fields']['title_1']['relationship'] = 'field_intrigue_target_id';
+  $handler->display->display_options['fields']['title_1']['label'] = 'Intrigue';
+  $handler->display->display_options['fields']['title_1']['link_to_node'] = FALSE;
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title_2']['id'] = 'title_2';
+  $handler->display->display_options['fields']['title_2']['table'] = 'node';
+  $handler->display->display_options['fields']['title_2']['field'] = 'title';
+  $handler->display->display_options['fields']['title_2']['relationship'] = 'field_location_target_id';
+  $handler->display->display_options['fields']['title_2']['label'] = 'Lieu';
+  $handler->display->display_options['fields']['title_2']['link_to_node'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'sequence' => 'sequence',
+  );
+  /* Critère de filtrage: Contenu : Titre */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['relationship'] = 'field_nonplayer_role_target_id';
+  $handler->display->display_options['filters']['title']['operator'] = 'not empty';
+
+  /* Display: Export base */
+  $handler = $view->new_display('views_data_export', 'Export base', 'export_sequences');
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_xls';
+  $handler->display->display_options['style_options']['provide_file'] = 1;
+  $handler->display->display_options['style_options']['filename'] = '%display.xls';
+  $handler->display->display_options['style_options']['parent_sort'] = 0;
+  $handler->display->display_options['path'] = 'admin/cec/export/sequences';
+
+  /* Display: Export PNJ */
+  $handler = $view->new_display('views_data_export', 'Export PNJ', 'export_affectations');
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_xls';
+  $handler->display->display_options['style_options']['provide_file'] = 1;
+  $handler->display->display_options['style_options']['parent_sort'] = 0;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relation: Contenu : PNJ (field_nonplayers) */
+  $handler->display->display_options['relationships']['field_nonplayers_value']['id'] = 'field_nonplayers_value';
+  $handler->display->display_options['relationships']['field_nonplayers_value']['table'] = 'field_data_field_nonplayers';
+  $handler->display->display_options['relationships']['field_nonplayers_value']['field'] = 'field_nonplayers_value';
+  $handler->display->display_options['relationships']['field_nonplayers_value']['label'] = 'NonPlayers';
+  $handler->display->display_options['relationships']['field_nonplayers_value']['delta'] = '-1';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_incarnate_npc_target_id']['id'] = 'field_incarnate_npc_target_id';
+  $handler->display->display_options['relationships']['field_incarnate_npc_target_id']['table'] = 'field_data_field_incarnate_npc';
+  $handler->display->display_options['relationships']['field_incarnate_npc_target_id']['field'] = 'field_incarnate_npc_target_id';
+  $handler->display->display_options['relationships']['field_incarnate_npc_target_id']['relationship'] = 'field_nonplayers_value';
+  $handler->display->display_options['relationships']['field_incarnate_npc_target_id']['label'] = 'PNJ';
+  /* Relation: Entity Reference : Referenced Entity */
+  $handler->display->display_options['relationships']['field_nonplayer_role_target_id']['id'] = 'field_nonplayer_role_target_id';
+  $handler->display->display_options['relationships']['field_nonplayer_role_target_id']['table'] = 'field_data_field_nonplayer_role';
+  $handler->display->display_options['relationships']['field_nonplayer_role_target_id']['field'] = 'field_nonplayer_role_target_id';
+  $handler->display->display_options['relationships']['field_nonplayer_role_target_id']['relationship'] = 'field_nonplayers_value';
+  $handler->display->display_options['relationships']['field_nonplayer_role_target_id']['label'] = 'Personnage';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Champ: Contenu : Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'ID Séquence';
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates']['label'] = 'Début';
+  $handler->display->display_options['fields']['field_dates']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Champ: Contenu : Horaires */
+  $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
+  $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
+  $handler->display->display_options['fields']['field_dates_1']['label'] = 'Fin';
+  $handler->display->display_options['fields']['field_dates_1']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Champ: Contenu : Titre */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_nonplayer_role_target_id';
+  $handler->display->display_options['fields']['title']['label'] = 'Personnage';
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Champ: Utilisateur : Nom */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'field_incarnate_npc_target_id';
+  $handler->display->display_options['fields']['name']['label'] = 'Incarné par';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  $handler->display->display_options['path'] = 'admin/cec/export/affectations';
+  $translatables['export_sequences'] = array(
+    t('Master'),
+    t('plus'),
+    t('Appliquer'),
+    t('Réinitialiser'),
+    t('Trier par'),
+    t('Asc'),
+    t('Desc'),
+    t('Éléments par page'),
+    t('- Tout -'),
+    t('Décalage'),
+    t('« premier'),
+    t('‹ précédent'),
+    t('suivant ›'),
+    t('dernier »'),
+    t('Type'),
+    t('Intrigue'),
+    t('Emplacement'),
+    t('ID Séquence'),
+    t('Titre'),
+    t('Début'),
+    t('Fin'),
+    t('Lieu'),
+    t('Export base'),
+    t('Export PNJ'),
+    t('NonPlayers'),
+    t('PNJ'),
+    t('Personnage'),
+    t('Incarné par'),
+  );
+  $export['export_sequences'] = $view;
+
   return $export;
 }
