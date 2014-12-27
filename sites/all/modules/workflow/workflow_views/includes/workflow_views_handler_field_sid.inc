@@ -40,7 +40,7 @@ class workflow_views_handler_field_sid extends views_handler_field {
       if (!isset($states)) {
         $states = array();
         foreach (workflow_get_workflow_states() as $state) {
-          $states[$state->sid] = check_plain($state->state);
+          $states[$state->sid] = $state->state;
         }
       }
       $output = t($states[$values->{$this->field_alias}]);
