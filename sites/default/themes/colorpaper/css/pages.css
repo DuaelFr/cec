@@ -261,3 +261,6 @@ span.field-label { /* The inline field label used by the Fences module */
 .view h2 {
   margin: .8em 0 1em;
 }
+
+#profile2-edit-debrief-sondage-form .field-type-list-integer .form-type-radios { clear: left; margin-top: 0; overflow: hidden; }
+#profile2-edit-debrief-sondage-form .field-type-list-integer .form-type-radio { float: left; margin-right: 10px; }
