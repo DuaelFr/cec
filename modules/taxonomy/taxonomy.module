@@ -72,12 +72,12 @@ function taxonomy_permission() {
   );
   foreach (taxonomy_get_vocabularies() as $vocabulary) {
     $permissions += array(
-      'edit terms in ' . $vocabulary->machine_name => array(
+      'edit terms in ' . $vocabulary->vid => array(
         'title' => t('Edit terms in %vocabulary', array('%vocabulary' => $vocabulary->name)),
       ),
     );
     $permissions += array(
-       'delete terms in ' . $vocabulary->machine_name => array(
+       'delete terms in ' . $vocabulary->vid => array(
          'title' => t('Delete terms from %vocabulary', array('%vocabulary' => $vocabulary->name)),
       ),
     );
@@ -371,7 +371,7 @@ function taxonomy_admin_paths() {
  * Return edit access for a given term.
  */
 function taxonomy_term_edit_access($term) {
-  return user_access("edit terms in $term->machine_name") || user_access('administer taxonomy');
+  return user_access("edit terms in $term->vid") || user_access('administer taxonomy');
 }
 
 /**
@@ -776,18 +776,26 @@ function taxonomy_term_show($term) {
  *   An array in the format expected by drupal_render().
  */
 function taxonomy_term_view_multiple($terms, $view_mode = 'teaser', $weight = 0, $langcode = NULL) {
-  $terms_by_view_mode = entity_view_mode_prepare('taxonomy_term', $terms, $view_mode, $langcode);
-  foreach ($terms_by_view_mode as $view_mode => $terms) {
-    field_attach_prepare_view('taxonomy_term', $terms, $view_mode, $langcode);
-    entity_prepare_view('taxonomy_term', $terms, $langcode);
-  }
   $build = array();
+  $entities_by_view_mode = entity_view_mode_prepare('taxonomy_term', $terms, $view_mode, $langcode);
+  foreach ($entities_by_view_mode as $entity_view_mode => $entities) {
+    field_attach_prepare_view('taxonomy_term', $entities, $entity_view_mode, $langcode);
+    entity_prepare_view('taxonomy_term', $entities, $langcode);
+
+    foreach ($entities as $entity) {
+      $build['taxonomy_terms'][$entity->tid] = taxonomy_term_view($entity, $entity_view_mode, $langcode);
+    }
+  }
+
   foreach ($terms as $term) {
-    $build['taxonomy_terms'][$term->tid] = taxonomy_term_view($term, $view_mode, $langcode);
     $build['taxonomy_terms'][$term->tid]['#weight'] = $weight;
     $weight++;
   }
+  // Sort here, to preserve the input order of the entities that were passed to
+  // this function.
+  uasort($build['taxonomy_terms'], 'element_sort');
   $build['taxonomy_terms']['#sorted'] = TRUE;
+
   return $build;
 }
 

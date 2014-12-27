@@ -79,6 +79,12 @@ function content_lock_menu() {
     'page arguments' => array(2, FALSE, FALSE),
     'access callback' => true
   );
+  $items['ajax/content_lock/%node/lock/%'] = array (
+    'page callback' => 'content_lock_node_ajax_callback',
+    'page arguments' => array(2, 4),
+    'access callback' => 'user_access',
+    'access arguments' => array('check out documents'),
+  );
   $items['admin/config/content/content_lock'] = array (
     'type' => MENU_NORMAL_ITEM,
     'title' => 'Content lock',
@@ -90,6 +96,81 @@ function content_lock_menu() {
    );
 
   return $items;
+}
+
+/**
+ * Implements hook_admin_paths().
+ *
+ * Register ajax lock path as an admin path.
+ */
+function content_lock_admin_paths() {
+  $paths = array(
+    'ajax/content_lock/*/lock/*' => TRUE,
+  );
+  return $paths;
+}
+
+/**
+ * Check if an internal Drupal path should be protected with a token.
+ *
+ * Adds requirements that certain path be accessed only through tokenized URIs
+ * which are enforced by this module. This prevents people from being CSRFed
+ * into locking nodes that they can access without meaning to lock them.
+ *
+ * @return bool
+ *   Returns TRUE if the path is protected or FALSE if not protected.
+ */
+function content_lock_is_path_protected($path) {
+  $cache = &drupal_static(__FUNCTION__, array());
+
+  // Check cache.
+  if (isset($cache[$path])) {
+    return $cache[$path];
+  }
+
+  // Invoke hook and collect grants/denies for protected paths.
+  $protected = array();
+  foreach (module_implements('content_lock_path_protected') as $module) {
+    $protected = array_merge($protected, array($module => module_invoke($module, 'content_lock_path_protected', $path)));
+  }
+
+  // Allow other modules to alter the returned grants/denies.
+  drupal_alter('content_lock_path_protected', $protected, $path);
+
+  // If TRUE is returned, path is protected.
+  $cache[$path] = in_array(TRUE, $protected);
+  return $cache[$path];
+}
+
+/**
+ * Implements hook_content_lock_path_protected().
+ */
+function content_lock_content_lock_path_protected($path) {
+  // Always protect node edit and revert paths.
+  if (strpos($path, 'node/') === 0) {
+    foreach (array('node/*/edit', 'node/*/revisions/*/revert') as $protected_pattern) {
+      if (drupal_match_path($path, $protected_pattern)) {
+        return TRUE;
+      }
+    }
+  }
+
+  // Allow extended tests via protection_menu_token module.
+  if (function_exists('protection_menu_token_is_path_protected')) {
+    return protection_menu_token_is_path_protected($path);
+  }
+}
+
+/**
+ * Implements hook_preprocess_link().
+ */
+function content_lock_preprocess_link(&$vars) {
+  // Append a CSRF token to all paths that show the node add/edit form.
+  if (content_lock_is_path_protected($vars['path'])) {
+    if (!isset($vars['options']['query']['content_lock_token'])) {
+      $vars['options']['query']['content_lock_token'] = drupal_get_token($vars['path']);
+    }
+  }
 }
 
 /**
@@ -239,12 +320,6 @@ function content_lock_form_alter(&$form, &$form_state, $form_id) {
   }
 
   if ($skip_lock == FALSE) {
-      // if we should lock or already have been locked, load the unload js. Dont use
-      // form alter but rather after build, so it works even for previews
-      if(variable_get('content_lock_unload_js', true)) {
-        $form['#after_build'][] = '_content_lock_add_unload_js';
-      }
-
       // Adding cancel button, if configured
       if(variable_get('content_lock_admin_cancelbutton', true)) {
         _content_lock_add_cancelbutton($form, $form_state, $form_id);
@@ -256,10 +331,40 @@ function content_lock_form_alter(&$form, &$form_state, $form_id) {
       // If the form did not get submitted we show it the first time
       // so try to get the lock if possible
       else if ($form_state['submitted'] === FALSE) {
-        // Finally set the lock if everthing passed.
-        if(content_lock_node($nid, $user->uid) == false) {
-          // could not lock node, it's locked by someone else
-          drupal_goto($destination);
+        // Refuse to lock if a token is not present. This prevents a CSRF attack
+        // if a user is tricked into visiting pages that cause nodes to be
+        // locked.
+        // A CSRF token may be missing in these cases:
+        // - A node add/edit form is displayed on a path that is not protected
+        //   with a CSRF token. Please add the path to the list of protected
+        //   paths by implementing hook_content_lock_path_protected().
+        // - The CSRF token has not been added to the URL as a query parameter,
+        //   for example because the user entered node/1/edit directly in the
+        //   address bar of the browser. To avoid CSRF attacks we do not lock
+        //   the node automatically, but still give the user the possibility to
+        //   lock the node manually using an AJAX call with a proper CSRF token.
+        $menu_item = menu_get_item();
+        if (empty($_GET['content_lock_token']) || !drupal_valid_token($_GET['content_lock_token'], $menu_item['href'])) {
+          drupal_set_message(t('The page you are editing could not be locked automatically. Please !link to make sure other people cannot accidentally overwrite your changes.', array(
+            '!link' => l(t('lock the page'), 'nojs/content_lock/' . $nid . '/lock/' . drupal_get_token($nid), array('attributes' => array('class' => array('use-ajax')))),
+          )), 'error');
+          if (!content_lock_is_path_protected($menu_item['path'])) {
+            watchdog('content_lock', 'Attempt to load the node_form form at menu path %path which is not protected from CSRF. Developers who want to create custom node editing pages and protect them with hook_content_lock_path_protected() or use protection_menu_token module to protect this path.', array('%path' => $menu_item['path']), WATCHDOG_WARNING);
+          }
+        }
+        else {
+          // Finally set the lock if everything passed.
+          if (content_lock_node($nid, $user->uid) == FALSE) {
+            // Could not lock node, it's locked by someone else.
+            drupal_goto($destination);
+          }
+          // If we should lock or already have been locked, load the unload js.
+          // Don't use form alter but rather after build, so it works even for
+          // previews.
+          elseif (variable_get('content_lock_unload_js', TRUE)) {
+            $form['#after_build'][] = '_content_lock_add_unload_js';
+          }
+
         }
       }
       // else if($form_state['submitted'] === TRUE)
@@ -469,6 +574,35 @@ function content_lock_lock_owner($lock) {
 function content_lock_user_logout($account) {
   // removing all locks, as the user logs out
   _content_lock_release_all_user_locks($account->uid);
+}
+
+/**
+ * AJAX callback to lock a node manually.
+ *
+ * @param object $node
+ *   The node to lock.
+ * @param string $token
+ *   The CSRF token.
+ */
+function content_lock_node_ajax_callback($node, $token) {
+  global $user;
+
+  // Only lock the node if we have a valid CSRF token.
+  if (drupal_valid_token($token, $node->nid)) {
+    content_lock_node($node->nid, $user->uid);
+
+    // Add the javascript that unlocks the node when the user navigates away
+    // from the page.
+    $form = array('nid' => array('#value' => $node->nid));
+    _content_lock_add_unload_js($form, array());
+  }
+  else {
+    drupal_set_message(t('The content could not be locked.'));
+  }
+  $commands = array();
+  $commands[] = ajax_command_remove('div.messages');
+  $commands[] = ajax_command_before('#block-system-main', theme('status_messages'));
+  ajax_deliver(array('#type' => 'ajax', '#commands' => $commands));
 }
 
 /**

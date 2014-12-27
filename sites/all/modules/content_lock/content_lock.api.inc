@@ -16,6 +16,31 @@
  */
 
 /**
+ * Control protected paths for node edit forms.
+ *
+ * The hook is typically implemented to check if a path should be protected for
+ * CSRF attacks on the node edit forms.
+ *
+ * @param string $path
+ *   The path to check protection for.
+ *
+ * @return
+ *   TRUE is the path should be protected.
+ *   Note: this grant is permissive rather than restrictive.
+ *
+ * @see hook_field_access().
+ */
+function hook_content_lock_path_protected($path) {
+  if (strpos($path, 'node/') === 0) {
+    foreach (array('node/*/edit', 'node/*/revisions/*/revert') as $protected_pattern) {
+      if (drupal_match_path($path, $protected_pattern)) {
+        return TRUE;
+      }
+    }
+  }
+}
+
+/**
  * Determine if locking should be disabled for a given node (e.g. by
  * checking its type or other properties).
  *

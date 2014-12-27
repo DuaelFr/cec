@@ -1103,20 +1103,26 @@ function comment_links($comment, $node) {
  *   An array in the format expected by drupal_render().
  */
 function comment_view_multiple($comments, $node, $view_mode = 'full', $weight = 0, $langcode = NULL) {
-  $comments_by_view_mode = entity_view_mode_prepare('comment', $comments, $view_mode, $langcode);
-  foreach ($comments_by_view_mode as $view_mode => $comments) {
-    field_attach_prepare_view('comment', $comments, $view_mode, $langcode);
-    entity_prepare_view('comment', $comments, $langcode);
+  $build = array();
+  $entities_by_view_mode = entity_view_mode_prepare('comment', $comments, $view_mode, $langcode);
+  foreach ($entities_by_view_mode as $entity_view_mode => $entities) {
+    field_attach_prepare_view('comment', $entities, $entity_view_mode, $langcode);
+    entity_prepare_view('comment', $entities, $langcode);
+
+    foreach ($entities as $entity) {
+      $build[$entity->cid] = comment_view($entity, $node, $entity_view_mode, $langcode);
+    }
   }
 
-  $build = array(
-    '#sorted' => TRUE,
-  );
   foreach ($comments as $comment) {
-    $build[$comment->cid] = comment_view($comment, $node, $view_mode, $langcode);
     $build[$comment->cid]['#weight'] = $weight;
     $weight++;
   }
+  // Sort here, to preserve the input order of the entities that were passed to
+  // this function.
+  uasort($build, 'element_sort');
+  $build['#sorted'] = TRUE;
+
   return $build;
 }
 

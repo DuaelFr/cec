@@ -13,9 +13,9 @@ files[] = views/views_handler_filter_is_locked.inc
 files[] = views/views_handler_sort_is_locked.inc
 configure = admin/settings/content_lock
 
-; Information added by drupal.org packaging script on 2012-07-12
-version = "7.x-1.4"
+; Information added by Drupal.org packaging script on 2014-09-12
+version = "7.x-2.0"
 core = "7.x"
 project = "content_lock"
-datestamp = "1342076790"
+datestamp = "1410528829"
 
