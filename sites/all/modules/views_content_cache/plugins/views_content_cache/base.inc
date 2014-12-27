@@ -26,7 +26,7 @@ class views_content_cache_key {
    *   A FormAPI element that will appear as part of the views content cache
    *   options form when building a view.
    */
-  function options_form($value, &$handler) {
+  function options_form($value, &$handler = NULL) {
     return array();
   }
 

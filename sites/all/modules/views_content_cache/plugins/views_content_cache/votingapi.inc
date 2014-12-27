@@ -6,7 +6,7 @@
 
 class views_content_cache_key_votingapi extends views_content_cache_key {
 
-  function options_form($value) {
+  function options_form($value, &$handler = NULL) {
     // Get all of the possible tags that we could monitor:
     $metadata = votingapi_metadata();
     $options = array();

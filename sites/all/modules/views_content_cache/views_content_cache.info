@@ -20,9 +20,9 @@ he.inc
 ; Tests
 files[] = tests/views_content_cache.test
 
-; Information added by drupal.org packaging script on 2012-09-16
-version = "7.x-3.0-alpha1"
+; Information added by  packaging script on 2013-11-05
+version = "7.x-3.0-alpha3"
 core = "7.x"
 project = "views_content_cache"
-datestamp = "1347824110"
+datestamp = "1383658110"
 

@@ -24,7 +24,8 @@ class ViewsContentCacheTest extends DrupalWebTestCase {
 
     $timestamp_before = REQUEST_TIME;
     $this->node = $this->drupalCreateNode(array('type' => 'article'));
-    $timestamp_after = REQUEST_TIME;
+    // We intentionally use time() instead of REQUEST_TIME here.
+    $timestamp_after = time();
 
     // Now need to make sure that views content cache recorded the correct time:
     $cid = array('node' => array('article'));
@@ -34,6 +35,20 @@ class ViewsContentCacheTest extends DrupalWebTestCase {
 
     // Make sure the page segment was untouched:
     $this->assertFalse(views_content_cache_update_get(array('node' => array('page')), TRUE), t('Ensure that the no timestamp has been set against the page cache segment.'));
+
+    // Now make sure that the segment will get updated, not just inserted.
+    sleep(2);
+    $timestamp_before = time();
+    $this->node = $this->drupalCreateNode(array('type' => 'article'));
+    // We intentionally use time() instead of REQUEST_TIME here.
+    $timestamp_after = time();
+
+    // Now need to make sure that views content cache recorded the correct time:
+    $cid = array('node' => array('article'));
+    $updated = views_content_cache_update_get($cid, TRUE);
+    $result = ($updated <= $timestamp_after) && ($updated >= $timestamp_before);
+    $this->assertTrue($result, t('Ensure that the timestamp against the article cache segment is updated.'));
+
   }
 
   /**

@@ -5,7 +5,7 @@
  */
 
 class views_content_cache_key_node extends views_content_cache_key {
-  function options_form($value, &$handler) {
+  function options_form($value, &$handler = NULL) {
     return array(
       '#title' => t('Node types'),
       '#description' => t('Checks for new or updated nodes of any of the selected types.'),
