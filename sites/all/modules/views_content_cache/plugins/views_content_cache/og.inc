@@ -12,7 +12,7 @@
  * belongs to.
  */
 class views_content_cache_key_og extends views_content_cache_key {
-  function options_form($value, &$handler) {
+  function options_form($value, &$handler = NULL) {
     return array(
       '#title' => t('Organic Groups'),
       '#description' => t('Checks for updates related to Organic Groups'),
@@ -32,7 +32,7 @@ class views_content_cache_key_og extends views_content_cache_key {
         $keys[] = $gid;
       }
     }
-    elseif ($object_type === 'comment' && !empty($object['nid']) && ($node = node_load($object['nid'])) && !empty($node->og_groups)) {
+    elseif ($object_type === 'comment' && !empty($object->nid) && ($node = node_load($object->nid)) && !empty($node->og_groups)) {
       foreach ($node->og_groups as $gid) {
         $keys[] = $gid;
       }

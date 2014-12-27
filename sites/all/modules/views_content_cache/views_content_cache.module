@@ -112,33 +112,20 @@ function views_content_cache_votingapi_results($cached, $content_type, $content_
  */
 function views_content_cache_update_set($object, $object_type, $timestamp = NULL) {
   $update = FALSE;
-  $timestamp = isset($timestamp) ? $timestamp : REQUEST_TIME;
+  // Important to default to time() instead of REQUEST_TIME to avoid race
+  // conditions.
+  $timestamp = isset($timestamp) ? $timestamp : time();
   if ($cids = views_content_cache_id_generate($object, $object_type)) {
     foreach ($cids as $cid) {
       if (!empty($cid)) {
         $update = TRUE;
         $mapped = views_content_cache_id_record($cid);
 
-        // Remove any update records that match this cid.
-        $where = array();
-        $args = array();
-        foreach ($mapped as $key_id => $key_value) {
-          if (isset($key_value)) {
-            $where[] = "{$key_id} = :{$key_id}";
-            $args[":{$key_id}"] = $key_value;
-          }
-          else {
-            $where[] = "{$key_id} IS NULL";
-          }
-        }
-
-        if (!empty($where)) {
-          $where = implode(' AND ', $where);
-          db_query("DELETE FROM {views_content_cache} WHERE " . $where, $args);
-        }
-
-        $mapped['timestamp'] = $timestamp;
-        drupal_write_record('views_content_cache', $mapped);
+        // Ensure that the timestamp is recorded in the table.
+        $merge_query = db_merge('views_content_cache')
+          ->fields(array('timestamp' => $timestamp))
+          ->key($mapped)
+          ->execute();
       }
     }
   }

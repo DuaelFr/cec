@@ -5,7 +5,7 @@
  */
 
 class views_content_cache_key_node_only extends views_content_cache_key {
-  function options_form($value) {
+  function options_form($value, &$handler = NULL) {
     return array(
       '#title' => t('Node only'),
       '#description' => t('Allows the node segment to be refined to only include main operations create/update/delete. Be careful about combing with other node related segments.'),
