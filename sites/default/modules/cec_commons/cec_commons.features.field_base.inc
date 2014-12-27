@@ -521,7 +521,11 @@ function cec_commons_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_version',
     'foreign keys' => array(),
-    'indexes' => array(),
+    'indexes' => array(
+      'revision_id' => array(
+        0 => 'revision_id',
+      ),
+    ),
     'locked' => 0,
     'module' => 'field_collection',
     'settings' => array(

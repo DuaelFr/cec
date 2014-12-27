@@ -10,7 +10,7 @@
 function groupes_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in type_de_groupe.
+  // Exported permission: 'add terms in type_de_groupe'.
   $permissions['add terms in type_de_groupe'] = array(
     'name' => 'add terms in type_de_groupe',
     'roles' => array(
@@ -19,7 +19,7 @@ function groupes_user_default_permissions() {
     'module' => 'taxonomy_access_fix',
   );
 
-  // Exported permission: create group content.
+  // Exported permission: 'create group content'.
   $permissions['create group content'] = array(
     'name' => 'create group content',
     'roles' => array(
@@ -28,7 +28,7 @@ function groupes_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any group content.
+  // Exported permission: 'delete any group content'.
   $permissions['delete any group content'] = array(
     'name' => 'delete any group content',
     'roles' => array(
@@ -37,7 +37,7 @@ function groupes_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete own group content.
+  // Exported permission: 'delete own group content'.
   $permissions['delete own group content'] = array(
     'name' => 'delete own group content',
     'roles' => array(
@@ -46,7 +46,7 @@ function groupes_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in type_de_groupe.
+  // Exported permission: 'delete terms in type_de_groupe'.
   $permissions['delete terms in type_de_groupe'] = array(
     'name' => 'delete terms in type_de_groupe',
     'roles' => array(
@@ -55,7 +55,7 @@ function groupes_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: edit any group content.
+  // Exported permission: 'edit any group content'.
   $permissions['edit any group content'] = array(
     'name' => 'edit any group content',
     'roles' => array(
@@ -64,7 +64,7 @@ function groupes_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit own group content.
+  // Exported permission: 'edit own group content'.
   $permissions['edit own group content'] = array(
     'name' => 'edit own group content',
     'roles' => array(
@@ -73,7 +73,7 @@ function groupes_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in type_de_groupe.
+  // Exported permission: 'edit terms in type_de_groupe'.
   $permissions['edit terms in type_de_groupe'] = array(
     'name' => 'edit terms in type_de_groupe',
     'roles' => array(
@@ -82,7 +82,7 @@ function groupes_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: view all groups.
+  // Exported permission: 'view all groups'.
   $permissions['view all groups'] = array(
     'name' => 'view all groups',
     'roles' => array(
@@ -91,7 +91,7 @@ function groupes_user_default_permissions() {
     'module' => 'groupes',
   );
 
-  // Exported permission: view technical groups.
+  // Exported permission: 'view technical groups'.
   $permissions['view technical groups'] = array(
     'name' => 'view technical groups',
     'roles' => array(

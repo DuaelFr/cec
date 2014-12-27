@@ -21,11 +21,11 @@ function sequences_field_default_field_bases() {
       'type' => 0,
     ),
     'foreign keys' => array(
-      'node' => array(
+      'users' => array(
         'columns' => array(
-          'target_id' => 'nid',
+          'target_id' => 'uid',
         ),
-        'table' => 'node',
+        'table' => 'users',
       ),
     ),
     'indexes' => array(
@@ -211,7 +211,11 @@ function sequences_field_default_field_bases() {
       'type' => 0,
     ),
     'foreign keys' => array(),
-    'indexes' => array(),
+    'indexes' => array(
+      'revision_id' => array(
+        0 => 'revision_id',
+      ),
+    ),
     'locked' => 0,
     'module' => 'field_collection',
     'settings' => array(
