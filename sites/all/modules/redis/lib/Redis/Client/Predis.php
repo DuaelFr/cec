@@ -42,7 +42,10 @@ class Redis_Client_Predis implements Redis_Client_Interface {
     if (!class_exists('Predis\Client')) {
 
       if (!defined('PREDIS_BASE_PATH')) {
-        $search = DRUPAL_ROOT . '/sites/all/libraries/predis/lib/';
+        $search = DRUPAL_ROOT . '/sites/all/libraries/predis/';
+        if (!is_dir($search)) {
+          $search = $search . '/lib/';
+        }
         if (is_dir($search)) {
           define('PREDIS_BASE_PATH', $search);
         } else {
@@ -50,9 +53,13 @@ class Redis_Client_Predis implements Redis_Client_Interface {
         }
       }
 
-      if (class_exists('AutoloadEarly')) {
+      if (is_file(PREDIS_BASE_PATH . 'autoload.php')) {
+        require_once PREDIS_BASE_PATH . 'autoload.php';
+      }
+      elseif (class_exists('AutoloadEarly')) {
         AutoloadEarly::getInstance()->registerNamespace('Predis', PREDIS_BASE_PATH);
-      } else {
+      }
+      else {
         // Register a simple autoloader for Predis library. Since the Predis
         // library is PHP 5.3 only, we can afford doing closures safely.
         spl_autoload_register(function($classname) {
