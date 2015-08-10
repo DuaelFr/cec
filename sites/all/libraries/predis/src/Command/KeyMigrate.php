@@ -12,18 +12,18 @@
 namespace Predis\Command;
 
 /**
- * @link http://redis.io/commands/slaveof
+ * @link http://redis.io/commands/migrate
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class ServerSlaveOf extends Command
+class KeyMigrate extends Command
 {
     /**
      * {@inheritdoc}
      */
     public function getId()
     {
-        return 'SLAVEOF';
+        return 'MIGRATE';
     }
 
     /**
@@ -31,8 +31,18 @@ class ServerSlaveOf extends Command
      */
     protected function filterArguments(array $arguments)
     {
-        if (count($arguments) === 0 || $arguments[0] === 'NO ONE') {
-            return array('NO', 'ONE');
+        if (is_array(end($arguments))) {
+            foreach (array_pop($arguments) as $modifier => $value) {
+                $modifier = strtoupper($modifier);
+
+                if ($modifier === 'COPY' && $value == true) {
+                    $arguments[] = $modifier;
+                }
+
+                if ($modifier === 'REPLACE' && $value == true) {
+                    $arguments[] = $modifier;
+                }
+            }
         }
 
         return $arguments;

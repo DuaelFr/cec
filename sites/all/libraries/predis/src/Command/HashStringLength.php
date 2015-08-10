@@ -12,17 +12,17 @@
 namespace Predis\Command;
 
 /**
- * @link http://redis.io/commands/psubscribe
+ * @link http://redis.io/commands/hstrlen
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-class PubSubSubscribeByPattern extends PubSubSubscribe
+class HashStringLength extends Command
 {
     /**
      * {@inheritdoc}
      */
     public function getId()
     {
-        return 'PSUBSCRIBE';
+        return 'HSTRLEN';
     }
 }
