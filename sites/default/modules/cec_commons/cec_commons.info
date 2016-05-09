@@ -30,5 +30,4 @@ features[field_base][] = field_version
 features[field_instance][] = field_collection_item-field_version-field_alternate_body
 features[field_instance][] = field_collection_item-field_version-field_alternate_title
 features[field_instance][] = field_collection_item-field_version-field_target
-mtime = 1419694683
 project path = sites/default/modules

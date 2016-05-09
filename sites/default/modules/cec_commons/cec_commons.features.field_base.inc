@@ -10,7 +10,7 @@
 function cec_commons_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
+  // Exported field_base: 'body'.
   $field_bases['body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -21,14 +21,6 @@ function cec_commons_field_default_field_bases() {
     'field_name' => 'body',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
     ),
     'indexes' => array(
       'format' => array(
@@ -44,7 +36,7 @@ function cec_commons_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'comment_body'
+  // Exported field_base: 'comment_body'.
   $field_bases['comment_body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -53,14 +45,6 @@ function cec_commons_field_default_field_bases() {
       0 => 'comment',
     ),
     'field_name' => 'comment_body',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -73,7 +57,7 @@ function cec_commons_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_alternate_body'
+  // Exported field_base: 'field_alternate_body'.
   $field_bases['field_alternate_body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -82,14 +66,6 @@ function cec_commons_field_default_field_bases() {
     'field_name' => 'field_alternate_body',
     'field_permissions' => array(
       'type' => 1,
-    ),
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
     ),
     'indexes' => array(
       'format' => array(
@@ -105,7 +81,7 @@ function cec_commons_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_alternate_title'
+  // Exported field_base: 'field_alternate_title'.
   $field_bases['field_alternate_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -114,14 +90,6 @@ function cec_commons_field_default_field_bases() {
     'field_name' => 'field_alternate_title',
     'field_permissions' => array(
       'type' => 1,
-    ),
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
     ),
     'indexes' => array(
       'format' => array(
@@ -138,7 +106,7 @@ function cec_commons_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_dates'
+  // Exported field_base: 'field_dates'.
   $field_bases['field_dates'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -148,7 +116,6 @@ function cec_commons_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'date',
@@ -172,7 +139,7 @@ function cec_commons_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_intrigue'
+  // Exported field_base: 'field_intrigue'.
   $field_bases['field_intrigue'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -181,14 +148,6 @@ function cec_commons_field_default_field_bases() {
     'field_name' => 'field_intrigue',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
     ),
     'indexes' => array(
       'target_id' => array(
@@ -222,21 +181,13 @@ function cec_commons_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_opus'
+  // Exported field_base: 'field_opus'.
   $field_bases['field_opus'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_opus',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -257,7 +208,7 @@ function cec_commons_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_photo'
+  // Exported field_base: 'field_photo'.
   $field_bases['field_photo'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -266,14 +217,6 @@ function cec_commons_field_default_field_bases() {
     'field_name' => 'field_photo',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'fid' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
     ),
     'indexes' => array(
       'fid' => array(
@@ -291,7 +234,7 @@ function cec_commons_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_target'
+  // Exported field_base: 'field_target'.
   $field_bases['field_target'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -300,14 +243,6 @@ function cec_commons_field_default_field_bases() {
     'field_name' => 'field_target',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
     ),
     'indexes' => array(
       'target_id' => array(
@@ -338,21 +273,13 @@ function cec_commons_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_temperament1'
+  // Exported field_base: 'field_temperament1'.
   $field_bases['field_temperament1'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_temperament1',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -373,21 +300,13 @@ function cec_commons_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_temperament2'
+  // Exported field_base: 'field_temperament2'.
   $field_bases['field_temperament2'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_temperament2',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -408,21 +327,13 @@ function cec_commons_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_temperament3'
+  // Exported field_base: 'field_temperament3'.
   $field_bases['field_temperament3'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_temperament3',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -443,21 +354,13 @@ function cec_commons_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_temperament4'
+  // Exported field_base: 'field_temperament4'.
   $field_bases['field_temperament4'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_temperament4',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -478,21 +381,13 @@ function cec_commons_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_temperament5'
+  // Exported field_base: 'field_temperament5'.
   $field_bases['field_temperament5'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_temperament5',
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
-    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
@@ -513,14 +408,13 @@ function cec_commons_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_version'
+  // Exported field_base: 'field_version'.
   $field_bases['field_version'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_version',
-    'foreign keys' => array(),
     'indexes' => array(
       'revision_id' => array(
         0 => 'revision_id',

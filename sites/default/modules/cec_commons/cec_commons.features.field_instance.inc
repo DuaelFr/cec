@@ -10,7 +10,8 @@
 function cec_commons_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'field_collection_item-field_version-field_alternate_body'
+  // Exported field_instance:
+  // 'field_collection_item-field_version-field_alternate_body'.
   $field_instances['field_collection_item-field_version-field_alternate_body'] = array(
     'bundle' => 'field_version',
     'default_value' => NULL,
@@ -44,7 +45,8 @@ function cec_commons_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_version-field_alternate_title'
+  // Exported field_instance:
+  // 'field_collection_item-field_version-field_alternate_title'.
   $field_instances['field_collection_item-field_version-field_alternate_title'] = array(
     'bundle' => 'field_version',
     'default_value' => NULL,
@@ -78,7 +80,8 @@ function cec_commons_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_version-field_target'
+  // Exported field_instance:
+  // 'field_collection_item-field_version-field_target'.
   $field_instances['field_collection_item-field_version-field_target'] = array(
     'bundle' => 'field_version',
     'default_value' => NULL,
