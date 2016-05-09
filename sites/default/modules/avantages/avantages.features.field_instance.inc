@@ -10,7 +10,7 @@
 function avantages_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_avantage-comment_body'
+  // Exported field_instance: 'comment-comment_node_avantage-comment_body'.
   $field_instances['comment-comment_node_avantage-comment_body'] = array(
     'bundle' => 'comment_node_avantage',
     'default_value' => NULL,
@@ -43,7 +43,7 @@ function avantages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-avantage-body'
+  // Exported field_instance: 'node-avantage-body'.
   $field_instances['node-avantage-body'] = array(
     'bundle' => 'avantage',
     'default_value' => NULL,
@@ -91,7 +91,7 @@ function avantages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-avantage-field_alternate_body'
+  // Exported field_instance: 'node-avantage-field_alternate_body'.
   $field_instances['node-avantage-field_alternate_body'] = array(
     'bundle' => 'avantage',
     'default_value' => NULL,
@@ -137,7 +137,7 @@ function avantages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-avantage-field_alternate_title'
+  // Exported field_instance: 'node-avantage-field_alternate_title'.
   $field_instances['node-avantage-field_alternate_title'] = array(
     'bundle' => 'avantage',
     'default_value' => NULL,
@@ -183,7 +183,7 @@ function avantages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-avantage-field_attachment'
+  // Exported field_instance: 'node-avantage-field_attachment'.
   $field_instances['node-avantage-field_attachment'] = array(
     'bundle' => 'avantage',
     'deleted' => 0,
@@ -251,7 +251,7 @@ function avantages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-avantage-field_avantage_type'
+  // Exported field_instance: 'node-avantage-field_avantage_type'.
   $field_instances['node-avantage-field_avantage_type'] = array(
     'bundle' => 'avantage',
     'default_value' => NULL,
@@ -294,7 +294,7 @@ function avantages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-avantage-field_value'
+  // Exported field_instance: 'node-avantage-field_value'.
   $field_instances['node-avantage-field_value'] = array(
     'bundle' => 'avantage',
     'default_value' => NULL,

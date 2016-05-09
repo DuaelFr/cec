@@ -10,21 +10,13 @@
 function avantages_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_attachment'
+  // Exported field_base: 'field_attachment'.
   $field_bases['field_attachment'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_attachment',
-    'foreign keys' => array(
-      'fid' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
     'indexes' => array(
       'fid' => array(
         0 => 'fid',
@@ -42,7 +34,7 @@ function avantages_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_avantage_type'
+  // Exported field_base: 'field_avantage_type'.
   $field_bases['field_avantage_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -51,14 +43,6 @@ function avantages_field_default_field_bases() {
     'field_name' => 'field_avantage_type',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
     ),
     'indexes' => array(
       'tid' => array(
@@ -80,7 +64,7 @@ function avantages_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_value'
+  // Exported field_base: 'field_value'.
   $field_bases['field_value'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -90,7 +74,6 @@ function avantages_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'number',

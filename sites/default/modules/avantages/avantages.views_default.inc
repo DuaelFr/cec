@@ -123,31 +123,31 @@ function avantages_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relation: Entity Reference : Referencing entity */
+  /* Relationship: Entity Reference: Referencing entity */
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['id'] = 'reverse_field_avantage_field_collection_item';
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['table'] = 'node';
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['field'] = 'reverse_field_avantage_field_collection_item';
   $handler->display->display_options['relationships']['reverse_field_avantage_field_collection_item']['label'] = 'Personnage';
-  /* Champ: Contenu : Nid */
+  /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Champ: Champ : Intitulé orga */
+  /* Field: Field: Intitulé orga */
   $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = 'node/[nid]';
-  /* Champ: Contenu : Type d'avantage */
+  /* Field: Nœud: Type d'avantage */
   $handler->display->display_options['fields']['field_avantage_type']['id'] = 'field_avantage_type';
   $handler->display->display_options['fields']['field_avantage_type']['table'] = 'field_data_field_avantage_type';
   $handler->display->display_options['fields']['field_avantage_type']['field'] = 'field_avantage_type';
   $handler->display->display_options['fields']['field_avantage_type']['label'] = 'Type';
   $handler->display->display_options['fields']['field_avantage_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Contenu : Valeur */
+  /* Field: Nœud: Valeur */
   $handler->display->display_options['fields']['field_value']['id'] = 'field_value';
   $handler->display->display_options['fields']['field_value']['table'] = 'field_data_field_value';
   $handler->display->display_options['fields']['field_value']['field'] = 'field_value';
@@ -155,35 +155,35 @@ function avantages_views_default_views() {
     'thousand_separator' => ' ',
     'prefix_suffix' => 1,
   );
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Nom joueurs';
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Champ: Champ : Descriptif orga */
+  /* Field: Field: Descriptif orga */
   $handler->display->display_options['fields']['field_alternate_body']['id'] = 'field_alternate_body';
   $handler->display->display_options['fields']['field_alternate_body']['table'] = 'field_data_field_alternate_body';
   $handler->display->display_options['fields']['field_alternate_body']['field'] = 'field_alternate_body';
-  /* Champ: COUNT(DISTINCT Field collection item : Identifiant de Field collection item) */
+  /* Field: COUNT(DISTINCT Field collection item: Field collection item ID) */
   $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
   $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['relationship'] = 'reverse_field_avantage_field_collection_item';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Personnages';
-  /* Champ: Processus : Current state */
+  /* Field: Workflow: Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['label'] = 'Etat actuel';
-  /* Champ: Contenu : Lien de modification */
+  /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
-  /* Champ: Etat CSS */
+  /* Field: Etat CSS */
   $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
@@ -192,11 +192,11 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
-  /* Critère de tri: Champ : Intitulé orga (field_alternate_title) */
+  /* Sort criterion: Field: Intitulé orga (field_alternate_title) */
   $handler->display->display_options['sorts']['field_alternate_title_value']['id'] = 'field_alternate_title_value';
   $handler->display->display_options['sorts']['field_alternate_title_value']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['sorts']['field_alternate_title_value']['field'] = 'field_alternate_title_value';
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -204,7 +204,7 @@ function avantages_views_default_views() {
     'avantage' => 'avantage',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Champ : Intitulé orga (field_alternate_title) */
+  /* Filter criterion: Field: Intitulé orga (field_alternate_title) */
   $handler->display->display_options['filters']['field_alternate_title_value']['id'] = 'field_alternate_title_value';
   $handler->display->display_options['filters']['field_alternate_title_value']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['filters']['field_alternate_title_value']['field'] = 'field_alternate_title_value';
@@ -226,7 +226,7 @@ function avantages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Contenu : Type d&#039;avantage (field_avantage_type) */
+  /* Filter criterion: Nœud: Type d&#039;avantage (field_avantage_type) */
   $handler->display->display_options['filters']['field_avantage_type_tid']['id'] = 'field_avantage_type_tid';
   $handler->display->display_options['filters']['field_avantage_type_tid']['table'] = 'field_data_field_avantage_type';
   $handler->display->display_options['filters']['field_avantage_type_tid']['field'] = 'field_avantage_type_tid';
@@ -251,7 +251,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['filters']['field_avantage_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_avantage_type_tid']['vocabulary'] = 'avantage_type';
   $handler->display->display_options['filters']['field_avantage_type_tid']['hierarchy'] = 1;
-  /* Critère de filtrage: Contenu : Valeur (field_value) */
+  /* Filter criterion: Nœud: Valeur (field_value) */
   $handler->display->display_options['filters']['field_value_value']['id'] = 'field_value_value';
   $handler->display->display_options['filters']['field_value_value']['table'] = 'field_data_field_value';
   $handler->display->display_options['filters']['field_value_value']['field'] = 'field_value_value';
@@ -273,7 +273,7 @@ function avantages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Contenu : Titre */
+  /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
@@ -295,7 +295,7 @@ function avantages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : Current state */
+  /* Filter criterion: Workflow: Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -347,14 +347,14 @@ function avantages_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Champ : Intitulé orga */
+  /* Field: Field: Intitulé orga */
   $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['label'] = '';
   $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = '[path]';
   $handler->display->display_options['fields']['field_alternate_title']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -365,7 +365,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -395,6 +395,7 @@ function avantages_views_default_views() {
     t('Actions'),
     t('modifier'),
     t('Tous les avantages (Page)'),
+    t('more'),
     t('Sélecteur (Référence)'),
     t('([title])'),
   );
@@ -458,7 +459,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Comportement en l'absence de résultats: Global : Zone de texte */
+  /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
@@ -466,19 +467,19 @@ function avantages_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucun avantage validé pour le moment.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Relation: Contenu : Avantages (field_avantages) */
+  /* Relationship: Nœud: Avantages (field_avantages) */
   $handler->display->display_options['relationships']['field_avantages_value']['id'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantages_value']['table'] = 'field_data_field_avantages';
   $handler->display->display_options['relationships']['field_avantages_value']['field'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantages_value']['label'] = 'Avatanges';
   $handler->display->display_options['relationships']['field_avantages_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_avantage_target_id']['id'] = 'field_avantage_target_id';
   $handler->display->display_options['relationships']['field_avantage_target_id']['table'] = 'field_data_field_avantage';
   $handler->display->display_options['relationships']['field_avantage_target_id']['field'] = 'field_avantage_target_id';
   $handler->display->display_options['relationships']['field_avantage_target_id']['relationship'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantage_target_id']['label'] = 'Avantage';
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -489,14 +490,14 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Champ: Contenu : Description */
+  /* Field: Nœud: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['relationship'] = 'field_avantage_target_id';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Pièce jointe */
+  /* Field: Nœud: Pièce jointe */
   $handler->display->display_options['fields']['field_attachment']['id'] = 'field_attachment';
   $handler->display->display_options['fields']['field_attachment']['table'] = 'field_data_field_attachment';
   $handler->display->display_options['fields']['field_attachment']['field'] = 'field_attachment';
@@ -507,23 +508,23 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['field_attachment']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_attachment']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_attachment']['multi_type'] = 'ul';
-  /* Critère de tri: Contenu : Type d&#039;avantage (field_avantage_type) */
+  /* Sort criterion: Nœud: Type d&#039;avantage (field_avantage_type) */
   $handler->display->display_options['sorts']['field_avantage_type_tid']['id'] = 'field_avantage_type_tid';
   $handler->display->display_options['sorts']['field_avantage_type_tid']['table'] = 'field_data_field_avantage_type';
   $handler->display->display_options['sorts']['field_avantage_type_tid']['field'] = 'field_avantage_type_tid';
   $handler->display->display_options['sorts']['field_avantage_type_tid']['relationship'] = 'field_avantage_target_id';
-  /* Critère de tri: Contenu : Épinglé (en haut des listes) */
+  /* Sort criterion: Content: Sticky */
   $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
   $handler->display->display_options['sorts']['sticky']['table'] = 'node';
   $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
   $handler->display->display_options['sorts']['sticky']['relationship'] = 'field_avantage_target_id';
   $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
-  /* Critère de tri: Contenu : Titre */
+  /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
   $handler->display->display_options['sorts']['title']['relationship'] = 'field_avantage_target_id';
-  /* Filtre contextuel: Contenu : Nid */
+  /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
   $handler->display->display_options['arguments']['nid']['field'] = 'nid';
@@ -543,7 +544,7 @@ function avantages_views_default_views() {
   );
   $handler->display->display_options['arguments']['nid']['validate_options']['access'] = TRUE;
   $handler->display->display_options['arguments']['nid']['validate']['fail'] = 'empty';
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -552,7 +553,7 @@ function avantages_views_default_views() {
     'avantage' => 'avantage',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Processus : Current state */
+  /* Filter criterion: Workflow: Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -561,7 +562,7 @@ function avantages_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
-  /* Critère de filtrage: Field collection item : Validé (field_avantage_valide) */
+  /* Filter criterion: Field collection item: Validé (field_avantage_valide) */
   $handler->display->display_options['filters']['field_avantage_valide_value']['id'] = 'field_avantage_valide_value';
   $handler->display->display_options['filters']['field_avantage_valide_value']['table'] = 'field_data_field_avantage_valide';
   $handler->display->display_options['filters']['field_avantage_valide_value']['field'] = 'field_avantage_valide_value';
@@ -570,7 +571,7 @@ function avantages_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['field_avantage_valide_value']['group'] = 1;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
   $handler->display->display_options['filters']['type_1']['field'] = 'type';
@@ -590,7 +591,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['title'] = 'Mes bottes';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* Comportement en l'absence de résultats: Global : Zone de texte */
+  /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
@@ -599,26 +600,26 @@ function avantages_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Vous ne disposez d\'aucune botte.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relation: Contenu : Avantages (field_avantages) */
+  /* Relationship: Nœud: Avantages (field_avantages) */
   $handler->display->display_options['relationships']['field_avantages_value']['id'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantages_value']['table'] = 'field_data_field_avantages';
   $handler->display->display_options['relationships']['field_avantages_value']['field'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantages_value']['label'] = 'Avatanges';
   $handler->display->display_options['relationships']['field_avantages_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_avantage_target_id']['id'] = 'field_avantage_target_id';
   $handler->display->display_options['relationships']['field_avantage_target_id']['table'] = 'field_data_field_avantage';
   $handler->display->display_options['relationships']['field_avantage_target_id']['field'] = 'field_avantage_target_id';
   $handler->display->display_options['relationships']['field_avantage_target_id']['relationship'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantage_target_id']['label'] = 'Avantage';
-  /* Relation: Contenu : Type d&#039;avantage (field_avantage_type) */
+  /* Relationship: Nœud: Type d&#039;avantage (field_avantage_type) */
   $handler->display->display_options['relationships']['field_avantage_type_tid']['id'] = 'field_avantage_type_tid';
   $handler->display->display_options['relationships']['field_avantage_type_tid']['table'] = 'field_data_field_avantage_type';
   $handler->display->display_options['relationships']['field_avantage_type_tid']['field'] = 'field_avantage_type_tid';
   $handler->display->display_options['relationships']['field_avantage_type_tid']['relationship'] = 'field_avantage_target_id';
   $handler->display->display_options['relationships']['field_avantage_type_tid']['label'] = 'TypeAvantage';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -628,14 +629,14 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Description */
+  /* Field: Nœud: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['relationship'] = 'field_avantage_target_id';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Pièce jointe */
+  /* Field: Nœud: Pièce jointe */
   $handler->display->display_options['fields']['field_attachment']['id'] = 'field_attachment';
   $handler->display->display_options['fields']['field_attachment']['table'] = 'field_data_field_attachment';
   $handler->display->display_options['fields']['field_attachment']['field'] = 'field_attachment';
@@ -648,19 +649,19 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['field_attachment']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_attachment']['multi_type'] = 'ul';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Critère de tri: Contenu : Épinglé (en haut des listes) */
+  /* Sort criterion: Content: Sticky */
   $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
   $handler->display->display_options['sorts']['sticky']['table'] = 'node';
   $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
   $handler->display->display_options['sorts']['sticky']['relationship'] = 'field_avantage_target_id';
   $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
-  /* Critère de tri: Contenu : Titre */
+  /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
   $handler->display->display_options['sorts']['title']['relationship'] = 'field_avantage_target_id';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Filtre contextuel: Contenu : Incarné par (field_incarnate) */
+  /* Contextual filter: Nœud: Incarné par (field_incarnate) */
   $handler->display->display_options['arguments']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
   $handler->display->display_options['arguments']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['arguments']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
@@ -683,7 +684,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['arguments']['field_incarnate_target_id']['validate']['fail'] = 'empty';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -691,7 +692,7 @@ function avantages_views_default_views() {
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Field collection item : Validé (field_avantage_valide) */
+  /* Filter criterion: Field collection item: Validé (field_avantage_valide) */
   $handler->display->display_options['filters']['field_avantage_valide_value']['id'] = 'field_avantage_valide_value';
   $handler->display->display_options['filters']['field_avantage_valide_value']['table'] = 'field_data_field_avantage_valide';
   $handler->display->display_options['filters']['field_avantage_valide_value']['field'] = 'field_avantage_valide_value';
@@ -700,7 +701,7 @@ function avantages_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['field_avantage_valide_value']['group'] = 1;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
   $handler->display->display_options['filters']['type_1']['field'] = 'type';
@@ -709,7 +710,7 @@ function avantages_views_default_views() {
     'avantage' => 'avantage',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 1;
-  /* Critère de filtrage: Processus : Current state */
+  /* Filter criterion: Workflow: Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -718,7 +719,7 @@ function avantages_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
-  /* Critère de filtrage: Terme de taxonomie : Nom */
+  /* Filter criterion: Taxonomy term: Name */
   $handler->display->display_options['filters']['name']['id'] = 'name';
   $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['filters']['name']['field'] = 'name';
@@ -747,6 +748,7 @@ function avantages_views_default_views() {
     t('Tout'),
     t('Avantages de %1'),
     t('Avantages Personnage (Bloc)'),
+    t('more'),
     t('Mes bottes (Page)'),
     t('Mes bottes'),
     t('Vous ne disposez d\'aucune botte.'),

@@ -10,16 +10,14 @@
 function avantages_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in avantage_type.
+  // Exported permission: 'add terms in avantage_type'.
   $permissions['add terms in avantage_type'] = array(
     'name' => 'add terms in avantage_type',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy_access_fix',
   );
 
-  // Exported permission: create avantage content.
+  // Exported permission: 'create avantage content'.
   $permissions['create avantage content'] = array(
     'name' => 'create avantage content',
     'roles' => array(
@@ -28,7 +26,7 @@ function avantages_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete any avantage content.
+  // Exported permission: 'delete any avantage content'.
   $permissions['delete any avantage content'] = array(
     'name' => 'delete any avantage content',
     'roles' => array(
@@ -37,7 +35,7 @@ function avantages_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete own avantage content.
+  // Exported permission: 'delete own avantage content'.
   $permissions['delete own avantage content'] = array(
     'name' => 'delete own avantage content',
     'roles' => array(
@@ -46,7 +44,7 @@ function avantages_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in avantage_type.
+  // Exported permission: 'delete terms in avantage_type'.
   $permissions['delete terms in avantage_type'] = array(
     'name' => 'delete terms in avantage_type',
     'roles' => array(
@@ -55,7 +53,7 @@ function avantages_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: edit any avantage content.
+  // Exported permission: 'edit any avantage content'.
   $permissions['edit any avantage content'] = array(
     'name' => 'edit any avantage content',
     'roles' => array(
@@ -64,7 +62,7 @@ function avantages_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit own avantage content.
+  // Exported permission: 'edit own avantage content'.
   $permissions['edit own avantage content'] = array(
     'name' => 'edit own avantage content',
     'roles' => array(
@@ -73,7 +71,7 @@ function avantages_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in avantage_type.
+  // Exported permission: 'edit terms in avantage_type'.
   $permissions['edit terms in avantage_type'] = array(
     'name' => 'edit terms in avantage_type',
     'roles' => array(
@@ -82,7 +80,7 @@ function avantages_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: view all avantages.
+  // Exported permission: 'view all avantages'.
   $permissions['view all avantages'] = array(
     'name' => 'view all avantages',
     'roles' => array(
