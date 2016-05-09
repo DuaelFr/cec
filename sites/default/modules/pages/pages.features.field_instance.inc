@@ -10,7 +10,7 @@
 function pages_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_page-comment_body'
+  // Exported field_instance: 'comment-comment_node_page-comment_body'.
   $field_instances['comment-comment_node_page-comment_body'] = array(
     'bundle' => 'comment_node_page',
     'default_value' => NULL,
@@ -43,7 +43,7 @@ function pages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-page-body'
+  // Exported field_instance: 'node-page-body'.
   $field_instances['node-page-body'] = array(
     'bundle' => 'page',
     'default_value' => NULL,
