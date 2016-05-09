@@ -242,6 +242,27 @@ function intrigues_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_intrigue_pattern';
+  $strongarm->value = 'intrigue/[node:title]';
+  $export['pathauto_node_intrigue_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_intrigue_theme_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_intrigue_theme_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_intrigue_type_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_intrigue_type_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'view_mode_per_role_intrigue';
   $strongarm->value = array(
     0 => array(

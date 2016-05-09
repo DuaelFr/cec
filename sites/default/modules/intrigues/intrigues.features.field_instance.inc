@@ -10,7 +10,7 @@
 function intrigues_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_intrigue-comment_body'
+  // Exported field_instance: 'comment-comment_node_intrigue-comment_body'.
   $field_instances['comment-comment_node_intrigue-comment_body'] = array(
     'bundle' => 'comment_node_intrigue',
     'default_value' => NULL,
@@ -43,7 +43,7 @@ function intrigues_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-intrigue-body'
+  // Exported field_instance: 'node-intrigue-body'.
   $field_instances['node-intrigue-body'] = array(
     'bundle' => 'intrigue',
     'default_value' => NULL,
@@ -91,7 +91,7 @@ function intrigues_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-intrigue-field_intrigue_theme'
+  // Exported field_instance: 'node-intrigue-field_intrigue_theme'.
   $field_instances['node-intrigue-field_intrigue_theme'] = array(
     'bundle' => 'intrigue',
     'default_value' => NULL,
@@ -134,7 +134,7 @@ function intrigues_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-intrigue-field_intrigue_type'
+  // Exported field_instance: 'node-intrigue-field_intrigue_type'.
   $field_instances['node-intrigue-field_intrigue_type'] = array(
     'bundle' => 'intrigue',
     'default_value' => NULL,
