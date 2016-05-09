@@ -1,7 +1,6 @@
 name = Contextes
 core = 7.x
 package = App
-php = 5.2.4
 version = 7.x-1.0
 project = contextes
 dependencies[] = context
@@ -13,7 +12,7 @@ dependencies[] = switchtheme
 features[context][] = all
 features[ctools][] = context:context:3
 features[ctools][] = strongarm:strongarm:1
-features[features_api][] = api:1
+features[features_api][] = api:2
 features[user_permission][] = administer switch
 features[user_permission][] = select different theme
 features[user_permission][] = switch theme
