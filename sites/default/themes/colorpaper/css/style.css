@@ -1215,7 +1215,8 @@ DIVERS
 
 .view-temperaments .view-header { font-size: .9em; padding: 10px 20px; margin: 10px 10px 0 10px; border: 1px dashed #6C6159; }
 .view-temperaments .views-view-grid td { width: 50%; padding: 30px 10px 10px; border: none; }
-.view-temperaments .views-view-grid td.col-first:before { content: " "; background: transparent url(../images/temperament_sep.png) no-repeat left center; width: 165px; height: 100px; position: absolute; left: 50%; z-index: 2; margin-left: -20px; margin-top: -30px; }
+.view-temperaments .views-view-grid td.col-first:before { content: " "; background: transparent url(../images/temperament_sep.png) no-repeat left center; width: 520px; height: 100px; position: absolute; left: 50%; z-index: 2; margin-left: -175px; margin-top: -30px; }
+.admin-vertical .view-temperaments .views-view-grid td.col-first:before { margin-left: -20px; }
 .view-temperaments .views-view-grid td .views-field-name { text-align: center; }
 
 .field-type-list-boolean .form-item { margin-bottom: 0; }
