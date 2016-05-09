@@ -12,9 +12,9 @@ function temperaments_uuid_features_default_terms() {
 
   $terms[] = array(
     'name' => 'Timoré',
-    'description' => '<p>« M...mais... ils sont au moins deux ! »</p><p>Vous êtes facilement effrayé et intimidable. Mais cela ne veut pas dire que vous soyez lâche, non vous êtes juste prudent par prudence.</p>',
+    'description' => '<p>«&nbsp;<em>M...mais... ils sont au moins deux !</em>&nbsp;»</p><p>Vous êtes facilement effrayé et intimidable. Mais cela ne veut pas dire que vous soyez lâche, non vous êtes juste prudent par prudence.</p>',
     'format' => 'full_html',
-    'weight' => 6,
+    'weight' => 8,
     'uuid' => '10552fe8-8939-46d8-9526-5e1b02f1aee0',
     'vocabulary_machine_name' => 'temperament',
     'field_antonym' => array(
@@ -29,7 +29,7 @@ function temperaments_uuid_features_default_terms() {
     'name' => 'Dévoué',
     'description' => '<p>«&nbsp;<em>Le vrai nom du dévouement, c\'est le désintéressement</em>.&nbsp;»</p><p>Vous êtes quelqu\'un de naturellement humble et serviable qui trouve sa place aux côtés des autres. Vous respectez et appréciez les autres. On vous dit convivial et vous êtes facilement abordable par les inconnus.</p>',
     'format' => 'full_html',
-    'weight' => 8,
+    'weight' => 10,
     'uuid' => '456c3a63-50c1-4b61-a7fa-672ff81713e4',
     'vocabulary_machine_name' => 'temperament',
     'field_antonym' => array(
@@ -87,7 +87,7 @@ function temperaments_uuid_features_default_terms() {
   );
   $terms[] = array(
     'name' => 'Honorable',
-    'description' => '<p>« <em>Il est plus facile d\'être héros qu\'honnête homme. Héros nous pouvons l\'être une fois par hasard ; honnête homme il faut l\'être toujours</em>. »</p><p>Vous êtes un gars loyal honnête et droit. Vous faites toujours ce qui est juste même si cela va à l\'encontre de votre intérêt. Vos amis comme vos ennemis reconnaissent votre droiture et votre rigueur morale</p>',
+    'description' => '<p>«&nbsp;<em>Il est plus facile d\'être héros qu\'honnête homme. Héros nous pouvons l\'être une fois par hasard ; honnête homme il faut l\'être toujours.</em>&nbsp;»</p><p>Vous êtes un gars loyal honnête et droit. Vous faites toujours ce qui est juste même si cela va à l\'encontre de votre intérêt. Vos amis comme vos ennemis reconnaissent votre droiture et votre rigueur morale</p>',
     'format' => 'full_html',
     'weight' => 0,
     'uuid' => '9730cdab-60e3-44fd-92b7-afe5fb4cc970',
@@ -102,9 +102,9 @@ function temperaments_uuid_features_default_terms() {
   );
   $terms[] = array(
     'name' => 'Puissant',
-    'description' => '<p>« <em>Tout pouvoir humain est un composé de patience et de temps. Les gens puissants veulent et veillent</em>. »</p><p>Vous n\'êtes pas de la race des moutons mais de celle des aigles. Vous aimez diriger les choses et les gens<strong>, </strong>et savez mettre vos talents au service de votre ambition pour atteindre la position qui est la votre de droit.</p>',
+    'description' => '<p>«&nbsp;<em>Tout pouvoir humain est un composé de patience et de temps. Les gens puissants veulent et veillent.</em>&nbsp;»</p><p>Vous n\'êtes pas de la race des moutons mais de celle des aigles. Vous aimez diriger les choses et les gens<strong>, </strong>et savez mettre vos talents au service de votre ambition pour atteindre la position qui est la votre de droit.</p>',
     'format' => 'full_html',
-    'weight' => 9,
+    'weight' => 11,
     'uuid' => '9b0cd4fb-4175-4b6c-855c-2647695f7a6a',
     'vocabulary_machine_name' => 'temperament',
     'field_antonym' => array(
@@ -116,9 +116,23 @@ function temperaments_uuid_features_default_terms() {
     ),
   );
   $terms[] = array(
+    'name' => 'Créatif',
+    'description' => '<p>«&nbsp;<em>L’art est le fruit de la créativité des gens libres.</em>&nbsp;»</p><p>Vous êtes curieux et inventif, votre art vous vient naturellement, sans effort, et en abondance, vous n\'hésitez pas à le partager avec qui bon vous semble. Vous vivez le moment présent, demain est un autre jour, qui sait la découverte que vous ne manquerez pas d\'y faire?</p>',
+    'format' => 'full_html',
+    'weight' => 7,
+    'uuid' => 'b0ad3db2-e2df-449f-874f-5ef79939ca1a',
+    'vocabulary_machine_name' => 'temperament',
+    'field_antonym' => array(
+      'und' => array(
+        0 => array(
+          'tid' => 'edf3fa50-be89-4fd8-a29d-d3b228de9c2e',
+        ),
+      ),
+    ),
+  );
+  $terms[] = array(
     'name' => 'Calculateur',
-    'description' => '<p>&laquo;&nbsp;<em>La sinc&eacute;rit&eacute;&hellip; Pff! C\'est un calcul comme un autre.</em>&nbsp;&raquo;</p>
-<p>Vous &ecirc;tes pragmatique et r&eacute;fl&eacute;chi. Votre satisfaction n\'est jamais aussi compl&egrave;te que lorsqu\'un de vos plans, savamment &eacute;chafaud&eacute;, aboutit avec succ&egrave;s et rien ne vous frustre plus que l\'odieux hasard qui g&acirc;che tout &agrave; la derni&egrave;re minute.</p>',
+    'description' => '<p>«&nbsp;<em>La sinc&eacute;rit&eacute;&hellip; Pff! C\'est un calcul comme un autre.</em>&nbsp;»</p><p>Vous &ecirc;tes pragmatique et r&eacute;fl&eacute;chi. Votre satisfaction n\'est jamais aussi compl&egrave;te que lorsqu\'un de vos plans, savamment &eacute;chafaud&eacute;, aboutit avec succ&egrave;s et rien ne vous frustre plus que l\'odieux hasard qui g&acirc;che tout &agrave; la derni&egrave;re minute.</p>',
     'format' => 'full_html',
     'weight' => 3,
     'uuid' => 'b615424a-5dff-437d-be56-9bd6544563cc',
@@ -132,8 +146,23 @@ function temperaments_uuid_features_default_terms() {
     ),
   );
   $terms[] = array(
+    'name' => 'Esthète',
+    'description' => '<p>«&nbsp;<em>L’art n’est pas un mensonge.</em>&nbsp;»</p><p>Vous êtes un esthète, un épicurien. vous vous délectez jusqu’à la dernière goutte des émotions que peuvent vous procurer les&nbsp;œuvres&nbsp;d\'art. Votre enthousiasme n\'a d\'égal que votre gloutonnerie pour les&nbsp;œuvres&nbsp;que vous n\'avez pas encore découvertes…</p>',
+    'format' => 'full_html',
+    'weight' => 6,
+    'uuid' => 'edf3fa50-be89-4fd8-a29d-d3b228de9c2e',
+    'vocabulary_machine_name' => 'temperament',
+    'field_antonym' => array(
+      'und' => array(
+        0 => array(
+          'tid' => 'b0ad3db2-e2df-449f-874f-5ef79939ca1a',
+        ),
+      ),
+    ),
+  );
+  $terms[] = array(
     'name' => 'Fourbe',
-    'description' => '<p>« <em>Il était d\'autant plus fourbe qu\'il ne l\'était pas toujours...</em> »</p><p>Vous êtes plutôt du genre sournois et hypocrite et votre conscience ne s\'alourdit pas de quelques petites (ou grosses) traîtrises. Ceux qui vous connaissent peuvent vous apprécier sans vous faire confiance, mais vous savez acquérir la confiance de ceux qui ne vous connaissent pas.</p>',
+    'description' => '<p>«&nbsp;<em>Il était d\'autant plus fourbe qu\'il ne l\'était pas toujours...</em>&nbsp;»</p><p>>Vous êtes plutôt du genre sournois et hypocrite et votre conscience ne s\'alourdit pas de quelques petites (ou grosses) traîtrises. Ceux qui vous connaissent peuvent vous apprécier sans vous faire confiance, mais vous savez acquérir la confiance de ceux qui ne vous connaissent pas.</p>',
     'format' => 'full_html',
     'weight' => 1,
     'uuid' => 'eeb58def-31cb-40b4-9dcc-25780c049fd2',
@@ -150,7 +179,7 @@ function temperaments_uuid_features_default_terms() {
     'name' => 'Fougueux',
     'description' => '<p>«&nbsp; <em>Retenez-moi ou je fais un malheur!</em>&nbsp;»</p><p>Vous êtes courageux, fier et impulsif, de ceux qui foncent et réfléchissent ensuite mais à qui l\'action sourit plus que la réflexion.</p>',
     'format' => 'full_html',
-    'weight' => 7,
+    'weight' => 9,
     'uuid' => 'fb5d29c5-8ba2-4103-9127-272b1951d08e',
     'vocabulary_machine_name' => 'temperament',
     'field_antonym' => array(
