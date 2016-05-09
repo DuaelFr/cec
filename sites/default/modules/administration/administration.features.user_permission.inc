@@ -10,7 +10,7 @@
 function administration_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: access administration menu.
+  // Exported permission: 'access administration menu'.
   $permissions['access administration menu'] = array(
     'name' => 'access administration menu',
     'roles' => array(
@@ -19,7 +19,7 @@ function administration_user_default_permissions() {
     'module' => 'admin_menu',
   );
 
-  // Exported permission: access comments.
+  // Exported permission: 'access comments'.
   $permissions['access comments'] = array(
     'name' => 'access comments',
     'roles' => array(
@@ -29,28 +29,28 @@ function administration_user_default_permissions() {
     'module' => 'comment',
   );
 
-  // Exported permission: administer comments.
+  // Exported permission: 'administer comments'.
   $permissions['administer comments'] = array(
     'name' => 'administer comments',
     'roles' => array(),
     'module' => 'comment',
   );
 
-  // Exported permission: administer search.
+  // Exported permission: 'administer search'.
   $permissions['administer search'] = array(
     'name' => 'administer search',
     'roles' => array(),
     'module' => 'search',
   );
 
-  // Exported permission: display drupal links.
+  // Exported permission: 'display drupal links'.
   $permissions['display drupal links'] = array(
     'name' => 'display drupal links',
     'roles' => array(),
     'module' => 'admin_menu',
   );
 
-  // Exported permission: edit own comments.
+  // Exported permission: 'edit own comments'.
   $permissions['edit own comments'] = array(
     'name' => 'edit own comments',
     'roles' => array(
@@ -59,14 +59,14 @@ function administration_user_default_permissions() {
     'module' => 'comment',
   );
 
-  // Exported permission: flush caches.
+  // Exported permission: 'flush caches'.
   $permissions['flush caches'] = array(
     'name' => 'flush caches',
     'roles' => array(),
     'module' => 'admin_menu',
   );
 
-  // Exported permission: post comments.
+  // Exported permission: 'post comments'.
   $permissions['post comments'] = array(
     'name' => 'post comments',
     'roles' => array(
@@ -76,7 +76,7 @@ function administration_user_default_permissions() {
     'module' => 'comment',
   );
 
-  // Exported permission: search content.
+  // Exported permission: 'search content'.
   $permissions['search content'] = array(
     'name' => 'search content',
     'roles' => array(
@@ -86,7 +86,7 @@ function administration_user_default_permissions() {
     'module' => 'search',
   );
 
-  // Exported permission: skip comment approval.
+  // Exported permission: 'skip comment approval'.
   $permissions['skip comment approval'] = array(
     'name' => 'skip comment approval',
     'roles' => array(
@@ -96,7 +96,7 @@ function administration_user_default_permissions() {
     'module' => 'comment',
   );
 
-  // Exported permission: use admin toolbar.
+  // Exported permission: 'use admin toolbar'.
   $permissions['use admin toolbar'] = array(
     'name' => 'use admin toolbar',
     'roles' => array(
@@ -105,7 +105,7 @@ function administration_user_default_permissions() {
     'module' => 'admin',
   );
 
-  // Exported permission: use advanced search.
+  // Exported permission: 'use advanced search'.
   $permissions['use advanced search'] = array(
     'name' => 'use advanced search',
     'roles' => array(

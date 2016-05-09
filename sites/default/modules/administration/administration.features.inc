@@ -7,8 +7,7 @@
 /**
  * Implements hook_ctools_plugin_api().
  */
-function administration_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
+function administration_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -17,7 +16,7 @@ function administration_ctools_plugin_api() {
 /**
  * Implements hook_views_api().
  */
-function administration_views_api() {
+function administration_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
 
@@ -143,7 +142,7 @@ function administration_default_search_api_server() {
             "boost" : "1.0"
           },
           "title" : {
-            "table" : "search_api_db_default_index_title",
+            "table" : "search_api_db_default_index_text",
             "type" : "text",
             "boost" : "5.0"
           },
@@ -158,7 +157,7 @@ function administration_default_search_api_server() {
             "boost" : "1.0"
           },
           "field_alternate_title" : {
-            "table" : "search_api_db_default_index_field_alternate_title",
+            "table" : "search_api_db_default_index_text",
             "type" : "text",
             "boost" : "5.0"
           },
@@ -168,7 +167,7 @@ function administration_default_search_api_server() {
             "boost" : "1.0"
           },
           "search_api_viewed" : {
-            "table" : "search_api_db_default_index_search_api_viewed",
+            "table" : "search_api_db_default_index_text",
             "type" : "text",
             "boost" : "1.0"
           },
@@ -178,12 +177,12 @@ function administration_default_search_api_server() {
             "boost" : "1.0"
           },
           "body:value" : {
-            "table" : "search_api_db_default_index_body_value",
+            "table" : "search_api_db_default_index_text",
             "type" : "text",
             "boost" : "1.0"
           },
           "field_alternate_body:value" : {
-            "table" : "search_api_db_default_index_field_alternate_body_value",
+            "table" : "search_api_db_default_index_text",
             "type" : "text",
             "boost" : "1.0"
           }

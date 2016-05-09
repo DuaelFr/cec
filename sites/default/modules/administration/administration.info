@@ -1,7 +1,6 @@
 name = Administration
 core = 7.x
 package = App
-php = 5.2.4
 version = 7.x-1.0
 project = administration
 dependencies[] = admin
@@ -24,7 +23,7 @@ dependencies[] = workflow_actions
 dependencies[] = workflow_vbo
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
-features[features_api][] = api:1
+features[features_api][] = api:2
 features[menu_custom][] = menu-zorga-menu
 features[search_api_index][] = default_index
 features[search_api_server][] = default_server

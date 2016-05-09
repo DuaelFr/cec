@@ -20,6 +20,5 @@ function administration_menu_default_menu_custom() {
   // Included for use with string extractors like potx.
   t('Zorga Menu');
 
-
   return $menus;
 }
