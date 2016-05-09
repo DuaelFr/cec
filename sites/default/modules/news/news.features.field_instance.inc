@@ -10,7 +10,7 @@
 function news_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_news-comment_body'
+  // Exported field_instance: 'comment-comment_node_news-comment_body'.
   $field_instances['comment-comment_node_news-comment_body'] = array(
     'bundle' => 'comment_node_news',
     'default_value' => NULL,
@@ -43,7 +43,7 @@ function news_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-body'
+  // Exported field_instance: 'node-news-body'.
   $field_instances['node-news-body'] = array(
     'bundle' => 'news',
     'default_value' => NULL,
