@@ -1,6 +1,7 @@
 <?php
 /**
  * @file
+ * Code for the Opus feature.
  */
 
-// Drupal needs this blank file.
+include_once 'opus.features.inc';

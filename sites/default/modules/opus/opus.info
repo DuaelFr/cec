@@ -1,13 +1,15 @@
 name = Opus
 core = 7.x
 package = App
-php = 5.2.4
 version = 7.x-1.0
 project = opus
 dependencies[] = features
+dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = uuid_features
-features[features_api][] = api:1
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
 features[taxonomy][] = opus
 features[uuid_term][] = 44bd5379-5e3e-4a67-8799-350f92d9a7be
 features[uuid_term][] = c975a9ce-bef2-4deb-a36a-2e3a33d444bd
+features[variable][] = pathauto_taxonomy_term_opus_pattern
