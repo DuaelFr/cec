@@ -10,7 +10,7 @@
 function sequences_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_sequence-comment_body'
+  // Exported field_instance: 'comment-comment_node_sequence-comment_body'.
   $field_instances['comment-comment_node_sequence-comment_body'] = array(
     'bundle' => 'comment_node_sequence',
     'default_value' => NULL,
@@ -43,7 +43,8 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_nonplayers-field_incarnate_npc'
+  // Exported field_instance:
+  // 'field_collection_item-field_nonplayers-field_incarnate_npc'.
   $field_instances['field_collection_item-field_nonplayers-field_incarnate_npc'] = array(
     'bundle' => 'field_nonplayers',
     'default_value' => NULL,
@@ -80,7 +81,8 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_nonplayers-field_nonplayer_role'
+  // Exported field_instance:
+  // 'field_collection_item-field_nonplayers-field_nonplayer_role'.
   $field_instances['field_collection_item-field_nonplayers-field_nonplayer_role'] = array(
     'bundle' => 'field_nonplayers',
     'default_value' => NULL,
@@ -117,7 +119,7 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-sequence-body'
+  // Exported field_instance: 'node-sequence-body'.
   $field_instances['node-sequence-body'] = array(
     'bundle' => 'sequence',
     'default_value' => NULL,
@@ -136,6 +138,12 @@ function sequences_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 4,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -168,7 +176,7 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-sequence-field_dates'
+  // Exported field_instance: 'node-sequence-field_dates'.
   $field_instances['node-sequence-field_dates'] = array(
     'bundle' => 'sequence',
     'deleted' => 0,
@@ -189,9 +197,16 @@ function sequences_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
         'weight' => 3,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
@@ -223,7 +238,7 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-sequence-field_intrigue'
+  // Exported field_instance: 'node-sequence-field_intrigue'.
   $field_instances['node-sequence-field_intrigue'] = array(
     'bundle' => 'sequence',
     'default_value' => NULL,
@@ -244,6 +259,12 @@ function sequences_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 2,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
@@ -266,7 +287,7 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-sequence-field_location'
+  // Exported field_instance: 'node-sequence-field_location'.
   $field_instances['node-sequence-field_location'] = array(
     'bundle' => 'sequence',
     'default_value' => NULL,
@@ -288,6 +309,12 @@ function sequences_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 1,
       ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_location',
@@ -305,7 +332,7 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-sequence-field_matos'
+  // Exported field_instance: 'node-sequence-field_matos'.
   $field_instances['node-sequence-field_matos'] = array(
     'bundle' => 'sequence',
     'default_value' => NULL,
@@ -327,6 +354,12 @@ function sequences_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 5,
       ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_matos',
@@ -344,7 +377,7 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-sequence-field_nonplayers'
+  // Exported field_instance: 'node-sequence-field_nonplayers'.
   $field_instances['node-sequence-field_nonplayers'] = array(
     'bundle' => 'sequence',
     'default_value' => NULL,
@@ -369,6 +402,12 @@ function sequences_field_default_field_instances() {
         'type' => 'field_collection_list',
         'weight' => 6,
       ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_nonplayers',
@@ -386,7 +425,7 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-sequence-field_players'
+  // Exported field_instance: 'node-sequence-field_players'.
   $field_instances['node-sequence-field_players'] = array(
     'bundle' => 'sequence',
     'default_value' => NULL,
@@ -408,6 +447,12 @@ function sequences_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 7,
       ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_players',
@@ -425,7 +470,7 @@ function sequences_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-sequence-field_sequence_type'
+  // Exported field_instance: 'node-sequence-field_sequence_type'.
   $field_instances['node-sequence-field_sequence_type'] = array(
     'bundle' => 'sequence',
     'default_value' => NULL,
@@ -443,6 +488,12 @@ function sequences_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_plain',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
     ),

@@ -78,7 +78,7 @@ function sequences_strongarm() {
         'custom_settings' => FALSE,
       ),
       'print' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'token' => array(
         'custom_settings' => FALSE,
@@ -114,31 +114,57 @@ function sequences_strongarm() {
       'display' => array(
         'comments' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '3',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
             'weight' => '8',
             'visible' => TRUE,
           ),
+          'print' => array(
+            'weight' => '16',
+            'visible' => FALSE,
+          ),
         ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
             'weight' => '9',
             'visible' => FALSE,
           ),
+          'print' => array(
+            'weight' => '14',
+            'visible' => FALSE,
+          ),
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
             'weight' => '10',
+            'visible' => FALSE,
+          ),
+          'print' => array(
+            'weight' => '15',
+            'visible' => FALSE,
+          ),
+        ),
+        'cec_comments' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '99',
+            'visible' => TRUE,
+          ),
+          'print' => array(
+            'weight' => '13',
             'visible' => FALSE,
           ),
         ),
@@ -190,6 +216,20 @@ function sequences_strongarm() {
   $strongarm->name = 'node_submitted_sequence';
   $strongarm->value = 0;
   $export['node_submitted_sequence'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_sequence_pattern';
+  $strongarm->value = 'sequence/[node:title]';
+  $export['pathauto_node_sequence_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_sequence_type_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_sequence_type_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

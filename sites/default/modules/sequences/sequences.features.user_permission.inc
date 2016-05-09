@@ -13,9 +13,7 @@ function sequences_user_default_permissions() {
   // Exported permission: 'add terms in sequence_type'.
   $permissions['add terms in sequence_type'] = array(
     'name' => 'add terms in sequence_type',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy_access_fix',
   );
 
@@ -43,9 +41,7 @@ function sequences_user_default_permissions() {
   // Exported permission: 'delete terms in sequence_type'.
   $permissions['delete terms in sequence_type'] = array(
     'name' => 'delete terms in sequence_type',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy',
   );
 
@@ -66,9 +62,7 @@ function sequences_user_default_permissions() {
   // Exported permission: 'edit terms in sequence_type'.
   $permissions['edit terms in sequence_type'] = array(
     'name' => 'edit terms in sequence_type',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy',
   );
 

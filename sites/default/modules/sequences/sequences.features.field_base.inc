@@ -10,7 +10,7 @@
 function sequences_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_incarnate_npc'
+  // Exported field_base: 'field_incarnate_npc'.
   $field_bases['field_incarnate_npc'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -19,14 +19,6 @@ function sequences_field_default_field_bases() {
     'field_name' => 'field_incarnate_npc',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'users' => array(
-        'columns' => array(
-          'target_id' => 'uid',
-        ),
-        'table' => 'users',
-      ),
     ),
     'indexes' => array(
       'target_id' => array(
@@ -56,7 +48,7 @@ function sequences_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_location'
+  // Exported field_base: 'field_location'.
   $field_bases['field_location'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -65,14 +57,6 @@ function sequences_field_default_field_bases() {
     'field_name' => 'field_location',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
     ),
     'indexes' => array(
       'target_id' => array(
@@ -105,7 +89,7 @@ function sequences_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_matos'
+  // Exported field_base: 'field_matos'.
   $field_bases['field_matos'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -114,14 +98,6 @@ function sequences_field_default_field_bases() {
     'field_name' => 'field_matos',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
     ),
     'indexes' => array(
       'target_id' => array(
@@ -154,7 +130,7 @@ function sequences_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_nonplayer_role'
+  // Exported field_base: 'field_nonplayer_role'.
   $field_bases['field_nonplayer_role'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -163,14 +139,6 @@ function sequences_field_default_field_bases() {
     'field_name' => 'field_nonplayer_role',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
     ),
     'indexes' => array(
       'target_id' => array(
@@ -200,7 +168,7 @@ function sequences_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_nonplayers'
+  // Exported field_base: 'field_nonplayers'.
   $field_bases['field_nonplayers'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -210,7 +178,6 @@ function sequences_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
     'indexes' => array(
       'revision_id' => array(
         0 => 'revision_id',
@@ -227,7 +194,7 @@ function sequences_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_players'
+  // Exported field_base: 'field_players'.
   $field_bases['field_players'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -236,14 +203,6 @@ function sequences_field_default_field_bases() {
     'field_name' => 'field_players',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
     ),
     'indexes' => array(
       'target_id' => array(
@@ -273,7 +232,7 @@ function sequences_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_sequence_type'
+  // Exported field_base: 'field_sequence_type'.
   $field_bases['field_sequence_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -282,14 +241,6 @@ function sequences_field_default_field_bases() {
     'field_name' => 'field_sequence_type',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
     ),
     'indexes' => array(
       'tid' => array(
