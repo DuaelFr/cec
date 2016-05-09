@@ -10,7 +10,7 @@
 function temperaments_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'taxonomy_term-temperament-field_antonym'
+  // Exported field_instance: 'taxonomy_term-temperament-field_antonym'.
   $field_instances['taxonomy_term-temperament-field_antonym'] = array(
     'bundle' => 'temperament',
     'default_value' => NULL,

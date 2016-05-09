@@ -37,7 +37,7 @@ function temperaments_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '2';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Entête: Global: Text area */
+  /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
@@ -47,7 +47,7 @@ function temperaments_views_default_views() {
 le tempérament Cupide de la Surface correspond au tempérament stratien Esthète.
 le tempérament Généreux de la Surface correspond au tempérament stratien Créatif.</p>';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
-  /* Champ: Taxonomy term: Name */
+  /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
@@ -56,17 +56,17 @@ le tempérament Généreux de la Surface correspond au tempérament stratien Cr�
   $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['name']['element_type'] = 'h2';
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
-  /* Champ: Taxonomy term: Term description */
+  /* Field: Taxonomy term: Term description */
   $handler->display->display_options['fields']['description']['id'] = 'description';
   $handler->display->display_options['fields']['description']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['description']['field'] = 'description';
   $handler->display->display_options['fields']['description']['label'] = '';
   $handler->display->display_options['fields']['description']['element_label_colon'] = FALSE;
-  /* Critère de tri: Taxonomy term: Weight */
+  /* Sort criterion: Taxonomy term: Weight */
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
   $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['weight']['field'] = 'weight';
-  /* Critère de filtrage: Taxonomy vocabulary: Machine name */
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
   $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';

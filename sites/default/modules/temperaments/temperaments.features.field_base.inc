@@ -10,7 +10,7 @@
 function temperaments_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_antonym'
+  // Exported field_base: 'field_antonym'.
   $field_bases['field_antonym'] = array(
     'active' => 1,
     'cardinality' => 1,
