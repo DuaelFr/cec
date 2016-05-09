@@ -434,6 +434,34 @@ function personnages_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_character_pattern';
+  $strongarm->value = 'personnage/[node:title]';
+  $export['pathauto_node_character_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_nationalites_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_nationalites_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_occupations_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_occupations_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_religions_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_religions_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'view_mode_per_role_character';
   $strongarm->value = array(
     0 => array(

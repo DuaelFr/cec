@@ -10,7 +10,7 @@
 function personnages_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_avantage'
+  // Exported field_base: 'field_avantage'.
   $field_bases['field_avantage'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -19,14 +19,6 @@ function personnages_field_default_field_bases() {
     'field_name' => 'field_avantage',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
     ),
     'indexes' => array(
       'target_id' => array(
@@ -57,7 +49,7 @@ function personnages_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_avantage_valide'
+  // Exported field_base: 'field_avantage_valide'.
   $field_bases['field_avantage_valide'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -67,7 +59,6 @@ function personnages_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -87,7 +78,7 @@ function personnages_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_avantages'
+  // Exported field_base: 'field_avantages'.
   $field_bases['field_avantages'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -97,7 +88,6 @@ function personnages_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
     'indexes' => array(
       'revision_id' => array(
         0 => 'revision_id',
@@ -114,7 +104,7 @@ function personnages_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_canevas'
+  // Exported field_base: 'field_canevas'.
   $field_bases['field_canevas'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -123,14 +113,6 @@ function personnages_field_default_field_bases() {
     'field_name' => 'field_canevas',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
     ),
     'indexes' => array(
       'format' => array(
@@ -146,7 +128,7 @@ function personnages_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_character_state'
+  // Exported field_base: 'field_character_state'.
   $field_bases['field_character_state'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -156,7 +138,6 @@ function personnages_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -177,14 +158,13 @@ function personnages_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_character_type'
+  // Exported field_base: 'field_character_type'.
   $field_bases['field_character_type'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_character_type',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -204,21 +184,13 @@ function personnages_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_characters'
+  // Exported field_base: 'field_characters'.
   $field_bases['field_characters'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_characters',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -250,7 +222,7 @@ function personnages_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_confession'
+  // Exported field_base: 'field_confession'.
   $field_bases['field_confession'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -259,14 +231,6 @@ function personnages_field_default_field_bases() {
     'field_name' => 'field_confession',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
     ),
     'indexes' => array(
       'tid' => array(
@@ -288,7 +252,7 @@ function personnages_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_credit'
+  // Exported field_base: 'field_credit'.
   $field_bases['field_credit'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -298,7 +262,6 @@ function personnages_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'number',
@@ -309,21 +272,13 @@ function personnages_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_incarnate'
+  // Exported field_base: 'field_incarnate'.
   $field_bases['field_incarnate'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_incarnate',
-    'foreign keys' => array(
-      'users' => array(
-        'columns' => array(
-          'target_id' => 'uid',
-        ),
-        'table' => 'users',
-      ),
-    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -354,7 +309,7 @@ function personnages_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_nationalite'
+  // Exported field_base: 'field_nationalite'.
   $field_bases['field_nationalite'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -363,14 +318,6 @@ function personnages_field_default_field_bases() {
     'field_name' => 'field_nationalite',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
     ),
     'indexes' => array(
       'tid' => array(
@@ -392,21 +339,13 @@ function personnages_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_objectifs_hj'
+  // Exported field_base: 'field_objectifs_hj'.
   $field_bases['field_objectifs_hj'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_objectifs_hj',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -421,7 +360,7 @@ function personnages_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_occupation'
+  // Exported field_base: 'field_occupation'.
   $field_bases['field_occupation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -430,14 +369,6 @@ function personnages_field_default_field_bases() {
     'field_name' => 'field_occupation',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
     ),
     'indexes' => array(
       'tid' => array(
@@ -459,7 +390,7 @@ function personnages_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_pugilat'
+  // Exported field_base: 'field_pugilat'.
   $field_bases['field_pugilat'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -469,7 +400,6 @@ function personnages_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 0,
     ),
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'number',
@@ -480,7 +410,7 @@ function personnages_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_species'
+  // Exported field_base: 'field_species'.
   $field_bases['field_species'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -489,14 +419,6 @@ function personnages_field_default_field_bases() {
     'field_name' => 'field_species',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
     ),
     'indexes' => array(
       'format' => array(

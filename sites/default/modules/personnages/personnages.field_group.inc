@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function personnages_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -32,11 +32,11 @@ function personnages_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-avantages field-group-htab',
       ),
     ),
   );
-  $export['group_avantages|node|character|default'] = $field_group;
+  $field_groups['group_avantages|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -60,12 +60,12 @@ function personnages_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-avantages field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_avantages|node|character|form'] = $field_group;
+  $field_groups['group_avantages|node|character|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -89,11 +89,11 @@ function personnages_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-avantages field-group-fieldset',
       ),
     ),
   );
-  $export['group_avantages|node|character|full_zorga'] = $field_group;
+  $field_groups['group_avantages|node|character|full_zorga'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -115,11 +115,11 @@ function personnages_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-background field-group-htab',
       ),
     ),
   );
-  $export['group_background|node|character|default'] = $field_group;
+  $field_groups['group_background|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -141,11 +141,11 @@ function personnages_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-canevas field-group-htab',
       ),
     ),
   );
-  $export['group_canevas|node|character|default'] = $field_group;
+  $field_groups['group_canevas|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -172,12 +172,12 @@ function personnages_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-canevas field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_canevas|node|character|form'] = $field_group;
+  $field_groups['group_canevas|node|character|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -199,12 +199,12 @@ function personnages_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-canevas field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_canevas|node|character|full_zorga'] = $field_group;
+  $field_groups['group_canevas|node|character|full_zorga'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -225,13 +225,13 @@ function personnages_field_group_info() {
     'format_settings' => array(
       'label' => 'Commentaires',
       'instance_settings' => array(
-        'classes' => '',
+        'classes' => ' group-comments field-group-htab',
         'description' => '',
       ),
       'formatter' => 'closed',
     ),
   );
-  $export['group_comments|node|character|default'] = $field_group;
+  $field_groups['group_comments|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -256,17 +256,18 @@ function personnages_field_group_info() {
     'format_settings' => array(
       'label' => 'Compléments',
       'instance_settings' => array(
-        'classes' => '',
+        'classes' => ' group-complements field-group-div',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'node_character_full_group_complements',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_complements|node|character|default'] = $field_group;
+  $field_groups['group_complements|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -288,11 +289,11 @@ function personnages_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-groupes field-group-htab',
       ),
     ),
   );
-  $export['group_groupes|node|character|default'] = $field_group;
+  $field_groups['group_groupes|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -314,11 +315,11 @@ function personnages_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-informations field-group-htab',
       ),
     ),
   );
-  $export['group_informations|node|character|default'] = $field_group;
+  $field_groups['group_informations|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -347,11 +348,11 @@ function personnages_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-infos field-group-fieldset',
       ),
     ),
   );
-  $export['group_infos|node|character|full_zorga'] = $field_group;
+  $field_groups['group_infos|node|character|full_zorga'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -373,11 +374,11 @@ function personnages_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-objectifs field-group-htab',
       ),
     ),
   );
-  $export['group_objectifs|node|character|default'] = $field_group;
+  $field_groups['group_objectifs|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -404,11 +405,11 @@ function personnages_field_group_info() {
     'format_settings' => array(
       'label' => '',
       'instance_settings' => array(
-        'classes' => '',
+        'classes' => ' group-onglets field-group-htabs',
       ),
     ),
   );
-  $export['group_onglets|node|character|default'] = $field_group;
+  $field_groups['group_onglets|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -432,12 +433,12 @@ function personnages_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-public-data field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_public_data|node|character|form'] = $field_group;
+  $field_groups['group_public_data|node|character|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -461,12 +462,12 @@ function personnages_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-public-data field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_public_data|node|character|full_zorga'] = $field_group;
+  $field_groups['group_public_data|node|character|full_zorga'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -491,17 +492,18 @@ function personnages_field_group_info() {
     'format_settings' => array(
       'label' => 'Tempéraments',
       'instance_settings' => array(
-        'classes' => '',
+        'classes' => ' group-temperaments field-group-div',
         'description' => '',
         'show_label' => '1',
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'node_character_full_group_temperaments',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_temperaments|node|character|default'] = $field_group;
+  $field_groups['group_temperaments|node|character|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -527,12 +529,12 @@ function personnages_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-temperaments field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_temperaments|node|character|form'] = $field_group;
+  $field_groups['group_temperaments|node|character|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -558,12 +560,12 @@ function personnages_field_group_info() {
       'formatter' => 'collapsible',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-temperaments field-group-fieldset',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_temperaments|node|character|full_zorga'] = $field_group;
+  $field_groups['group_temperaments|node|character|full_zorga'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -585,11 +587,24 @@ function personnages_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-trombi field-group-htab',
       ),
     ),
   );
-  $export['group_trombi|node|character|default'] = $field_group;
+  $field_groups['group_trombi|node|character|default'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Avantages');
+  t('Background');
+  t('Canevas');
+  t('Commentaires');
+  t('Compléments');
+  t('Groupes');
+  t('Informations');
+  t('Objectifs');
+  t('Tempéraments');
+  t('Trombinoscope');
+
+  return $field_groups;
 }

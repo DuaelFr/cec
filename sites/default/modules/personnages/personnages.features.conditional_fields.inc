@@ -10,7 +10,7 @@
 function personnages_conditional_fields_default_fields() {
   $items = array();
 
-  $items[] = array(
+  $items["node:character:0"] = array(
     'entity' => 'node',
     'bundle' => 'character',
     'dependent' => 'field_incarnate',

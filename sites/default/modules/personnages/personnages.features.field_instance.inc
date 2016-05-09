@@ -10,7 +10,7 @@
 function personnages_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_character-comment_body'
+  // Exported field_instance: 'comment-comment_node_character-comment_body'.
   $field_instances['comment-comment_node_character-comment_body'] = array(
     'bundle' => 'comment_node_character',
     'default_value' => NULL,
@@ -43,7 +43,8 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_avantages-field_avantage'
+  // Exported field_instance:
+  // 'field_collection_item-field_avantages-field_avantage'.
   $field_instances['field_collection_item-field_avantages-field_avantage'] = array(
     'bundle' => 'field_avantages',
     'default_value' => NULL,
@@ -80,7 +81,8 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_avantages-field_avantage_valide'
+  // Exported field_instance:
+  // 'field_collection_item-field_avantages-field_avantage_valide'.
   $field_instances['field_collection_item-field_avantages-field_avantage_valide'] = array(
     'bundle' => 'field_avantages',
     'default_value' => array(
@@ -117,7 +119,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-body'
+  // Exported field_instance: 'node-character-body'.
   $field_instances['node-character-body'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -172,7 +174,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_alternate_body'
+  // Exported field_instance: 'node-character-field_alternate_body'.
   $field_instances['node-character-field_alternate_body'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -223,7 +225,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_avantages'
+  // Exported field_instance: 'node-character-field_avantages'.
   $field_instances['node-character-field_avantages'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -278,7 +280,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_canevas'
+  // Exported field_instance: 'node-character-field_canevas'.
   $field_instances['node-character-field_canevas'] = array(
     'bundle' => 'character',
     'default_value' => array(
@@ -334,7 +336,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_character_state'
+  // Exported field_instance: 'node-character-field_character_state'.
   $field_instances['node-character-field_character_state'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -383,7 +385,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_character_type'
+  // Exported field_instance: 'node-character-field_character_type'.
   $field_instances['node-character-field_character_type'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -432,7 +434,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_characters'
+  // Exported field_instance: 'node-character-field_characters'.
   $field_instances['node-character-field_characters'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -480,7 +482,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_confession'
+  // Exported field_instance: 'node-character-field_confession'.
   $field_instances['node-character-field_confession'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -530,7 +532,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_credit'
+  // Exported field_instance: 'node-character-field_credit'.
   $field_instances['node-character-field_credit'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -594,7 +596,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_incarnate'
+  // Exported field_instance: 'node-character-field_incarnate'.
   $field_instances['node-character-field_incarnate'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -649,7 +651,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_nationalite'
+  // Exported field_instance: 'node-character-field_nationalite'.
   $field_instances['node-character-field_nationalite'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -699,7 +701,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_objectifs_hj'
+  // Exported field_instance: 'node-character-field_objectifs_hj'.
   $field_instances['node-character-field_objectifs_hj'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -752,7 +754,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_occupation'
+  // Exported field_instance: 'node-character-field_occupation'.
   $field_instances['node-character-field_occupation'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -802,7 +804,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_photo'
+  // Exported field_instance: 'node-character-field_photo'.
   $field_instances['node-character-field_photo'] = array(
     'bundle' => 'character',
     'deleted' => 0,
@@ -888,7 +890,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_pugilat'
+  // Exported field_instance: 'node-character-field_pugilat'.
   $field_instances['node-character-field_pugilat'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -952,7 +954,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_species'
+  // Exported field_instance: 'node-character-field_species'.
   $field_instances['node-character-field_species'] = array(
     'bundle' => 'character',
     'default_value' => array(
@@ -1009,7 +1011,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_temperament1'
+  // Exported field_instance: 'node-character-field_temperament1'.
   $field_instances['node-character-field_temperament1'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -1059,7 +1061,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_temperament2'
+  // Exported field_instance: 'node-character-field_temperament2'.
   $field_instances['node-character-field_temperament2'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -1109,7 +1111,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_temperament3'
+  // Exported field_instance: 'node-character-field_temperament3'.
   $field_instances['node-character-field_temperament3'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -1159,7 +1161,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_temperament4'
+  // Exported field_instance: 'node-character-field_temperament4'.
   $field_instances['node-character-field_temperament4'] = array(
     'bundle' => 'character',
     'default_value' => NULL,
@@ -1209,7 +1211,7 @@ function personnages_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-character-field_temperament5'
+  // Exported field_instance: 'node-character-field_temperament5'.
   $field_instances['node-character-field_temperament5'] = array(
     'bundle' => 'character',
     'default_value' => NULL,

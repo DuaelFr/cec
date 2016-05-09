@@ -13,9 +13,7 @@ function personnages_user_default_permissions() {
   // Exported permission: 'add terms in nationalites'.
   $permissions['add terms in nationalites'] = array(
     'name' => 'add terms in nationalites',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy_access_fix',
   );
 
@@ -29,9 +27,7 @@ function personnages_user_default_permissions() {
   // Exported permission: 'add terms in religions'.
   $permissions['add terms in religions'] = array(
     'name' => 'add terms in religions',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy_access_fix',
   );
 
