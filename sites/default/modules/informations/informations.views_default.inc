@@ -89,7 +89,7 @@ function informations_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Comportement en l'absence de résultats: Global : Zone de texte */
+  /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
@@ -97,26 +97,26 @@ function informations_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucune information pour le moment.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Relation: Contenu : Interprétation (field_version) */
+  /* Relationship: Nœud: Interprétation (field_version) */
   $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Type d'information */
+  /* Field: Nœud: Type d'information */
   $handler->display->display_options['fields']['field_information_type']['id'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['fields']['field_information_type']['field'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_information_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Contenu : Intrigue */
+  /* Field: Nœud: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -125,24 +125,24 @@ function informations_views_default_views() {
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
   $handler->display->display_options['fields']['field_intrigue']['delta_offset'] = '0';
-  /* Champ: Processus : Current state */
+  /* Field: Workflow: Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  /* Champ: COUNT(DISTINCT Field collection item : Identifiant de Field collection item) */
+  /* Field: COUNT(DISTINCT Field collection item: Field collection item ID) */
   $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
   $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
-  /* Champ: Contenu : Lien de modification */
+  /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
-  /* Champ: Etat CSS */
+  /* Field: Etat CSS */
   $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
@@ -151,11 +151,11 @@ function informations_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
-  /* Critère de tri: Contenu : Titre */
+  /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -163,7 +163,7 @@ function informations_views_default_views() {
     'information' => 'information',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Contenu : Titre */
+  /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
@@ -185,7 +185,7 @@ function informations_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Contenu : Type d&#039;information (field_information_type) */
+  /* Filter criterion: Nœud: Type d&#039;information (field_information_type) */
   $handler->display->display_options['filters']['field_information_type_tid']['id'] = 'field_information_type_tid';
   $handler->display->display_options['filters']['field_information_type_tid']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['filters']['field_information_type_tid']['field'] = 'field_information_type_tid';
@@ -209,7 +209,7 @@ function informations_views_default_views() {
   $handler->display->display_options['filters']['field_information_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_information_type_tid']['vocabulary'] = 'information_type';
   $handler->display->display_options['filters']['field_information_type_tid']['hierarchy'] = 1;
-  /* Critère de filtrage: Contenu : Intrigue (field_intrigue) */
+  /* Filter criterion: Nœud: Intrigue (field_intrigue) */
   $handler->display->display_options['filters']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['filters']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['filters']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
@@ -230,7 +230,7 @@ function informations_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Processus : Current state */
+  /* Filter criterion: Workflow: Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -268,35 +268,35 @@ function informations_views_default_views() {
   $handler->display->display_options['title'] = 'Informations';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Champ: Contenu : Type d'information */
+  /* Field: Nœud: Type d'information */
   $handler->display->display_options['fields']['field_information_type']['id'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['fields']['field_information_type']['field'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: COUNT(DISTINCT Field collection item : Identifiant de Field collection item) */
+  /* Field: COUNT(DISTINCT Field collection item: Field collection item ID) */
   $handler->display->display_options['fields']['item_id']['id'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['table'] = 'field_collection_item';
   $handler->display->display_options['fields']['item_id']['field'] = 'item_id';
   $handler->display->display_options['fields']['item_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['item_id']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['item_id']['label'] = 'Interprétations';
-  /* Champ: Processus : Current state */
+  /* Field: Workflow: Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  /* Champ: Contenu : Lien de modification */
+  /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
-  /* Champ: Etat CSS */
+  /* Field: Etat CSS */
   $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
@@ -306,7 +306,7 @@ function informations_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Filtre contextuel: Contenu : Intrigue (field_intrigue) */
+  /* Contextual filter: Nœud: Intrigue (field_intrigue) */
   $handler->display->display_options['arguments']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
@@ -328,7 +328,7 @@ function informations_views_default_views() {
   $handler->display->display_options['arguments']['field_intrigue_target_id']['validate']['fail'] = 'empty';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -349,7 +349,7 @@ function informations_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -358,14 +358,14 @@ function informations_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Type d'information */
+  /* Field: Nœud: Type d'information */
   $handler->display->display_options['fields']['field_information_type']['id'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['fields']['field_information_type']['field'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_information_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_information_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Contenu : Intrigue */
+  /* Field: Nœud: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -374,12 +374,12 @@ function informations_views_default_views() {
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : Current state */
+  /* Field: Workflow: Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
-  /* Champ: Champs organisés */
+  /* Field: Champs organisés */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
@@ -395,7 +395,7 @@ Etat : [sid]
   </div>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Description */
+  /* Field: Nœud: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -403,7 +403,7 @@ Etat : [sid]
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['empty'] = '- Description orgas manquante -';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Filtre contextuel: Contenu : Intrigue (field_intrigue) */
+  /* Contextual filter: Nœud: Intrigue (field_intrigue) */
   $handler->display->display_options['arguments']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
@@ -425,7 +425,7 @@ Etat : [sid]
   $handler->display->display_options['arguments']['field_intrigue_target_id']['validate']['fail'] = 'empty';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -446,60 +446,60 @@ Etat : [sid]
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relation: Contenu : Interprétation (field_version) */
+  /* Relationship: Nœud: Interprétation (field_version) */
   $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_target_target_id']['label'] = 'Groupe';
-  /* Relation: Contenu : Membres (field_group_members) */
+  /* Relationship: Nœud: Membres (field_group_members) */
   $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['relationship'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['relationship'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_character_target_id']['label'] = 'Personnage';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
   $handler->display->display_options['fields']['title_1']['table'] = 'node';
   $handler->display->display_options['fields']['title_1']['field'] = 'title';
   $handler->display->display_options['fields']['title_1']['relationship'] = 'field_target_target_id';
   $handler->display->display_options['fields']['title_1']['label'] = 'Cible';
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Champ: Contenu : Type d'information */
+  /* Field: Nœud: Type d'information */
   $handler->display->display_options['fields']['field_information_type']['id'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['fields']['field_information_type']['field'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Processus : Current state */
+  /* Field: Workflow: Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  /* Champ: Contenu : Lien de modification */
+  /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
-  /* Champ: Etat CSS */
+  /* Field: Etat CSS */
   $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
@@ -509,7 +509,7 @@ Etat : [sid]
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Filtre contextuel: Global : Vide */
+  /* Contextual filter: Global: Null */
   $handler->display->display_options['arguments']['null']['id'] = 'null';
   $handler->display->display_options['arguments']['null']['table'] = 'views';
   $handler->display->display_options['arguments']['null']['field'] = 'null';
@@ -534,7 +534,7 @@ Etat : [sid]
     2 => 'AND',
   );
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -542,7 +542,7 @@ Etat : [sid]
     'information' => 'information',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
   $handler->display->display_options['filters']['type_1']['field'] = 'type';
@@ -551,7 +551,7 @@ Etat : [sid]
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 1;
-  /* Critère de filtrage: Contenu : Nid */
+  /* Filter criterion: Content: Nid */
   $handler->display->display_options['filters']['nid']['id'] = 'nid';
   $handler->display->display_options['filters']['nid']['table'] = 'node';
   $handler->display->display_options['filters']['nid']['field'] = 'nid';
@@ -563,7 +563,7 @@ Etat : [sid]
     'max' => '',
     'value' => 'null',
   );
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_3']['id'] = 'type_3';
   $handler->display->display_options['filters']['type_3']['table'] = 'node';
   $handler->display->display_options['filters']['type_3']['field'] = 'type';
@@ -571,7 +571,7 @@ Etat : [sid]
     'information' => 'information',
   );
   $handler->display->display_options['filters']['type_3']['group'] = 2;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_2']['id'] = 'type_2';
   $handler->display->display_options['filters']['type_2']['table'] = 'node';
   $handler->display->display_options['filters']['type_2']['field'] = 'type';
@@ -580,7 +580,7 @@ Etat : [sid]
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type_2']['group'] = 2;
-  /* Critère de filtrage: Contenu : Nid */
+  /* Filter criterion: Content: Nid */
   $handler->display->display_options['filters']['nid_1']['id'] = 'nid_1';
   $handler->display->display_options['filters']['nid_1']['table'] = 'node';
   $handler->display->display_options['filters']['nid_1']['field'] = 'nid';
@@ -604,33 +604,33 @@ Etat : [sid]
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relation: Contenu : Interprétation (field_version) */
+  /* Relationship: Nœud: Interprétation (field_version) */
   $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_target_target_id']['label'] = 'Cible';
-  /* Relation: Contenu : Membres (field_group_members) */
+  /* Relationship: Nœud: Membres (field_group_members) */
   $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['relationship'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['relationship'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_character_target_id']['label'] = 'Personnage';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Champ : Intitulé orga */
+  /* Field: Field: Intitulé orga */
   $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
@@ -639,7 +639,7 @@ Etat : [sid]
   $handler->display->display_options['fields']['field_alternate_title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['field_alternate_title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_alternate_title']['empty'] = '- Titre d\'interprétation manquant -';
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -649,14 +649,14 @@ Etat : [sid]
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Type d'information */
+  /* Field: Nœud: Type d'information */
   $handler->display->display_options['fields']['field_information_type']['id'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['fields']['field_information_type']['field'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_information_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_information_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Contenu : Intrigue */
+  /* Field: Nœud: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -665,12 +665,12 @@ Etat : [sid]
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : Current state */
+  /* Field: Workflow: Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
-  /* Champ: Field collection item : Cible Interprétation */
+  /* Field: Field collection item: Cible Interprétation */
   $handler->display->display_options['fields']['field_target']['id'] = 'field_target';
   $handler->display->display_options['fields']['field_target']['table'] = 'field_data_field_target';
   $handler->display->display_options['fields']['field_target']['field'] = 'field_target';
@@ -681,7 +681,7 @@ Etat : [sid]
   $handler->display->display_options['fields']['field_target']['settings'] = array(
     'link' => 1,
   );
-  /* Champ: Champs organisés */
+  /* Field: Champs organisés */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
@@ -699,7 +699,7 @@ Cible : [field_target]
   </div>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Champ: Champ : Descriptif orga */
+  /* Field: Field: Descriptif orga */
   $handler->display->display_options['fields']['field_alternate_body']['id'] = 'field_alternate_body';
   $handler->display->display_options['fields']['field_alternate_body']['table'] = 'field_data_field_alternate_body';
   $handler->display->display_options['fields']['field_alternate_body']['field'] = 'field_alternate_body';
@@ -708,7 +708,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_alternate_body']['empty'] = '- Contenu d\'interprétation manquant -';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Filtre contextuel: Global : Vide */
+  /* Contextual filter: Global: Null */
   $handler->display->display_options['arguments']['null']['id'] = 'null';
   $handler->display->display_options['arguments']['null']['table'] = 'views';
   $handler->display->display_options['arguments']['null']['field'] = 'null';
@@ -733,7 +733,7 @@ Cible : [field_target]
     2 => 'AND',
   );
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -741,7 +741,7 @@ Cible : [field_target]
     'information' => 'information',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_3']['id'] = 'type_3';
   $handler->display->display_options['filters']['type_3']['table'] = 'node';
   $handler->display->display_options['filters']['type_3']['field'] = 'type';
@@ -750,7 +750,7 @@ Cible : [field_target]
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type_3']['group'] = 1;
-  /* Critère de filtrage: Contenu : Nid */
+  /* Filter criterion: Content: Nid */
   $handler->display->display_options['filters']['nid_1']['id'] = 'nid_1';
   $handler->display->display_options['filters']['nid_1']['table'] = 'node';
   $handler->display->display_options['filters']['nid_1']['field'] = 'nid';
@@ -762,7 +762,7 @@ Cible : [field_target]
     'max' => '',
     'value' => 'null',
   );
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
   $handler->display->display_options['filters']['type_1']['field'] = 'type';
@@ -770,7 +770,7 @@ Cible : [field_target]
     'information' => 'information',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 2;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_2']['id'] = 'type_2';
   $handler->display->display_options['filters']['type_2']['table'] = 'node';
   $handler->display->display_options['filters']['type_2']['field'] = 'type';
@@ -779,7 +779,7 @@ Cible : [field_target]
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type_2']['group'] = 2;
-  /* Critère de filtrage: Contenu : Nid */
+  /* Filter criterion: Content: Nid */
   $handler->display->display_options['filters']['nid']['id'] = 'nid';
   $handler->display->display_options['filters']['nid']['table'] = 'node';
   $handler->display->display_options['filters']['nid']['field'] = 'nid';
@@ -804,47 +804,47 @@ Cible : [field_target]
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['group_by'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relation: Contenu : Interprétation (field_version) */
+  /* Relationship: Nœud: Interprétation (field_version) */
   $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_target_target_id']['label'] = 'Groupe';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
   $handler->display->display_options['fields']['title_1']['table'] = 'node';
   $handler->display->display_options['fields']['title_1']['field'] = 'title';
   $handler->display->display_options['fields']['title_1']['relationship'] = 'field_target_target_id';
   $handler->display->display_options['fields']['title_1']['label'] = 'Cible';
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Champ: Contenu : Type d'information */
+  /* Field: Nœud: Type d'information */
   $handler->display->display_options['fields']['field_information_type']['id'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['fields']['field_information_type']['field'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Processus : Current state */
+  /* Field: Workflow: Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  /* Champ: Contenu : Lien de modification */
+  /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
-  /* Champ: Etat CSS */
+  /* Field: Etat CSS */
   $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
@@ -854,7 +854,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Filtre contextuel: Global : Vide */
+  /* Contextual filter: Global: Null */
   $handler->display->display_options['arguments']['null']['id'] = 'null';
   $handler->display->display_options['arguments']['null']['table'] = 'views';
   $handler->display->display_options['arguments']['null']['field'] = 'null';
@@ -875,7 +875,7 @@ Cible : [field_target]
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['operator'] = 'OR';
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_3']['id'] = 'type_3';
   $handler->display->display_options['filters']['type_3']['table'] = 'node';
   $handler->display->display_options['filters']['type_3']['field'] = 'type';
@@ -883,7 +883,7 @@ Cible : [field_target]
     'information' => 'information',
   );
   $handler->display->display_options['filters']['type_3']['group'] = 1;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_2']['id'] = 'type_2';
   $handler->display->display_options['filters']['type_2']['table'] = 'node';
   $handler->display->display_options['filters']['type_2']['field'] = 'type';
@@ -892,7 +892,7 @@ Cible : [field_target]
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type_2']['group'] = 1;
-  /* Critère de filtrage: Contenu : Nid */
+  /* Filter criterion: Content: Nid */
   $handler->display->display_options['filters']['nid']['id'] = 'nid';
   $handler->display->display_options['filters']['nid']['table'] = 'node';
   $handler->display->display_options['filters']['nid']['field'] = 'nid';
@@ -916,20 +916,20 @@ Cible : [field_target]
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relation: Contenu : Interprétation (field_version) */
+  /* Relationship: Nœud: Interprétation (field_version) */
   $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_target_target_id']['label'] = 'Cible';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Champ : Intitulé orga */
+  /* Field: Field: Intitulé orga */
   $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
@@ -938,7 +938,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['field_alternate_title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_alternate_title']['empty'] = '- Titre d\'interprétation manquant -';
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -948,14 +948,14 @@ Cible : [field_target]
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Champ: Contenu : Type d'information */
+  /* Field: Nœud: Type d'information */
   $handler->display->display_options['fields']['field_information_type']['id'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['table'] = 'field_data_field_information_type';
   $handler->display->display_options['fields']['field_information_type']['field'] = 'field_information_type';
   $handler->display->display_options['fields']['field_information_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_information_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_information_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Contenu : Intrigue */
+  /* Field: Nœud: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -964,12 +964,12 @@ Cible : [field_target]
     'link' => 1,
   );
   $handler->display->display_options['fields']['field_intrigue']['group_column'] = 'entity_id';
-  /* Champ: Processus : Current state */
+  /* Field: Workflow: Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['exclude'] = TRUE;
-  /* Champ: Field collection item : Cible Interprétation */
+  /* Field: Field collection item: Cible Interprétation */
   $handler->display->display_options['fields']['field_target']['id'] = 'field_target';
   $handler->display->display_options['fields']['field_target']['table'] = 'field_data_field_target';
   $handler->display->display_options['fields']['field_target']['field'] = 'field_target';
@@ -980,7 +980,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_target']['settings'] = array(
     'link' => 1,
   );
-  /* Champ: Champs organisés */
+  /* Field: Champs organisés */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
@@ -998,7 +998,7 @@ Cible : [field_target]
   </div>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Champ: Champ : Descriptif orga */
+  /* Field: Field: Descriptif orga */
   $handler->display->display_options['fields']['field_alternate_body']['id'] = 'field_alternate_body';
   $handler->display->display_options['fields']['field_alternate_body']['table'] = 'field_data_field_alternate_body';
   $handler->display->display_options['fields']['field_alternate_body']['field'] = 'field_alternate_body';
@@ -1007,7 +1007,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_alternate_body']['empty'] = '- Contenu d\'interprétation manquant -';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Filtre contextuel: Global : Vide */
+  /* Contextual filter: Global: Null */
   $handler->display->display_options['arguments']['null']['id'] = 'null';
   $handler->display->display_options['arguments']['null']['table'] = 'views';
   $handler->display->display_options['arguments']['null']['field'] = 'null';
@@ -1028,7 +1028,7 @@ Cible : [field_target]
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['operator'] = 'OR';
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -1036,7 +1036,7 @@ Cible : [field_target]
     'information' => 'information',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_3']['id'] = 'type_3';
   $handler->display->display_options['filters']['type_3']['table'] = 'node';
   $handler->display->display_options['filters']['type_3']['field'] = 'type';
@@ -1045,7 +1045,7 @@ Cible : [field_target]
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type_3']['group'] = 1;
-  /* Critère de filtrage: Contenu : Nid */
+  /* Filter criterion: Content: Nid */
   $handler->display->display_options['filters']['nid']['id'] = 'nid';
   $handler->display->display_options['filters']['nid']['table'] = 'node';
   $handler->display->display_options['filters']['nid']['field'] = 'nid';
@@ -1074,7 +1074,7 @@ Cible : [field_target]
     t('Vide'),
     t('Aucune information pour le moment.'),
     t('Interprétation'),
-    t('Titre'),
+    t('Title'),
     t('Type d\'information'),
     t('- Aucun -'),
     t('Intrigue'),
@@ -1084,8 +1084,10 @@ Cible : [field_target]
     t(','),
     t('Actions'),
     t('modifier'),
+    t('Titre'),
     t('État actuel'),
     t('Toutes les informations (Page)'),
+    t('more'),
     t('Par intrigue (Bloc)'),
     t('Informations'),
     t('Tout'),
@@ -1175,39 +1177,39 @@ Cible : [field_target]
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Comportement en l'absence de résultats: Global : Zone de texte */
+  /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucune information validée pour le moment.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Relation: Contenu : Interprétation (field_version) */
+  /* Relationship: Nœud: Interprétation (field_version) */
   $handler->display->display_options['relationships']['field_version_value']['id'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['table'] = 'field_data_field_version';
   $handler->display->display_options['relationships']['field_version_value']['field'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_version_value']['label'] = 'Interprétation';
   $handler->display->display_options['relationships']['field_version_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_target_target_id']['id'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['table'] = 'field_data_field_target';
   $handler->display->display_options['relationships']['field_target_target_id']['field'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_target_target_id']['relationship'] = 'field_version_value';
   $handler->display->display_options['relationships']['field_target_target_id']['label'] = 'Cible';
-  /* Relation: Contenu : Membres (field_group_members) */
+  /* Relationship: Nœud: Membres (field_group_members) */
   $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['relationship'] = 'field_target_target_id';
   $handler->display->display_options['relationships']['field_group_members_value']['label'] = 'Membres';
   $handler->display->display_options['relationships']['field_group_members_value']['delta'] = '-1';
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_character_target_id']['id'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['table'] = 'field_data_field_character';
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['relationship'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_character_target_id']['label'] = 'Personnage';
-  /* Champ: Champ : Intitulé orga */
+  /* Field: Field: Intitulé orga */
   $handler->display->display_options['fields']['field_alternate_title']['id'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
@@ -1216,7 +1218,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['field_alternate_title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_alternate_title']['empty'] = '-Titre de l\'interprétation manquant -';
-  /* Champ: Champ : Descriptif orga */
+  /* Field: Field: Descriptif orga */
   $handler->display->display_options['fields']['field_alternate_body']['id'] = 'field_alternate_body';
   $handler->display->display_options['fields']['field_alternate_body']['table'] = 'field_data_field_alternate_body';
   $handler->display->display_options['fields']['field_alternate_body']['field'] = 'field_alternate_body';
@@ -1224,12 +1226,12 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_body']['label'] = '';
   $handler->display->display_options['fields']['field_alternate_body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_alternate_body']['empty'] = '- Contenu de l\'interprétation manquant -';
-  /* Critère de tri: Champ : Intitulé orga (field_alternate_title) */
+  /* Sort criterion: Field: Intitulé orga (field_alternate_title) */
   $handler->display->display_options['sorts']['field_alternate_title_value']['id'] = 'field_alternate_title_value';
   $handler->display->display_options['sorts']['field_alternate_title_value']['table'] = 'field_data_field_alternate_title';
   $handler->display->display_options['sorts']['field_alternate_title_value']['field'] = 'field_alternate_title_value';
   $handler->display->display_options['sorts']['field_alternate_title_value']['relationship'] = 'field_version_value';
-  /* Filtre contextuel: Global : Vide */
+  /* Contextual filter: Global: Null */
   $handler->display->display_options['arguments']['null']['id'] = 'null';
   $handler->display->display_options['arguments']['null']['table'] = 'views';
   $handler->display->display_options['arguments']['null']['field'] = 'null';
@@ -1251,7 +1253,7 @@ Cible : [field_target]
     1 => 'AND',
     2 => 'AND',
   );
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -1259,7 +1261,7 @@ Cible : [field_target]
     'information' => 'information',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Processus : Current state */
+  /* Filter criterion: Workflow: Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -1267,7 +1269,7 @@ Cible : [field_target]
     13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_3']['id'] = 'type_3';
   $handler->display->display_options['filters']['type_3']['table'] = 'node';
   $handler->display->display_options['filters']['type_3']['field'] = 'type';
@@ -1276,7 +1278,7 @@ Cible : [field_target]
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type_3']['group'] = 1;
-  /* Critère de filtrage: Contenu : Nid */
+  /* Filter criterion: Content: Nid */
   $handler->display->display_options['filters']['nid']['id'] = 'nid';
   $handler->display->display_options['filters']['nid']['table'] = 'node';
   $handler->display->display_options['filters']['nid']['field'] = 'nid';
@@ -1288,7 +1290,7 @@ Cible : [field_target]
     'max' => '',
     'value' => 'null',
   );
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
   $handler->display->display_options['filters']['type_1']['field'] = 'type';
@@ -1296,7 +1298,7 @@ Cible : [field_target]
     'information' => 'information',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 2;
-  /* Critère de filtrage: Processus : Current state */
+  /* Filter criterion: Workflow: Current state */
   $handler->display->display_options['filters']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['filters']['sid_1']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid_1']['field'] = 'sid';
@@ -1304,7 +1306,7 @@ Cible : [field_target]
     13 => '13',
   );
   $handler->display->display_options['filters']['sid_1']['group'] = 2;
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_2']['id'] = 'type_2';
   $handler->display->display_options['filters']['type_2']['table'] = 'node';
   $handler->display->display_options['filters']['type_2']['field'] = 'type';
@@ -1313,7 +1315,7 @@ Cible : [field_target]
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type_2']['group'] = 2;
-  /* Critère de filtrage: Contenu : Nid */
+  /* Filter criterion: Content: Nid */
   $handler->display->display_options['filters']['nid_1']['id'] = 'nid_1';
   $handler->display->display_options['filters']['nid_1']['table'] = 'node';
   $handler->display->display_options['filters']['nid_1']['field'] = 'nid';
@@ -1346,6 +1348,7 @@ Cible : [field_target]
     t('- Contenu de l\'interprétation manquant -'),
     t('Tout'),
     t('Mes Informations (Block)'),
+    t('more'),
   );
   $export['informations'] = $view;
 
