@@ -82,12 +82,27 @@ abstract class Redis_AbstractBackend implements Redis_BackendInterface
      */
     public function getKey($parts = array())
     {
-        if (!is_array($parts)) {
-            $parts = array($parts);
+        $key = array();
+
+        if (null !== $this->prefix) {
+            $key[] = $this->prefix;
+        }
+        if (null !== $this->namespace) {
+            $key[] = $this->namespace;
         }
 
-        array_unshift($parts, $this->getPrefix(), $this->getNamespace());
+        if ($parts) {
+            if (is_array($parts)) {
+                foreach ($parts as $part) {
+                    if ($part) {
+                        $key[] = $part;
+                    }
+                }
+            } else {
+                $key[] = $parts;
+            }
+        }
 
-        return implode(self::KEY_SEPARATOR, array_filter($parts));
+        return implode(self::KEY_SEPARATOR, array_filter($key));
     }
 }
