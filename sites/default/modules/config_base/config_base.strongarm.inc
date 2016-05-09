@@ -436,7 +436,7 @@ function config_base_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mimemail_key';
-  $strongarm->value = 'be3ac64e67e84198f03f45b661f2124a';
+  $strongarm->value = 'dKs-D_jNdJkMyHjyM4KHm-F0S02Hg8vBuzUFEvmnWs4';
   $export['mimemail_key'] = $strongarm;
 
   $strongarm = new stdClass();

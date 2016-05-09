@@ -7,12 +7,10 @@
 /**
  * Implements hook_ctools_plugin_api().
  */
-function config_base_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
+function config_base_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "ds" && $api == "ds") {
     return array("version" => "1");
   }
-  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -28,7 +26,7 @@ function config_base_workflow_default_workflows() {
   $workflows['Avancement'] = array(
     'name' => 'Avancement',
     'tab_roles' => 168020977,
-    'options' => 'a:3:{s:16:"comment_log_node";i:1;s:15:"comment_log_tab";i:1;s:13:"name_as_title";i:1;}',
+    'options' => 'a:4:{s:16:"comment_log_node";i:1;s:15:"comment_log_tab";i:1;s:13:"name_as_title";i:1;s:12:"watchdog_log";i:1;}',
     'states' => array(
       0 => array(
         'state' => '(création)',

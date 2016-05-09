@@ -1,7 +1,6 @@
 name = Config Base
 core = 7.x
 package = App
-php = 5.2.4
 version = 7.x-1.0
 project = config_base
 dependencies[] = admin_menu_toolbar
@@ -27,7 +26,7 @@ dependencies[] = wysiwyg
 features[ctools][] = ds:ds:1
 features[ctools][] = strongarm:strongarm:1
 features[ds_view_modes][] = full_zorga
-features[features_api][] = api:1
+features[features_api][] = api:2
 features[filter][] = full_html
 features[filter][] = plain_text
 features[menu_custom][] = main-menu
