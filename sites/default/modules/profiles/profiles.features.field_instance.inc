@@ -10,19 +10,11 @@
 function profiles_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_address'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_address'.
   $field_instances['profile2-inscription_administrative-field_address'] = array(
     'bundle' => 'inscription_administrative',
-    'default_value' => array(
-      0 => array(
-        'element_key' => 'profile2|inscription_administrative|field_address|und|0',
-        'thoroughfare' => '',
-        'premise' => '',
-        'postal_code' => '',
-        'locality' => '',
-        'country' => 'FR',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -53,6 +45,7 @@ function profiles_field_default_field_instances() {
         'available_countries' => array(
           'FR' => 'FR',
         ),
+        'default_country' => 'FR',
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
@@ -66,7 +59,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_birthdate'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_birthdate'.
   $field_instances['profile2-inscription_administrative-field_birthdate'] = array(
     'bundle' => 'inscription_administrative',
     'deleted' => 0,
@@ -81,6 +75,7 @@ function profiles_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
         'weight' => 2,
@@ -113,7 +108,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_convention'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_convention'.
   $field_instances['profile2-inscription_administrative-field_convention'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => array(
@@ -150,7 +146,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_firstname'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_firstname'.
   $field_instances['profile2-inscription_administrative-field_firstname'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => NULL,
@@ -184,7 +181,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_food'
+  // Exported field_instance: 'profile2-inscription_administrative-field_food'.
   $field_instances['profile2-inscription_administrative-field_food'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => NULL,
@@ -218,7 +215,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_health'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_health'.
   $field_instances['profile2-inscription_administrative-field_health'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => NULL,
@@ -252,7 +250,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_health_skills'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_health_skills'.
   $field_instances['profile2-inscription_administrative-field_health_skills'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => NULL,
@@ -283,7 +282,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_image_right'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_image_right'.
   $field_instances['profile2-inscription_administrative-field_image_right'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => NULL,
@@ -314,7 +314,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_insurance'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_insurance'.
   $field_instances['profile2-inscription_administrative-field_insurance'] = array(
     'bundle' => 'inscription_administrative',
     'deleted' => 0,
@@ -344,7 +345,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_lastname'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_lastname'.
   $field_instances['profile2-inscription_administrative-field_lastname'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => NULL,
@@ -378,7 +380,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_membership'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_membership'.
   $field_instances['profile2-inscription_administrative-field_membership'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => array(
@@ -415,7 +418,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_opus'
+  // Exported field_instance: 'profile2-inscription_administrative-field_opus'.
   $field_instances['profile2-inscription_administrative-field_opus'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => array(
@@ -450,7 +453,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_phone1'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_phone1'.
   $field_instances['profile2-inscription_administrative-field_phone1'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => NULL,
@@ -486,7 +490,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_phone2'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_phone2'.
   $field_instances['profile2-inscription_administrative-field_phone2'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => NULL,
@@ -522,7 +527,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_phone_international'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_phone_international'.
   $field_instances['profile2-inscription_administrative-field_phone_international'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => NULL,
@@ -556,7 +562,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_photo'
+  // Exported field_instance: 'profile2-inscription_administrative-field_photo'.
   $field_instances['profile2-inscription_administrative-field_photo'] = array(
     'bundle' => 'inscription_administrative',
     'deleted' => 0,
@@ -616,7 +622,8 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_storage'
+  // Exported field_instance:
+  // 'profile2-inscription_administrative-field_storage'.
   $field_instances['profile2-inscription_administrative-field_storage'] = array(
     'bundle' => 'inscription_administrative',
     'default_value' => array(
@@ -653,7 +660,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_character_name'
+  // Exported field_instance: 'profile2-profil_joueur-field_character_name'.
   $field_instances['profile2-profil_joueur-field_character_name'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -687,7 +694,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_crimes'
+  // Exported field_instance: 'profile2-profil_joueur-field_crimes'.
   $field_instances['profile2-profil_joueur-field_crimes'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => array(
@@ -722,7 +729,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_crimes_condition'
+  // Exported field_instance: 'profile2-profil_joueur-field_crimes_condition'.
   $field_instances['profile2-profil_joueur-field_crimes_condition'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -756,7 +763,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_exposure'
+  // Exported field_instance: 'profile2-profil_joueur-field_exposure'.
   $field_instances['profile2-profil_joueur-field_exposure'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -787,7 +794,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_freetalk'
+  // Exported field_instance: 'profile2-profil_joueur-field_freetalk'.
   $field_instances['profile2-profil_joueur-field_freetalk'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -821,7 +828,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_friends'
+  // Exported field_instance: 'profile2-profil_joueur-field_friends'.
   $field_instances['profile2-profil_joueur-field_friends'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -855,7 +862,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_great_costume'
+  // Exported field_instance: 'profile2-profil_joueur-field_great_costume'.
   $field_instances['profile2-profil_joueur-field_great_costume'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => array(
@@ -892,7 +899,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_help_costume'
+  // Exported field_instance: 'profile2-profil_joueur-field_help_costume'.
   $field_instances['profile2-profil_joueur-field_help_costume'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => array(
@@ -929,7 +936,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_intro'
+  // Exported field_instance: 'profile2-profil_joueur-field_intro'.
   $field_instances['profile2-profil_joueur-field_intro'] = array(
     'bundle' => 'profil_joueur',
     'deleted' => 0,
@@ -959,7 +966,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_job0'
+  // Exported field_instance: 'profile2-profil_joueur-field_job0'.
   $field_instances['profile2-profil_joueur-field_job0'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -990,7 +997,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_job1'
+  // Exported field_instance: 'profile2-profil_joueur-field_job1'.
   $field_instances['profile2-profil_joueur-field_job1'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -1021,7 +1028,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_job2'
+  // Exported field_instance: 'profile2-profil_joueur-field_job2'.
   $field_instances['profile2-profil_joueur-field_job2'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -1052,7 +1059,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_love'
+  // Exported field_instance: 'profile2-profil_joueur-field_love'.
   $field_instances['profile2-profil_joueur-field_love'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => array(
@@ -1087,7 +1094,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_love_condition'
+  // Exported field_instance: 'profile2-profil_joueur-field_love_condition'.
   $field_instances['profile2-profil_joueur-field_love_condition'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -1121,7 +1128,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_opus'
+  // Exported field_instance: 'profile2-profil_joueur-field_opus'.
   $field_instances['profile2-profil_joueur-field_opus'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -1155,7 +1162,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_temperament1'
+  // Exported field_instance: 'profile2-profil_joueur-field_temperament1'.
   $field_instances['profile2-profil_joueur-field_temperament1'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -1186,7 +1193,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_temperament2'
+  // Exported field_instance: 'profile2-profil_joueur-field_temperament2'.
   $field_instances['profile2-profil_joueur-field_temperament2'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -1217,7 +1224,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_temperament3'
+  // Exported field_instance: 'profile2-profil_joueur-field_temperament3'.
   $field_instances['profile2-profil_joueur-field_temperament3'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -1248,7 +1255,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_temperament4'
+  // Exported field_instance: 'profile2-profil_joueur-field_temperament4'.
   $field_instances['profile2-profil_joueur-field_temperament4'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -1279,7 +1286,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_temperament5'
+  // Exported field_instance: 'profile2-profil_joueur-field_temperament5'.
   $field_instances['profile2-profil_joueur-field_temperament5'] = array(
     'bundle' => 'profil_joueur',
     'default_value' => NULL,
@@ -1310,7 +1317,7 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-profil_joueur-field_temperament_intro'
+  // Exported field_instance: 'profile2-profil_joueur-field_temperament_intro'.
   $field_instances['profile2-profil_joueur-field_temperament_intro'] = array(
     'bundle' => 'profil_joueur',
     'deleted' => 0,

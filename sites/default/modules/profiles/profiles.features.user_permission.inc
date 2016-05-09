@@ -10,7 +10,7 @@
 function profiles_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: access payment.
+  // Exported permission: 'access payment'.
   $permissions['access payment'] = array(
     'name' => 'access payment',
     'roles' => array(
@@ -23,7 +23,7 @@ function profiles_user_default_permissions() {
     'module' => 'cec_payment',
   );
 
-  // Exported permission: access profile opus.
+  // Exported permission: 'access profile opus'.
   $permissions['access profile opus'] = array(
     'name' => 'access profile opus',
     'roles' => array(
@@ -32,7 +32,7 @@ function profiles_user_default_permissions() {
     'module' => 'cec_profiles',
   );
 
-  // Exported permission: edit any inscription_administrative profile.
+  // Exported permission: 'edit any inscription_administrative profile'.
   $permissions['edit any inscription_administrative profile'] = array(
     'name' => 'edit any inscription_administrative profile',
     'roles' => array(
@@ -41,7 +41,7 @@ function profiles_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: edit any profil_joueur profile.
+  // Exported permission: 'edit any profil_joueur profile'.
   $permissions['edit any profil_joueur profile'] = array(
     'name' => 'edit any profil_joueur profile',
     'roles' => array(
@@ -50,7 +50,7 @@ function profiles_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: edit own inscription_administrative profile.
+  // Exported permission: 'edit own inscription_administrative profile'.
   $permissions['edit own inscription_administrative profile'] = array(
     'name' => 'edit own inscription_administrative profile',
     'roles' => array(
@@ -59,7 +59,7 @@ function profiles_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: edit own profil_joueur profile.
+  // Exported permission: 'edit own profil_joueur profile'.
   $permissions['edit own profil_joueur profile'] = array(
     'name' => 'edit own profil_joueur profile',
     'roles' => array(
@@ -69,7 +69,7 @@ function profiles_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: view any inscription_administrative profile.
+  // Exported permission: 'view any inscription_administrative profile'.
   $permissions['view any inscription_administrative profile'] = array(
     'name' => 'view any inscription_administrative profile',
     'roles' => array(
@@ -78,7 +78,7 @@ function profiles_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: view any profil_joueur profile.
+  // Exported permission: 'view any profil_joueur profile'.
   $permissions['view any profil_joueur profile'] = array(
     'name' => 'view any profil_joueur profile',
     'roles' => array(
@@ -87,7 +87,7 @@ function profiles_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: view own inscription_administrative profile.
+  // Exported permission: 'view own inscription_administrative profile'.
   $permissions['view own inscription_administrative profile'] = array(
     'name' => 'view own inscription_administrative profile',
     'roles' => array(
@@ -100,7 +100,7 @@ function profiles_user_default_permissions() {
     'module' => 'profile2',
   );
 
-  // Exported permission: view own profil_joueur profile.
+  // Exported permission: 'view own profil_joueur profile'.
   $permissions['view own profil_joueur profile'] = array(
     'name' => 'view own profil_joueur profile',
     'roles' => array(

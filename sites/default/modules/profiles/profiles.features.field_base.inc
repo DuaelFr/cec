@@ -10,14 +10,13 @@
 function profiles_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_address'
+  // Exported field_base: 'field_address'.
   $field_bases['field_address'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_address',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'addressfield',
@@ -28,14 +27,13 @@ function profiles_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
-  // Exported field_base: 'field_birthdate'
+  // Exported field_base: 'field_birthdate'.
   $field_bases['field_birthdate'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_birthdate',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'date',
@@ -59,21 +57,13 @@ function profiles_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_character_name'
+  // Exported field_base: 'field_character_name'.
   $field_bases['field_character_name'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_character_name',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -89,14 +79,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_convention'
+  // Exported field_base: 'field_convention'.
   $field_bases['field_convention'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_convention',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -116,14 +105,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_crimes'
+  // Exported field_base: 'field_crimes'.
   $field_bases['field_crimes'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_crimes',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -143,21 +131,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_crimes_condition'
+  // Exported field_base: 'field_crimes_condition'.
   $field_bases['field_crimes_condition'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_crimes_condition',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -173,14 +153,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_exposure'
+  // Exported field_base: 'field_exposure'.
   $field_bases['field_exposure'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_exposure',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -201,21 +180,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_firstname'
+  // Exported field_base: 'field_firstname'.
   $field_bases['field_firstname'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_firstname',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -231,21 +202,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_food'
+  // Exported field_base: 'field_food'.
   $field_bases['field_food'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_food',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -260,21 +223,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_freetalk'
+  // Exported field_base: 'field_freetalk'.
   $field_bases['field_freetalk'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_freetalk',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -289,21 +244,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_friends'
+  // Exported field_base: 'field_friends'.
   $field_bases['field_friends'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_friends',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -318,14 +265,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_great_costume'
+  // Exported field_base: 'field_great_costume'.
   $field_bases['field_great_costume'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_great_costume',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -345,21 +291,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_health'
+  // Exported field_base: 'field_health'.
   $field_bases['field_health'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_health',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -374,14 +312,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_health_skills'
+  // Exported field_base: 'field_health_skills'.
   $field_bases['field_health_skills'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_health_skills',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -404,14 +341,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_help_costume'
+  // Exported field_base: 'field_help_costume'.
   $field_bases['field_help_costume'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_help_costume',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -431,14 +367,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_image_right'
+  // Exported field_base: 'field_image_right'.
   $field_bases['field_image_right'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_image_right',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -459,14 +394,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_insurance'
+  // Exported field_base: 'field_insurance'.
   $field_bases['field_insurance'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_insurance',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'markup',
@@ -482,14 +416,13 @@ function profiles_field_default_field_bases() {
     'type' => 'markup',
   );
 
-  // Exported field_base: 'field_intro'
+  // Exported field_base: 'field_intro'.
   $field_bases['field_intro'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_intro',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'markup',
@@ -510,14 +443,13 @@ function profiles_field_default_field_bases() {
     'type' => 'markup',
   );
 
-  // Exported field_base: 'field_job0'
+  // Exported field_base: 'field_job0'.
   $field_bases['field_job0'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_job0',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -543,14 +475,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_job1'
+  // Exported field_base: 'field_job1'.
   $field_bases['field_job1'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_job1',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -576,14 +507,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_job2'
+  // Exported field_base: 'field_job2'.
   $field_bases['field_job2'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_job2',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -609,21 +539,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_lastname'
+  // Exported field_base: 'field_lastname'.
   $field_bases['field_lastname'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_lastname',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -639,14 +561,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_love'
+  // Exported field_base: 'field_love'.
   $field_bases['field_love'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_love',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -666,21 +587,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_love_condition'
+  // Exported field_base: 'field_love_condition'.
   $field_bases['field_love_condition'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_love_condition',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -696,14 +609,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_membership'
+  // Exported field_base: 'field_membership'.
   $field_bases['field_membership'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_membership',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -723,14 +635,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_phone1'
+  // Exported field_base: 'field_phone1'.
   $field_bases['field_phone1'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_phone1',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'phone',
@@ -742,14 +653,13 @@ function profiles_field_default_field_bases() {
     'type' => 'phone',
   );
 
-  // Exported field_base: 'field_phone2'
+  // Exported field_base: 'field_phone2'.
   $field_bases['field_phone2'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_phone2',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'phone',
@@ -761,21 +671,13 @@ function profiles_field_default_field_bases() {
     'type' => 'phone',
   );
 
-  // Exported field_base: 'field_phone_international'
+  // Exported field_base: 'field_phone_international'.
   $field_bases['field_phone_international'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_phone_international',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -791,14 +693,13 @@ function profiles_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_storage'
+  // Exported field_base: 'field_storage'.
   $field_bases['field_storage'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_storage',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -818,14 +719,13 @@ function profiles_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_temperament_intro'
+  // Exported field_base: 'field_temperament_intro'.
   $field_bases['field_temperament_intro'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_temperament_intro',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'markup',

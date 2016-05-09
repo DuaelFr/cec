@@ -10,11 +10,11 @@
 function profiles_conditional_fields_default_fields() {
   $items = array();
 
-  $items[] = array(
+  $items["profile2:profil_joueur:0"] = array(
     'entity' => 'profile2',
     'bundle' => 'profil_joueur',
-    'dependent' => 'field_love_condition',
-    'dependee' => 'field_love',
+    'dependent' => 'field_crimes_condition',
+    'dependee' => 'field_crimes',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -127,11 +127,11 @@ function profiles_conditional_fields_default_fields() {
     ),
   );
 
-  $items[] = array(
+  $items["profile2:profil_joueur:1"] = array(
     'entity' => 'profile2',
     'bundle' => 'profil_joueur',
-    'dependent' => 'field_crimes_condition',
-    'dependee' => 'field_crimes',
+    'dependent' => 'field_love_condition',
+    'dependee' => 'field_love',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',

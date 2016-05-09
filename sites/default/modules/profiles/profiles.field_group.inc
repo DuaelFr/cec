@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function profiles_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -34,13 +34,13 @@ function profiles_field_group_info() {
       'label' => 'Administratif',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-admin field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_admin|profile2|inscription_administrative|form'] = $field_group;
+  $field_groups['group_admin|profile2|inscription_administrative|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -64,13 +64,13 @@ function profiles_field_group_info() {
       'label' => 'Profil du rôle',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-character-profile field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_character_profile|profile2|profil_joueur|form'] = $field_group;
+  $field_groups['group_character_profile|profile2|profil_joueur|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -95,13 +95,13 @@ function profiles_field_group_info() {
       'label' => 'Contact',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-contact field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_contact|profile2|inscription_administrative|form'] = $field_group;
+  $field_groups['group_contact|profile2|inscription_administrative|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -129,13 +129,13 @@ function profiles_field_group_info() {
       'label' => 'Plus en détail',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-detail field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_detail|profile2|profil_joueur|form'] = $field_group;
+  $field_groups['group_detail|profile2|profil_joueur|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -162,13 +162,13 @@ function profiles_field_group_info() {
       'label' => 'En premier lieu...',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-first field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_first|profile2|profil_joueur|form'] = $field_group;
+  $field_groups['group_first|profile2|profil_joueur|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -192,13 +192,13 @@ function profiles_field_group_info() {
       'label' => 'Santé',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-health field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_health|profile2|inscription_administrative|form'] = $field_group;
+  $field_groups['group_health|profile2|inscription_administrative|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -223,13 +223,13 @@ function profiles_field_group_info() {
       'label' => 'Identité',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-identity field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_identity|profile2|inscription_administrative|form'] = $field_group;
+  $field_groups['group_identity|profile2|inscription_administrative|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -256,13 +256,24 @@ function profiles_field_group_info() {
       'label' => 'Relations en jeu',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-relationship field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'open',
     ),
   );
-  $export['group_relationship|profile2|profil_joueur|form'] = $field_group;
+  $field_groups['group_relationship|profile2|profil_joueur|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Administratif');
+  t('Contact');
+  t('En premier lieu...');
+  t('Identité');
+  t('Plus en détail');
+  t('Profil du rôle');
+  t('Relations en jeu');
+  t('Santé');
+
+  return $field_groups;
 }

@@ -1,7 +1,6 @@
 name = Profiles
 core = 7.x
 package = App
-php = 5.2.4
 version = 7.x-1.0
 project = profiles
 dependencies[] = addressfield
@@ -31,7 +30,7 @@ dependencies[] = text
 features[conditional_fields][] = profile2:profil_joueur
 features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
-features[features_api][] = api:1
+features[features_api][] = api:2
 features[field_base][] = field_address
 features[field_base][] = field_birthdate
 features[field_base][] = field_character_name
