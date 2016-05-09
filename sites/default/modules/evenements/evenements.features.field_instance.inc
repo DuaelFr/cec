@@ -10,7 +10,7 @@
 function evenements_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_event-comment_body'
+  // Exported field_instance: 'comment-comment_node_event-comment_body'.
   $field_instances['comment-comment_node_event-comment_body'] = array(
     'bundle' => 'comment_node_event',
     'default_value' => NULL,
@@ -43,7 +43,7 @@ function evenements_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-body'
+  // Exported field_instance: 'node-event-body'.
   $field_instances['node-event-body'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -91,7 +91,7 @@ function evenements_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_dates'
+  // Exported field_instance: 'node-event-field_dates'.
   $field_instances['node-event-field_dates'] = array(
     'bundle' => 'event',
     'deleted' => 0,
@@ -112,6 +112,7 @@ function evenements_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
         'weight' => 0,
@@ -154,7 +155,7 @@ function evenements_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_event_type'
+  // Exported field_instance: 'node-event-field_event_type'.
   $field_instances['node-event-field_event_type'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -197,7 +198,7 @@ function evenements_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_intrigue'
+  // Exported field_instance: 'node-event-field_intrigue'.
   $field_instances['node-event-field_intrigue'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -246,7 +247,7 @@ function evenements_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_version'
+  // Exported field_instance: 'node-event-field_version'.
   $field_instances['node-event-field_version'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
