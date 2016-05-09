@@ -10,65 +10,59 @@
 function lieux_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: add terms in location_type.
+  // Exported permission: 'add terms in location_type'.
   $permissions['add terms in location_type'] = array(
     'name' => 'add terms in location_type',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy_access_fix',
   );
 
-  // Exported permission: create location content.
+  // Exported permission: 'create location content'.
   $permissions['create location content'] = array(
     'name' => 'create location content',
     'roles' => array(),
     'module' => 'node',
   );
 
-  // Exported permission: delete any location content.
+  // Exported permission: 'delete any location content'.
   $permissions['delete any location content'] = array(
     'name' => 'delete any location content',
     'roles' => array(),
     'module' => 'node',
   );
 
-  // Exported permission: delete own location content.
+  // Exported permission: 'delete own location content'.
   $permissions['delete own location content'] = array(
     'name' => 'delete own location content',
     'roles' => array(),
     'module' => 'node',
   );
 
-  // Exported permission: delete terms in location_type.
+  // Exported permission: 'delete terms in location_type'.
   $permissions['delete terms in location_type'] = array(
     'name' => 'delete terms in location_type',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy',
   );
 
-  // Exported permission: edit any location content.
+  // Exported permission: 'edit any location content'.
   $permissions['edit any location content'] = array(
     'name' => 'edit any location content',
     'roles' => array(),
     'module' => 'node',
   );
 
-  // Exported permission: edit own location content.
+  // Exported permission: 'edit own location content'.
   $permissions['edit own location content'] = array(
     'name' => 'edit own location content',
     'roles' => array(),
     'module' => 'node',
   );
 
-  // Exported permission: edit terms in location_type.
+  // Exported permission: 'edit terms in location_type'.
   $permissions['edit terms in location_type'] = array(
     'name' => 'edit terms in location_type',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy',
   );
 

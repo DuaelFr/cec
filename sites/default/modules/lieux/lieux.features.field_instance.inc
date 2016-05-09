@@ -10,7 +10,7 @@
 function lieux_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_location-comment_body'
+  // Exported field_instance: 'comment-comment_node_location-comment_body'.
   $field_instances['comment-comment_node_location-comment_body'] = array(
     'bundle' => 'comment_node_location',
     'default_value' => NULL,
@@ -43,7 +43,7 @@ function lieux_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-location-body'
+  // Exported field_instance: 'node-location-body'.
   $field_instances['node-location-body'] = array(
     'bundle' => 'location',
     'default_value' => NULL,
@@ -94,7 +94,7 @@ function lieux_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-location-field_location_type'
+  // Exported field_instance: 'node-location-field_location_type'.
   $field_instances['node-location-field_location_type'] = array(
     'bundle' => 'location',
     'default_value' => NULL,
