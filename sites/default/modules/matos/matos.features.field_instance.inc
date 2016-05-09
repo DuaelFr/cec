@@ -10,7 +10,7 @@
 function matos_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_stuff-comment_body'
+  // Exported field_instance: 'comment-comment_node_stuff-comment_body'.
   $field_instances['comment-comment_node_stuff-comment_body'] = array(
     'bundle' => 'comment_node_stuff',
     'default_value' => NULL,
@@ -43,7 +43,7 @@ function matos_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-stuff-body'
+  // Exported field_instance: 'node-stuff-body'.
   $field_instances['node-stuff-body'] = array(
     'bundle' => 'stuff',
     'default_value' => NULL,
@@ -94,7 +94,7 @@ function matos_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-stuff-field_stuff_type'
+  // Exported field_instance: 'node-stuff-field_stuff_type'.
   $field_instances['node-stuff-field_stuff_type'] = array(
     'bundle' => 'stuff',
     'default_value' => NULL,

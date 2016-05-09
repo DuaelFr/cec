@@ -81,26 +81,26 @@ function matos_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Comportement en l'absence de résultats: Global : Zone de texte */
+  /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucun matériel ne correspond à ces critères.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Nom';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Champ: Contenu : Type de matériel */
+  /* Field: Nœud: Type de matériel */
   $handler->display->display_options['fields']['field_stuff_type']['id'] = 'field_stuff_type';
   $handler->display->display_options['fields']['field_stuff_type']['table'] = 'field_data_field_stuff_type';
   $handler->display->display_options['fields']['field_stuff_type']['field'] = 'field_stuff_type';
   $handler->display->display_options['fields']['field_stuff_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Champ: Contenu : Description */
+  /* Field: Nœud: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -111,18 +111,18 @@ function matos_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '600',
   );
-  /* Champ: Processus : Current state */
+  /* Field: Workflow: Current state */
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['label'] = 'Etat actuel';
-  /* Champ: Contenu : Lien de modification */
+  /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
   $handler->display->display_options['fields']['edit_node']['text'] = 'modifier';
-  /* Champ: Etat CSS */
+  /* Field: Etat CSS */
   $handler->display->display_options['fields']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['fields']['sid_1']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid_1']['field'] = 'sid';
@@ -131,12 +131,12 @@ function matos_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
-  /* Critère de tri: Contenu : Date de publication */
+  /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -144,7 +144,7 @@ function matos_views_default_views() {
     'stuff' => 'stuff',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Contenu : Titre */
+  /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
@@ -166,7 +166,7 @@ function matos_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Critère de filtrage: Contenu : Type de matériel (field_stuff_type) */
+  /* Filter criterion: Nœud: Type de matériel (field_stuff_type) */
   $handler->display->display_options['filters']['field_stuff_type_tid']['id'] = 'field_stuff_type_tid';
   $handler->display->display_options['filters']['field_stuff_type_tid']['table'] = 'field_data_field_stuff_type';
   $handler->display->display_options['filters']['field_stuff_type_tid']['field'] = 'field_stuff_type_tid';
@@ -190,7 +190,7 @@ function matos_views_default_views() {
   $handler->display->display_options['filters']['field_stuff_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_stuff_type_tid']['vocabulary'] = 'stuff_type';
   $handler->display->display_options['filters']['field_stuff_type_tid']['hierarchy'] = 1;
-  /* Critère de filtrage: Processus : Current state */
+  /* Filter criterion: Workflow: Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
@@ -239,6 +239,7 @@ function matos_views_default_views() {
     t('modifier'),
     t('Titre'),
     t('Tous le Matériel (Page)'),
+    t('more'),
   );
   $export['admin_matos'] = $view;
 

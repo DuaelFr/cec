@@ -194,6 +194,20 @@ function matos_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_stuff_pattern';
+  $strongarm->value = 'materiel/[node:title]';
+  $export['pathauto_node_stuff_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_stuff_type_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_stuff_type_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'view_mode_per_role_stuff';
   $strongarm->value = array(
     0 => array(
