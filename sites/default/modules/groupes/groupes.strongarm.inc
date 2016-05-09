@@ -268,6 +268,20 @@ function groupes_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_group_pattern';
+  $strongarm->value = 'groupe/[node:title]';
+  $export['pathauto_node_group_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_type_de_groupe_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_type_de_groupe_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'view_mode_per_role_group';
   $strongarm->value = array(
     0 => array(

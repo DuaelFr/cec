@@ -13,9 +13,7 @@ function groupes_user_default_permissions() {
   // Exported permission: 'add terms in type_de_groupe'.
   $permissions['add terms in type_de_groupe'] = array(
     'name' => 'add terms in type_de_groupe',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy_access_fix',
   );
 

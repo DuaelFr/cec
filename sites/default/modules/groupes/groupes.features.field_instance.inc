@@ -10,7 +10,7 @@
 function groupes_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_group-comment_body'
+  // Exported field_instance: 'comment-comment_node_group-comment_body'.
   $field_instances['comment-comment_node_group-comment_body'] = array(
     'bundle' => 'comment_node_group',
     'default_value' => NULL,
@@ -43,7 +43,8 @@ function groupes_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_group_members-field_character'
+  // Exported field_instance:
+  // 'field_collection_item-field_group_members-field_character'.
   $field_instances['field_collection_item-field_group_members-field_character'] = array(
     'bundle' => 'field_group_members',
     'default_value' => NULL,
@@ -80,7 +81,8 @@ function groupes_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_group_members-field_member_is_secret'
+  // Exported field_instance:
+  // 'field_collection_item-field_group_members-field_member_is_secret'.
   $field_instances['field_collection_item-field_group_members-field_member_is_secret'] = array(
     'bundle' => 'field_group_members',
     'default_value' => array(
@@ -117,7 +119,7 @@ function groupes_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-group-body'
+  // Exported field_instance: 'node-group-body'.
   $field_instances['node-group-body'] = array(
     'bundle' => 'group',
     'default_value' => NULL,
@@ -166,7 +168,7 @@ function groupes_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-group-field_alternate_body'
+  // Exported field_instance: 'node-group-field_alternate_body'.
   $field_instances['node-group-field_alternate_body'] = array(
     'bundle' => 'group',
     'default_value' => NULL,
@@ -212,7 +214,7 @@ function groupes_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-group-field_alternate_title'
+  // Exported field_instance: 'node-group-field_alternate_title'.
   $field_instances['node-group-field_alternate_title'] = array(
     'bundle' => 'group',
     'default_value' => NULL,
@@ -258,7 +260,7 @@ function groupes_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-group-field_group_is_technical'
+  // Exported field_instance: 'node-group-field_group_is_technical'.
   $field_instances['node-group-field_group_is_technical'] = array(
     'bundle' => 'group',
     'default_value' => array(
@@ -307,7 +309,7 @@ function groupes_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-group-field_group_members'
+  // Exported field_instance: 'node-group-field_group_members'.
   $field_instances['node-group-field_group_members'] = array(
     'bundle' => 'group',
     'default_value' => array(
@@ -368,7 +370,7 @@ function groupes_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-group-field_group_type'
+  // Exported field_instance: 'node-group-field_group_type'.
   $field_instances['node-group-field_group_type'] = array(
     'bundle' => 'group',
     'default_value' => NULL,

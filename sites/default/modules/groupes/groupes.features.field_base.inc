@@ -10,7 +10,7 @@
 function groupes_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_character'
+  // Exported field_base: 'field_character'.
   $field_bases['field_character'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -19,14 +19,6 @@ function groupes_field_default_field_bases() {
     'field_name' => 'field_character',
     'field_permissions' => array(
       'type' => 1,
-    ),
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
     ),
     'indexes' => array(
       'target_id' => array(
@@ -57,7 +49,7 @@ function groupes_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_group_is_technical'
+  // Exported field_base: 'field_group_is_technical'.
   $field_bases['field_group_is_technical'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -67,7 +59,6 @@ function groupes_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 1,
     ),
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -87,7 +78,7 @@ function groupes_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_group_members'
+  // Exported field_base: 'field_group_members'.
   $field_bases['field_group_members'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -97,7 +88,6 @@ function groupes_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 1,
     ),
-    'foreign keys' => array(),
     'indexes' => array(
       'revision_id' => array(
         0 => 'revision_id',
@@ -114,7 +104,7 @@ function groupes_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_group_type'
+  // Exported field_base: 'field_group_type'.
   $field_bases['field_group_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -123,14 +113,6 @@ function groupes_field_default_field_bases() {
     'field_name' => 'field_group_type',
     'field_permissions' => array(
       'type' => 0,
-    ),
-    'foreign keys' => array(
-      'tid' => array(
-        'columns' => array(
-          'tid' => 'tid',
-        ),
-        'table' => 'taxonomy_term_data',
-      ),
     ),
     'indexes' => array(
       'tid' => array(
@@ -152,7 +134,7 @@ function groupes_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_member_is_secret'
+  // Exported field_base: 'field_member_is_secret'.
   $field_bases['field_member_is_secret'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -162,7 +144,6 @@ function groupes_field_default_field_bases() {
     'field_permissions' => array(
       'type' => 1,
     ),
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
