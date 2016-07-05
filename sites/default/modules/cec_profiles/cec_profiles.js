@@ -32,12 +32,13 @@
   };
 
   Temperaments.init = function() {
-	$('#profile2_profil_joueur_form_group_first .form-select').each(function() {
-	  if ($(this).find('option[value=""]').length == 0 && $(this).find('option[value="_none"]').length == 0) {
-		$(this).prepend($('<option value="">-- Aucun --</option>'));
-	  }
-	});
-    $('#profile2_profil_joueur_form_group_first .form-select').change(Temperaments.restrict);
+    $('#profile2-edit-profil-joueur-form .group-first .form-select')
+      .each(function() {
+        if ($(this).find('option[value=""]').length == 0 && $(this).find('option[value="_none"]').length == 0) {
+          $(this).prepend($('<option value="">-- Aucun --</option>'));
+        }
+      })
+      .change(Temperaments.restrict);
     Temperaments.restrict();
   };
   $(Temperaments.init);
