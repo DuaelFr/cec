@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * Change default limit date.
+ */
+function cec_profiles_update_7001(&$sandbox) {
+  variable_set(CEC_PROFILES_LIMIT_VAR, '30 juillet 2016');
+}
+
+/**
+ * Clean roles.
+ */
+function cec_profiles_update_7002(&$sandbox) {
+  if (empty($sandbox['total'])) {
+    $roles_names = [
+      'Inscription en liste d\'attente',
+      'Inscription validée',
+      'Inscription finalisée',
+      'Joueur',
+      'Cuisinier',
+      'PNJ',
+    ];
+    $sandbox['roles_to_remove'] = [];
+    foreach ($roles_names as $role_name) {
+      $role = user_role_load_by_name($role_name);
+      $sandbox['roles_to_remove'][$role->rid] = $role->name;
+    }
+
+    $result = (new EntityFieldQuery())
+      ->entityCondition('entity_type', 'user')
+      ->propertyCondition('uid', '1', '>')
+      ->execute();
+    $sandbox['uids'] = array_keys($result['user']);
+
+    $sandbox['total'] = count($sandbox['uids']);
+  }
+
+
+  $uids = array_splice($sandbox['uids'], 0, 20);
+  $users = user_load_multiple($uids);
+  foreach ($users as $account) {
+    $roles = array_diff($account->roles, $sandbox['roles_to_remove']);
+    $account->original = clone $account;
+    user_save($account, array('roles' => $roles));
+  }
+
+  $sandbox['#finished'] = ($sandbox['total'] - count($sandbox['uids'])) / $sandbox['total'];
+}
+
+/**
+ * Delete existing profiles.
+ */
+function cec_profiles_update_7003(&$sandbox) {
+  if (empty($sandbox['total'])) {
+    $result = (new EntityFieldQuery())
+      ->entityCondition('entity_type', 'profile2')
+      ->execute();
+    $sandbox['pids'] = array_keys($result['profile2']);
+
+    $sandbox['total'] = count($sandbox['pids']);
+  }
+
+  $pids = array_splice($sandbox['pids'], 0, 20);
+  profile2_delete_multiple($pids);
+
+  $sandbox['#finished'] = ($sandbox['total'] - count($sandbox['pids'])) / $sandbox['total'];
+}
