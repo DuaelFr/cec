@@ -1,27 +1,25 @@
-(function($) {
+(function($, Drupal, undefined) {
+  "use strict";
 
-  Temperaments = window.Temperaments || {};
-
-  Temperaments.restrict = function() {
+  function restrictTemperaments() {
     var disabled = [],
-        id = 1,
-        select, target;
+      id, tid, $select;
 
     for (id = 1 ; id < 6 ; id++) {
-      select = $('#edit-profile-profil-joueur-field-temperament' + id + '-und');
-      tid = select.val();
+      $select = $('#edit-profile-profil-joueur-field-temperament' + id + '-und');
+      tid = $select.val();
 
-      select.find('option').removeAttr('disabled');
+      $select.find('option').removeAttr('disabled');
       $.each(disabled, function(i, value) {
-        select.find('option[value="' + value + '"]').attr('disabled', true);
+        $select.find('option[value="' + value + '"]').attr('disabled', true);
       });
       if ($.inArray(tid, disabled) != -1) {
-    	if (select.find('option[value="_none"]').length == 0) {
-          select.val('');
-    	} else {
-          select.val('_none');
-    	}
-    	tid = '_none';
+        if ($select.find('option[value="_none"]').length == 0) {
+          $select.val('');
+        } else {
+          $select.val('_none');
+        }
+        tid = '_none';
       }
 
       if (tid != '_none') {
@@ -29,18 +27,21 @@
         disabled.push(Drupal.settings.temperaments_exclusion[tid]);
       }
     }
+  }
+
+  Drupal.behaviors.SelectTemperaments = {
+    attach: function(context, settings) {
+      $('#profile2-edit-profil-joueur-form .group-first .form-select')
+        .once('select-temperaments', function() {
+          if ($(this).find('option[value=""]').length == 0 && $(this).find('option[value="_none"]').length == 0) {
+            $(this).prepend($('<option value="">-- Aucun --</option>'));
+          }
+        })
+        .change(restrictTemperaments);
+      if ($('#profile2-edit-profil-joueur-form').length) {
+        restrictTemperaments();
+      }
+    }
   };
 
-  Temperaments.init = function() {
-    $('#profile2-edit-profil-joueur-form .group-first .form-select')
-      .each(function() {
-        if ($(this).find('option[value=""]').length == 0 && $(this).find('option[value="_none"]').length == 0) {
-          $(this).prepend($('<option value="">-- Aucun --</option>'));
-        }
-      })
-      .change(Temperaments.restrict);
-    Temperaments.restrict();
-  };
-  $(Temperaments.init);
-
-})(jQuery);
+})(jQuery, Drupal);
