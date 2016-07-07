@@ -7,17 +7,6 @@
 define('CEC_PROFILES_LIMIT_VAR', 'cec_profiles_limit');
 
 /**
- * Implements hook_permission().
- */
-function cec_profiles_permission() {
-  return array(
-    'access profile opus' => array(
-      'title' => t('Access Opus field on profiles'),
-    ),
-  );
-}
-
-/**
  * Implements hook_menu().
  */
 function cec_profiles_menu() {

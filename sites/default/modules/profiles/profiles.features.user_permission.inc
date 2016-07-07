@@ -23,15 +23,6 @@ function profiles_user_default_permissions() {
     'module' => 'cec_payment',
   );
 
-  // Exported permission: 'access profile opus'.
-  $permissions['access profile opus'] = array(
-    'name' => 'access profile opus',
-    'roles' => array(
-      'Zorga' => 'Zorga',
-    ),
-    'module' => 'cec_profiles',
-  );
-
   // Exported permission: 'edit any inscription_administrative profile'.
   $permissions['edit any inscription_administrative profile'] = array(
     'name' => 'edit any inscription_administrative profile',

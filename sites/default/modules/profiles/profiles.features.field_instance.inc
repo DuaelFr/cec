@@ -418,41 +418,6 @@ function profiles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'profile2-inscription_administrative-field_opus'.
-  $field_instances['profile2-inscription_administrative-field_opus'] = array(
-    'bundle' => 'inscription_administrative',
-    'default_value' => array(
-      0 => array(
-        'tid' => 2,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'Accessible uniquement par les Zorgas.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 14,
-      ),
-    ),
-    'entity_type' => 'profile2',
-    'field_name' => 'field_opus',
-    'label' => 'Opus',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 4,
-    ),
-  );
-
   // Exported field_instance:
   // 'profile2-inscription_administrative-field_phone1'.
   $field_instances['profile2-inscription_administrative-field_phone1'] = array(
@@ -1125,40 +1090,6 @@ function profiles_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 16,
-    ),
-  );
-
-  // Exported field_instance: 'profile2-profil_joueur-field_opus'.
-  $field_instances['profile2-profil_joueur-field_opus'] = array(
-    'bundle' => 'profil_joueur',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Accessible uniquement par les Zorgas.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'profile2',
-    'field_name' => 'field_opus',
-    'label' => 'Opus',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'options_buttons',
-      'weight' => 5,
     ),
   );
 

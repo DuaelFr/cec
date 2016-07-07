@@ -1,0 +1,17 @@
+<?php
+/**
+ * @file
+ * Code for the Profiles feature installation.
+ */
+
+/**
+ * Remove field_opus from profiles.
+ */
+function profiles_update_7001(&$sandbox) {
+  foreach (['inscription_administrative', 'profil_joueur'] as $bundle) {
+    $instance = field_info_instance('profile2', 'field_opus', $bundle);
+    if ($instance) {
+      field_delete_instance($instance);
+    }
+  }
+}
