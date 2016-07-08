@@ -5,15 +5,6 @@
  */
 
 /**
- * Get term id from its uuid
- * @param string $uuid
- */
-function uuid_taxonomy_term_find($uuid) {
-  $ids = entity_get_id_by_uuid('taxonomy_term', array($uuid));
-  return array_key_exists($uuid, $ids) ? $ids[$uuid] : FALSE;
-}
-
-/**
  * Implements hook_features_export_options().
  */
 function uuid_term_features_export_options() {

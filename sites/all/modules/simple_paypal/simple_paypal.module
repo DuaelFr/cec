@@ -132,7 +132,12 @@ function simple_paypal_ipn_verify($vars = array()) {
     curl_close($ch);
     ob_end_clean();
 
-    return stripos($info, 'VERIFIED') !== FALSE;
+    if (eregi('VERIFIED', $info)) {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
   }
   else {
     watchdog('simple_paypal', 'Call to curl_exec() failed. url=@url vars=@vars', array(
