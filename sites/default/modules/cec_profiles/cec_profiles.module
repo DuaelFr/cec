@@ -99,19 +99,29 @@ function cec_profiles_mail($key, &$message, $params) {
   $urlAdmin = url('profile-inscription_administrative', array('absolute' => TRUE));
   $urlProfil = url('profile-profil_joueur', array('absolute' => TRUE));
   $urlPaiement = url('reglement', array('absolute' => TRUE));
-  $urlEntracte = url('http://docs.google.com/spreadsheet/viewform?formkey=dHE1STJzS3ltSjAxTm82VmI3Z25RVEE6MQ', array('external' => TRUE));
+//  $urlEntracte = url('http://docs.google.com/spreadsheet/viewform?formkey=dHE1STJzS3ltSjAxTm82VmI3Z25RVEE6MQ', array('external' => TRUE));
+  // TODO : update the following URL.
   $urlPNJ = url('https://docs.google.com/spreadsheet/viewform?formkey=dDlnRVBsNmRUejRYcnczT1BmVjFlY2c6MQ#gid=0', array('external' => TRUE));
 
   $type = $params['type'];
-  if ($type == 'pnj') { $type = strtoupper($type); }
-  else { $type = ucfirst($type); }
-  
+  switch ($type) {
+    case 'pnj':
+      $type = 'PNJ';
+      break;
+    case 'joueur':
+      $type = 'Joueur/euse';
+      break;
+    default:
+      $type = ucfirst($type);
+      break;
+  }
+
   $msg = '';
   if ($key == 'new_subscription') {
     $msg .= 'Bonjour ' . $params['firstname'] . ',<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
-    $msg .= 'Votre pré-inscription au GN Capes & Crocs Acte II en tant que ' . $type . ' a été retenue.<br />' . "\n";
+    $msg .= 'Votre pré-inscription au GN Capes & Crocs Acte III en tant que <strong>' . $type . '</strong> a été retenue.<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Vous pouvez désormais accéder à un espace personnel sur <a href="' . $urlHome . '">le site</a> en utilisant les identifiant suivants :<br />' . "\n";
     $msg .= 'Identifiant : ' . $params['login'] . '<br />' . "\n";
@@ -119,7 +129,7 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= '<br />' . "\n";
     $msg .= 'Afin que votre inscription soit validée, nous avons besoin de recevoir <strong>avant le ' . $params['limit'] . '</strong> les éléments suivants :<br />' . "\n";
     $msg .= '<ol>' . "\n";
-    $msg .= '  <li>le formulaire d\'inscription administrative complété (<a href="' . $urlAdmin . '">y accéder</a>)</li>' . "\n";
+    $msg .= '  <li>le formulaire d\'inscription administrative complété ou actualisé (<a href="' . $urlAdmin . '">y accéder</a>)</li>' . "\n";
     if ($params['type'] != 'cuisinier') {
       $msg .= '  <li>le règlement pour l\'inscription au GN (<a href="' . $urlPaiement . '">consulter les détails</a>)</li>' . "\n";
     }
@@ -131,7 +141,7 @@ function cec_profiles_mail($key, &$message, $params) {
         $msg .= '  <li>le formulaire de personnage complété, <strong>le choix ayant été fait de ne pas conserver celui de l\'Acte précédent</strong> (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
       }
       else {
-        $msg .= '  <li>le formulaire d\'Entr\'Acte nous permettant de déterminer les actions de votre personnage durant les quelques mois qui séparent cet Acte du précédent (<a href="' . $urlEntracte . '">y accéder</a>)</li>' . "\n";
+//        $msg .= '  <li>le formulaire d\'Entr\'Acte nous permettant de déterminer les actions de votre personnage durant les quelques mois qui séparent cet Acte du précédent (<a href="' . $urlEntracte . '">y accéder</a>)</li>' . "\n";
         $msg .= '  <li>le formulaire de personnage complété avec les même informations que lors de votre inscription à l\'Acte précédent. Si vous ne vous en souvenez pas, laissez le vide nous le complèterons nous-même (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
       }
     }
@@ -140,7 +150,7 @@ function cec_profiles_mail($key, &$message, $params) {
     }
     $msg .= '</ol><br />' . "\n";
     if ($params['type'] == 'joueur') {
-      $msg .= '<i>Note : comme nous avons beaucoup de joueurs sur liste d\'attente, passé le ' . $params['limit'] . ', si nous n\'avons pas de nouvelles de votre part, nous proposerons votre place à un autre joueur.</i><br />' . "\n";
+      $msg .= '<i>Note : comme nous avons beaucoup de joueurs sur liste d\'attente, passé le ' . $params['limit'] . ', si nous n\'avons pas de nouvelles de votre part, nous proposerons votre place à une autre personne.</i><br />' . "\n";
     }
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
@@ -151,7 +161,7 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Bonjour ' . $params['firstname'] . ',<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
-    $msg .= 'Nous avons bien reçu votre pré-inscription au GN Capes & Crocs Acte II.<br />' . "\n";
+    $msg .= 'Nous avons bien reçu votre pré-inscription au GN Capes & Crocs Acte III.<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Elle est pour le moment placée sur la <strong>liste d\'attente</strong>.<br />' . "\n";
     $msg .= 'Cela signifie que le GN est complet mais si nous avons des désistements, nous pourrons vous proposer une place.<br />' . "\n";
@@ -162,14 +172,14 @@ function cec_profiles_mail($key, &$message, $params) {
     $msg .= 'Identifiant : ' . $params['login'] . '<br />' . "\n";
     $msg .= 'Mot de passe : ' . $params['pass'] . '<br />' . "\n";
     $msg .= '<br />' . "\n";
-    $msg .= 'Nous vous recontacterons après le ' . $params['limit'] . ' pour vous tenir informé.<br />' . "\n";
+    $msg .= 'Nous vous recontacterons après le ' . $params['limit'] . ' pour vous tenir informé(e).<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= '<br />' . "\n";
     $msg .= 'Ludiquement votre,<br />' . "\n";
     $msg .= 'Les Zorgas Capes & Crocs';
   }
 
-  $message['subject'] = '[GN C&C] Votre pré-inscription au GN Capes & Crocs Acte II';
+  $message['subject'] = '[GN C&C] Votre pré-inscription au GN Capes & Crocs Acte III';
   $message['body'] = array($msg);
 }
 
