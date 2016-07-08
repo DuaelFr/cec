@@ -18,7 +18,34 @@ else {
   define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://www.gn-capes-et-crocs.fr');
 }
 
+define('CEC_PAYMENT_PLAYER_PRICE', 110);
+define('CEC_PAYMENT_NONPLAYER_PRICE', 68);
 
+define('CEC_PAYMENT_PLAYER_PRICE_3THIRD', '50€, 30€ et 30€');
+define('CEC_PAYMENT_NONPLAYER_PRICE_3THIRD', '23€, 23€ et 22€');
+
+/**
+ * Calculate the price you have to charge on Paypal to get the base_price at the
+ * end.
+ *
+ * @param float $wanted
+ *   What We Want.
+ * @return float
+ *   What we need to charge.
+ */
+function _calc_paypal_price($wanted) {
+  // Calculate charged amount:
+  // $wanted = $charged - $fees;
+  // $fees = 0.25 + $charged * 0.034;
+  // $wanted = $charged - (0.25 + $charged * 0.034);
+  // $wanted + 0.25 = $charged - $charged * 0.034;
+  // $wanted + 0.25 = $charged * 0.966;
+  // ($wanted + 0.25) / 0.966 = $charged;
+  $charged = ($wanted + 0.25) / 0.966;
+  // Always round to the upper cent.
+  $charged = ceil($charged * 100) / 100;
+  return $charged;
+}
 
 //------------------------------------------------------------------------------
 // HOOKS
@@ -95,7 +122,7 @@ function cec_payment_form() {
   );
   $form['amount'] = array(
     '#type' => 'hidden',
-	'#value' => ($isJoueur ? '114.13' : '83.07'),
+	'#value' => ($isJoueur ? _calc_paypal_price(CEC_PAYMENT_PLAYER_PRICE) : _calc_paypal_price(CEC_PAYMENT_NONPLAYER_PRICE)),
   );
   $form['currency_code'] = array(
     '#type' => 'hidden',
@@ -122,8 +149,8 @@ function cec_payment_form() {
   );
   $form['block_amount']['detail'] = array(
     '#markup' => '<ul>'
-               . '<li' . ($isJoueur ? ' class="highlight"' : ''). '><span>Joueurs : 110€</span></li>'
-               . '<li' . (!$isJoueur ? ' class="highlight"' : ''). '><span>Orgas et PNJ : 80€</span></li>'
+               . '<li' . ($isJoueur ? ' class="highlight"' : ''). '><span>Joueurs : ' . CEC_PAYMENT_PLAYER_PRICE . '€</span></li>'
+               . '<li' . (!$isJoueur ? ' class="highlight"' : ''). '><span>Orgas et PNJ : ' . CEC_PAYMENT_NONPLAYER_PRICE . '€</span></li>'
                . '</ul>',
   );
   
@@ -161,8 +188,8 @@ function cec_payment_form() {
   );
   $form['block_paypal']['content_amount'] = array(
     '#markup' => '<ul>'
-               . '<li' . ($isJoueur ? ' class="highlight"' : ''). '><span>Joueurs : 114,13€</span></li>'
-               . '<li' . (!$isJoueur ? ' class="highlight"' : ''). '><span>Orgas et PNJ : 83,07€</span></li>'
+               . '<li' . ($isJoueur ? ' class="highlight"' : ''). '><span>Joueurs : ' . _calc_paypal_price(CEC_PAYMENT_PLAYER_PRICE) . '€</span></li>'
+               . '<li' . (!$isJoueur ? ' class="highlight"' : ''). '><span>Orgas et PNJ : ' . _calc_paypal_price(CEC_PAYMENT_NONPLAYER_PRICE) . '€</span></li>'
                . '</ul>',
   );
   $form['block_paypal']['content_comment'] = array(
@@ -194,7 +221,7 @@ function cec_payment_form() {
   );
   $form['block_check_1x']['content_details'] = array(
     '#markup' => '<p class="highlight">'
-               . '<strong>Montant :</strong> <span>' . ($isJoueur ? '110' : '80'). '€</span><br />'
+               . '<strong>Montant :</strong> <span>' . ($isJoueur ? CEC_PAYMENT_PLAYER_PRICE : CEC_PAYMENT_NONPLAYER_PRICE). '€</span><br />'
                . '<strong>Ordre :</strong> Terra Ludis<br />'
                . '<strong>Adresse :</strong><br />GN Capes&Crocs<br />c/o Edith Verceil<br />208 rue Claude Brousson<br />Apt. 2012, Bât. 7, Rés. Le Fontmagne<br />34000 MONTPELLIER FRANCE'
                . '</p>',
@@ -220,7 +247,7 @@ function cec_payment_form() {
   );
   $form['block_check_3x']['content_details'] = array(
     '#markup' => '<p class="highlight">'
-               . '<strong>Montants :</strong> <span>' . ($isJoueur ? '50€, 30€ et 30€' : '28€, 26€ et 26€'). '</span><br />'
+               . '<strong>Montants :</strong> <span>' . ($isJoueur ? CEC_PAYMENT_PLAYER_PRICE_3THIRD : CEC_PAYMENT_NONPLAYER_PRICE_3THIRD). '</span><br />'
                . '<strong>Ordre :</strong> Terra Ludis<br />'
                . '<strong>Adresse :</strong><br />GN Capes&Crocs<br />c/o Edith Verceil<br />208 rue Claude Brousson<br />Apt. 2012, Bât. 7, Rés. Le Fontmagne<br />34000 MONTPELLIER FRANCE'
                . '</p>',
@@ -306,7 +333,7 @@ function cec_payment_bulk_declare_paid($entities, $context = array()) {
       $data = array(
         'name' => $user->data['firstname'] . ' ' . $user->data['lastname'],
         'payer_email' => $user->email,
-        'amount' => $isJoueur ? 110 : 80,
+        'amount' => $isJoueur ? CEC_PAYMENT_PLAYER_PRICE : CEC_PAYMENT_NONPLAYER_PRICE,
         'uid' => $user->uid,
       );
       _cec_payment_set_paid($user, 'check', $data);
