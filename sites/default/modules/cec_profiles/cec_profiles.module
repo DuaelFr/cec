@@ -35,6 +35,12 @@ function cec_profiles_menu() {
     'access arguments' => array('administer users'),
   );
 
+  $menu['cec_profiles/autocomplete'] = array(
+    'page callback' => '_cec_profiles_autocomplete',
+    'access arguments' => array('administer users'),
+    'type' => MENU_CALLBACK,
+  );
+
   return $menu;
 }
 
@@ -206,14 +212,37 @@ function cec_profiles_settings_form_submit($form, &$form_state) {
  */
 function cec_profiles_create_form($form, &$form_state) {
   $form = array();
-  
+  $form['#attached']['js'][] = drupal_get_path('module', 'cec_profiles') . '/cec_profiles.js';
+
   $form['limit'] = array(
     '#type' => 'textfield',
     '#title' => t('Date limite'),
     '#default_value' => variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012'),
     '#required' => TRUE,
   );
-  
+
+  $form['search'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Rechercher un utilisateur existant (ancien participant)'),
+    'search' => array(
+      '#type' => 'textfield',
+      '#title' => 'Saisissez une partie du nom, prénom ou email',
+      '#autocomplete_path' => 'cec_profiles/autocomplete',
+    ),
+  );
+
+  $form['uid'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Identifiant (Attention: lire la description au survol)'),
+    '#description' => t('Identifiant du compte utilisateur existant. Ne pas modifier. Vider uniquement si volonté de créer un nouveau compte.'),
+    '#default_value' => '',
+    '#states' => array(
+      'visible' => array(
+        ':input[name="uid"]' => array('filled' => TRUE),
+      ),
+    ),
+  );
+
   $form['firstname'] = array(
     '#type' => 'textfield',
     '#title' => t('Prénom'),
@@ -227,7 +256,7 @@ function cec_profiles_create_form($form, &$form_state) {
     '#default_value' => '',
     '#required' => TRUE,
   );
-  
+
   $form['email'] = array(
     '#type' => 'textfield',
     '#title' => t('Email'),
@@ -243,10 +272,12 @@ function cec_profiles_create_form($form, &$form_state) {
       'pnj' => 'PNJ',
       'cuisinier' => 'Cuistot',
     ),
-    '#default_value' => '',
+    '#default_value' => 'joueur',
     '#required' => TRUE,
   );
-  
+  $form['type']['pnj']['#disabled'] = TRUE;
+  $form['type']['cuisinier']['#disabled'] = TRUE;
+
   $form['new_player'] = array(
     '#type' => 'checkbox',
     '#title' => t('Nouveau joueur'),
@@ -255,9 +286,12 @@ function cec_profiles_create_form($form, &$form_state) {
       'visible' => array(
         ':input[name="type"]' => array('value' => 'joueur'),
       ),
+      'unchecked' => array(
+        ':input[name="uid"]' => array('filled' => TRUE),
+      ),
     ),
   );
-  
+
   $form['keep_character'] = array(
     '#type' => 'checkbox',
     '#title' => t('Garde son personnage'),
@@ -269,16 +303,26 @@ function cec_profiles_create_form($form, &$form_state) {
       ),
     ),
   );
-  
-  $form['charname'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Nom du personnage'),
-    '#default_value' => '',
-  	'#states' => array(
+//
+//  $form['charname'] = array(
+//    '#type' => 'textfield',
+//    '#title' => t('Nom du personnage'),
+//    '#default_value' => '',
+//  	'#states' => array(
+//      'visible' => array(
+//        ':input[name="type"]' => array('value' => 'joueur'),
+//        ':input[name="new_player"]' => array('checked' => FALSE),
+//  		':input[name="keep_character"]' => array('checked' => TRUE),
+//      ),
+//    ),
+//  );
+
+  $form['warning'] = array(
+    '#type' => 'item',
+    '#markup' => 'Le mot de passe de l\'ancien utilisateur sera réinitialisé et lui sera renvoyé par email.',
+    '#states' => array(
       'visible' => array(
-        ':input[name="type"]' => array('value' => 'joueur'),
-        ':input[name="new_player"]' => array('checked' => FALSE),
-  		':input[name="keep_character"]' => array('checked' => TRUE),
+        ':input[name="uid"]' => array('filled' => TRUE),
       ),
     ),
   );
@@ -299,20 +343,53 @@ function cec_profiles_create_form_submit($form, &$form_state) {
     'limit' => $form_state['values']['limit'],
     'firstname' => $form_state['values']['firstname'],
     'lastname' => $form_state['values']['lastname'],
-    'charname' => $form_state['values']['charname'],
+//    'charname' => $form_state['values']['charname'],
     'type' => $form_state['values']['type'],
     'email' => $form_state['values']['email'],
+    'uid' => $form_state['values']['uid'],
     'is_accepted' => TRUE,
     'is_new_player' => $form_state['values']['type'] == 'joueur' && $form_state['values']['new_player'],
     'is_new_character' => $form_state['values']['type'] == 'joueur' && !$form_state['values']['keep_character'],
   );
   try {
     _cec_profiles_add_user($data);
-    drupal_set_message('Utilisateur ajouté avec succès', 'status');
+    if (!empty($form_state['values']['uid'])) {
+      drupal_set_message('Utilisateur ajouté avec succès', 'status');
+    }
+    else {
+      drupal_set_message('Utilisateur réactivé avec succès', 'status');
+    }
   }
   catch (Exception $e) {
     drupal_set_message($e->getMessage(), 'error');
   }
+}
+
+/**
+ * cec_profiles/autocomplete callback.
+ */
+function _cec_profiles_autocomplete($string) {
+  $string = strtolower(trim($string));
+  $results = [];
+
+  $query = db_select('users', 'u')
+    ->fields('u', array('uid', 'mail', 'data'))
+    ->condition(
+      db_or()
+        ->where('mail LIKE :string', array(':string' => '%' . db_like($string) . '%'))
+        ->where('data REGEXP \'.*"firstname";s:[0-9]+:"[^"]*' . db_escape_field($string) . '[^"]*";.*\'')
+        ->where('data REGEXP \'.*"firstname";s:[0-9]+:"[^"]*' . db_escape_field(ucfirst($string)) . '[^"]*";.*\'')
+        ->where('data REGEXP \'.*"lastname";s:[0-9]+:"[^"]*' . db_escape_field($string) . '[^"]*";.*\'')
+        ->where('data REGEXP \'.*"lastname";s:[0-9]+:"[^"]*' . db_escape_field(ucfirst($string)) . '[^"]*";.*\'')
+    );
+
+  foreach ($query->execute() as $row) {
+    $data = unserialize($row->data);
+    $key = implode('|', array($row->uid, $data['firstname'], $data['lastname'], $row->mail));
+    $results[$key] = $data['firstname'] . ' ' . $data['lastname'] . ' [' . $row->mail . ']';
+  }
+
+  drupal_json_output($results);
 }
 
 
@@ -362,9 +439,10 @@ function cec_profiles_import_from_csv($file) {
       'limit' => variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012'),
       'firstname' => $line[4],
       'lastname' => $line[2],
-      'charname' => $line[9],
+//      'charname' => $line[9],
       'type' => 'joueur',
       'email' => $line[5],
+      'uid' => NULL,
       'is_accepted' => $line[8] == 'OUI',
       'is_new_player' => $line[7] == 'NON',
       'is_new_character' => $line[10] != 'OUI' || $line[11] == 'X',
@@ -385,11 +463,13 @@ function cec_profiles_import_from_csv($file) {
 
 /**
  * $data = array(
+ *   'limit' => '',
  *   'firstname' => '',
  *   'lastname' => '',
- *   'charname' => '',
+// *   'charname' => '',
  *   'type' => '', [joueur, pnj, cuisinier, zorga]
  *   'email' => '',
+ *   'uid' => '',
  *   'is_accepted' => '', [bool]
  *   'is_new_player' => '', [bool]
  *   'is_new_character' => '', [bool]
@@ -401,75 +481,77 @@ function _cec_profiles_add_user($data) {
     $user_roles = user_roles(TRUE);
   }
 
-  $account = user_load_by_mail($data['email']);
-  if ($account === FALSE) {
-    $firstname = $data['firstname'];
-    $lastname = $data['firstname'];
-    $charname = $data['charname'];
-    $login = transliteration_clean_filename($data['firstname'] . ' ' . $data['lastname']);
-    $pass = user_password();
-
-    $roles = array();
-    if ($data['type'] == 'joueur') {
-      $rid = array_search('Joueur', $user_roles);
+  // Prepare use roles.
+  $roles = array();
+  if ($data['type'] == 'joueur') {
+    $rid = array_search('Joueur', $user_roles);
+    $roles[$rid] = TRUE;
+    if ($data['is_accepted'] == FALSE) {
+      $rid = array_search('Inscription en liste d\'attente', $user_roles);
       $roles[$rid] = TRUE;
-      if ($data['is_accepted'] == FALSE) {
-        $rid = array_search('Inscription en liste d\'attente', $user_roles);
-        $roles[$rid] = TRUE;
-      } else {
-        $rid = array_search('Inscription validée', $user_roles);
-        $roles[$rid] = TRUE;
-      }
-    }
-    elseif ($data['type'] == 'pnj') {
-      $rid = array_search('PNJ', $user_roles);
-      $roles[$rid] = TRUE;
+    } else {
       $rid = array_search('Inscription validée', $user_roles);
       $roles[$rid] = TRUE;
     }
-    elseif ($data['type'] == 'cuisinier') {
-      $rid = array_search('Cuisinier', $user_roles);
-      $roles[$rid] = TRUE;
-      $rid = array_search('Inscription finalisée', $user_roles);
-      $roles[$rid] = TRUE;
-    }
-    elseif ($data['type'] == 'zorga') {
-      throw new Exception('Il est interdit de créer des Zorgas avec ce script');
-    }
+  }
+  elseif ($data['type'] == 'pnj') {
+    $rid = array_search('PNJ', $user_roles);
+    $roles[$rid] = TRUE;
+    $rid = array_search('Inscription validée', $user_roles);
+    $roles[$rid] = TRUE;
+  }
+  elseif ($data['type'] == 'cuisinier') {
+    $rid = array_search('Cuisinier', $user_roles);
+    $roles[$rid] = TRUE;
+    $rid = array_search('Inscription finalisée', $user_roles);
+    $roles[$rid] = TRUE;
+  }
+  elseif ($data['type'] == 'zorga') {
+    throw new Exception('Il est interdit de créer des Zorgas avec ce script');
+  }
 
-    // Account creation
-    $new_user = array(
-      'name' => $login,
-      'pass' => $pass,
-      'mail' => $data['email'],
-      'status' => 1,
-      'roles' => $roles,
-      'data' => array(
-        'firstname' => $data['firstname'],
-        'lastname' => $data['lastname'],
-        'charname' => $data['charname'],
-      ),
-    );
-    $account = user_save(null, $new_user);
-    
-    // Send mail to new user
-    $params = array(
+  // Get existing account or create a new one.
+  $account = FALSE;
+  if (!empty($data['uid'])) {
+    $account = user_load($data['uid']);
+  }
+  if ($account === FALSE) {
+    $account = user_load_by_mail($data['email']);
+  }
+
+  // Account creation/update.
+  $login = transliteration_clean_filename($data['firstname'] . ' ' . $data['lastname']);
+  $pass = user_password();
+
+  $new_user = array(
+    'name' => $login,
+    'pass' => $pass,
+    'mail' => $data['email'],
+    'status' => 1,
+    'roles' => $roles,
+    'data' => array(
       'firstname' => $data['firstname'],
       'lastname' => $data['lastname'],
-      'type' => $data['type'],
-      'login' => $login,
-      'pass' => $pass,
-      'email' => $data['email'],
-      'is_accepted' => $data['is_accepted'], // Inscrit / Liste attente
-      'is_new_player' => $data['is_new_player'], // Nouveau / Ancien joueur
-      'is_new_character' => $data['is_new_character'], // Change / Garde perso
-    );
-    $key = $params['is_accepted'] ? 'new_subscription' : 'new_subscription_awaiting';
-    drupal_mail('cec_profiles', $key, $data['email'], language_default(), $params);
-  }
-  else {
-    throw new Exception('Cet email est déjà utilisé');
-  }
+//      'charname' => $data['charname'],
+    ),
+  );
+  user_save($account, $new_user);
+
+  // Send mail to new user
+  $params = array(
+    'limit' => $data['limit'],
+    'firstname' => $data['firstname'],
+    'lastname' => $data['lastname'],
+    'type' => $data['type'],
+    'login' => $login,
+    'pass' => $pass,
+    'email' => $data['email'],
+    'is_accepted' => $data['is_accepted'], // Inscrit / Liste attente
+    'is_new_player' => $data['is_new_player'], // Nouveau / Ancien joueur
+    'is_new_character' => $data['is_new_character'], // Change / Garde perso
+  );
+  $key = $params['is_accepted'] ? 'new_subscription' : 'new_subscription_awaiting';
+  drupal_mail('cec_profiles', $key, $data['email'], language_default(), $params);
 }
 
 

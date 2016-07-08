@@ -44,4 +44,24 @@
     }
   };
 
+  // ---------------------------------------------------------------------------
+
+  Drupal.behaviors.AdminInvite = {
+    attach: function(context, settings) {
+      $('#cec-profiles-create-form').once('admin-invite', function() {
+        $(this).find(':input[name="search"]')
+          .bind('autocompleteSelect', function() {
+            var values = $(this).val().split('|'),
+              $form = $(this).parents('form');
+
+            $form.find(':input[name="uid"]').val(values[0]).trigger('keyup');
+            $form.find(':input[name="firstname"]').val(values[1]);
+            $form.find(':input[name="lastname"]').val(values[2]);
+            $form.find(':input[name="email"]').val(values[3]);
+            $(this).val('');
+          });
+      });
+    }
+  };
+
 })(jQuery, Drupal);
