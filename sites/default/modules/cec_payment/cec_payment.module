@@ -10,13 +10,11 @@ define('CEC_PAYMENT_ROLE_BEFORE', 'Inscription validée');
 define('CEC_PAYMENT_ROLE_PAID', 'Inscription finalisée');
 define('CEC_PAYMENT_ROLE_JOUEUR', 'Joueur');
 if (CEC_PAYMENT_DEBUG) {
-  define('CEC_PAYMENT_PAYPAL_EMAIL1', 'seller_1339334871_biz@duael.fr');
-  define('CEC_PAYMENT_PAYPAL_EMAIL2', 'seller_1339334871_biz@duael.fr');
+  define('CEC_PAYMENT_PAYPAL_EMAIL', 'e.cunibil+seller@gmail.com');
   define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://preprod.gn-capes-et-crocs.fr');
 }
 else {
-  define('CEC_PAYMENT_PAYPAL_EMAIL1', 'tresorier@terraludis.org');
-  define('CEC_PAYMENT_PAYPAL_EMAIL2', 'tresorier@terraludis.org');
+  define('CEC_PAYMENT_PAYPAL_EMAIL', 'tresorier@terraludis.org');
   define('CEC_PAYMENT_PAYPAL_NOTIFY', 'http://www.gn-capes-et-crocs.fr');
 }
 
@@ -77,7 +75,7 @@ function cec_payment_form() {
   // Paypal parameters
   $form['business'] = array(
     '#type' => 'hidden',
-    '#value' => constant('CEC_PAYMENT_PAYPAL_EMAIL' . rand(1, 2)),
+    '#value' => CEC_PAYMENT_PAYPAL_EMAIL,
   );
   $form['cmd'] = array(
     '#type' => 'hidden',
@@ -365,7 +363,7 @@ function _cec_payment_paypal_callback() {
   }
   
   // Payment is not for the email address configured
-  if ($receiver != CEC_PAYMENT_PAYPAL_EMAIL1 && $receiver != CEC_PAYMENT_PAYPAL_EMAIL2) {
+  if ($receiver != CEC_PAYMENT_PAYPAL_EMAIL) {
     watchdog('cec_payment', 'Payment is not for the email address configured', array(), WATCHDOG_ERROR);
 	return;
   }
