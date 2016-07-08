@@ -406,7 +406,7 @@ function profiles_field_default_field_bases() {
     'module' => 'markup',
     'settings' => array(
       'markup' => array(
-        'format' => 'plain_text',
+        'format' => 'full_html',
         'value' => '<label>Assurance</label>
 <p>Le prix de l\'assurance <strong>est inclus</strong> dans le prix du GN.</p>',
       ),
@@ -428,7 +428,7 @@ function profiles_field_default_field_bases() {
     'module' => 'markup',
     'settings' => array(
       'markup' => array(
-        'format' => 'plain_text',
+        'format' => 'full_html',
         'value' => '<p>Le personnage que vous allez incarner va être construit autour de 3 éléments :</p>
 <ol>
 <li>le niveau d\'immersion (fond de scène, milieu de scène ou avant scène) indiquera son degré d\'implication - et donc de responsabilité - dans notre scénario</li>
@@ -731,7 +731,7 @@ function profiles_field_default_field_bases() {
     'module' => 'markup',
     'settings' => array(
       'markup' => array(
-        'format' => 'plain_text',
+        'format' => 'full_html',
         'value' => 'Comme tous les personnages romancés de cette époque, les Capecroquiens sont définis à grands traits colorés, en préférant souvent un caractère extrême à une tiède normalité. Cette personnalité fascinante s\'exprime en cinq tempéraments, <a href="/temperaments">dont vous trouverez le détail ici</a>. Le premier tempérament est celui qui donne sa couleur au personnage, les suivants précisent le dessin selon leur ordre d\'importance.',
       ),
       'profile2_private' => 0,
