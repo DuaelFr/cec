@@ -130,7 +130,7 @@ function cec_payment_form() {
   );
   $form['item_name'] = array(
 	'#type' => 'hidden',
-	'#value' => 'Inscription ' . ($isJoueur ? 'Joueur' : 'PNJ/Orga') . ' au GN Capes & Crocs',
+	'#value' => 'Inscription ' . ($isJoueur ? 'Joueur' : 'PNJ/Orga') . ' au GN Capes & Crocs III',
   );
   $form['custom'] = array(
     '#type' => 'hidden',
@@ -217,7 +217,7 @@ function cec_payment_form() {
     '#markup' => '<p>Votre chèque doit nous parvenir dans les 15 jours suivant votre inscription en ligne. Sans nouvelle de votre part, vous serez désinscrit afin de laisser la place à d\'autres personnes.</p>',
   );
   $form['block_check_1x']['content_info'] = array(
-    '#markup' => '<p>Pour un paiement en une seule fois merci de nous envoyer un chèque qui sera encaissé au début du mois de septembre 2012.</p>',
+    '#markup' => '<p>Pour un paiement en une seule fois merci de nous envoyer un chèque qui sera encaissé au début du mois de septembre 2016.</p>',
   );
   $form['block_check_1x']['content_details'] = array(
     '#markup' => '<p class="highlight">'
@@ -243,7 +243,7 @@ function cec_payment_form() {
     '#markup' => '<p>Vos chèques doivent nous parvenir dans les 15 jours suivant votre inscription en ligne. Sans nouvelle de votre part, vous serez désinscrit afin de laisser la place à d\'autres personnes.</p>',
   );
   $form['block_check_3x']['content_info'] = array(
-    '#markup' => '<p>Pour un paiement en trois fois merci de nous envoyer trois chèques qui seront respectivement encaissés début septembre, début novembre 2012 et début février 2013.</p>',
+    '#markup' => '<p>Pour un paiement en trois fois merci de nous envoyer trois chèques qui seront respectivement encaissés début septembre 2016, début novembre 2016 et début février 2017.</p>',
   );
   $form['block_check_3x']['content_details'] = array(
     '#markup' => '<p class="highlight">'
@@ -262,7 +262,7 @@ function cec_payment_form() {
     '#markup' => '<h2>Rappel</h2>',
   );
   $form['block_remind']['content'] = array(
-    '#markup' => '<p>Pour participer au GN, vous devez être membre de Terra Ludis à la date du GN. Paiement direct impossible pour l\'instant (pour information le renouvellement d\'adhésion 2012 était de 10 euros)</p>',
+    '#markup' => '<p>Pour participer au GN, vous devez être membre de Terra Ludis à la date du GN. Paiement direct impossible pour l\'instant (pour information le renouvellement d\'adhésion 2016 était de 10 euros)</p>',
   );
 
   return $form;
@@ -366,9 +366,9 @@ function _cec_payment_reglement_recu() {
        . '<h3>Remboursement</h3>'
        . '<p>Sauf cas de force majeure :</p>'
        . '<ul>'
-       . '<li>avant le 01 février 2013 remboursement à 100% ;</li>'
-       . '<li>entre le 01 février et le 01 mars 2013 remboursement de 50% de la PAF ;</li>'
-       . '<li>et à partir du 01/03/2013 plus de remboursement du tout.</li>'
+       . '<li>avant le 01 janvier 2017 remboursement à 100% ;</li>'
+       . '<li>entre le 01 janvier et le 01 février 2017 remboursement de 50% de la PAF ;</li>'
+       . '<li>et à partir du 01 février 2017 plus de remboursement du tout.</li>'
        . '</ul>';
 }
 
