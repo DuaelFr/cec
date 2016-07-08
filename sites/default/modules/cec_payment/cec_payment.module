@@ -272,31 +272,23 @@ function cec_payment_form() {
  * Implements hook_mail().
  */
 function cec_payment_mail($key, &$message, $params) {
-  $urlProfil = url('profile-profil_joueur', array('absolute' => TRUE));
+  if (strpos($key, 'payment_received_') !== 0) {
+    $message['send'] = FALSE;
+    return;
+  }
 
-  $msg = '';
-  if ($key == 'payment_received_paypal') {
-    $msg .= 'Bonjour ' . $params['user']->data['firstname'] . ',<br />';
-    $msg .= '<br />';
-    $msg .= '<br />';
-    $msg .= 'Nous avons bien reçu votre règlement Paypal pour le GN Capes & Crocs Acte III du 28 avril au 1er mai 2017.<br />';
-    $msg .= 'Si vous n\'avez pas encore complété votre fiche de personnage, merci de <a href="' . $urlProfil . '">le faire rapidement pour valider votre inscription</a>.<br />';
-    $msg .= '<br />';
-    $msg .= '<br />';
-    $msg .= 'Ludiquement votre,<br />';
-    $msg .= 'Les Zorgas';
-  }
-  elseif ($key == 'payment_received_check') {
-    $msg .= 'Bonjour ' . $params['user']->data['firstname'] . ',<br />';
-    $msg .= '<br />';
-    $msg .= '<br />';
-    $msg .= 'Nous avons bien reçu votre règlement pour le GN Capes & Crocs Acte III du 28 avril au 1er mai 2017.<br />';
-    $msg .= 'Si vous n\'avez pas encore complété votre fiche de personnage, merci de <a href="' . $urlProfil . '">le faire rapidement pour valider votre inscription</a>.<br />';
-    $msg .= '<br />';
-    $msg .= '<br />';
-    $msg .= 'Ludiquement votre,<br />';
-    $msg .= 'Les Zorgas';
-  }
+  $urlProfil = url('profile-profil_joueur', array('absolute' => TRUE));
+  $type = $key == 'payment_received_paypal' ? 'Paypal' : 'Chèque';
+
+  $msg  = 'Bonjour ' . $params['user']->data['firstname'] . ',<br />';
+  $msg .= '<br />';
+  $msg .= '<br />';
+  $msg .= 'Nous avons bien reçu votre règlement ' . $type . ' pour le GN Capes & Crocs Acte III du 28 avril au 1er mai 2017.<br />';
+  $msg .= 'Si vous n\'avez pas encore complété votre fiche de personnage, merci de <a href="' . $urlProfil . '">le faire rapidement pour valider votre inscription</a>.<br />';
+  $msg .= '<br />';
+  $msg .= '<br />';
+  $msg .= 'Ludiquement votre,<br />';
+  $msg .= 'Les Zorgas';
 
   $message['subject'] = '[GN C&C] Paiement reçu';
   $message['body'] = $msg;
