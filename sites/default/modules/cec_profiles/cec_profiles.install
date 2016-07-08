@@ -30,6 +30,10 @@ function cec_profiles_update_7002(&$sandbox) {
       ->entityCondition('entity_type', 'user')
       ->propertyCondition('uid', '1', '>')
       ->execute();
+    if (empty($result)) {
+      $sandbox['#finished'] = 1;
+      return;
+    }
     $sandbox['uids'] = array_keys($result['user']);
 
     $sandbox['total'] = count($sandbox['uids']);
@@ -55,6 +59,10 @@ function cec_profiles_update_7003(&$sandbox) {
     $result = (new EntityFieldQuery())
       ->entityCondition('entity_type', 'profile2')
       ->execute();
+    if (empty($result)) {
+      $sandbox['#finished'] = 1;
+      return;
+    }
     $sandbox['pids'] = array_keys($result['profile2']);
 
     $sandbox['total'] = count($sandbox['pids']);
