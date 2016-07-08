@@ -567,7 +567,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_convention']['id'] = 'field_convention';
   $handler->display->display_options['fields']['field_convention']['table'] = 'field_data_field_convention';
   $handler->display->display_options['fields']['field_convention']['field'] = 'field_convention';
-  /* Field: Profil: Je m'engage à m'inscrire à l'association Terra Ludis en 2013 */
+  /* Field: Profil: Je m'engage à m'inscrire à l'association Terra Ludis en 2017 */
   $handler->display->display_options['fields']['field_membership']['id'] = 'field_membership';
   $handler->display->display_options['fields']['field_membership']['table'] = 'field_data_field_membership';
   $handler->display->display_options['fields']['field_membership']['field'] = 'field_membership';
@@ -737,7 +737,7 @@ function administration_views_default_views() {
     t('Régime alimentaire spécial'),
     t('Compétences médicales'),
     t('J\'ai lu et j\'accepte la Charte de Déontologie de l\'association Terra Ludis'),
-    t('Je m\'engage à m\'inscrire à l\'association Terra Ludis en 2013'),
+    t('Je m\'engage à m\'inscrire à l\'association Terra Ludis en 2017'),
     t('Je participerai au rangement et au nettoyage du site'),
     t('J’autorise Terra Ludis à utiliser les photographies me représentant prises sur ce GN'),
     t('Rôles'),

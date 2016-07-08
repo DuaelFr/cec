@@ -231,7 +231,7 @@ function sequences_field_default_field_instances() {
         'text_parts' => array(
           0 => 'year',
         ),
-        'year_range' => '2013:2013',
+        'year_range' => '2017:2017',
       ),
       'type' => 'date_select',
       'weight' => 8,

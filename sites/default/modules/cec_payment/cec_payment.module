@@ -254,7 +254,7 @@ function cec_payment_mail($key, &$message, $params) {
     $msg .= 'Bonjour ' . $params['user']->data['firstname'] . ',<br />';
     $msg .= '<br />';
     $msg .= '<br />';
-    $msg .= 'Nous avons bien reçu votre règlement Paypal pour le GN Capes & Crocs Acte II du 09 au 12 mai 2013.<br />';
+    $msg .= 'Nous avons bien reçu votre règlement Paypal pour le GN Capes & Crocs Acte III du 28 avril au 1er mai 2017.<br />';
     $msg .= 'Si vous n\'avez pas encore complété votre fiche de personnage, merci de <a href="' . $urlProfil . '">le faire rapidement pour valider votre inscription</a>.<br />';
     $msg .= '<br />';
     $msg .= '<br />';
@@ -265,7 +265,7 @@ function cec_payment_mail($key, &$message, $params) {
     $msg .= 'Bonjour ' . $params['user']->data['firstname'] . ',<br />';
     $msg .= '<br />';
     $msg .= '<br />';
-    $msg .= 'Nous avons bien reçu votre règlement pour le GN Capes & Crocs Acte II du 09 au 12 mai 2013.<br />';
+    $msg .= 'Nous avons bien reçu votre règlement pour le GN Capes & Crocs Acte III du 28 avril au 1er mai 2017.<br />';
     $msg .= 'Si vous n\'avez pas encore complété votre fiche de personnage, merci de <a href="' . $urlProfil . '">le faire rapidement pour valider votre inscription</a>.<br />';
     $msg .= '<br />';
     $msg .= '<br />';

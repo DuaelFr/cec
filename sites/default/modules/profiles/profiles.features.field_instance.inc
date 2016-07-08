@@ -390,7 +390,7 @@ function profiles_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'La feuille d\'adhésion sera envoyée début 2013 aux personnes inscrites au GN',
+    'description' => 'La feuille d\'adhésion sera envoyée début 2017 aux personnes inscrites au GN',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -402,7 +402,7 @@ function profiles_field_default_field_instances() {
     ),
     'entity_type' => 'profile2',
     'field_name' => 'field_membership',
-    'label' => 'Je m\'engage à m\'inscrire à l\'association Terra Ludis en 2013',
+    'label' => 'Je m\'engage à m\'inscrire à l\'association Terra Ludis en 2017',
     'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1298,11 +1298,11 @@ function profiles_field_default_field_instances() {
   t('Intro');
   t('Intro Tempéraments');
   t('J\'ai lu et j\'accepte la Charte de Déontologie de l\'association Terra Ludis');
-  t('Je m\'engage à m\'inscrire à l\'association Terra Ludis en 2013');
+  t('Je m\'engage à m\'inscrire à l\'association Terra Ludis en 2017');
   t('Je participerai au rangement et au nettoyage du site');
   t('Je suis prêt(e) à faire un effort pour que mon costume et mon rôle-play soient appropriés à mon personnage.');
   t('J’autorise Terra Ludis à utiliser les photographies me représentant prises sur ce GN');
-  t('La feuille d\'adhésion sera envoyée début 2013 aux personnes inscrites au GN');
+  t('La feuille d\'adhésion sera envoyée début 2017 aux personnes inscrites au GN');
   t('Les personnes mineures de plus de 16 ans sont admises sous conditions. Merci de nous contacter avant de vous inscrire.');
   t('Mais j\'ai besoin d\'aide!');
   t('Merci de nous fournir une photo en civil au format photo d\'identité sur laquelle on peut vous reconnaître distinctement. Une fois les rôles attribués, nous vous demanderons éventuellement de nous envoyer une photo en costume.');
