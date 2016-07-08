@@ -197,7 +197,7 @@ function cec_profiles_settings_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Date limite'),
     '#description' => t('Date limite indiquée dans les prochains envois'),
-    '#default_value' => variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012'),
+    '#default_value' => variable_get(CEC_PROFILES_LIMIT_VAR),
     '#required' => TRUE,
   );
   
@@ -227,7 +227,7 @@ function cec_profiles_create_form($form, &$form_state) {
   $form['limit'] = array(
     '#type' => 'textfield',
     '#title' => t('Date limite'),
-    '#default_value' => variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012'),
+    '#default_value' => variable_get(CEC_PROFILES_LIMIT_VAR),
     '#required' => TRUE,
   );
 
@@ -446,7 +446,7 @@ function cec_profiles_import_from_csv($file) {
     $line = array_map('trim', $line); // Remove trailing spaces
     
     $data = array(
-      'limit' => variable_get(CEC_PROFILES_LIMIT_VAR, '15 août 2012'),
+      'limit' => variable_get(CEC_PROFILES_LIMIT_VAR),
       'firstname' => $line[4],
       'lastname' => $line[2],
 //      'charname' => $line[9],
