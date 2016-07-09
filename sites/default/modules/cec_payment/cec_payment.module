@@ -97,7 +97,7 @@ function cec_payment_form() {
   
   $form = array();
   $form['#tree'] = TRUE;
-  $form['#action'] = simple_paypal_get_urls()[CEC_PAYMENT_DEBUG ? SIMPLE_PAYPAL_URL_TEST : SIMPLE_PAYPAL_URL_LIVE];
+  $form['#action'] = simple_paypal_get_url();
   
   // Paypal parameters
   $form['business'] = array(
