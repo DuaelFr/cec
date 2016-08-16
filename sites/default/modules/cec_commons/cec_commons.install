@@ -9,3 +9,15 @@ function cec_commons_update_7001(&$sandbox) {
     ->condition('name', array('relation_endpoint', 'select_or_other'))
     ->execute();
 }
+
+/**
+ * Cleans fields that should have already been deleted.
+ */
+function cec_commons_update_7002(&$sandbox) {
+  db_delete('field_config')
+    ->condition('deleted', 1)
+    ->execute();
+  db_delete('field_config_instance')
+    ->condition('deleted', 1)
+    ->execute();
+}
