@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Cleans system table.
+ */
+function cec_commons_update_7001(&$sandbox) {
+  db_delete('system')
+    ->condition('type', 'module')
+    ->condition('name', array('relation_endpoint', 'select_or_other'))
+    ->execute();
+}
