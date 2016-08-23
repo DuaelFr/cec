@@ -105,41 +105,54 @@ function lieux_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'workflow' => array(
-          'weight' => '3',
+          'weight' => '4',
+        ),
+        'redirect' => array(
+          'weight' => '6',
         ),
       ),
       'display' => array(
         'comments' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '2',
+            'weight' => '3',
             'visible' => TRUE,
           ),
         ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '3',
+            'weight' => '5',
             'visible' => FALSE,
           ),
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '3',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '4',
+            'weight' => '6',
             'visible' => FALSE,
+          ),
+        ),
+        'cec_comments' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'full_zorga' => array(
+            'weight' => '4',
+            'visible' => TRUE,
           ),
         ),
       ),

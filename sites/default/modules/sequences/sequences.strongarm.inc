@@ -105,20 +105,23 @@ function sequences_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'workflow' => array(
-          'weight' => '9',
+          'weight' => '10',
+        ),
+        'redirect' => array(
+          'weight' => '12',
         ),
       ),
       'display' => array(
         'comments' => array(
           'default' => array(
-            'weight' => '3',
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '8',
+            'weight' => '9',
             'visible' => TRUE,
           ),
           'print' => array(
@@ -128,11 +131,11 @@ function sequences_strongarm() {
         ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '9',
+            'weight' => '11',
             'visible' => FALSE,
           ),
           'print' => array(
@@ -142,11 +145,11 @@ function sequences_strongarm() {
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '3',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '10',
+            'weight' => '12',
             'visible' => FALSE,
           ),
           'print' => array(
@@ -156,11 +159,11 @@ function sequences_strongarm() {
         ),
         'cec_comments' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '99',
+            'weight' => '10',
             'visible' => TRUE,
           ),
           'print' => array(

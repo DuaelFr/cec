@@ -108,17 +108,48 @@ function groupes_strongarm() {
           'weight' => '9',
         ),
         'workflow' => array(
-          'weight' => '7',
+          'weight' => '8',
+        ),
+        'redirect' => array(
+          'weight' => '10',
         ),
       ),
       'display' => array(
         'view_events' => array(
           'default' => array(
-            'weight' => '8',
+            'weight' => '9',
             'visible' => FALSE,
           ),
           'teaser' => array(
             'weight' => '6',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '8',
+            'visible' => TRUE,
+          ),
+        ),
+        'view_infos' => array(
+          'default' => array(
+            'weight' => '10',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '5',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '9',
+            'visible' => TRUE,
+          ),
+        ),
+        'zorgas_links' => array(
+          'default' => array(
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
+          'teaser' => array(
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
@@ -126,37 +157,9 @@ function groupes_strongarm() {
             'visible' => TRUE,
           ),
         ),
-        'view_infos' => array(
-          'default' => array(
-            'weight' => '9',
-            'visible' => FALSE,
-          ),
-          'teaser' => array(
-            'weight' => '5',
-            'visible' => FALSE,
-          ),
-          'full_zorga' => array(
-            'weight' => '8',
-            'visible' => TRUE,
-          ),
-        ),
-        'zorgas_links' => array(
-          'default' => array(
-            'weight' => '3',
-            'visible' => FALSE,
-          ),
-          'teaser' => array(
-            'weight' => '4',
-            'visible' => FALSE,
-          ),
-          'full_zorga' => array(
-            'weight' => '6',
-            'visible' => TRUE,
-          ),
-        ),
         'comments' => array(
           'default' => array(
-            'weight' => '6',
+            'weight' => '7',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -164,13 +167,13 @@ function groupes_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '9',
+            'weight' => '10',
             'visible' => TRUE,
           ),
         ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '5',
+            'weight' => '6',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -178,13 +181,13 @@ function groupes_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '11',
+            'weight' => '13',
             'visible' => FALSE,
           ),
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '4',
+            'weight' => '5',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -192,7 +195,7 @@ function groupes_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '12',
+            'weight' => '14',
             'visible' => FALSE,
           ),
         ),
@@ -206,7 +209,7 @@ function groupes_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '10',
+            'weight' => '12',
             'visible' => FALSE,
           ),
         ),
@@ -214,6 +217,10 @@ function groupes_strongarm() {
           'default' => array(
             'weight' => '2',
             'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '11',
+            'visible' => TRUE,
           ),
         ),
       ),

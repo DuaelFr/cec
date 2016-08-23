@@ -26,6 +26,12 @@ function cecadmin_preprocess_form_node(&$vars) {
     }
   }
 
+  if (!empty($vars['form']['field_opus'])) {
+    $vars['sidebar']['field_opus'] = $vars['form']['field_opus'];
+    $vars['sidebar']['field_opus']['#weight'] = -999;
+    unset($vars['form']['field_opus']);
+  }
+
   switch ($vars['form']['#form_id']) {
     case 'character_node_form':
       $vars['sidebar']['field_character_type'] = $vars['form']['field_character_type'];

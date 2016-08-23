@@ -105,20 +105,23 @@ function avantages_strongarm() {
           'weight' => '2',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'workflow' => array(
-          'weight' => '7',
+          'weight' => '8',
+        ),
+        'redirect' => array(
+          'weight' => '10',
         ),
       ),
       'display' => array(
         'workflow_current_state' => array(
           'full_zorga' => array(
-            'weight' => '7',
+            'weight' => '10',
             'visible' => FALSE,
           ),
           'default' => array(
-            'weight' => '0',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -128,11 +131,11 @@ function avantages_strongarm() {
         ),
         'workflow' => array(
           'full_zorga' => array(
-            'weight' => '6',
+            'weight' => '9',
             'visible' => FALSE,
           ),
           'default' => array(
-            'weight' => '2',
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -142,7 +145,7 @@ function avantages_strongarm() {
         ),
         'comments' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '3',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -150,7 +153,17 @@ function avantages_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '99',
+            'weight' => '8',
+            'visible' => TRUE,
+          ),
+        ),
+        'cec_comments' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'full_zorga' => array(
+            'weight' => '7',
             'visible' => TRUE,
           ),
         ),

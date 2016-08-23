@@ -1314,7 +1314,6 @@ function profiles_field_default_field_instances() {
   t('Occupation principale');
   t('Occupation secondaire');
   t('Occupation à éviter');
-  t('Opus');
   t('Photo');
   t('Premier Tempérament');
   t('Prénom');

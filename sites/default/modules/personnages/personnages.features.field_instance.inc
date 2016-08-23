@@ -191,7 +191,7 @@ function personnages_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -451,7 +451,7 @@ function personnages_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -801,6 +801,72 @@ function personnages_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'node-character-field_opus'.
+  $field_instances['node-character-field_opus'] = array(
+    'bundle' => 'character',
+    'default_value' => array(
+      0 => array(
+        'value' => 'acte3',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 29,
+      ),
+      'full_zorga' => array(
+        'label' => 'inline',
+        'module' => 'textformatter',
+        'settings' => array(
+          'textformatter_class' => 'textformatter-list',
+          'textformatter_comma_and' => 0,
+          'textformatter_comma_full_stop' => 0,
+          'textformatter_comma_override' => 0,
+          'textformatter_comma_tag' => 'div',
+          'textformatter_contrib' => array(),
+          'textformatter_separator_custom' => '',
+          'textformatter_separator_custom_class' => 'textformatter-separator',
+          'textformatter_separator_custom_tag' => 'span',
+          'textformatter_term_plain' => 0,
+          'textformatter_type' => 'comma',
+        ),
+        'type' => 'textformatter_list',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'trombinoscope' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_opus',
+    'label' => 'Opus',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 9,
     ),
   );
 
@@ -1279,6 +1345,7 @@ function personnages_field_default_field_instances() {
   t('Nationalité');
   t('Objectifs / Hors-Jeu');
   t('Occupation');
+  t('Opus');
   t('Personnages connus');
   t('Photo');
   t('Premier Tempérament');

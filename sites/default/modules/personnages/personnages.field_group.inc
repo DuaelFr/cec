@@ -78,7 +78,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Avantages',
-    'weight' => '2',
+    'weight' => '3',
     'children' => array(
       0 => 'field_avantages',
       1 => 'field_credit',
@@ -190,7 +190,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Canevas',
-    'weight' => '18',
+    'weight' => '20',
     'children' => array(
       0 => 'field_canevas',
     ),
@@ -332,7 +332,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Informations',
-    'weight' => '3',
+    'weight' => '4',
     'children' => array(
       0 => 'field_character_state',
       1 => 'field_character_type',
@@ -451,7 +451,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Trombinoscope',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
       0 => 'body',
       1 => 'field_photo',
@@ -547,7 +547,7 @@ function personnages_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tempéraments',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_temperament1',
       1 => 'field_temperament2',
