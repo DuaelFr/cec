@@ -189,23 +189,23 @@ function cec_commons_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_opus',
     'indexes' => array(
-      'tid' => array(
-        0 => 'tid',
+      'value' => array(
+        0 => 'value',
       ),
     ),
     'locked' => 0,
-    'module' => 'taxonomy',
+    'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        0 => array(
-          'vocabulary' => 'opus',
-          'parent' => 0,
-        ),
+        'acte1' => 'Acte 1 - octobre 2010',
+        'acte2' => 'Acte 2 - mai 2013',
+        'acte3' => 'Acte 3 - mai 2017',
       ),
-      'profile2_private' => 0,
+      'allowed_values_function' => '',
+      'profile2_private' => FALSE,
     ),
     'translatable' => 0,
-    'type' => 'taxonomy_term_reference',
+    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_photo'.

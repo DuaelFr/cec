@@ -9,6 +9,7 @@ dependencies[] = features
 dependencies[] = field_collection
 dependencies[] = image
 dependencies[] = opus
+dependencies[] = list
 dependencies[] = temperaments
 dependencies[] = text
 features[features_api][] = api:2
