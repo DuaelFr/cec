@@ -206,8 +206,11 @@ function personnages_node_view($node, $view_mode, $langcode) {
     }
 
     global $user;
-    $incarnate = reset(field_get_items('node', $node, 'field_incarnate'));
-    $type = reset(reset(field_get_items('node', $node, 'field_character_type')));
+    $items = field_get_items('node', $node, 'field_incarnate');
+    $incarnate = reset($items);
+    $items = field_get_items('node', $node, 'field_character_type');
+    $items = reset($items);
+    $type = reset($items);
     if (
       ($type == 'Joueur' && (user_access('view all playable characters') || $incarnate['target_id'] == $user->uid))
     ||($type == 'PNJ' && user_access('view all non-playable characters'))
