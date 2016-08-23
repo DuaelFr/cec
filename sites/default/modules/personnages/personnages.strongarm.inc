@@ -468,7 +468,7 @@ function personnages_strongarm() {
   $strongarm->name = 'view_mode_per_role_character';
   $strongarm->value = array(
     0 => array(
-      'role' => 'view_mode_per_role--role_168020977',
+      'role' => '168020977',
       'view_mode' => 'full_zorga',
     ),
   );
