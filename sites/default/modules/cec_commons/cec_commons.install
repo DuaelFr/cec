@@ -31,9 +31,31 @@ function cec_commons_update_7003(&$sandbox) {
 }
 
 /**
- * Preset field_opus for all related content types.
+ * Delete existing field_opus and revert features to recreate it properly.
  */
 function cec_commons_update_7004(&$sandbox) {
+  $info = field_info_field('field_opus');
+  if (!empty($info)) {
+    field_delete_field('field_opus');
+  }
+
+  features_revert(array('cec_commons' => array('field_base')));
+
+  features_revert(array('avantages' => array('field_instance')));
+  features_revert(array('evenements' => array('field_instance')));
+  features_revert(array('groupes' => array('field_instance')));
+  features_revert(array('informations' => array('field_instance')));
+  features_revert(array('intrigues' => array('field_instance')));
+  features_revert(array('lieux' => array('field_instance')));
+  features_revert(array('matos' => array('field_instance')));
+  features_revert(array('personnages' => array('field_instance')));
+  features_revert(array('sequences' => array('field_instance')));
+}
+
+/**
+ * Preset field_opus for all related content types.
+ */
+function cec_commons_update_7005(&$sandbox) {
   if (!isset($sandbox['total'])) {
     $bundles = array('avantage', 'event', 'group', 'information', 'intrigue', 'location', 'stuff', 'character', 'sequence');
     $q = new EntityFieldQuery();
