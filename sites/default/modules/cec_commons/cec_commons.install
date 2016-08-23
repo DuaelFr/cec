@@ -29,3 +29,34 @@ function cec_commons_update_7003(&$sandbox) {
   module_disable(array('opus'));
   drupal_uninstall_modules(array('opus'));
 }
+
+/**
+ * Preset field_opus for all related content types.
+ */
+function cec_commons_update_7004(&$sandbox) {
+  if (!isset($sandbox['total'])) {
+    $bundles = array('avantage', 'event', 'group', 'information', 'intrigue', 'location', 'stuff', 'character', 'sequence');
+    $q = new EntityFieldQuery();
+    $q->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', $bundles);
+    $r = $q->execute();
+
+    if (!empty($r['node'])) {
+      $sandbox['uids'] = array_keys($r['node']);
+      $sandbox['total'] = count($sandbox['uids']);
+    }
+    else {
+      $sandbox['#finished'] = 1;
+      return;
+    }
+  }
+
+  $uids = array_splice($sandbox['uids'], 0, 50);
+  $nodes = node_load_multiple($uids);
+  foreach ($nodes as $node) {
+    $node->field_opus[LANGUAGE_NONE][0]['value'] = 'acte2';
+    node_save($node);
+  }
+
+  $sandbox['#finished'] = ($sandbox['total'] - count($sandbox['uids'])) / $sandbox['total'];
+}
