@@ -21,3 +21,11 @@ function cec_commons_update_7002(&$sandbox) {
     ->condition('deleted', 1)
     ->execute();
 }
+
+/**
+ * Uninstall opus feature which's not needed anymore.
+ */
+function cec_commons_update_7003(&$sandbox) {
+  module_disable(array('opus'));
+  drupal_uninstall_modules(array('opus'));
+}
