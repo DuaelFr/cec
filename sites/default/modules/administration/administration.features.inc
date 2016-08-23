@@ -35,16 +35,16 @@ function administration_default_search_api_index() {
       "index_directly" : 0,
       "cron_limit" : "50",
       "fields" : {
-        "type" : { "type" : "string" },
-        "title" : { "type" : "text", "boost" : "5.0" },
-        "status" : { "type" : "boolean" },
         "author" : { "type" : "integer", "entity_type" : "user" },
+        "body:value" : { "type" : "text" },
+        "field_alternate_body:value" : { "type" : "text" },
         "field_alternate_title" : { "type" : "text", "boost" : "5.0" },
+        "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_language" : { "type" : "string" },
         "search_api_viewed" : { "type" : "text" },
-        "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
-        "body:value" : { "type" : "text" },
-        "field_alternate_body:value" : { "type" : "text" }
+        "status" : { "type" : "boolean" },
+        "title" : { "type" : "text", "boost" : "5.0" },
+        "type" : { "type" : "string" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
