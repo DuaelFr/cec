@@ -218,29 +218,32 @@ function personnages_node_view($node, $view_mode, $langcode) {
     }
 
     global $user;
-    $items = field_get_items('node', $node, 'field_incarnate');
-    $incarnate = reset($items);
-    $items = field_get_items('node', $node, 'field_character_type');
-    $items = reset($items);
-    $type = reset($items);
-    if (
-      ($type == 'Joueur' && (user_access('view all playable characters') || $incarnate['target_id'] == $user->uid))
-    ||($type == 'PNJ' && user_access('view all non-playable characters'))
-    ) {
-      $view_content = views_embed_view('evenements', 'block', $node->nid);
-      $node->content['view_events_player'] = _config_base_extra_field_view('view_events_player', '', $node, $view_mode, $langcode, $view_content);
-
-      $view_content = views_embed_view('informations', 'block', $node->nid);
-      $node->content['view_infos_player'] = _config_base_extra_field_view('view_infos_player', '', $node, $view_mode, $langcode, $view_content);
-
-      $view_content = views_embed_view('avantages', 'avantages_perso', $node->nid);
-      $node->content['view_avantages_player'] = _config_base_extra_field_view('view_avantages_player', '', $node, $view_mode, $langcode, $view_content);
-
-      $view_content = views_embed_view('groups', 'groupes_perso', $node->nid);
-      $node->content['view_groupes_player'] = _config_base_extra_field_view('view_groupes_player', '', $node, $view_mode, $langcode, $view_content);
-
-      $view_content = views_embed_view('characters', 'block_trombi', $node->nid);
-      $node->content['view_trombi'] = _config_base_extra_field_view('view_trombi', '', $node, $view_mode, $langcode, $view_content);
+    $incarnate = field_get_items('node', $node, 'field_incarnate');
+    $type = field_get_items('node', $node, 'field_character_type');
+    if ($type[0]['value'] == 'PNJ' && !user_access('view all non-playable characters')) {
+      return;
     }
+    elseif ($type[0]['value'] == 'Joueur') {
+      if (empty($incarnate) || $incarnate[0]['target_id'] != $user->uid) {
+        if (!user_access('view all playable characters')) {
+          return;
+        }
+      }
+    }
+
+    $view_content = views_embed_view('evenements', 'block', $node->nid);
+    $node->content['view_events_player'] = _config_base_extra_field_view('view_events_player', '', $node, $view_mode, $langcode, $view_content);
+
+    $view_content = views_embed_view('informations', 'block', $node->nid);
+    $node->content['view_infos_player'] = _config_base_extra_field_view('view_infos_player', '', $node, $view_mode, $langcode, $view_content);
+
+    $view_content = views_embed_view('avantages', 'avantages_perso', $node->nid);
+    $node->content['view_avantages_player'] = _config_base_extra_field_view('view_avantages_player', '', $node, $view_mode, $langcode, $view_content);
+
+    $view_content = views_embed_view('groups', 'groupes_perso', $node->nid);
+    $node->content['view_groupes_player'] = _config_base_extra_field_view('view_groupes_player', '', $node, $view_mode, $langcode, $view_content);
+
+    $view_content = views_embed_view('characters', 'block_trombi', $node->nid);
+    $node->content['view_trombi'] = _config_base_extra_field_view('view_trombi', '', $node, $view_mode, $langcode, $view_content);
   }
 }
