@@ -1,0 +1,373 @@
+diff --git a/handlers/views_handler_filter.inc b/handlers/views_handler_filter.inc
+index f5db70f..893f429 100644
+--- a/handlers/views_handler_filter.inc
++++ b/handlers/views_handler_filter.inc
+@@ -110,6 +110,8 @@ class views_handler_filter extends views_handler {
+     $options['value'] = array('default' => '');
+     $options['group'] = array('default' => '1');
+     $options['exposed'] = array('default' => FALSE, 'bool' => TRUE);
++    $options['pull_value'] = array('default' => FALSE, 'bool' => TRUE);
++    $options['argument_value'] = array('default' => array());
+     $options['expose'] = array(
+       'contains' => array(
+         'operator_id' => array('default' => FALSE),
+@@ -155,6 +157,23 @@ class views_handler_filter extends views_handler {
+   }
+ 
+   /**
++   * Define the value format for a specific field type's filter hanlder.
++   *
++   * This function is not required but it may help other views filter handler
++   * implementations better support their specific field types.
++   *
++   * @return array
++   *   An array containing the keys of the $options['value'] array provided by
++   *   the options_definition() function. The value of each key in this array
++   *   is TRUE if the key expects a real value or FALSE if the key contains
++   *   configuration data.
++   *
++   * @see views_handler_filter_numeric::value_definition()
++   * @see views_handler_filter_date::value_definition()
++   */
++  function value_definition() { return array(); }
++
++  /**
+    * Display the filter on the administrative summary
+    */
+   function admin_summary() {
+@@ -215,6 +234,8 @@ class views_handler_filter extends views_handler {
+       $this->show_operator_form($form, $form_state);
+       // Add the subform from value_form().
+       $this->show_value_form($form, $form_state);
++      $this->show_pull_value_form($form, $form_state);
++      $this->show_pull_value_button($form, $form_state);
+       $form['clear_markup_end'] = array(
+         '#markup' => '</div>',
+       );
+@@ -315,6 +336,139 @@ class views_handler_filter extends views_handler {
+   }
+ 
+   /**
++    * Shortcut to display the pull value select elements.
++    */
++  function show_pull_value_form(&$form, &$form_state) {
++    if (empty($this->options['pull_value'])) {
++      return;
++    }
++    $options = array('' => t('None'));
++    foreach ($this->view->display_handler->get_handlers('argument') as $id => $argument) {
++      $options[$id] = $argument->ui_name(TRUE);
++    }
++
++    // Add the filter criterion argument selection form.
++    // If a certain filter handler has multiple form elements both
++    // add the value as possible form element and update the dependency.
++    $option_definition = $this->option_definition();
++    $value_definition = $this->value_definition();
++
++    if (isset($option_definition['value']['contains'])) {
++      foreach ($option_definition['value']['contains'] as $value => $definition) {
++        // Some fields that use 'value' as a key in the form or as a child
++        // element must be handled carefully.
++        if ($value == 'value') {
++          if (isset($form['value']['value'])) {
++            $values[$value] = array(
++              'title' => isset($form['value']['value']['#title']) ? $form['value']['value']['#title'] : '',
++              'weight' => isset($form['value']['value']['#weight']) ? $form['value']['value']['#weight'] : 0,
++              'dependency' => isset($form['value']['value']['#dependency']) ? $form['value']['value']['#dependency'] : array(),
++            );
++            $form['value']['value']['#dependency']['edit-options-argument-value-' . $value] = array('');
++            $form['value']['value']['#dependency_count'] = count($form['value']['value']['#dependency']);
++          }
++          else {
++            $values[$value] = array(
++              'title' => isset($form['value']['#title']) ? $form['value']['#title'] : '',
++              'weight' => isset($form['value']['#weight']) ? $form['value']['#weight'] : 0,
++              'value_single' => TRUE,
++              'dependency' => isset($form['value']['#dependency']) ? $form['value']['#dependency'] : array(),
++            );
++            $form['value']['#dependency']['edit-options-argument-value-' . $value] = array('');
++            $form['value']['#dependency_count'] = count($form['value']['#dependency']);
++          }
++        }
++        else {
++          // If the handler provides a value_definition() use it, otherwise show
++          // the form all the time.
++          if (!isset($value_definition[$value]) || !empty($value_definition[$value])) {
++            $values[$value] = array(
++              'title' => isset($form['value'][$value]['#title']) ? $form['value'][$value]['#title'] : '',
++              'weight' => isset($form['value'][$value]['#weight']) ? $form['value'][$value]['#weight'] : 0,
++              'dependency' => isset($form['value'][$value]['#dependency']) ? $form['value'][$value]['#dependency'] : array(),
++            );
++            $form['value'][$value]['#dependency']['edit-options-argument-value-' . $value] = array('');
++            $form['value'][$value]['#dependency_count'] = count($form['value'][$value]['#dependency']);
++          }
++        }
++      }
++    }
++    else {
++      $values = array('value' => array(
++        'title' => isset($form['value']['#title']) ? $form['value']['#title'] : '',
++        'weight' => isset($form['value']['#weight']) ? $form['value']['#weight'] : 0,
++        'value_single' => TRUE,
++        'dependency' => isset($form['value']['#dependency']) ? $form['value']['#dependency'] : array(),
++      ));
++      $form['value']['#dependency']['edit-options-argument-value-value'] = array('');
++    }
++
++    foreach ($values as $value => $setting) {
++      $setting['value_name'] = $value;
++      $form['argument_value'][$value] = array(
++        '#type' => 'select',
++        '#title' => t('Contextual filter'),
++        '#description' => t('The argument passed to the selected contextual filter will be used as this filter criterion\'s value.'),
++        '#options' => $options,
++        '#default_value' => isset($this->options['argument_value'][$value]) ? $this->options['argument_value'][$value] : '',
++        '#weight' => ++$setting['weight'],
++        '#value_setting' => $setting,
++        '#dependency' => $setting['dependency'],
++        );
++    }
++    // Add a pre_render function to draw the value + the argument value form
++    // in the same container.
++    $form['#pre_render'][] = 'views_handler_filter_form_argument_value_pre_render';
++  }
++
++  /**
++   * Shortcut to display the pull value button.
++   */
++  function show_pull_value_button(&$form, &$form_state) {
++    $form['argument_value_button'] = array(
++      '#prefix' => '<div class="views-argument-value clearfix">',
++      '#suffix' => '</div>',
++      // Should always come after the description and the relationship.
++      '#weight' => -200,
++    );
++    // Add a checkbox for JS users, which will have behavior attached to it
++    // so it can replace the button.
++    $form['argument_value_button']['checkbox'] = array(
++      '#theme_wrappers' => array('container'),
++      '#attributes' => array('class' => array('js-only')),
++    );
++    $form['argument_value_button']['checkbox']['checkbox'] = array(
++      '#title' => t('Use an argument provided by contextual filters'),
++      '#type' => 'checkbox',
++    );
++    // Then add the button itself.
++    if (empty($this->options['pull_value'])) {
++      $form['argument_value_button']['markup'] = array(
++        '#markup' => '<div class="description argument-value-description">' . t("You may use a dynamic arguement provided by a contextual filter as the source for this filter's value.") . ' ' . t('WARNING: This is an experimental configuration and may cause unknown issues if improperly configured.') . '</div>',
++      );
++      $form['argument_value_button']['button'] = array(
++        '#limit_validation_errors' => array(),
++        '#type' => 'submit',
++        '#value' => t('Contextual argument'),
++        '#submit' => array('views_ui_config_item_form_pull_value'),
++      );
++      $form['argument_value_button']['checkbox']['checkbox']['#default_value'] = 0;
++    }
++    else {
++      $form['argument_value_button']['markup'] = array(
++        '#markup' => '<div class="description argument-value-description">' . t("The criteria value for this filter will be provided dynamically by an argument passed to a contextual filter.") . ' ' . t('WARNING: This is an experimental configuration and may cause unknown issues if improperly configured.') . '</div>',
++      );
++      $form['argument_value_button']['button'] = array(
++        '#limit_validation_errors' => array(),
++        '#type' => 'submit',
++        '#value' => t("Remove contextual argument"),
++        '#submit' => array('views_ui_config_item_form_pull_value'),
++      );
++      $form['argument_value_button']['checkbox']['checkbox']['#default_value'] = 1;
++    }
++  }
++
++  /**
+    * Options form subform for setting options.
+    *
+    * This should be overridden by all child classes and it must
+@@ -1344,6 +1498,18 @@ class views_handler_filter extends views_handler {
+   }
+ 
+   /**
++   * If pulling arguments from the filter is set, set $this->value here.
++   */
++  function pre_query() {
++    foreach ($this->options['argument_value'] as $value => $argument) {
++      if (!empty($argument)) {
++        $argument = $this->view->argument[$argument];
++        $this->value[$value] = $argument->get_value();
++      }
++    }
++  }
++
++  /**
+    * Add this filter to the query.
+    *
+    * Due to the nature of fapi, the value and the operator have an unintended
+diff --git a/handlers/views_handler_filter_date.inc b/handlers/views_handler_filter_date.inc
+index 4ef61b4..eb62b5e 100644
+--- a/handlers/views_handler_filter_date.inc
++++ b/handlers/views_handler_filter_date.inc
+@@ -20,6 +20,13 @@ class views_handler_filter_date extends views_handler_filter_numeric {
+     return $options;
+   }
+ 
++  function value_definition() {
++    $values = parent::value_definition();
++    $values['type'] = FALSE;
++
++    return $values;
++  }
++
+   /**
+    * Add a type selector to the value form
+    */
+diff --git a/handlers/views_handler_filter_numeric.inc b/handlers/views_handler_filter_numeric.inc
+index 982abd8..9d28f92 100644
+--- a/handlers/views_handler_filter_numeric.inc
++++ b/handlers/views_handler_filter_numeric.inc
+@@ -26,6 +26,14 @@ class views_handler_filter_numeric extends views_handler_filter {
+     return $options;
+   }
+ 
++  function value_definition() {
++    return array(
++      'min' => TRUE,
++      'max' => TRUE,
++      'value' => TRUE,
++    );
++  }
++
+   function operators() {
+     $operators = array(
+       '<' => array(
+diff --git a/includes/admin.inc b/includes/admin.inc
+index 995bb9a..1dbf31d 100644
+--- a/includes/admin.inc
++++ b/includes/admin.inc
+@@ -1871,6 +1871,50 @@ function views_ui_pre_render_add_fieldset_markup($form) {
+ }
+ 
+ /**
++ * Pre_render function shows an argument_value form below the value form element
++ * in the filter function.
++ *
++ * Each argument_value is wrapped with it's corresponding value form element
++ * inside a container div.
++ */
++function views_handler_filter_form_argument_value_pre_render($form) {
++  foreach (element_children($form['argument_value']) as $element) {
++    $setting = $form['argument_value'][$element]['#value_setting'];
++
++    // Collect the name and the form element of the value and the form element
++    // of the argument, while ensuring the single value exception works as well.
++    if (empty($setting['value_single'])) {
++      $name = $setting['value_name'];
++      $value_form = $form['value'][$name];
++      $argument_form = $form['argument_value'][$name];
++
++      unset($form['value'][$name]);
++      unset($form['argument_value'][$name]);
++    }
++    else {
++      $name = 'value';
++      $value_form = $form['value'];
++      $argument_form = $form['argument_value'][$name];
++
++      unset($form['value']);
++      unset($form['argument_value'][$name]);
++    }
++
++    $form['argument_value_wrappers'][$name] = array(
++      '#theme_wrappers' => array('views_container'),
++      '#attributes' => array('class' => array('views-filter-value-argument-pair')),
++    );
++    $form['argument_value_wrappers'][$name]['argument_value'] = $argument_form;
++    $form['argument_value_wrappers'][$name]['value'] = $value_form;
++  }
++
++  $form['argument_value_wrappers']['#prefix'] = '<div class="views-group-box views-right-70">';
++  $form['argument_value_wrappers']['#suffix'] = '</div>';
++
++  return $form;
++}
++
++/**
+  * Flattens the structure of an element containing the #flatten property.
+  *
+  * If a form element has #flatten = TRUE, then all of it's children
+@@ -3316,7 +3360,7 @@ function views_ui_edit_display_form_submit($form, &$form_state) {
+ }
+ 
+ /**
+- * Override handler for views_ui_edit_display_form
++ * Toggle expose settings on handlers.
+  *
+  * @TODO: Not currently used. Remove unless we implement an override toggle.
+  */
+@@ -4616,6 +4660,21 @@ function views_ui_config_item_form_expose($form, &$form_state) {
+ }
+ 
+ /**
++ * Toggle the pull value from argument feature on filters.
++ */
++function views_ui_config_item_form_pull_value($form, &$form_state) {
++  $item = &$form_state['handler']->options;
++  // flip
++  $item['pull_value'] = empty($item['pull_value']);
++
++  $form_state['view']->set_item($form_state['display_id'], $form_state['type'], $form_state['id'], $item);
++
++  views_ui_cache_set($form_state['view']);
++  $form_state['rerender'] = TRUE;
++  $form_state['rebuild'] = TRUE;
++}
++
++/**
+  * Form to config_item items in the views UI.
+  */
+ function views_ui_config_item_extra_form($form, &$form_state) {
+diff --git a/js/views-admin.js b/js/views-admin.js
+index 1eb3897..793bef8 100644
+--- a/js/views-admin.js
++++ b/js/views-admin.js
+@@ -830,12 +830,12 @@ Drupal.behaviors.viewsRemoveIconClass.attach = function (context, settings) {
+ };
+ 
+ /**
+- * Change "Expose filter" buttons into checkboxes.
++ * Change "Expose filter" and "Contextual argument" buttons into checkboxes.
+  */
+ Drupal.behaviors.viewsUiCheckboxify = {};
+ Drupal.behaviors.viewsUiCheckboxify.attach = function (context, settings) {
+   var $ = jQuery;
+-  var $buttons = $('#edit-options-expose-button-button, #edit-options-group-button-button').once('views-ui-checkboxify');
++  var $buttons = $('#edit-options-expose-button-button, #edit-options-group-button-button, #edit-options-argument-value-button-button').once('views-ui-checkboxify');
+   var length = $buttons.length;
+   var i;
+   for (i = 0; i < length; i++) {
+@@ -871,7 +871,7 @@ Drupal.behaviors.viewsUiChangeDefaultWidget.attach = function (context, settings
+ };
+ 
+ /**
+- * Attaches an expose filter button to a checkbox that triggers its click event.
++ * Attaches a button to a checkbox that triggers its click event.
+  *
+  * @param button
+  *   The DOM object representing the button to be checkboxified.
+@@ -879,14 +879,13 @@ Drupal.behaviors.viewsUiChangeDefaultWidget.attach = function (context, settings
+ Drupal.viewsUi.Checkboxifier = function (button) {
+   var $ = jQuery;
+   this.$button = $(button);
+-  this.$parent = this.$button.parent('div.views-expose, div.views-grouped');
++  this.$parent = this.$button.parent('div.views-expose, div.views-grouped, div.views-argument-value');
+   this.$input = this.$parent.find('input:checkbox, input:radio');
+   // Hide the button and its description.
+   this.$button.hide();
+-  this.$parent.find('.exposed-description, .grouped-description').hide();
++  this.$parent.find('.exposed-description, .grouped-description, .argument-value-description').hide();
+ 
+   this.$input.click($.proxy(this, 'clickHandler'));
+-
+ };
+ 
+ /**
