@@ -52,13 +52,25 @@ function personnages_menu() {
     'node/%node/zpreview' => array(
       'page callback' => 'node_page_view',
       'page arguments' => array(1),
-      'access arguments' => array('view all playable characters'),
+      'access callback' => 'personnages_zpreview_access',
+      'access arguments' => array(1),
       'title' => 'ZorgAperçu',
       'weight' => 0,
       'type' => MENU_LOCAL_TASK,
       'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
     ),
   );
+}
+
+/**
+ * Implements hook_entity_view_mode_alter().
+ */
+function personnages_zpreview_access($node) {
+  $allowed = array('character', 'group');
+  if (!in_array($node->type, $allowed)) {
+    return FALSE;
+  }
+  return user_access('view all playable characters');
 }
 
 /**
