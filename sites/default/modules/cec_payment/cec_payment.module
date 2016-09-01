@@ -223,7 +223,7 @@ function cec_payment_form() {
     '#markup' => '<p class="highlight">'
                . '<strong>Montant :</strong> <span>' . ($isJoueur ? CEC_PAYMENT_PLAYER_PRICE : CEC_PAYMENT_NONPLAYER_PRICE). '€</span><br />'
                . '<strong>Ordre :</strong> Terra Ludis<br />'
-               . '<strong>Adresse :</strong><br />GN Capes&Crocs<br />c/o Edith Verceil<br />208 rue Claude Brousson<br />Apt. 2012, Bât. 7, Rés. Le Fontmagne<br />34000 MONTPELLIER FRANCE'
+               . '<strong>Adresse :</strong><br />GN Capes&Crocs<br />c/o Edith Verceil<br />208 rue Claude Brousson<br />Apt. 210, Bât. 7, Rés. Le Fontmagne<br />34000 MONTPELLIER FRANCE'
                . '</p>',
   );
   
@@ -249,7 +249,7 @@ function cec_payment_form() {
     '#markup' => '<p class="highlight">'
                . '<strong>Montants :</strong> <span>' . ($isJoueur ? CEC_PAYMENT_PLAYER_PRICE_3THIRD : CEC_PAYMENT_NONPLAYER_PRICE_3THIRD). '</span><br />'
                . '<strong>Ordre :</strong> Terra Ludis<br />'
-               . '<strong>Adresse :</strong><br />GN Capes&Crocs<br />c/o Edith Verceil<br />208 rue Claude Brousson<br />Apt. 2012, Bât. 7, Rés. Le Fontmagne<br />34000 MONTPELLIER FRANCE'
+               . '<strong>Adresse :</strong><br />GN Capes&Crocs<br />c/o Edith Verceil<br />208 rue Claude Brousson<br />Apt. 210, Bât. 7, Rés. Le Fontmagne<br />34000 MONTPELLIER FRANCE'
                . '</p>',
   );
   
