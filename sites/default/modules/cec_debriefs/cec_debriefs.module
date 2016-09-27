@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the CEC Debriefs feature.
+ */
+
+include_once 'cec_debriefs.features.inc';

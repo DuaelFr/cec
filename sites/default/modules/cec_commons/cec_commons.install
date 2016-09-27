@@ -82,3 +82,10 @@ function cec_commons_update_7005(&$sandbox) {
 
   $sandbox['#finished'] = ($sandbox['total'] - count($sandbox['uids'])) / $sandbox['total'];
 }
+
+/**
+ * Enable cec_debriefs.
+ */
+function cec_commons_update_7006(&$sandbox) {
+  module_enable(array('cec_debriefs'));
+}
