@@ -211,6 +211,27 @@ function lieux_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
+  /* Filter criterion: Content: Opus (field_opus) */
+  $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
+  $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
+  $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
+  $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
+  $handler->display->display_options['filters']['field_opus_value']['expose']['operator'] = 'field_opus_value_op';
+  $handler->display->display_options['filters']['field_opus_value']['expose']['identifier'] = 'opus';
+  $handler->display->display_options['filters']['field_opus_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    125268670 => 0,
+    203293079 => 0,
+    247050890 => 0,
+    66570830 => 0,
+    32775451 => 0,
+    199742668 => 0,
+    168020977 => 0,
+    149933350 => 0,
+  );
 
   /* Display: Tous les Lieux (Page) */
   $handler = $view->new_display('page', 'Tous les Lieux (Page)', 'page');
@@ -238,6 +259,7 @@ function lieux_views_default_views() {
     t('Actions'),
     t('modifier'),
     t('Titre'),
+    t('Opus'),
     t('Tous les Lieux (Page)'),
     t('more'),
   );
