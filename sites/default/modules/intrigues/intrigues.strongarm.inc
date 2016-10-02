@@ -105,19 +105,16 @@ function intrigues_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '6',
-        ),
-        'workflow' => array(
           'weight' => '5',
         ),
-        'redirect' => array(
-          'weight' => '7',
+        'workflow' => array(
+          'weight' => '4',
         ),
       ),
       'display' => array(
         'view_events' => array(
           'default' => array(
-            'weight' => '8',
+            'weight' => '6',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -125,13 +122,13 @@ function intrigues_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '5',
+            'weight' => '4',
             'visible' => TRUE,
           ),
         ),
         'view_infos' => array(
           'default' => array(
-            'weight' => '7',
+            'weight' => '5',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -139,13 +136,33 @@ function intrigues_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '6',
+            'weight' => '5',
             'visible' => TRUE,
           ),
         ),
         'view_sequences' => array(
           'default' => array(
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
             'weight' => '6',
+            'visible' => TRUE,
+          ),
+        ),
+        'zorgas_links' => array(
+          'default' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+          'full_zorga' => array(
+            'weight' => '3',
+            'visible' => TRUE,
+          ),
+        ),
+        'comments' => array(
+          'default' => array(
+            'weight' => '3',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
@@ -153,54 +170,24 @@ function intrigues_strongarm() {
             'visible' => TRUE,
           ),
         ),
-        'zorgas_links' => array(
-          'default' => array(
-            'weight' => '4',
-            'visible' => FALSE,
-          ),
-          'full_zorga' => array(
-            'weight' => '4',
-            'visible' => TRUE,
-          ),
-        ),
-        'comments' => array(
-          'default' => array(
-            'weight' => '5',
-            'visible' => FALSE,
-          ),
-          'full_zorga' => array(
-            'weight' => '8',
-            'visible' => TRUE,
-          ),
-        ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '0',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '11',
+            'weight' => '9',
             'visible' => FALSE,
           ),
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '3',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '10',
+            'weight' => '8',
             'visible' => FALSE,
-          ),
-        ),
-        'cec_comments' => array(
-          'default' => array(
-            'weight' => '0',
-            'visible' => TRUE,
-          ),
-          'full_zorga' => array(
-            'weight' => '9',
-            'visible' => TRUE,
           ),
         ),
       ),

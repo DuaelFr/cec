@@ -105,54 +105,41 @@ function matos_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '5',
-        ),
-        'workflow' => array(
           'weight' => '4',
         ),
-        'redirect' => array(
-          'weight' => '6',
+        'workflow' => array(
+          'weight' => '3',
         ),
       ),
       'display' => array(
         'comments' => array(
           'default' => array(
-            'weight' => '4',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '3',
+            'weight' => '2',
             'visible' => TRUE,
           ),
         ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '0',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '5',
+            'weight' => '3',
             'visible' => FALSE,
           ),
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '3',
+            'weight' => '1',
             'visible' => FALSE,
-          ),
-          'full_zorga' => array(
-            'weight' => '6',
-            'visible' => FALSE,
-          ),
-        ),
-        'cec_comments' => array(
-          'default' => array(
-            'weight' => '0',
-            'visible' => TRUE,
           ),
           'full_zorga' => array(
             'weight' => '4',
-            'visible' => TRUE,
+            'visible' => FALSE,
           ),
         ),
       ),

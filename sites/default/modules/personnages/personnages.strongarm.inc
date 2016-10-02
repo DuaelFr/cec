@@ -105,13 +105,10 @@ function personnages_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '11',
-        ),
-        'workflow' => array(
           'weight' => '10',
         ),
-        'redirect' => array(
-          'weight' => '12',
+        'workflow' => array(
+          'weight' => '9',
         ),
       ),
       'display' => array(
@@ -171,7 +168,7 @@ function personnages_strongarm() {
         ),
         'view_groupes_zorga' => array(
           'full_zorga' => array(
-            'weight' => '6',
+            'weight' => '5',
             'visible' => TRUE,
           ),
           'teaser' => array(
@@ -189,7 +186,7 @@ function personnages_strongarm() {
         ),
         'view_groupes_player' => array(
           'full_zorga' => array(
-            'weight' => '22',
+            'weight' => '20',
             'visible' => FALSE,
           ),
           'teaser' => array(
@@ -233,7 +230,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '17',
+            'weight' => '10',
             'visible' => FALSE,
           ),
           'trombinoscope' => array(
@@ -251,7 +248,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '19',
+            'weight' => '17',
             'visible' => FALSE,
           ),
           'trombinoscope' => array(
@@ -269,7 +266,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '23',
+            'weight' => '21',
             'visible' => FALSE,
           ),
           'trombinoscope' => array(
@@ -283,7 +280,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '9',
+            'weight' => '8',
             'visible' => TRUE,
           ),
           'trombinoscope' => array(
@@ -297,7 +294,7 @@ function personnages_strongarm() {
             'visible' => TRUE,
           ),
           'full_zorga' => array(
-            'weight' => '24',
+            'weight' => '23',
             'visible' => FALSE,
           ),
           'trombinoscope' => array(
@@ -311,7 +308,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '8',
+            'weight' => '7',
             'visible' => TRUE,
           ),
           'trombinoscope' => array(
@@ -325,7 +322,7 @@ function personnages_strongarm() {
             'visible' => TRUE,
           ),
           'full_zorga' => array(
-            'weight' => '27',
+            'weight' => '25',
             'visible' => FALSE,
           ),
           'trombinoscope' => array(
@@ -339,7 +336,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '7',
+            'weight' => '6',
             'visible' => TRUE,
           ),
           'trombinoscope' => array(
@@ -353,7 +350,7 @@ function personnages_strongarm() {
             'visible' => TRUE,
           ),
           'full_zorga' => array(
-            'weight' => '26',
+            'weight' => '24',
             'visible' => FALSE,
           ),
           'trombinoscope' => array(
@@ -371,7 +368,7 @@ function personnages_strongarm() {
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '28',
+            'weight' => '26',
             'visible' => FALSE,
           ),
         ),
@@ -381,7 +378,7 @@ function personnages_strongarm() {
             'visible' => TRUE,
           ),
           'full_zorga' => array(
-            'weight' => '10',
+            'weight' => '9',
             'visible' => TRUE,
           ),
         ),

@@ -124,17 +124,17 @@ function intrigues_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Nom';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Nœud: Type d'intrigue */
+  /* Field: Content: Type d'intrigue */
   $handler->display->display_options['fields']['field_intrigue_type']['id'] = 'field_intrigue_type';
   $handler->display->display_options['fields']['field_intrigue_type']['table'] = 'field_data_field_intrigue_type';
   $handler->display->display_options['fields']['field_intrigue_type']['field'] = 'field_intrigue_type';
   $handler->display->display_options['fields']['field_intrigue_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Thématique d'intrigue */
+  /* Field: Content: Thématique d'intrigue */
   $handler->display->display_options['fields']['field_intrigue_theme']['id'] = 'field_intrigue_theme';
   $handler->display->display_options['fields']['field_intrigue_theme']['table'] = 'field_data_field_intrigue_theme';
   $handler->display->display_options['fields']['field_intrigue_theme']['field'] = 'field_intrigue_theme';
   $handler->display->display_options['fields']['field_intrigue_theme']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -208,7 +208,7 @@ function intrigues_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Type d&#039;intrigue (field_intrigue_type) */
+  /* Filter criterion: Content: Type d&#039;intrigue (field_intrigue_type) */
   $handler->display->display_options['filters']['field_intrigue_type_tid']['id'] = 'field_intrigue_type_tid';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['table'] = 'field_data_field_intrigue_type';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['field'] = 'field_intrigue_type_tid';
@@ -233,7 +233,7 @@ function intrigues_views_default_views() {
   $handler->display->display_options['filters']['field_intrigue_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['vocabulary'] = 'intrigue_type';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['hierarchy'] = 1;
-  /* Filter criterion: Nœud: Thématique d&#039;intrigue (field_intrigue_theme) */
+  /* Filter criterion: Content: Thématique d&#039;intrigue (field_intrigue_theme) */
   $handler->display->display_options['filters']['field_intrigue_theme_tid']['id'] = 'field_intrigue_theme_tid';
   $handler->display->display_options['filters']['field_intrigue_theme_tid']['table'] = 'field_data_field_intrigue_theme';
   $handler->display->display_options['filters']['field_intrigue_theme_tid']['field'] = 'field_intrigue_theme_tid';

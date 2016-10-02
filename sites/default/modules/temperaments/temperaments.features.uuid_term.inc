@@ -129,6 +129,9 @@ function temperaments_uuid_features_default_terms() {
         ),
       ),
     ),
+    'path' => array(
+      'pathauto' => 1,
+    ),
   );
   $terms[] = array(
     'name' => 'Calculateur',
@@ -158,6 +161,9 @@ function temperaments_uuid_features_default_terms() {
           'tid' => 'b0ad3db2-e2df-449f-874f-5ef79939ca1a',
         ),
       ),
+    ),
+    'path' => array(
+      'pathauto' => 1,
     ),
   );
   $terms[] = array(

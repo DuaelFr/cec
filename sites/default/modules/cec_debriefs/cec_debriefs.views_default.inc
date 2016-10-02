@@ -225,12 +225,12 @@ function cec_debriefs_views_default_views() {
     ),
   );
   $handler->display->display_options['style_options']['sticky'] = TRUE;
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
-  /* Relation: Utilisateur : Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
@@ -239,7 +239,7 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
     'debrief_sondage' => 'debrief_sondage',
   );
-  /* Relation: Utilisateur : Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile_1']['id'] = 'profile_1';
   $handler->display->display_options['relationships']['profile_1']['table'] = 'users';
   $handler->display->display_options['relationships']['profile_1']['field'] = 'profile';
@@ -248,7 +248,7 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['relationships']['profile_1']['bundle_types'] = array(
     'debrief_texte' => 'debrief_texte',
   );
-  /* Champ: Contenu : Incarné par */
+  /* Field: Content: Incarné par */
   $handler->display->display_options['fields']['field_incarnate']['id'] = 'field_incarnate';
   $handler->display->display_options['fields']['field_incarnate']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['fields']['field_incarnate']['field'] = 'field_incarnate';
@@ -259,14 +259,14 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['fields']['field_incarnate']['settings'] = array(
     'link' => 0,
   );
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Personnage';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Champ: Contenu : Incarné par */
+  /* Field: Content: Incarné par */
   $handler->display->display_options['fields']['field_incarnate_1']['id'] = 'field_incarnate_1';
   $handler->display->display_options['fields']['field_incarnate_1']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['fields']['field_incarnate_1']['field'] = 'field_incarnate';
@@ -274,7 +274,7 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['fields']['field_incarnate_1']['settings'] = array(
     'link' => 1,
   );
-  /* Champ: Profil : Étiquette */
+  /* Field: Profile: Label */
   $handler->display->display_options['fields']['label']['id'] = 'label';
   $handler->display->display_options['fields']['label']['table'] = 'profile';
   $handler->display->display_options['fields']['label']['field'] = 'label';
@@ -283,7 +283,7 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['fields']['label']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['label']['alter']['text'] = '<a href="/profile-debrief_texte/[field_incarnate]">Lire</a>';
   $handler->display->display_options['fields']['label']['empty'] = '-Vide-';
-  /* Champ: Profil : Étiquette */
+  /* Field: Profile: Label */
   $handler->display->display_options['fields']['label_1']['id'] = 'label_1';
   $handler->display->display_options['fields']['label_1']['table'] = 'profile';
   $handler->display->display_options['fields']['label_1']['field'] = 'label';
@@ -293,120 +293,120 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['fields']['label_1']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['label_1']['alter']['text'] = '<em>NSPP</em>';
   $handler->display->display_options['fields']['label_1']['empty'] = '-Vide-';
-  /* Champ: Profil : Votre sentiment général sur le GN */
+  /* Field: Profile: Votre sentiment général sur le GN */
   $handler->display->display_options['fields']['field_note_globale']['id'] = 'field_note_globale';
   $handler->display->display_options['fields']['field_note_globale']['table'] = 'field_data_field_note_globale';
   $handler->display->display_options['fields']['field_note_globale']['field'] = 'field_note_globale';
   $handler->display->display_options['fields']['field_note_globale']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_globale']['empty'] = '[label_1]';
-  /* Champ: Profil : Votre personnage et son histoire */
+  /* Field: Profile: Votre personnage et son histoire */
   $handler->display->display_options['fields']['field_note_perso']['id'] = 'field_note_perso';
   $handler->display->display_options['fields']['field_note_perso']['table'] = 'field_data_field_note_perso';
   $handler->display->display_options['fields']['field_note_perso']['field'] = 'field_note_perso';
   $handler->display->display_options['fields']['field_note_perso']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_perso']['empty'] = '[label_1]';
-  /* Champ: Profil : Vos objectifs */
+  /* Field: Profile: Vos objectifs */
   $handler->display->display_options['fields']['field_note_objectifs']['id'] = 'field_note_objectifs';
   $handler->display->display_options['fields']['field_note_objectifs']['table'] = 'field_data_field_note_objectifs';
   $handler->display->display_options['fields']['field_note_objectifs']['field'] = 'field_note_objectifs';
   $handler->display->display_options['fields']['field_note_objectifs']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_objectifs']['empty'] = '[label_1]';
-  /* Champ: Profil : Le scénario global */
+  /* Field: Profile: Le scénario global */
   $handler->display->display_options['fields']['field_note_scenario']['id'] = 'field_note_scenario';
   $handler->display->display_options['fields']['field_note_scenario']['table'] = 'field_data_field_note_scenario';
   $handler->display->display_options['fields']['field_note_scenario']['field'] = 'field_note_scenario';
   $handler->display->display_options['fields']['field_note_scenario']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_scenario']['empty'] = '[label_1]';
-  /* Champ: Profil : Les intrigues liées à votre personnage */
+  /* Field: Profile: Les intrigues liées à votre personnage */
   $handler->display->display_options['fields']['field_note_intrigues']['id'] = 'field_note_intrigues';
   $handler->display->display_options['fields']['field_note_intrigues']['table'] = 'field_data_field_note_intrigues';
   $handler->display->display_options['fields']['field_note_intrigues']['field'] = 'field_note_intrigues';
   $handler->display->display_options['fields']['field_note_intrigues']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_intrigues']['empty'] = '[label_1]';
-  /* Champ: Profil : Le cadre */
+  /* Field: Profile: Le cadre */
   $handler->display->display_options['fields']['field_note_cadre']['id'] = 'field_note_cadre';
   $handler->display->display_options['fields']['field_note_cadre']['table'] = 'field_data_field_note_cadre';
   $handler->display->display_options['fields']['field_note_cadre']['field'] = 'field_note_cadre';
   $handler->display->display_options['fields']['field_note_cadre']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_cadre']['empty'] = '[label_1]';
-  /* Champ: Profil : La logistique */
+  /* Field: Profile: La logistique */
   $handler->display->display_options['fields']['field_note_logistique']['id'] = 'field_note_logistique';
   $handler->display->display_options['fields']['field_note_logistique']['table'] = 'field_data_field_note_logistique';
   $handler->display->display_options['fields']['field_note_logistique']['field'] = 'field_note_logistique';
   $handler->display->display_options['fields']['field_note_logistique']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_logistique']['empty'] = '[label_1]';
-  /* Champ: Profil : Les repas */
+  /* Field: Profile: Les repas */
   $handler->display->display_options['fields']['field_note_repas']['id'] = 'field_note_repas';
   $handler->display->display_options['fields']['field_note_repas']['table'] = 'field_data_field_note_repas';
   $handler->display->display_options['fields']['field_note_repas']['field'] = 'field_note_repas';
   $handler->display->display_options['fields']['field_note_repas']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_repas']['empty'] = '[label_1]';
-  /* Champ: Profil : L'ambiance  */
+  /* Field: Profile: L'ambiance  */
   $handler->display->display_options['fields']['field_note_ambiance']['id'] = 'field_note_ambiance';
   $handler->display->display_options['fields']['field_note_ambiance']['table'] = 'field_data_field_note_ambiance';
   $handler->display->display_options['fields']['field_note_ambiance']['field'] = 'field_note_ambiance';
   $handler->display->display_options['fields']['field_note_ambiance']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_ambiance']['empty'] = '[label_1]';
-  /* Champ: Profil : L'immersion */
+  /* Field: Profile: L'immersion */
   $handler->display->display_options['fields']['field_note_immersion']['id'] = 'field_note_immersion';
   $handler->display->display_options['fields']['field_note_immersion']['table'] = 'field_data_field_note_immersion';
   $handler->display->display_options['fields']['field_note_immersion']['field'] = 'field_note_immersion';
   $handler->display->display_options['fields']['field_note_immersion']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_immersion']['empty'] = '[label_1]';
-  /* Champ: Profil : La facilité à entrer dans le jeu */
+  /* Field: Profile: La facilité à entrer dans le jeu */
   $handler->display->display_options['fields']['field_note_facilite']['id'] = 'field_note_facilite';
   $handler->display->display_options['fields']['field_note_facilite']['table'] = 'field_data_field_note_facilite';
   $handler->display->display_options['fields']['field_note_facilite']['field'] = 'field_note_facilite';
   $handler->display->display_options['fields']['field_note_facilite']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_facilite']['empty'] = '[label_1]';
-  /* Champ: Profil : L'univers, le monde */
+  /* Field: Profile: L'univers, le monde */
   $handler->display->display_options['fields']['field_note_univers']['id'] = 'field_note_univers';
   $handler->display->display_options['fields']['field_note_univers']['table'] = 'field_data_field_note_univers';
   $handler->display->display_options['fields']['field_note_univers']['field'] = 'field_note_univers';
   $handler->display->display_options['fields']['field_note_univers']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_univers']['empty'] = '[label_1]';
-  /* Champ: Profil : Le réalisme, la cohérence */
+  /* Field: Profile: Le réalisme, la cohérence */
   $handler->display->display_options['fields']['field_note_realisme']['id'] = 'field_note_realisme';
   $handler->display->display_options['fields']['field_note_realisme']['table'] = 'field_data_field_note_realisme';
   $handler->display->display_options['fields']['field_note_realisme']['field'] = 'field_note_realisme';
   $handler->display->display_options['fields']['field_note_realisme']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_realisme']['empty'] = '[label_1]';
-  /* Champ: Profil : Les règles de santé */
+  /* Field: Profile: Les règles de santé */
   $handler->display->display_options['fields']['field_note_regles_sante']['id'] = 'field_note_regles_sante';
   $handler->display->display_options['fields']['field_note_regles_sante']['table'] = 'field_data_field_note_regles_sante';
   $handler->display->display_options['fields']['field_note_regles_sante']['field'] = 'field_note_regles_sante';
   $handler->display->display_options['fields']['field_note_regles_sante']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_regles_sante']['empty'] = '[label_1]';
-  /* Champ: Profil : Les règles de brette */
+  /* Field: Profile: Les règles de brette */
   $handler->display->display_options['fields']['field_note_regles_brette']['id'] = 'field_note_regles_brette';
   $handler->display->display_options['fields']['field_note_regles_brette']['table'] = 'field_data_field_note_regles_brette';
   $handler->display->display_options['fields']['field_note_regles_brette']['field'] = 'field_note_regles_brette';
   $handler->display->display_options['fields']['field_note_regles_brette']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_regles_brette']['empty'] = '[label_1]';
-  /* Champ: Profil : Les règles de réputation */
+  /* Field: Profile: Les règles de réputation */
   $handler->display->display_options['fields']['field_note_regles_reputation']['id'] = 'field_note_regles_reputation';
   $handler->display->display_options['fields']['field_note_regles_reputation']['table'] = 'field_data_field_note_regles_reputation';
   $handler->display->display_options['fields']['field_note_regles_reputation']['field'] = 'field_note_regles_reputation';
   $handler->display->display_options['fields']['field_note_regles_reputation']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_regles_reputation']['empty'] = '[label_1]';
-  /* Champ: Profil : Les règles de pugilat */
+  /* Field: Profile: Les règles de pugilat */
   $handler->display->display_options['fields']['field_note_regles_pugilat']['id'] = 'field_note_regles_pugilat';
   $handler->display->display_options['fields']['field_note_regles_pugilat']['table'] = 'field_data_field_note_regles_pugilat';
   $handler->display->display_options['fields']['field_note_regles_pugilat']['field'] = 'field_note_regles_pugilat';
   $handler->display->display_options['fields']['field_note_regles_pugilat']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_regles_pugilat']['empty'] = '[label_1]';
-  /* Critère de tri: Contenu : Titre */
+  /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
-  /* Critère de filtrage: Contenu : Type */
+  /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'character' => 'character',
   );
-  /* Critère de filtrage: Contenu : Type (field_character_type) */
+  /* Filter criterion: Content: Type (field_character_type) */
   $handler->display->display_options['filters']['field_character_type_value']['id'] = 'field_character_type_value';
   $handler->display->display_options['filters']['field_character_type_value']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['filters']['field_character_type_value']['field'] = 'field_character_type_value';
@@ -436,119 +436,119 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Profil : Votre sentiment général sur le GN */
+  /* Field: Profile: Votre sentiment général sur le GN */
   $handler->display->display_options['fields']['field_note_globale']['id'] = 'field_note_globale';
   $handler->display->display_options['fields']['field_note_globale']['table'] = 'field_data_field_note_globale';
   $handler->display->display_options['fields']['field_note_globale']['field'] = 'field_note_globale';
   $handler->display->display_options['fields']['field_note_globale']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_globale']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_globale']['element_label_type'] = 'strong';
-  /* Champ: Profil : Votre personnage et son histoire */
+  /* Field: Profile: Votre personnage et son histoire */
   $handler->display->display_options['fields']['field_note_perso']['id'] = 'field_note_perso';
   $handler->display->display_options['fields']['field_note_perso']['table'] = 'field_data_field_note_perso';
   $handler->display->display_options['fields']['field_note_perso']['field'] = 'field_note_perso';
   $handler->display->display_options['fields']['field_note_perso']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_perso']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_perso']['element_label_type'] = 'strong';
-  /* Champ: Profil : Vos objectifs */
+  /* Field: Profile: Vos objectifs */
   $handler->display->display_options['fields']['field_note_objectifs']['id'] = 'field_note_objectifs';
   $handler->display->display_options['fields']['field_note_objectifs']['table'] = 'field_data_field_note_objectifs';
   $handler->display->display_options['fields']['field_note_objectifs']['field'] = 'field_note_objectifs';
   $handler->display->display_options['fields']['field_note_objectifs']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_objectifs']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_objectifs']['element_label_type'] = 'strong';
-  /* Champ: Profil : Le scénario global */
+  /* Field: Profile: Le scénario global */
   $handler->display->display_options['fields']['field_note_scenario']['id'] = 'field_note_scenario';
   $handler->display->display_options['fields']['field_note_scenario']['table'] = 'field_data_field_note_scenario';
   $handler->display->display_options['fields']['field_note_scenario']['field'] = 'field_note_scenario';
   $handler->display->display_options['fields']['field_note_scenario']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_scenario']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_scenario']['element_label_type'] = 'strong';
-  /* Champ: Profil : Les intrigues liées à votre personnage */
+  /* Field: Profile: Les intrigues liées à votre personnage */
   $handler->display->display_options['fields']['field_note_intrigues']['id'] = 'field_note_intrigues';
   $handler->display->display_options['fields']['field_note_intrigues']['table'] = 'field_data_field_note_intrigues';
   $handler->display->display_options['fields']['field_note_intrigues']['field'] = 'field_note_intrigues';
   $handler->display->display_options['fields']['field_note_intrigues']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_intrigues']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_intrigues']['element_label_type'] = 'strong';
-  /* Champ: Profil : Le cadre */
+  /* Field: Profile: Le cadre */
   $handler->display->display_options['fields']['field_note_cadre']['id'] = 'field_note_cadre';
   $handler->display->display_options['fields']['field_note_cadre']['table'] = 'field_data_field_note_cadre';
   $handler->display->display_options['fields']['field_note_cadre']['field'] = 'field_note_cadre';
   $handler->display->display_options['fields']['field_note_cadre']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_cadre']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_cadre']['element_label_type'] = 'strong';
-  /* Champ: Profil : La logistique */
+  /* Field: Profile: La logistique */
   $handler->display->display_options['fields']['field_note_logistique']['id'] = 'field_note_logistique';
   $handler->display->display_options['fields']['field_note_logistique']['table'] = 'field_data_field_note_logistique';
   $handler->display->display_options['fields']['field_note_logistique']['field'] = 'field_note_logistique';
   $handler->display->display_options['fields']['field_note_logistique']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_logistique']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_logistique']['element_label_type'] = 'strong';
-  /* Champ: Profil : Les repas */
+  /* Field: Profile: Les repas */
   $handler->display->display_options['fields']['field_note_repas']['id'] = 'field_note_repas';
   $handler->display->display_options['fields']['field_note_repas']['table'] = 'field_data_field_note_repas';
   $handler->display->display_options['fields']['field_note_repas']['field'] = 'field_note_repas';
   $handler->display->display_options['fields']['field_note_repas']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_repas']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_repas']['element_label_type'] = 'strong';
-  /* Champ: Profil : L'ambiance  */
+  /* Field: Profile: L'ambiance  */
   $handler->display->display_options['fields']['field_note_ambiance']['id'] = 'field_note_ambiance';
   $handler->display->display_options['fields']['field_note_ambiance']['table'] = 'field_data_field_note_ambiance';
   $handler->display->display_options['fields']['field_note_ambiance']['field'] = 'field_note_ambiance';
   $handler->display->display_options['fields']['field_note_ambiance']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_ambiance']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_ambiance']['element_label_type'] = 'strong';
-  /* Champ: Profil : L'immersion */
+  /* Field: Profile: L'immersion */
   $handler->display->display_options['fields']['field_note_immersion']['id'] = 'field_note_immersion';
   $handler->display->display_options['fields']['field_note_immersion']['table'] = 'field_data_field_note_immersion';
   $handler->display->display_options['fields']['field_note_immersion']['field'] = 'field_note_immersion';
   $handler->display->display_options['fields']['field_note_immersion']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_immersion']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_immersion']['element_label_type'] = 'strong';
-  /* Champ: Profil : La facilité à entrer dans le jeu */
+  /* Field: Profile: La facilité à entrer dans le jeu */
   $handler->display->display_options['fields']['field_note_facilite']['id'] = 'field_note_facilite';
   $handler->display->display_options['fields']['field_note_facilite']['table'] = 'field_data_field_note_facilite';
   $handler->display->display_options['fields']['field_note_facilite']['field'] = 'field_note_facilite';
   $handler->display->display_options['fields']['field_note_facilite']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_facilite']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_facilite']['element_label_type'] = 'strong';
-  /* Champ: Profil : L'univers, le monde */
+  /* Field: Profile: L'univers, le monde */
   $handler->display->display_options['fields']['field_note_univers']['id'] = 'field_note_univers';
   $handler->display->display_options['fields']['field_note_univers']['table'] = 'field_data_field_note_univers';
   $handler->display->display_options['fields']['field_note_univers']['field'] = 'field_note_univers';
   $handler->display->display_options['fields']['field_note_univers']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_univers']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_univers']['element_label_type'] = 'strong';
-  /* Champ: Profil : Le réalisme, la cohérence */
+  /* Field: Profile: Le réalisme, la cohérence */
   $handler->display->display_options['fields']['field_note_realisme']['id'] = 'field_note_realisme';
   $handler->display->display_options['fields']['field_note_realisme']['table'] = 'field_data_field_note_realisme';
   $handler->display->display_options['fields']['field_note_realisme']['field'] = 'field_note_realisme';
   $handler->display->display_options['fields']['field_note_realisme']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_realisme']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_realisme']['element_label_type'] = 'strong';
-  /* Champ: Profil : Les règles de santé */
+  /* Field: Profile: Les règles de santé */
   $handler->display->display_options['fields']['field_note_regles_sante']['id'] = 'field_note_regles_sante';
   $handler->display->display_options['fields']['field_note_regles_sante']['table'] = 'field_data_field_note_regles_sante';
   $handler->display->display_options['fields']['field_note_regles_sante']['field'] = 'field_note_regles_sante';
   $handler->display->display_options['fields']['field_note_regles_sante']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_regles_sante']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_regles_sante']['element_label_type'] = 'strong';
-  /* Champ: Profil : Les règles de brette */
+  /* Field: Profile: Les règles de brette */
   $handler->display->display_options['fields']['field_note_regles_brette']['id'] = 'field_note_regles_brette';
   $handler->display->display_options['fields']['field_note_regles_brette']['table'] = 'field_data_field_note_regles_brette';
   $handler->display->display_options['fields']['field_note_regles_brette']['field'] = 'field_note_regles_brette';
   $handler->display->display_options['fields']['field_note_regles_brette']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_regles_brette']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_regles_brette']['element_label_type'] = 'strong';
-  /* Champ: Profil : Les règles de réputation */
+  /* Field: Profile: Les règles de réputation */
   $handler->display->display_options['fields']['field_note_regles_reputation']['id'] = 'field_note_regles_reputation';
   $handler->display->display_options['fields']['field_note_regles_reputation']['table'] = 'field_data_field_note_regles_reputation';
   $handler->display->display_options['fields']['field_note_regles_reputation']['field'] = 'field_note_regles_reputation';
   $handler->display->display_options['fields']['field_note_regles_reputation']['relationship'] = 'profile';
   $handler->display->display_options['fields']['field_note_regles_reputation']['group_type'] = 'avg';
   $handler->display->display_options['fields']['field_note_regles_reputation']['element_label_type'] = 'strong';
-  /* Champ: Profil : Les règles de pugilat */
+  /* Field: Profile: Les règles de pugilat */
   $handler->display->display_options['fields']['field_note_regles_pugilat']['id'] = 'field_note_regles_pugilat';
   $handler->display->display_options['fields']['field_note_regles_pugilat']['table'] = 'field_data_field_note_regles_pugilat';
   $handler->display->display_options['fields']['field_note_regles_pugilat']['field'] = 'field_note_regles_pugilat';
@@ -577,12 +577,12 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['style_options']['header'] = 1;
   $handler->display->display_options['style_options']['keep_html'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
-  /* Relation: Utilisateur : Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile_1']['id'] = 'profile_1';
   $handler->display->display_options['relationships']['profile_1']['table'] = 'users';
   $handler->display->display_options['relationships']['profile_1']['field'] = 'profile';
@@ -592,7 +592,7 @@ function cec_debriefs_views_default_views() {
     'debrief_sondage' => 'debrief_sondage',
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Contenu : Incarné par */
+  /* Field: Content: Incarné par */
   $handler->display->display_options['fields']['field_incarnate']['id'] = 'field_incarnate';
   $handler->display->display_options['fields']['field_incarnate']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['fields']['field_incarnate']['field'] = 'field_incarnate';
@@ -603,14 +603,14 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['fields']['field_incarnate']['settings'] = array(
     'link' => 0,
   );
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Personnage';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Champ: Contenu : Incarné par */
+  /* Field: Content: Incarné par */
   $handler->display->display_options['fields']['field_incarnate_1']['id'] = 'field_incarnate_1';
   $handler->display->display_options['fields']['field_incarnate_1']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['fields']['field_incarnate_1']['field'] = 'field_incarnate';
@@ -618,7 +618,7 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['fields']['field_incarnate_1']['settings'] = array(
     'link' => 1,
   );
-  /* Champ: Profil : Étiquette */
+  /* Field: Profile: Label */
   $handler->display->display_options['fields']['label_1']['id'] = 'label_1';
   $handler->display->display_options['fields']['label_1']['table'] = 'profile';
   $handler->display->display_options['fields']['label_1']['field'] = 'label';
@@ -628,103 +628,103 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['fields']['label_1']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['label_1']['alter']['text'] = '<em>NSPP</em>';
   $handler->display->display_options['fields']['label_1']['empty'] = '-Vide-';
-  /* Champ: Profil : Votre sentiment général sur le GN */
+  /* Field: Profile: Votre sentiment général sur le GN */
   $handler->display->display_options['fields']['field_note_globale']['id'] = 'field_note_globale';
   $handler->display->display_options['fields']['field_note_globale']['table'] = 'field_data_field_note_globale';
   $handler->display->display_options['fields']['field_note_globale']['field'] = 'field_note_globale';
   $handler->display->display_options['fields']['field_note_globale']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_globale']['empty'] = '[label_1]';
-  /* Champ: Profil : Votre personnage et son histoire */
+  /* Field: Profile: Votre personnage et son histoire */
   $handler->display->display_options['fields']['field_note_perso']['id'] = 'field_note_perso';
   $handler->display->display_options['fields']['field_note_perso']['table'] = 'field_data_field_note_perso';
   $handler->display->display_options['fields']['field_note_perso']['field'] = 'field_note_perso';
   $handler->display->display_options['fields']['field_note_perso']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_perso']['empty'] = '[label_1]';
-  /* Champ: Profil : Vos objectifs */
+  /* Field: Profile: Vos objectifs */
   $handler->display->display_options['fields']['field_note_objectifs']['id'] = 'field_note_objectifs';
   $handler->display->display_options['fields']['field_note_objectifs']['table'] = 'field_data_field_note_objectifs';
   $handler->display->display_options['fields']['field_note_objectifs']['field'] = 'field_note_objectifs';
   $handler->display->display_options['fields']['field_note_objectifs']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_objectifs']['empty'] = '[label_1]';
-  /* Champ: Profil : Le scénario global */
+  /* Field: Profile: Le scénario global */
   $handler->display->display_options['fields']['field_note_scenario']['id'] = 'field_note_scenario';
   $handler->display->display_options['fields']['field_note_scenario']['table'] = 'field_data_field_note_scenario';
   $handler->display->display_options['fields']['field_note_scenario']['field'] = 'field_note_scenario';
   $handler->display->display_options['fields']['field_note_scenario']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_scenario']['empty'] = '[label_1]';
-  /* Champ: Profil : Les intrigues liées à votre personnage */
+  /* Field: Profile: Les intrigues liées à votre personnage */
   $handler->display->display_options['fields']['field_note_intrigues']['id'] = 'field_note_intrigues';
   $handler->display->display_options['fields']['field_note_intrigues']['table'] = 'field_data_field_note_intrigues';
   $handler->display->display_options['fields']['field_note_intrigues']['field'] = 'field_note_intrigues';
   $handler->display->display_options['fields']['field_note_intrigues']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_intrigues']['empty'] = '[label_1]';
-  /* Champ: Profil : Le cadre */
+  /* Field: Profile: Le cadre */
   $handler->display->display_options['fields']['field_note_cadre']['id'] = 'field_note_cadre';
   $handler->display->display_options['fields']['field_note_cadre']['table'] = 'field_data_field_note_cadre';
   $handler->display->display_options['fields']['field_note_cadre']['field'] = 'field_note_cadre';
   $handler->display->display_options['fields']['field_note_cadre']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_cadre']['empty'] = '[label_1]';
-  /* Champ: Profil : La logistique */
+  /* Field: Profile: La logistique */
   $handler->display->display_options['fields']['field_note_logistique']['id'] = 'field_note_logistique';
   $handler->display->display_options['fields']['field_note_logistique']['table'] = 'field_data_field_note_logistique';
   $handler->display->display_options['fields']['field_note_logistique']['field'] = 'field_note_logistique';
   $handler->display->display_options['fields']['field_note_logistique']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_logistique']['empty'] = '[label_1]';
-  /* Champ: Profil : Les repas */
+  /* Field: Profile: Les repas */
   $handler->display->display_options['fields']['field_note_repas']['id'] = 'field_note_repas';
   $handler->display->display_options['fields']['field_note_repas']['table'] = 'field_data_field_note_repas';
   $handler->display->display_options['fields']['field_note_repas']['field'] = 'field_note_repas';
   $handler->display->display_options['fields']['field_note_repas']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_repas']['empty'] = '[label_1]';
-  /* Champ: Profil : L'ambiance  */
+  /* Field: Profile: L'ambiance  */
   $handler->display->display_options['fields']['field_note_ambiance']['id'] = 'field_note_ambiance';
   $handler->display->display_options['fields']['field_note_ambiance']['table'] = 'field_data_field_note_ambiance';
   $handler->display->display_options['fields']['field_note_ambiance']['field'] = 'field_note_ambiance';
   $handler->display->display_options['fields']['field_note_ambiance']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_ambiance']['empty'] = '[label_1]';
-  /* Champ: Profil : L'immersion */
+  /* Field: Profile: L'immersion */
   $handler->display->display_options['fields']['field_note_immersion']['id'] = 'field_note_immersion';
   $handler->display->display_options['fields']['field_note_immersion']['table'] = 'field_data_field_note_immersion';
   $handler->display->display_options['fields']['field_note_immersion']['field'] = 'field_note_immersion';
   $handler->display->display_options['fields']['field_note_immersion']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_immersion']['empty'] = '[label_1]';
-  /* Champ: Profil : La facilité à entrer dans le jeu */
+  /* Field: Profile: La facilité à entrer dans le jeu */
   $handler->display->display_options['fields']['field_note_facilite']['id'] = 'field_note_facilite';
   $handler->display->display_options['fields']['field_note_facilite']['table'] = 'field_data_field_note_facilite';
   $handler->display->display_options['fields']['field_note_facilite']['field'] = 'field_note_facilite';
   $handler->display->display_options['fields']['field_note_facilite']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_facilite']['empty'] = '[label_1]';
-  /* Champ: Profil : L'univers, le monde */
+  /* Field: Profile: L'univers, le monde */
   $handler->display->display_options['fields']['field_note_univers']['id'] = 'field_note_univers';
   $handler->display->display_options['fields']['field_note_univers']['table'] = 'field_data_field_note_univers';
   $handler->display->display_options['fields']['field_note_univers']['field'] = 'field_note_univers';
   $handler->display->display_options['fields']['field_note_univers']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_univers']['empty'] = '[label_1]';
-  /* Champ: Profil : Le réalisme, la cohérence */
+  /* Field: Profile: Le réalisme, la cohérence */
   $handler->display->display_options['fields']['field_note_realisme']['id'] = 'field_note_realisme';
   $handler->display->display_options['fields']['field_note_realisme']['table'] = 'field_data_field_note_realisme';
   $handler->display->display_options['fields']['field_note_realisme']['field'] = 'field_note_realisme';
   $handler->display->display_options['fields']['field_note_realisme']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_realisme']['empty'] = '[label_1]';
-  /* Champ: Profil : Les règles de santé */
+  /* Field: Profile: Les règles de santé */
   $handler->display->display_options['fields']['field_note_regles_sante']['id'] = 'field_note_regles_sante';
   $handler->display->display_options['fields']['field_note_regles_sante']['table'] = 'field_data_field_note_regles_sante';
   $handler->display->display_options['fields']['field_note_regles_sante']['field'] = 'field_note_regles_sante';
   $handler->display->display_options['fields']['field_note_regles_sante']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_regles_sante']['empty'] = '[label_1]';
-  /* Champ: Profil : Les règles de brette */
+  /* Field: Profile: Les règles de brette */
   $handler->display->display_options['fields']['field_note_regles_brette']['id'] = 'field_note_regles_brette';
   $handler->display->display_options['fields']['field_note_regles_brette']['table'] = 'field_data_field_note_regles_brette';
   $handler->display->display_options['fields']['field_note_regles_brette']['field'] = 'field_note_regles_brette';
   $handler->display->display_options['fields']['field_note_regles_brette']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_regles_brette']['empty'] = '[label_1]';
-  /* Champ: Profil : Les règles de réputation */
+  /* Field: Profile: Les règles de réputation */
   $handler->display->display_options['fields']['field_note_regles_reputation']['id'] = 'field_note_regles_reputation';
   $handler->display->display_options['fields']['field_note_regles_reputation']['table'] = 'field_data_field_note_regles_reputation';
   $handler->display->display_options['fields']['field_note_regles_reputation']['field'] = 'field_note_regles_reputation';
   $handler->display->display_options['fields']['field_note_regles_reputation']['relationship'] = 'profile_1';
   $handler->display->display_options['fields']['field_note_regles_reputation']['empty'] = '[label_1]';
-  /* Champ: Profil : Les règles de pugilat */
+  /* Field: Profile: Les règles de pugilat */
   $handler->display->display_options['fields']['field_note_regles_pugilat']['id'] = 'field_note_regles_pugilat';
   $handler->display->display_options['fields']['field_note_regles_pugilat']['table'] = 'field_data_field_note_regles_pugilat';
   $handler->display->display_options['fields']['field_note_regles_pugilat']['field'] = 'field_note_regles_pugilat';
@@ -754,12 +754,12 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['style_options']['header'] = 1;
   $handler->display->display_options['style_options']['keep_html'] = 0;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relation: Entity Reference : Referenced Entity */
+  /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
-  /* Relation: Utilisateur : Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile_1']['id'] = 'profile_1';
   $handler->display->display_options['relationships']['profile_1']['table'] = 'users';
   $handler->display->display_options['relationships']['profile_1']['field'] = 'profile';
@@ -769,7 +769,7 @@ function cec_debriefs_views_default_views() {
     'debrief_texte' => 'debrief_texte',
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Champ: Contenu : Incarné par */
+  /* Field: Content: Incarné par */
   $handler->display->display_options['fields']['field_incarnate']['id'] = 'field_incarnate';
   $handler->display->display_options['fields']['field_incarnate']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['fields']['field_incarnate']['field'] = 'field_incarnate';
@@ -780,14 +780,14 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['fields']['field_incarnate']['settings'] = array(
     'link' => 0,
   );
-  /* Champ: Contenu : Titre */
+  /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Personnage';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Champ: Contenu : Incarné par */
+  /* Field: Content: Incarné par */
   $handler->display->display_options['fields']['field_incarnate_1']['id'] = 'field_incarnate_1';
   $handler->display->display_options['fields']['field_incarnate_1']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['fields']['field_incarnate_1']['field'] = 'field_incarnate';
@@ -795,67 +795,67 @@ function cec_debriefs_views_default_views() {
   $handler->display->display_options['fields']['field_incarnate_1']['settings'] = array(
     'link' => 1,
   );
-  /* Champ: Profil : Ce que vous avez préféré */
+  /* Field: Profile: Ce que vous avez préféré */
   $handler->display->display_options['fields']['field_debrief_meilleur']['id'] = 'field_debrief_meilleur';
   $handler->display->display_options['fields']['field_debrief_meilleur']['table'] = 'field_data_field_debrief_meilleur';
   $handler->display->display_options['fields']['field_debrief_meilleur']['field'] = 'field_debrief_meilleur';
   $handler->display->display_options['fields']['field_debrief_meilleur']['relationship'] = 'profile_1';
-  /* Champ: Profil : Ce que vous n'avez pas aimé */
+  /* Field: Profile: Ce que vous n'avez pas aimé */
   $handler->display->display_options['fields']['field_debrief_pire']['id'] = 'field_debrief_pire';
   $handler->display->display_options['fields']['field_debrief_pire']['table'] = 'field_data_field_debrief_pire';
   $handler->display->display_options['fields']['field_debrief_pire']['field'] = 'field_debrief_pire';
   $handler->display->display_options['fields']['field_debrief_pire']['relationship'] = 'profile_1';
-  /* Champ: Profil : Ce que vous avez pensé de votre personnage, son histoire, ses objectifs */
+  /* Field: Profile: Ce que vous avez pensé de votre personnage, son histoire, ses objectifs */
   $handler->display->display_options['fields']['field_debrief_perso']['id'] = 'field_debrief_perso';
   $handler->display->display_options['fields']['field_debrief_perso']['table'] = 'field_data_field_debrief_perso';
   $handler->display->display_options['fields']['field_debrief_perso']['field'] = 'field_debrief_perso';
   $handler->display->display_options['fields']['field_debrief_perso']['relationship'] = 'profile_1';
-  /* Champ: Profil : Ce que vous avez pensé du scénario, des intrigues */
+  /* Field: Profile: Ce que vous avez pensé du scénario, des intrigues */
   $handler->display->display_options['fields']['field_debrief_scenario']['id'] = 'field_debrief_scenario';
   $handler->display->display_options['fields']['field_debrief_scenario']['table'] = 'field_data_field_debrief_scenario';
   $handler->display->display_options['fields']['field_debrief_scenario']['field'] = 'field_debrief_scenario';
   $handler->display->display_options['fields']['field_debrief_scenario']['relationship'] = 'profile_1';
-  /* Champ: Profil : Ce que vous avez pensé du cadre, des hors jeu, de la logistique, des repas */
+  /* Field: Profile: Ce que vous avez pensé du cadre, des hors jeu, de la logistique, des repas */
   $handler->display->display_options['fields']['field_debrief_dacre']['id'] = 'field_debrief_dacre';
   $handler->display->display_options['fields']['field_debrief_dacre']['table'] = 'field_data_field_debrief_dacre';
   $handler->display->display_options['fields']['field_debrief_dacre']['field'] = 'field_debrief_dacre';
   $handler->display->display_options['fields']['field_debrief_dacre']['relationship'] = 'profile_1';
-  /* Champ: Profil : Ce que vous avez pensé de l'ambiance, l'immersion, la facilité à entrer dans le jeu */
+  /* Field: Profile: Ce que vous avez pensé de l'ambiance, l'immersion, la facilité à entrer dans le jeu */
   $handler->display->display_options['fields']['field_debrief_ambiance']['id'] = 'field_debrief_ambiance';
   $handler->display->display_options['fields']['field_debrief_ambiance']['table'] = 'field_data_field_debrief_ambiance';
   $handler->display->display_options['fields']['field_debrief_ambiance']['field'] = 'field_debrief_ambiance';
   $handler->display->display_options['fields']['field_debrief_ambiance']['relationship'] = 'profile_1';
-  /* Champ: Profil : Ce que vous avez pensé de l'univers, du monde, du réalisme */
+  /* Field: Profile: Ce que vous avez pensé de l'univers, du monde, du réalisme */
   $handler->display->display_options['fields']['field_debrief_univers']['id'] = 'field_debrief_univers';
   $handler->display->display_options['fields']['field_debrief_univers']['table'] = 'field_data_field_debrief_univers';
   $handler->display->display_options['fields']['field_debrief_univers']['field'] = 'field_debrief_univers';
   $handler->display->display_options['fields']['field_debrief_univers']['relationship'] = 'profile_1';
-  /* Champ: Profil : Avez-vous appris des bottes ? */
+  /* Field: Profile: Avez-vous appris des bottes ? */
   $handler->display->display_options['fields']['field_debrief_bottes']['id'] = 'field_debrief_bottes';
   $handler->display->display_options['fields']['field_debrief_bottes']['table'] = 'field_data_field_debrief_bottes';
   $handler->display->display_options['fields']['field_debrief_bottes']['field'] = 'field_debrief_bottes';
   $handler->display->display_options['fields']['field_debrief_bottes']['relationship'] = 'profile_1';
-  /* Champ: Profil : Lesquelles et comment ? */
+  /* Field: Profile: Lesquelles et comment ? */
   $handler->display->display_options['fields']['field_debrief_bottes_detail']['id'] = 'field_debrief_bottes_detail';
   $handler->display->display_options['fields']['field_debrief_bottes_detail']['table'] = 'field_data_field_debrief_bottes_detail';
   $handler->display->display_options['fields']['field_debrief_bottes_detail']['field'] = 'field_debrief_bottes_detail';
   $handler->display->display_options['fields']['field_debrief_bottes_detail']['relationship'] = 'profile_1';
-  /* Champ: Profil : Avez-vous été entre la vie et la mort ? */
+  /* Field: Profile: Avez-vous été entre la vie et la mort ? */
   $handler->display->display_options['fields']['field_debrief_sante']['id'] = 'field_debrief_sante';
   $handler->display->display_options['fields']['field_debrief_sante']['table'] = 'field_data_field_debrief_sante';
   $handler->display->display_options['fields']['field_debrief_sante']['field'] = 'field_debrief_sante';
   $handler->display->display_options['fields']['field_debrief_sante']['relationship'] = 'profile_1';
-  /* Champ: Profil : Avez-vous eu peur de mourir ? */
+  /* Field: Profile: Avez-vous eu peur de mourir ? */
   $handler->display->display_options['fields']['field_debrief_mort']['id'] = 'field_debrief_mort';
   $handler->display->display_options['fields']['field_debrief_mort']['table'] = 'field_data_field_debrief_mort';
   $handler->display->display_options['fields']['field_debrief_mort']['field'] = 'field_debrief_mort';
   $handler->display->display_options['fields']['field_debrief_mort']['relationship'] = 'profile_1';
-  /* Champ: Profil : Avez-vous été "impressionnés" ? "Déçus" ? A quelle occasion ? */
+  /* Field: Profile: Avez-vous été "impressionnés" ? "Déçus" ? A quelle occasion ? */
   $handler->display->display_options['fields']['field_debrief_reputation']['id'] = 'field_debrief_reputation';
   $handler->display->display_options['fields']['field_debrief_reputation']['table'] = 'field_data_field_debrief_reputation';
   $handler->display->display_options['fields']['field_debrief_reputation']['field'] = 'field_debrief_reputation';
   $handler->display->display_options['fields']['field_debrief_reputation']['relationship'] = 'profile_1';
-  /* Champ: Profil : Combien de points de réputation aviez-vous environ en fin de GN ? */
+  /* Field: Profile: Combien de points de réputation aviez-vous environ en fin de GN ? */
   $handler->display->display_options['fields']['field_debrief_reputation_finale']['id'] = 'field_debrief_reputation_finale';
   $handler->display->display_options['fields']['field_debrief_reputation_finale']['table'] = 'field_data_field_debrief_reputation_finale';
   $handler->display->display_options['fields']['field_debrief_reputation_finale']['field'] = 'field_debrief_reputation_finale';
@@ -864,47 +864,47 @@ function cec_debriefs_views_default_views() {
     'thousand_separator' => '',
     'prefix_suffix' => 1,
   );
-  /* Champ: Profil : Anecdote, meilleurs moments, fou rires, racontez ce que nous n'avons pas pu voir/vivre ! */
+  /* Field: Profile: Anecdote, meilleurs moments, fou rires, racontez ce que nous n'avons pas pu voir/vivre ! */
   $handler->display->display_options['fields']['field_debrief_anecdotes']['id'] = 'field_debrief_anecdotes';
   $handler->display->display_options['fields']['field_debrief_anecdotes']['table'] = 'field_data_field_debrief_anecdotes';
   $handler->display->display_options['fields']['field_debrief_anecdotes']['field'] = 'field_debrief_anecdotes';
   $handler->display->display_options['fields']['field_debrief_anecdotes']['relationship'] = 'profile_1';
-  /* Champ: Profil : Souhaiteriez-vous participer à un nouvel opus ? */
+  /* Field: Profile: Souhaiteriez-vous participer à un nouvel opus ? */
   $handler->display->display_options['fields']['field_debrief_suite']['id'] = 'field_debrief_suite';
   $handler->display->display_options['fields']['field_debrief_suite']['table'] = 'field_data_field_debrief_suite';
   $handler->display->display_options['fields']['field_debrief_suite']['field'] = 'field_debrief_suite';
   $handler->display->display_options['fields']['field_debrief_suite']['relationship'] = 'profile_1';
-  /* Champ: Profil : Souhaiteriez-vous conserver votre personnage ? */
+  /* Field: Profile: Souhaiteriez-vous conserver votre personnage ? */
   $handler->display->display_options['fields']['field_debrief_suite_perso']['id'] = 'field_debrief_suite_perso';
   $handler->display->display_options['fields']['field_debrief_suite_perso']['table'] = 'field_data_field_debrief_suite_perso';
   $handler->display->display_options['fields']['field_debrief_suite_perso']['field'] = 'field_debrief_suite_perso';
   $handler->display->display_options['fields']['field_debrief_suite_perso']['relationship'] = 'profile_1';
-  /* Champ: Profil : Que voudrait faire votre personnage à présent ? */
+  /* Field: Profile: Que voudrait faire votre personnage à présent ? */
   $handler->display->display_options['fields']['field_debrief_evolution']['id'] = 'field_debrief_evolution';
   $handler->display->display_options['fields']['field_debrief_evolution']['table'] = 'field_data_field_debrief_evolution';
   $handler->display->display_options['fields']['field_debrief_evolution']['field'] = 'field_debrief_evolution';
   $handler->display->display_options['fields']['field_debrief_evolution']['relationship'] = 'profile_1';
-  /* Champ: Profil : Accord / contrat principal */
+  /* Field: Profile: Accord / contrat principal */
   $handler->display->display_options['fields']['field_debrief_contrat_principal']['id'] = 'field_debrief_contrat_principal';
   $handler->display->display_options['fields']['field_debrief_contrat_principal']['table'] = 'field_data_field_debrief_contrat_principal';
   $handler->display->display_options['fields']['field_debrief_contrat_principal']['field'] = 'field_debrief_contrat_principal';
   $handler->display->display_options['fields']['field_debrief_contrat_principal']['relationship'] = 'profile_1';
-  /* Champ: Profil : Accord / contrat secondaire */
+  /* Field: Profile: Accord / contrat secondaire */
   $handler->display->display_options['fields']['field_debrie_contrat_secondaire']['id'] = 'field_debrie_contrat_secondaire';
   $handler->display->display_options['fields']['field_debrie_contrat_secondaire']['table'] = 'field_data_field_debrie_contrat_secondaire';
   $handler->display->display_options['fields']['field_debrie_contrat_secondaire']['field'] = 'field_debrie_contrat_secondaire';
   $handler->display->display_options['fields']['field_debrie_contrat_secondaire']['relationship'] = 'profile_1';
-  /* Champ: Profil : Autres accords / contrats */
+  /* Field: Profile: Autres accords / contrats */
   $handler->display->display_options['fields']['field_debrief_contrat_autre']['id'] = 'field_debrief_contrat_autre';
   $handler->display->display_options['fields']['field_debrief_contrat_autre']['table'] = 'field_data_field_debrief_contrat_autre';
   $handler->display->display_options['fields']['field_debrief_contrat_autre']['field'] = 'field_debrief_contrat_autre';
   $handler->display->display_options['fields']['field_debrief_contrat_autre']['relationship'] = 'profile_1';
-  /* Champ: Profil : A quels événements avez-vous participé ? */
+  /* Field: Profile: A quels événements avez-vous participé ? */
   $handler->display->display_options['fields']['field_debrief_evenements']['id'] = 'field_debrief_evenements';
   $handler->display->display_options['fields']['field_debrief_evenements']['table'] = 'field_data_field_debrief_evenements';
   $handler->display->display_options['fields']['field_debrief_evenements']['field'] = 'field_debrief_evenements';
   $handler->display->display_options['fields']['field_debrief_evenements']['relationship'] = 'profile_1';
-  /* Champ: Profil : Qu'avez-vous acquis ? */
+  /* Field: Profile: Qu'avez-vous acquis ? */
   $handler->display->display_options['fields']['field_debrief_acquisition_1']['id'] = 'field_debrief_acquisition_1';
   $handler->display->display_options['fields']['field_debrief_acquisition_1']['table'] = 'field_data_field_debrief_acquisition';
   $handler->display->display_options['fields']['field_debrief_acquisition_1']['field'] = 'field_debrief_acquisition';
@@ -953,6 +953,7 @@ function cec_debriefs_views_default_views() {
     t('Les règles de réputation'),
     t('Les règles de pugilat'),
     t('Page'),
+    t('more'),
     t('Fichier attaché'),
     t('Moyennes'),
     t('Sondages (export)'),

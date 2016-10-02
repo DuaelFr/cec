@@ -95,12 +95,12 @@ function matos_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Nom';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Nœud: Type de matériel */
+  /* Field: Content: Type de matériel */
   $handler->display->display_options['fields']['field_stuff_type']['id'] = 'field_stuff_type';
   $handler->display->display_options['fields']['field_stuff_type']['table'] = 'field_data_field_stuff_type';
   $handler->display->display_options['fields']['field_stuff_type']['field'] = 'field_stuff_type';
   $handler->display->display_options['fields']['field_stuff_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -166,7 +166,7 @@ function matos_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Type de matériel (field_stuff_type) */
+  /* Filter criterion: Content: Type de matériel (field_stuff_type) */
   $handler->display->display_options['filters']['field_stuff_type_tid']['id'] = 'field_stuff_type_tid';
   $handler->display->display_options['filters']['field_stuff_type_tid']['table'] = 'field_data_field_stuff_type';
   $handler->display->display_options['filters']['field_stuff_type_tid']['field'] = 'field_stuff_type_tid';

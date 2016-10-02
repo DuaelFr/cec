@@ -3,3 +3,5 @@
  * @file
  * Code for the CEC Commons feature.
  */
+
+include_once 'cec_commons.features.inc';

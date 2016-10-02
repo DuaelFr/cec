@@ -1282,7 +1282,6 @@ function profiles_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('<a href="http://terraludis.org/presentation/#charte">Télécharger le texte</a>');
   t('Accepteriez vous de jouer des intrigues sentimentales avec un tiers ?');
-  t('Accessible uniquement par les Zorgas.');
   t('Adresse de votre domicile');
   t('Allergies et problèmes de santé');
   t('Assurance');
