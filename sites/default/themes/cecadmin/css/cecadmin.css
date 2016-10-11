@@ -174,54 +174,50 @@ h4 {
 /* States colors */
 /*****************/
 
+.view table tr[class*="state-"] td a,
+.view table tr[class*="state-"] td.active a,
+.view table tr[class*="state-"].even td a,
+.view table tr[class*="state-"].even td.active a { color: #004174; }
+
+.view table tr[class*="state-"]:hover td,
+.view table tr[class*="state-"]:hover td.active { background: #efefef; }
+
+.view table tr[class*="state-"] td.views-field-sid { font-weight: bold; }
+
 .view table .state-en-discussion td,
 .view table .state-en-discussion td.active,
 .view table .state-en-discussion.even td,
 .view table .state-en-discussion.even td.active{}
-.view table .state-en-discussion:hover td,
-.view table .state-en-discussion:hover td.active { background: #cce4ef; }
 
 .view table .state-en-prepa-redaction td,
 .view table .state-en-prepa-redaction td.active,
 .view table .state-en-prepa-redaction.even td,
-.view table .state-en-prepa-redaction.even td.active { background: #c8ff8b; }
-.view table .state-en-prepa-redaction:hover td,
-.view table .state-en-prepa-redaction:hover td.active { background: #78ef00; }
+.view table .state-en-prepa-redaction.even td.active { background: #e5d69d; }
 
 .view table .state-en-validation td,
 .view table .state-en-validation td.active,
 .view table .state-en-validation.even td,
-.view table .state-en-validation.even td.active { background: #c8ff8b; }
-.view table .state-en-validation:hover td,
-.view table .state-en-validation:hover td.active { background: #78ef00; }
+.view table .state-en-validation.even td.active { background: #ebca98; }
 
 .view table .state-en-redaction td,
 .view table .state-en-redaction td.active,
 .view table .state-en-redaction.even td,
-.view table .state-en-redaction.even td.active { background: #fdff80; }
-.view table .state-en-redaction:hover td,
-.view table .state-en-redaction:hover td.active { background: #faff00; }
+.view table .state-en-redaction.even td.active { background: #f1bc95; }
 
 .view table .state-en-relecture td,
 .view table .state-en-relecture td.active,
 .view table .state-en-relecture.even td,
-.view table .state-en-relecture.even td.active { background: #ffc672; font-weight: bold; }
-.view table .state-en-relecture:hover td,
-.view table .state-en-relecture:hover td.active { background: #ff9f00; }
+.view table .state-en-relecture.even td.active { background: #f6af94; }
 
 .view table .state-en-att-publication td,
 .view table .state-en-att-publication td.active,
 .view table .state-en-att-publication.even td,
-.view table .state-en-att-publication.even td.active { background: #ffc672; font-weight: bold; }
-.view table .state-en-att-publication:hover td,
-.view table .state-en-att-publication:hover td.active { background: #ff9f00; }
+.view table .state-en-att-publication.even td.active { background: #fba094; }
 
 .view table .state-publie- td,
 .view table .state-publie- td.active,
 .view table .state-publie-.even td,
-.view table .state-publie-.even td.active { background: #ff9294; font-weight: bold; }
-.view table .state-publie-:hover td,
-.view table .state-publie-:hover td.active { background: #ff372a; }
+.view table .state-publie-.even td.active { background: #ff9294; }
 
 /**********************/
 /* Views per intrigue */
