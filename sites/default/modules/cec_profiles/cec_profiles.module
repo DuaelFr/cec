@@ -141,12 +141,8 @@ function cec_profiles_mail($key, &$message, $params) {
         $msg .= '  <li>le formulaire de personnage complété, <strong>le choix ayant été fait de ne pas conserver celui de l\'Acte précédent</strong> (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
       }
       else {
-//        $msg .= '  <li>le formulaire d\'Entr\'Acte nous permettant de déterminer les actions de votre personnage durant les quelques mois qui séparent cet Acte du précédent (<a href="' . $urlEntracte . '">y accéder</a>)</li>' . "\n";
         $msg .= '  <li>le formulaire de personnage complété avec les même informations que lors de votre inscription à l\'Acte précédent. Si vous ne vous en souvenez pas, laissez le vide nous le compléterons nous-même (<a href="' . $urlProfil . '">y accéder</a>)</li>' . "\n";
       }
-    }
-    else {
-      $msg .= '  <li>le formulaire de renseignements qui nous permettra de mieux nous organiser pour les mois qui viennent (<a href="' . $urlPNJ . '">y accéder</a>)</li>' . "\n";
     }
     $msg .= '</ol><br />' . "\n";
     if ($params['type'] == 'joueur') {
@@ -285,8 +281,6 @@ function cec_profiles_create_form($form, &$form_state) {
     '#default_value' => 'joueur',
     '#required' => TRUE,
   );
-  $form['type']['pnj']['#disabled'] = TRUE;
-  $form['type']['cuisinier']['#disabled'] = TRUE;
 
   $form['new_player'] = array(
     '#type' => 'checkbox',
