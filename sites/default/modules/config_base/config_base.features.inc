@@ -103,73 +103,233 @@ function config_base_workflow_default_workflows() {
       ),
       3 => array(
         'roles' => 'Zorga',
-        'state' => 'En discussion',
-        'target_state' => 'En prépa rédaction',
+        'state' => '(création)',
+        'target_state' => 'En rédaction',
       ),
       4 => array(
         'roles' => 'Zorga',
-        'state' => 'En discussion',
-        'target_state' => 'En validation',
+        'state' => '(création)',
+        'target_state' => 'En relecture',
       ),
       5 => array(
         'roles' => 'Zorga',
-        'state' => 'En prépa rédaction',
-        'target_state' => 'En discussion',
+        'state' => '(création)',
+        'target_state' => 'En att publication',
       ),
       6 => array(
         'roles' => 'Zorga',
-        'state' => 'En prépa rédaction',
-        'target_state' => 'En validation',
+        'state' => '(création)',
+        'target_state' => 'Publié !',
       ),
       7 => array(
         'roles' => 'Zorga',
-        'state' => 'En validation',
+        'state' => 'En discussion',
         'target_state' => 'En prépa rédaction',
       ),
       8 => array(
         'roles' => 'Zorga',
-        'state' => 'En validation',
-        'target_state' => 'En rédaction',
+        'state' => 'En discussion',
+        'target_state' => 'En validation',
       ),
       9 => array(
         'roles' => 'Zorga',
-        'state' => 'En validation',
-        'target_state' => 'En discussion',
+        'state' => 'En discussion',
+        'target_state' => 'En rédaction',
       ),
       10 => array(
-        'roles' => 'PNJ,Zorga',
-        'state' => 'En rédaction',
+        'roles' => 'Zorga',
+        'state' => 'En discussion',
         'target_state' => 'En relecture',
       ),
       11 => array(
         'roles' => 'Zorga',
+        'state' => 'En discussion',
+        'target_state' => 'En att publication',
+      ),
+      12 => array(
+        'roles' => 'Zorga',
+        'state' => 'En discussion',
+        'target_state' => 'Publié !',
+      ),
+      13 => array(
+        'roles' => 'Zorga',
+        'state' => 'En prépa rédaction',
+        'target_state' => 'En discussion',
+      ),
+      14 => array(
+        'roles' => 'Zorga',
+        'state' => 'En prépa rédaction',
+        'target_state' => 'En validation',
+      ),
+      15 => array(
+        'roles' => 'Zorga',
+        'state' => 'En prépa rédaction',
+        'target_state' => 'En rédaction',
+      ),
+      16 => array(
+        'roles' => 'Zorga',
+        'state' => 'En prépa rédaction',
+        'target_state' => 'En relecture',
+      ),
+      17 => array(
+        'roles' => 'Zorga',
+        'state' => 'En prépa rédaction',
+        'target_state' => 'En att publication',
+      ),
+      18 => array(
+        'roles' => 'Zorga',
+        'state' => 'En prépa rédaction',
+        'target_state' => 'Publié !',
+      ),
+      19 => array(
+        'roles' => 'Zorga',
+        'state' => 'En validation',
+        'target_state' => 'En prépa rédaction',
+      ),
+      20 => array(
+        'roles' => 'Zorga',
+        'state' => 'En validation',
+        'target_state' => 'En rédaction',
+      ),
+      21 => array(
+        'roles' => 'Zorga',
+        'state' => 'En validation',
+        'target_state' => 'En discussion',
+      ),
+      22 => array(
+        'roles' => 'Zorga',
+        'state' => 'En validation',
+        'target_state' => 'En relecture',
+      ),
+      23 => array(
+        'roles' => 'Zorga',
+        'state' => 'En validation',
+        'target_state' => 'En att publication',
+      ),
+      24 => array(
+        'roles' => 'Zorga',
+        'state' => 'En validation',
+        'target_state' => 'Publié !',
+      ),
+      25 => array(
+        'roles' => 'PNJ,Zorga',
+        'state' => 'En rédaction',
+        'target_state' => 'En relecture',
+      ),
+      26 => array(
+        'roles' => 'Zorga',
+        'state' => 'En rédaction',
+        'target_state' => 'En discussion',
+      ),
+      27 => array(
+        'roles' => 'Zorga',
+        'state' => 'En rédaction',
+        'target_state' => 'En prépa rédaction',
+      ),
+      28 => array(
+        'roles' => 'Zorga',
+        'state' => 'En rédaction',
+        'target_state' => 'En validation',
+      ),
+      29 => array(
+        'roles' => 'Zorga',
+        'state' => 'En rédaction',
+        'target_state' => 'En att publication',
+      ),
+      30 => array(
+        'roles' => 'Zorga',
+        'state' => 'En rédaction',
+        'target_state' => 'Publié !',
+      ),
+      31 => array(
+        'roles' => 'Zorga',
         'state' => 'En relecture',
         'target_state' => 'En rédaction',
       ),
-      12 => array(
+      32 => array(
         'roles' => 'PNJ,Zorga',
         'state' => 'En relecture',
         'target_state' => 'En att publication',
       ),
-      13 => array(
+      33 => array(
         'roles' => 'Zorga',
         'state' => 'En relecture',
         'target_state' => 'Publié !',
       ),
-      14 => array(
+      34 => array(
+        'roles' => 'Zorga',
+        'state' => 'En relecture',
+        'target_state' => 'En discussion',
+      ),
+      35 => array(
+        'roles' => 'Zorga',
+        'state' => 'En relecture',
+        'target_state' => 'En prépa rédaction',
+      ),
+      36 => array(
+        'roles' => 'Zorga',
+        'state' => 'En relecture',
+        'target_state' => 'En validation',
+      ),
+      37 => array(
         'roles' => 'Zorga',
         'state' => 'En att publication',
         'target_state' => 'En rédaction',
       ),
-      15 => array(
+      38 => array(
         'roles' => 'Zorga',
         'state' => 'En att publication',
         'target_state' => 'En relecture',
       ),
-      16 => array(
+      39 => array(
         'roles' => 'Zorga',
         'state' => 'En att publication',
         'target_state' => 'Publié !',
+      ),
+      40 => array(
+        'roles' => 'Zorga',
+        'state' => 'En att publication',
+        'target_state' => 'En discussion',
+      ),
+      41 => array(
+        'roles' => 'Zorga',
+        'state' => 'En att publication',
+        'target_state' => 'En prépa rédaction',
+      ),
+      42 => array(
+        'roles' => 'Zorga',
+        'state' => 'En att publication',
+        'target_state' => 'En validation',
+      ),
+      43 => array(
+        'roles' => 'Zorga',
+        'state' => 'Publié !',
+        'target_state' => 'En discussion',
+      ),
+      44 => array(
+        'roles' => 'Zorga',
+        'state' => 'Publié !',
+        'target_state' => 'En prépa rédaction',
+      ),
+      45 => array(
+        'roles' => 'Zorga',
+        'state' => 'Publié !',
+        'target_state' => 'En validation',
+      ),
+      46 => array(
+        'roles' => 'Zorga',
+        'state' => 'Publié !',
+        'target_state' => 'En rédaction',
+      ),
+      47 => array(
+        'roles' => 'Zorga',
+        'state' => 'Publié !',
+        'target_state' => 'En relecture',
+      ),
+      48 => array(
+        'roles' => 'Zorga',
+        'state' => 'Publié !',
+        'target_state' => 'En att publication',
       ),
     ),
     'node_types' => array(
