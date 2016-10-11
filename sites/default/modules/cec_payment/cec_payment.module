@@ -243,7 +243,7 @@ function cec_payment_form() {
     '#markup' => '<p>Vos chèques doivent nous parvenir dans les 15 jours suivant votre inscription en ligne. Sans nouvelle de votre part, vous serez désinscrit afin de laisser la place à d\'autres personnes.</p>',
   );
   $form['block_check_3x']['content_info'] = array(
-    '#markup' => '<p>Pour un paiement en trois fois merci de nous envoyer trois chèques qui seront respectivement encaissés début septembre 2016, début novembre 2016 et début février 2017.</p>',
+    '#markup' => '<p>Pour un paiement en trois fois merci de nous envoyer trois chèques qui seront respectivement encaissés début septembre 2016, début novembre 2016 et début février 2017 (ou sur trois mois consécutifs pour les inscriptions tardives).</p>',
   );
   $form['block_check_3x']['content_details'] = array(
     '#markup' => '<p class="highlight">'
