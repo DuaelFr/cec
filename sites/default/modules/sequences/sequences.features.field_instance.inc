@@ -398,6 +398,7 @@ function sequences_field_default_field_instances() {
           'delete' => 'Supprimer',
           'description' => TRUE,
           'edit' => 'Modifier',
+          'translate' => 'Traduire',
         ),
         'type' => 'field_collection_list',
         'weight' => 7,
