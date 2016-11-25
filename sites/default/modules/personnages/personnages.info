@@ -10,6 +10,7 @@ dependencies[] = config_permissions
 dependencies[] = ctools
 dependencies[] = ds
 dependencies[] = entityreference
+dependencies[] = entityreference_view_widget
 dependencies[] = features
 dependencies[] = field_collection
 dependencies[] = field_group
