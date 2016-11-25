@@ -49,6 +49,7 @@ function avantages_views_default_views() {
     'field_alternate_body' => 'field_alternate_body',
     'item_id' => 'item_id',
     'sid' => 'sid',
+    'field_opus' => 'field_opus',
     'edit_node' => 'edit_node',
     'sid_1' => 'sid_1',
   );
@@ -106,7 +107,12 @@ function avantages_views_default_views() {
     'sid' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
-      'align' => '',
+      'align' => 'views-align-center',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_opus' => array(
+      'align' => 'views-align-center',
       'separator' => '',
       'empty_column' => 0,
     ),
@@ -177,6 +183,12 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['label'] = 'Etat actuel';
+  /* Field: Nœud: Opus */
+  $handler->display->display_options['fields']['field_opus']['id'] = 'field_opus';
+  $handler->display->display_options['fields']['field_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['fields']['field_opus']['field'] = 'field_opus';
+  $handler->display->display_options['fields']['field_opus']['type'] = 'list_key';
+  $handler->display->display_options['fields']['field_opus']['delta_offset'] = '0';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -320,6 +332,9 @@ function avantages_views_default_views() {
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
+  $handler->display->display_options['filters']['field_opus_value']['value'] = array(
+    'acte3' => 'acte3',
+  );
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -413,9 +428,9 @@ function avantages_views_default_views() {
     t('.'),
     t(','),
     t('Etat actuel'),
+    t('Opus'),
     t('Actions'),
     t('modifier'),
-    t('Opus'),
     t('Tous les avantages (Page)'),
     t('more'),
     t('Sélecteur (Référence)'),

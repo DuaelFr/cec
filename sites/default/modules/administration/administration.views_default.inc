@@ -371,7 +371,7 @@ function administration_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Content: Opus (field_opus) */
+  /* Filter criterion: Nœud: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
@@ -470,7 +470,7 @@ function administration_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Profile: User uid */
+  /* Relationship: Profil: User uid */
   $handler->display->display_options['relationships']['user']['id'] = 'user';
   $handler->display->display_options['relationships']['user']['table'] = 'profile';
   $handler->display->display_options['relationships']['user']['field'] = 'user';
@@ -493,7 +493,7 @@ function administration_views_default_views() {
   $handler->display->display_options['sorts']['name']['table'] = 'users';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
   $handler->display->display_options['sorts']['name']['relationship'] = 'user';
-  /* Filter criterion: Profile: Type */
+  /* Filter criterion: Profil: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'profile';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -523,15 +523,15 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['mail']['field'] = 'mail';
   $handler->display->display_options['fields']['mail']['relationship'] = 'user';
   $handler->display->display_options['fields']['mail']['link_to_user'] = '0';
-  /* Field: Profile: Prénom */
+  /* Field: Profil: Prénom */
   $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
   $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
   $handler->display->display_options['fields']['field_lastname']['field'] = 'field_lastname';
-  /* Field: Profile: Nom */
+  /* Field: Profil: Nom */
   $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
   $handler->display->display_options['fields']['field_firstname']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['fields']['field_firstname']['field'] = 'field_firstname';
-  /* Field: Profile: Date de naissance */
+  /* Field: Profil: Date de naissance */
   $handler->display->display_options['fields']['field_birthdate']['id'] = 'field_birthdate';
   $handler->display->display_options['fields']['field_birthdate']['table'] = 'field_data_field_birthdate';
   $handler->display->display_options['fields']['field_birthdate']['field'] = 'field_birthdate';
@@ -542,7 +542,7 @@ function administration_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Profile: Adresse de votre domicile */
+  /* Field: Profil: Adresse de votre domicile */
   $handler->display->display_options['fields']['field_address']['id'] = 'field_address';
   $handler->display->display_options['fields']['field_address']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address']['field'] = 'field_address';
@@ -553,11 +553,11 @@ function administration_views_default_views() {
       'address' => 'address',
     ),
   );
-  /* Field: Profile: Numéro de téléphone principal */
+  /* Field: Profil: Numéro de téléphone principal */
   $handler->display->display_options['fields']['field_phone1']['id'] = 'field_phone1';
   $handler->display->display_options['fields']['field_phone1']['table'] = 'field_data_field_phone1';
   $handler->display->display_options['fields']['field_phone1']['field'] = 'field_phone1';
-  /* Field: Profile: Numéro de téléphone secondaire */
+  /* Field: Profil: Numéro de téléphone secondaire */
   $handler->display->display_options['fields']['field_phone2']['id'] = 'field_phone2';
   $handler->display->display_options['fields']['field_phone2']['table'] = 'field_data_field_phone2';
   $handler->display->display_options['fields']['field_phone2']['field'] = 'field_phone2';
@@ -573,31 +573,31 @@ function administration_views_default_views() {
     'image_style' => '',
     'image_link' => '',
   );
-  /* Field: Profile: Allergies et problèmes de santé */
+  /* Field: Profil: Allergies et problèmes de santé */
   $handler->display->display_options['fields']['field_health']['id'] = 'field_health';
   $handler->display->display_options['fields']['field_health']['table'] = 'field_data_field_health';
   $handler->display->display_options['fields']['field_health']['field'] = 'field_health';
-  /* Field: Profile: Régime alimentaire spécial */
+  /* Field: Profil: Régime alimentaire spécial */
   $handler->display->display_options['fields']['field_food']['id'] = 'field_food';
   $handler->display->display_options['fields']['field_food']['table'] = 'field_data_field_food';
   $handler->display->display_options['fields']['field_food']['field'] = 'field_food';
-  /* Field: Profile: Compétences médicales */
+  /* Field: Profil: Compétences médicales */
   $handler->display->display_options['fields']['field_health_skills']['id'] = 'field_health_skills';
   $handler->display->display_options['fields']['field_health_skills']['table'] = 'field_data_field_health_skills';
   $handler->display->display_options['fields']['field_health_skills']['field'] = 'field_health_skills';
-  /* Field: Profile: J'ai lu et j'accepte la Charte de Déontologie de l'association Terra Ludis */
+  /* Field: Profil: J'ai lu et j'accepte la Charte de Déontologie de l'association Terra Ludis */
   $handler->display->display_options['fields']['field_convention']['id'] = 'field_convention';
   $handler->display->display_options['fields']['field_convention']['table'] = 'field_data_field_convention';
   $handler->display->display_options['fields']['field_convention']['field'] = 'field_convention';
-  /* Field: Profile: Je m'engage à m'inscrire à l'association Terra Ludis en 2017 */
+  /* Field: Profil: Je m'engage à m'inscrire à l'association Terra Ludis en 2017 */
   $handler->display->display_options['fields']['field_membership']['id'] = 'field_membership';
   $handler->display->display_options['fields']['field_membership']['table'] = 'field_data_field_membership';
   $handler->display->display_options['fields']['field_membership']['field'] = 'field_membership';
-  /* Field: Profile: Je participerai au rangement et au nettoyage du site */
+  /* Field: Profil: Je participerai au rangement et au nettoyage du site */
   $handler->display->display_options['fields']['field_storage']['id'] = 'field_storage';
   $handler->display->display_options['fields']['field_storage']['table'] = 'field_data_field_storage';
   $handler->display->display_options['fields']['field_storage']['field'] = 'field_storage';
-  /* Field: Profile: J’autorise Terra Ludis à utiliser les photographies me représentant prises sur ce GN */
+  /* Field: Profil: J’autorise Terra Ludis à utiliser les photographies me représentant prises sur ce GN */
   $handler->display->display_options['fields']['field_image_right']['id'] = 'field_image_right';
   $handler->display->display_options['fields']['field_image_right']['table'] = 'field_data_field_image_right';
   $handler->display->display_options['fields']['field_image_right']['field'] = 'field_image_right';
@@ -610,7 +610,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['rid']['label'] = 'Rôles';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Profile: Type */
+  /* Filter criterion: Profil: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'profile';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -642,23 +642,23 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['mail']['field'] = 'mail';
   $handler->display->display_options['fields']['mail']['relationship'] = 'user';
   $handler->display->display_options['fields']['mail']['link_to_user'] = '0';
-  /* Field: Profile: Nom du personnage */
+  /* Field: Profil: Nom du personnage */
   $handler->display->display_options['fields']['field_character_name']['id'] = 'field_character_name';
   $handler->display->display_options['fields']['field_character_name']['table'] = 'field_data_field_character_name';
   $handler->display->display_options['fields']['field_character_name']['field'] = 'field_character_name';
-  /* Field: Profile: Formule choisie */
+  /* Field: Profil: Formule choisie */
   $handler->display->display_options['fields']['field_exposure']['id'] = 'field_exposure';
   $handler->display->display_options['fields']['field_exposure']['table'] = 'field_data_field_exposure';
   $handler->display->display_options['fields']['field_exposure']['field'] = 'field_exposure';
-  /* Field: Profile: Occupation principale */
+  /* Field: Profil: Occupation principale */
   $handler->display->display_options['fields']['field_job1']['id'] = 'field_job1';
   $handler->display->display_options['fields']['field_job1']['table'] = 'field_data_field_job1';
   $handler->display->display_options['fields']['field_job1']['field'] = 'field_job1';
-  /* Field: Profile: Occupation secondaire */
+  /* Field: Profil: Occupation secondaire */
   $handler->display->display_options['fields']['field_job2']['id'] = 'field_job2';
   $handler->display->display_options['fields']['field_job2']['table'] = 'field_data_field_job2';
   $handler->display->display_options['fields']['field_job2']['field'] = 'field_job2';
-  /* Field: Profile: Occupation à éviter */
+  /* Field: Profil: Occupation à éviter */
   $handler->display->display_options['fields']['field_job0']['id'] = 'field_job0';
   $handler->display->display_options['fields']['field_job0']['table'] = 'field_data_field_job0';
   $handler->display->display_options['fields']['field_job0']['field'] = 'field_job0';
@@ -682,43 +682,43 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_temperament5']['id'] = 'field_temperament5';
   $handler->display->display_options['fields']['field_temperament5']['table'] = 'field_data_field_temperament5';
   $handler->display->display_options['fields']['field_temperament5']['field'] = 'field_temperament5';
-  /* Field: Profile: Accepteriez vous de jouer des intrigues sentimentales avec un tiers ? */
+  /* Field: Profil: Accepteriez vous de jouer des intrigues sentimentales avec un tiers ? */
   $handler->display->display_options['fields']['field_love']['id'] = 'field_love';
   $handler->display->display_options['fields']['field_love']['table'] = 'field_data_field_love';
   $handler->display->display_options['fields']['field_love']['field'] = 'field_love';
-  /* Field: Profile: Commentaire */
+  /* Field: Profil: Commentaire */
   $handler->display->display_options['fields']['field_love_condition']['id'] = 'field_love_condition';
   $handler->display->display_options['fields']['field_love_condition']['table'] = 'field_data_field_love_condition';
   $handler->display->display_options['fields']['field_love_condition']['field'] = 'field_love_condition';
-  /* Field: Profile: Vous sentez-vous l'âme d'un vrai méchant de roman ? */
+  /* Field: Profil: Vous sentez-vous l'âme d'un vrai méchant de roman ? */
   $handler->display->display_options['fields']['field_crimes']['id'] = 'field_crimes';
   $handler->display->display_options['fields']['field_crimes']['table'] = 'field_data_field_crimes';
   $handler->display->display_options['fields']['field_crimes']['field'] = 'field_crimes';
-  /* Field: Profile: Commentaire */
+  /* Field: Profil: Commentaire */
   $handler->display->display_options['fields']['field_crimes_condition']['id'] = 'field_crimes_condition';
   $handler->display->display_options['fields']['field_crimes_condition']['table'] = 'field_data_field_crimes_condition';
   $handler->display->display_options['fields']['field_crimes_condition']['field'] = 'field_crimes_condition';
-  /* Field: Profile: Désirez-vous avoir des interactions spécifiques avec certains joueurs ? */
+  /* Field: Profil: Désirez-vous avoir des interactions spécifiques avec certains joueurs ? */
   $handler->display->display_options['fields']['field_friends']['id'] = 'field_friends';
   $handler->display->display_options['fields']['field_friends']['table'] = 'field_data_field_friends';
   $handler->display->display_options['fields']['field_friends']['field'] = 'field_friends';
   $handler->display->display_options['fields']['field_friends']['type'] = 'text_plain';
-  /* Field: Profile: Je suis prêt(e) à faire un effort pour que mon costume et mon rôle-play soient appropriés à mon personnage. */
+  /* Field: Profil: Je suis prêt(e) à faire un effort pour que mon costume et mon rôle-play soient appropriés à mon personnage. */
   $handler->display->display_options['fields']['field_great_costume']['id'] = 'field_great_costume';
   $handler->display->display_options['fields']['field_great_costume']['table'] = 'field_data_field_great_costume';
   $handler->display->display_options['fields']['field_great_costume']['field'] = 'field_great_costume';
-  /* Field: Profile: Mais j'ai besoin d'aide! */
+  /* Field: Profil: Mais j'ai besoin d'aide! */
   $handler->display->display_options['fields']['field_help_costume']['id'] = 'field_help_costume';
   $handler->display->display_options['fields']['field_help_costume']['table'] = 'field_data_field_help_costume';
   $handler->display->display_options['fields']['field_help_costume']['field'] = 'field_help_costume';
-  /* Field: Profile: Autre chose à nous dire ? */
+  /* Field: Profil: Autre chose à nous dire ? */
   $handler->display->display_options['fields']['field_freetalk']['id'] = 'field_freetalk';
   $handler->display->display_options['fields']['field_freetalk']['table'] = 'field_data_field_freetalk';
   $handler->display->display_options['fields']['field_freetalk']['field'] = 'field_freetalk';
   $handler->display->display_options['fields']['field_freetalk']['type'] = 'text_plain';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Profile: Type */
+  /* Filter criterion: Profil: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'profile';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -905,7 +905,7 @@ function administration_views_default_views() {
       'empty_column' => 0,
     ),
   );
-  /* Relationship: User: Profile */
+  /* Relationship: User: Profil */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
@@ -913,7 +913,7 @@ function administration_views_default_views() {
   $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
     'inscription_administrative' => 'inscription_administrative',
   );
-  /* Relationship: User: Profile */
+  /* Relationship: User: Profil */
   $handler->display->display_options['relationships']['profile_1']['id'] = 'profile_1';
   $handler->display->display_options['relationships']['profile_1']['table'] = 'users';
   $handler->display->display_options['relationships']['profile_1']['field'] = 'profile';
@@ -982,7 +982,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['uid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
-  /* Field: Profile: Profil ID */
+  /* Field: Profil: Profil ID */
   $handler->display->display_options['fields']['pid']['id'] = 'pid';
   $handler->display->display_options['fields']['pid']['table'] = 'profile';
   $handler->display->display_options['fields']['pid']['field'] = 'pid';
@@ -993,7 +993,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['pid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['pid']['empty'] = 'Vide';
   $handler->display->display_options['fields']['pid']['empty_zero'] = TRUE;
-  /* Field: Profile: URL */
+  /* Field: Profil: URL */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
   $handler->display->display_options['fields']['url']['field'] = 'url';
@@ -1004,7 +1004,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['url']['alter']['text'] = 'Inscription Administrative';
   $handler->display->display_options['fields']['url']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['url']['link_to_entity'] = 0;
-  /* Field: Profile: Profil ID */
+  /* Field: Profil: Profil ID */
   $handler->display->display_options['fields']['pid_1']['id'] = 'pid_1';
   $handler->display->display_options['fields']['pid_1']['table'] = 'profile';
   $handler->display->display_options['fields']['pid_1']['field'] = 'pid';
@@ -1015,7 +1015,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['pid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['pid_1']['empty'] = 'Vide';
   $handler->display->display_options['fields']['pid_1']['empty_zero'] = TRUE;
-  /* Field: Profile: URL */
+  /* Field: Profil: URL */
   $handler->display->display_options['fields']['url_1']['id'] = 'url_1';
   $handler->display->display_options['fields']['url_1']['table'] = 'views_entity_profile2';
   $handler->display->display_options['fields']['url_1']['field'] = 'url';
@@ -1142,7 +1142,7 @@ function administration_views_default_views() {
   $handler->display->display_options['row_options']['separator'] = '';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: User: Profile */
+  /* Relationship: User: Profil */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
@@ -1151,7 +1151,7 @@ function administration_views_default_views() {
     'inscription_administrative' => 'inscription_administrative',
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Profile: Nom */
+  /* Field: Profil: Nom */
   $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
   $handler->display->display_options['fields']['field_firstname']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['fields']['field_firstname']['field'] = 'field_firstname';
@@ -1159,7 +1159,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['field_firstname']['label'] = '';
   $handler->display->display_options['fields']['field_firstname']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_firstname']['type'] = 'text_plain';
-  /* Field: Profile: Prénom */
+  /* Field: Profil: Prénom */
   $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
   $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
   $handler->display->display_options['fields']['field_lastname']['field'] = 'field_lastname';
@@ -1176,7 +1176,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['name']['alter']['text'] = ' ([name])';
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Profile: Nom (field_firstname) */
+  /* Sort criterion: Profil: Nom (field_firstname) */
   $handler->display->display_options['sorts']['field_firstname_value']['id'] = 'field_firstname_value';
   $handler->display->display_options['sorts']['field_firstname_value']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['sorts']['field_firstname_value']['field'] = 'field_firstname_value';
@@ -1281,7 +1281,7 @@ function administration_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Indexed Node: Content type */
+  /* Field: Indexed Nœud: Content type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['fields']['type']['field'] = 'type';
@@ -1290,7 +1290,7 @@ function administration_views_default_views() {
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 1;
-  /* Field: Indexed Node: Title */
+  /* Field: Indexed Nœud: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['fields']['title']['field'] = 'title';
@@ -1346,7 +1346,7 @@ function administration_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Indexed Node: Content type */
+  /* Filter criterion: Indexed Nœud: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';

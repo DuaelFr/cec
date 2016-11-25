@@ -43,7 +43,9 @@ function matos_views_default_views() {
     'field_stuff_type' => 'field_stuff_type',
     'body' => 'body',
     'sid' => 'sid',
+    'field_opus' => 'field_opus',
     'edit_node' => 'edit_node',
+    'sid_1' => 'sid_1',
   );
   $handler->display->display_options['style_options']['default'] = 'title';
   $handler->display->display_options['style_options']['info'] = array(
@@ -71,11 +73,23 @@ function matos_views_default_views() {
     'sid' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
-      'align' => '',
+      'align' => 'views-align-center',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_opus' => array(
+      'align' => 'views-align-center',
       'separator' => '',
       'empty_column' => 0,
     ),
     'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -95,12 +109,12 @@ function matos_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Nom';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Type de matériel */
+  /* Field: Nœud: Type de matériel */
   $handler->display->display_options['fields']['field_stuff_type']['id'] = 'field_stuff_type';
   $handler->display->display_options['fields']['field_stuff_type']['table'] = 'field_data_field_stuff_type';
   $handler->display->display_options['fields']['field_stuff_type']['field'] = 'field_stuff_type';
   $handler->display->display_options['fields']['field_stuff_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Description */
+  /* Field: Nœud: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -116,6 +130,12 @@ function matos_views_default_views() {
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['label'] = 'Etat actuel';
+  /* Field: Nœud: Opus */
+  $handler->display->display_options['fields']['field_opus']['id'] = 'field_opus';
+  $handler->display->display_options['fields']['field_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['fields']['field_opus']['field'] = 'field_opus';
+  $handler->display->display_options['fields']['field_opus']['type'] = 'list_key';
+  $handler->display->display_options['fields']['field_opus']['delta_offset'] = '0';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -166,7 +186,7 @@ function matos_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Content: Type de matériel (field_stuff_type) */
+  /* Filter criterion: Nœud: Type de matériel (field_stuff_type) */
   $handler->display->display_options['filters']['field_stuff_type_tid']['id'] = 'field_stuff_type_tid';
   $handler->display->display_options['filters']['field_stuff_type_tid']['table'] = 'field_data_field_stuff_type';
   $handler->display->display_options['filters']['field_stuff_type_tid']['field'] = 'field_stuff_type_tid';
@@ -211,10 +231,13 @@ function matos_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Content: Opus (field_opus) */
+  /* Filter criterion: Nœud: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
+  $handler->display->display_options['filters']['field_opus_value']['value'] = array(
+    'acte3' => 'acte3',
+  );
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -256,10 +279,10 @@ function matos_views_default_views() {
     t('Type de matériel'),
     t('Résumé'),
     t('Etat actuel'),
+    t('Opus'),
     t('Actions'),
     t('modifier'),
     t('Titre'),
-    t('Opus'),
     t('Tous le Matériel (Page)'),
     t('more'),
   );

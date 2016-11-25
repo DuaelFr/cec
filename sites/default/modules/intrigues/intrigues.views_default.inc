@@ -47,6 +47,8 @@ function intrigues_views_default_views() {
     'sid' => 'sid',
     'edit_node' => 'edit_node',
     'nothing' => 'edit_node',
+    'sid_1' => 'sid_1',
+    'field_opus' => 'field_opus',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
@@ -88,7 +90,7 @@ function intrigues_views_default_views() {
     'sid' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
-      'align' => '',
+      'align' => 'views-align-center',
       'separator' => '',
       'empty_column' => 0,
     ),
@@ -99,6 +101,18 @@ function intrigues_views_default_views() {
     ),
     'nothing' => array(
       'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'sid_1' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_opus' => array(
+      'align' => 'views-align-center',
       'separator' => '',
       'empty_column' => 0,
     ),
@@ -124,17 +138,17 @@ function intrigues_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Nom';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Type d'intrigue */
+  /* Field: Nœud: Type d'intrigue */
   $handler->display->display_options['fields']['field_intrigue_type']['id'] = 'field_intrigue_type';
   $handler->display->display_options['fields']['field_intrigue_type']['table'] = 'field_data_field_intrigue_type';
   $handler->display->display_options['fields']['field_intrigue_type']['field'] = 'field_intrigue_type';
   $handler->display->display_options['fields']['field_intrigue_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Thématique d'intrigue */
+  /* Field: Nœud: Thématique d'intrigue */
   $handler->display->display_options['fields']['field_intrigue_theme']['id'] = 'field_intrigue_theme';
   $handler->display->display_options['fields']['field_intrigue_theme']['table'] = 'field_data_field_intrigue_theme';
   $handler->display->display_options['fields']['field_intrigue_theme']['field'] = 'field_intrigue_theme';
   $handler->display->display_options['fields']['field_intrigue_theme']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Description */
+  /* Field: Nœud: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -150,6 +164,12 @@ function intrigues_views_default_views() {
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['label'] = 'Etat actuel';
+  /* Field: Nœud: Opus */
+  $handler->display->display_options['fields']['field_opus']['id'] = 'field_opus';
+  $handler->display->display_options['fields']['field_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['fields']['field_opus']['field'] = 'field_opus';
+  $handler->display->display_options['fields']['field_opus']['type'] = 'list_key';
+  $handler->display->display_options['fields']['field_opus']['delta_offset'] = '0';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -208,7 +228,7 @@ function intrigues_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Content: Type d&#039;intrigue (field_intrigue_type) */
+  /* Filter criterion: Nœud: Type d&#039;intrigue (field_intrigue_type) */
   $handler->display->display_options['filters']['field_intrigue_type_tid']['id'] = 'field_intrigue_type_tid';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['table'] = 'field_data_field_intrigue_type';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['field'] = 'field_intrigue_type_tid';
@@ -233,7 +253,7 @@ function intrigues_views_default_views() {
   $handler->display->display_options['filters']['field_intrigue_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['vocabulary'] = 'intrigue_type';
   $handler->display->display_options['filters']['field_intrigue_type_tid']['hierarchy'] = 1;
-  /* Filter criterion: Content: Thématique d&#039;intrigue (field_intrigue_theme) */
+  /* Filter criterion: Nœud: Thématique d&#039;intrigue (field_intrigue_theme) */
   $handler->display->display_options['filters']['field_intrigue_theme_tid']['id'] = 'field_intrigue_theme_tid';
   $handler->display->display_options['filters']['field_intrigue_theme_tid']['table'] = 'field_data_field_intrigue_theme';
   $handler->display->display_options['filters']['field_intrigue_theme_tid']['field'] = 'field_intrigue_theme_tid';
@@ -278,10 +298,13 @@ function intrigues_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Content: Opus (field_opus) */
+  /* Filter criterion: Nœud: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
+  $handler->display->display_options['filters']['field_opus_value']['value'] = array(
+    'acte3' => 'acte3',
+  );
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -324,11 +347,11 @@ function intrigues_views_default_views() {
     t('Thématique d\'intrigue'),
     t('Résumé'),
     t('Etat actuel'),
+    t('Opus'),
     t('Actions'),
     t('modifier'),
     t('<a href="/admin/cec/evenements/intrigue/[nid]">Evenements</a> / <a href="/admin/cec/informations/intrigue/[nid]">Informations</a> / <a href="/admin/cec/sequences/intrigue/[nid]">Séquences</a>'),
     t('Titre'),
-    t('Opus'),
     t('Toutes les Intrigues (Page)'),
     t('more'),
   );
