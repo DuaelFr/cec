@@ -8,3 +8,65 @@ function config_base_install() {
   theme_disable(array('bartik'));
   variable_set('theme_default', 'colorpaper');
 }
+
+/**
+ * Change workflow state of all nodes from "Publié !" to "En att publication".
+ */
+function config_base_update_7001(&$sandbox) {
+  if (!isset($sandbox['total'])) {
+    $states = workflow_get_workflow_states_by_wid(1);
+    foreach ($states as $state) {
+      switch ($state->state) {
+        case 'Publié !':
+          $sandbox['source'] = $state->sid;
+          break;
+        case 'En att publication':
+          $sandbox['target'] = $state->sid;
+          break;
+      }
+    }
+
+    $sandbox['nids'] = db_select('workflow_node', 'wn')
+      ->fields('wn', array('nid'))
+      ->condition('sid', $sandbox['source'])
+      ->orderBy('nid')
+      ->execute()
+      ->fetchCol();
+
+    $sandbox['total'] = count($sandbox['nids']);
+  }
+
+  $nids = array_splice($sandbox['nids'], 0, 25);
+  $nodes = node_load_multiple($nids);
+  foreach ($nodes as $node) {
+    $node->workflow_uid = 1;
+    $node->workflow_comment = 'Dépublication automatisée lors du passage à l\'Opus 3.';
+    $node->workflow_scheduled = FALSE;
+    workflow_transition($node, $sandbox['target'], TRUE);
+
+    $vid = db_insert('node_revision')
+      ->fields(array(
+        'nid' => $node->nid,
+        'uid' => 1,
+        'title' => $node->title,
+        'log' => 'Dépublication automatisée lors du passage à l\'Opus 3.',
+        'timestamp' => REQUEST_TIME,
+        'status' => 0,
+        'comment' => $node->comment,
+        'promote' => $node->promote,
+        'sticky' => $node->sticky,
+        'vuuid' => uuid_generate(),
+      ))
+      ->execute();
+    db_update('node')
+      ->fields(array(
+        'vid' => $vid,
+        'status' => 0,
+        'changed' => REQUEST_TIME,
+      ))
+      ->condition('nid', $node->nid)
+      ->execute();
+  }
+
+  $sandbox['#finished'] = ($sandbox['total'] - count($sandbox['nids'])) / $sandbox['total'];
+}
