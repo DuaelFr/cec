@@ -144,7 +144,7 @@ function evenements_views_default_views() {
   $handler->display->display_options['fields']['field_event_type']['table'] = 'field_data_field_event_type';
   $handler->display->display_options['fields']['field_event_type']['field'] = 'field_event_type';
   $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -156,7 +156,7 @@ function evenements_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -211,11 +211,11 @@ function evenements_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
-  /* Sort criterion: Nœud: Horaires -  start date (field_dates) */
+  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
-  /* Sort criterion: Nœud: Horaires - end date (field_dates:value2) */
+  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -277,7 +277,7 @@ function evenements_views_default_views() {
   $handler->display->display_options['filters']['field_event_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_event_type_tid']['vocabulary'] = 'event_type';
   $handler->display->display_options['filters']['field_event_type_tid']['hierarchy'] = 1;
-  /* Filter criterion: Nœud: Horaires -  start date (field_dates) */
+  /* Filter criterion: Nœud: Dates -  start date (field_dates) */
   $handler->display->display_options['filters']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['filters']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['filters']['field_dates_value']['field'] = 'field_dates_value';
@@ -301,7 +301,7 @@ function evenements_views_default_views() {
   );
   $handler->display->display_options['filters']['field_dates_value']['granularity'] = 'minute';
   $handler->display->display_options['filters']['field_dates_value']['year_range'] = '1600:1650';
-  /* Filter criterion: Nœud: Horaires - end date (field_dates:value2) */
+  /* Filter criterion: Nœud: Dates - end date (field_dates:value2) */
   $handler->display->display_options['filters']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['filters']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['filters']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -397,11 +397,11 @@ function evenements_views_default_views() {
   $handler = $view->new_display('page', 'Tous les évènements (Page)', 'page_1');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Nœud: Horaires -  start date (field_dates) */
+  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
-  /* Sort criterion: Nœud: Horaires - end date (field_dates:value2) */
+  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -418,12 +418,12 @@ function evenements_views_default_views() {
   $handler->display->display_options['title'] = 'Timeline inversée';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Nœud: Horaires -  start date (field_dates) */
+  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['order'] = 'DESC';
-  /* Sort criterion: Nœud: Horaires - end date (field_dates:value2) */
+  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -450,7 +450,7 @@ function evenements_views_default_views() {
   $handler->display->display_options['fields']['field_event_type']['table'] = 'field_data_field_event_type';
   $handler->display->display_options['fields']['field_event_type']['field'] = 'field_event_type';
   $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -462,7 +462,7 @@ function evenements_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -560,7 +560,7 @@ function evenements_views_default_views() {
   $handler->display->display_options['fields']['field_event_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -573,7 +573,7 @@ function evenements_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -710,7 +710,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_event_type']['table'] = 'field_data_field_event_type';
   $handler->display->display_options['fields']['field_event_type']['field'] = 'field_event_type';
   $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -722,7 +722,7 @@ Date de fin : [field_dates_1]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -901,7 +901,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_event_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -914,7 +914,7 @@ Date de fin : [field_dates_1]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -1105,7 +1105,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_event_type']['table'] = 'field_data_field_event_type';
   $handler->display->display_options['fields']['field_event_type']['field'] = 'field_event_type';
   $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -1117,7 +1117,7 @@ Cible : [field_target]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -1250,7 +1250,7 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_event_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_event_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_event_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -1263,7 +1263,7 @@ Cible : [field_target]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -1549,7 +1549,7 @@ Cible : [field_target]
   $handler->display->display_options['relationships']['field_character_target_id']['field'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_character_target_id']['relationship'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_character_target_id']['label'] = 'Personnage';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -1579,11 +1579,11 @@ Cible : [field_target]
   $handler->display->display_options['fields']['field_alternate_body']['relationship'] = 'field_version_value';
   $handler->display->display_options['fields']['field_alternate_body']['label'] = '';
   $handler->display->display_options['fields']['field_alternate_body']['element_label_colon'] = FALSE;
-  /* Sort criterion: Nœud: Horaires -  start date (field_dates) */
+  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
-  /* Sort criterion: Nœud: Horaires - end date (field_dates:value2) */
+  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -1690,6 +1690,74 @@ Cible : [field_target]
 
   /* Display: Background */
   $handler = $view->new_display('block', 'Background', 'block');
+
+  /* Display: Background Zorga */
+  $handler = $view->new_display('block', 'Background Zorga', 'block_zorgas');
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_3']['id'] = 'type_3';
+  $handler->display->display_options['filters']['type_3']['table'] = 'node';
+  $handler->display->display_options['filters']['type_3']['field'] = 'type';
+  $handler->display->display_options['filters']['type_3']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['filters']['type_3']['value'] = array(
+    'character' => 'character',
+  );
+  $handler->display->display_options['filters']['type_3']['group'] = 1;
+  /* Filter criterion: Content: Nid */
+  $handler->display->display_options['filters']['nid']['id'] = 'nid';
+  $handler->display->display_options['filters']['nid']['table'] = 'node';
+  $handler->display->display_options['filters']['nid']['field'] = 'nid';
+  $handler->display->display_options['filters']['nid']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['filters']['nid']['group'] = 1;
+  $handler->display->display_options['filters']['nid']['pull_value'] = TRUE;
+  $handler->display->display_options['filters']['nid']['argument_value'] = array(
+    'min' => '',
+    'max' => '',
+    'value' => 'null',
+  );
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'event' => 'event',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 2;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_2']['id'] = 'type_2';
+  $handler->display->display_options['filters']['type_2']['table'] = 'node';
+  $handler->display->display_options['filters']['type_2']['field'] = 'type';
+  $handler->display->display_options['filters']['type_2']['relationship'] = 'field_target_target_id';
+  $handler->display->display_options['filters']['type_2']['value'] = array(
+    'group' => 'group',
+  );
+  $handler->display->display_options['filters']['type_2']['group'] = 2;
+  /* Filter criterion: Content: Nid */
+  $handler->display->display_options['filters']['nid_1']['id'] = 'nid_1';
+  $handler->display->display_options['filters']['nid_1']['table'] = 'node';
+  $handler->display->display_options['filters']['nid_1']['field'] = 'nid';
+  $handler->display->display_options['filters']['nid_1']['relationship'] = 'field_character_target_id';
+  $handler->display->display_options['filters']['nid_1']['group'] = 2;
+  $handler->display->display_options['filters']['nid_1']['pull_value'] = TRUE;
+  $handler->display->display_options['filters']['nid_1']['argument_value'] = array(
+    'min' => '',
+    'max' => '',
+    'value' => 'null',
+  );
   $translatables['evenements'] = array(
     t('Master'),
     t('Background'),
@@ -1706,6 +1774,7 @@ Cible : [field_target]
     t('Personnage'),
     t('Tout'),
     t('more'),
+    t('Background Zorga'),
   );
   $export['evenements'] = $view;
 

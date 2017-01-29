@@ -883,6 +883,28 @@ function groupes_views_default_views() {
     0 => '0',
   );
   $handler->display->display_options['filters']['field_member_is_secret_value']['group'] = 1;
+
+  /* Display: Groupes Personnage Zorgas */
+  $handler = $view->new_display('block', 'Groupes Personnage Zorgas', 'groupes_perso_zorgas');
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'group' => 'group',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Nœud: Groupe technique (field_group_is_technical) */
+  $handler->display->display_options['filters']['field_group_is_technical_value']['id'] = 'field_group_is_technical_value';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['table'] = 'field_data_field_group_is_technical';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['field'] = 'field_group_is_technical_value';
+  $handler->display->display_options['filters']['field_group_is_technical_value']['value'] = array(
+    0 => '0',
+  );
+  $handler->display->display_options['filters']['field_group_is_technical_value']['group'] = 1;
   $translatables['groups'] = array(
     t('Master'),
     t('plus'),
@@ -905,6 +927,7 @@ function groupes_views_default_views() {
     t('Joueur'),
     t('ProfilAdmin'),
     t('[field_photo_1]'),
+    t('Groupes Personnage Zorgas'),
   );
   $export['groups'] = $view;
 

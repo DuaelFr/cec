@@ -48,18 +48,35 @@ function personnages_node_access($node, $op, $account) {
  * Implements hook_menu().
  */
 function personnages_menu() {
-  return array(
-    'node/%node/zpreview' => array(
+  $menu = array(
+    'node/%node/zpreview/standard' => array(
       'page callback' => 'node_page_view',
       'page arguments' => array(1),
       'access callback' => 'personnages_zpreview_access',
       'access arguments' => array(1),
-      'title' => 'ZorgAperçu',
+      'title' => 'Vue joueur',
       'weight' => 0,
       'type' => MENU_LOCAL_TASK,
       'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
     ),
   );
+  $menu['node/%node/zpreview/full'] = $menu['node/%node/zpreview/standard'];
+  $menu['node/%node/zpreview/full']['title'] .= ' complète';
+  return $menu;
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ *
+ * Rename default tab for zorgas.
+ */
+function personnages_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  foreach ($data['tabs'][0]['output'] as $k => $v) {
+    if ($v['#link']['title'] == 'Vue joueur') {
+      $data['tabs'][0]['output'][0]['#link']['title'] = 'Vue orga';
+      break;
+    }
+  }
 }
 
 /**
@@ -240,26 +257,51 @@ function personnages_node_view($node, $view_mode, $langcode) {
       $node->content['zorgas_links']['#access'] = user_access('view all playable characters');
     }
 
+    // Zorga player-like view.
+    if (arg(2) == 'zpreview' && arg(3) == 'full' && user_access('view all playable characters')) {
+      if ($settings['view_events_player']['visible']) {
+        $view_content = views_embed_view('evenements', 'block_zorgas', $node->nid);
+        $node->content['view_events_player'] = _config_base_extra_field_view('view_events_player', '', $node, $view_mode, $langcode, $view_content);
+      }
+      if ($settings['view_infos_player']['visible']) {
+        $view_content = views_embed_view('informations', 'block_zorgas', $node->nid);
+        $node->content['view_infos_player'] = _config_base_extra_field_view('view_infos_player', '', $node, $view_mode, $langcode, $view_content);
+      }
+      if ($settings['view_avantages_player']['visible']) {
+        $view_content = views_embed_view('avantages', 'avantages_perso_zorgas', $node->nid);
+        $node->content['view_avantages_player'] = _config_base_extra_field_view('view_avantages_player', '', $node, $view_mode, $langcode, $view_content);
+      }
+      if ($settings['view_groupes_player']['visible']) {
+        $view_content = views_embed_view('groups', 'groupes_perso_zorgas', $node->nid);
+        $node->content['view_groupes_player'] = _config_base_extra_field_view('view_groupes_player', '', $node, $view_mode, $langcode, $view_content);
+      }
+      if ($settings['view_trombi']['visible']) {
+        $view_content = views_embed_view('characters', 'block_trombi_zorgas', $node->nid);
+        $node->content['view_trombi'] = _config_base_extra_field_view('view_trombi', '', $node, $view_mode, $langcode, $view_content);
+      }
+    }
     // Player view.
-    if ($settings['view_events_player']['visible']) {
-      $view_content = views_embed_view('evenements', 'block', $node->nid);
-      $node->content['view_events_player'] = _config_base_extra_field_view('view_events_player', '', $node, $view_mode, $langcode, $view_content);
-    }
-    if ($settings['view_infos_player']['visible']) {
-      $view_content = views_embed_view('informations', 'block', $node->nid);
-      $node->content['view_infos_player'] = _config_base_extra_field_view('view_infos_player', '', $node, $view_mode, $langcode, $view_content);
-    }
-    if ($settings['view_avantages_player']['visible']) {
-      $view_content = views_embed_view('avantages', 'avantages_perso', $node->nid);
-      $node->content['view_avantages_player'] = _config_base_extra_field_view('view_avantages_player', '', $node, $view_mode, $langcode, $view_content);
-    }
-    if ($settings['view_groupes_player']['visible']) {
-      $view_content = views_embed_view('groups', 'groupes_perso', $node->nid);
-      $node->content['view_groupes_player'] = _config_base_extra_field_view('view_groupes_player', '', $node, $view_mode, $langcode, $view_content);
-    }
-    if ($settings['view_trombi']['visible']) {
-      $view_content = views_embed_view('characters', 'block_trombi', $node->nid);
-      $node->content['view_trombi'] = _config_base_extra_field_view('view_trombi', '', $node, $view_mode, $langcode, $view_content);
+    else {
+      if ($settings['view_events_player']['visible']) {
+        $view_content = views_embed_view('evenements', 'block', $node->nid);
+        $node->content['view_events_player'] = _config_base_extra_field_view('view_events_player', '', $node, $view_mode, $langcode, $view_content);
+      }
+      if ($settings['view_infos_player']['visible']) {
+        $view_content = views_embed_view('informations', 'block', $node->nid);
+        $node->content['view_infos_player'] = _config_base_extra_field_view('view_infos_player', '', $node, $view_mode, $langcode, $view_content);
+      }
+      if ($settings['view_avantages_player']['visible']) {
+        $view_content = views_embed_view('avantages', 'avantages_perso', $node->nid);
+        $node->content['view_avantages_player'] = _config_base_extra_field_view('view_avantages_player', '', $node, $view_mode, $langcode, $view_content);
+      }
+      if ($settings['view_groupes_player']['visible']) {
+        $view_content = views_embed_view('groups', 'groupes_perso', $node->nid);
+        $node->content['view_groupes_player'] = _config_base_extra_field_view('view_groupes_player', '', $node, $view_mode, $langcode, $view_content);
+      }
+      if ($settings['view_trombi']['visible']) {
+        $view_content = views_embed_view('characters', 'block_trombi', $node->nid);
+        $node->content['view_trombi'] = _config_base_extra_field_view('view_trombi', '', $node, $view_mode, $langcode, $view_content);
+      }
     }
   }
 }
