@@ -20,13 +20,6 @@ class views_handler_filter_date extends views_handler_filter_numeric {
     return $options;
   }
 
-  function value_definition() {
-    $values = parent::value_definition();
-    $values['type'] = FALSE;
-
-    return $values;
-  }
-
   /**
    * Add a type selector to the value form
    */
