@@ -52,6 +52,7 @@ function administration_menu_local_tasks_alter(&$data, $router_item, $root_path)
     );
   }
 }
+
 // -----------------------------------------------------------------------------
 // EXTRA FIELDS
 

@@ -5,3 +5,67 @@
  */
 
 include_once 'cec_commons.features.inc';
+
+/**
+ * Implements hook_permission().
+ */
+function cec_commons_permission() {
+  $perms['administer current opus'] = [
+    'title' => t('Administer current Opus'),
+    'restrict access' => TRUE,
+  ];
+  return $perms;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function cec_commons_menu() {
+  $items['admin/config/cec/opus'] = [
+    'title' => 'Opus en cours',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['cec_commons_current_opus_form'],
+    'access arguments' => ['administer current opus'],
+  ];
+  return $items;
+}
+
+// -----------------------------------------------------------------------------
+// Current Opus.
+
+function cec_commons_current_opus_form($form, $form_state) {
+  $form = [];
+
+  $form['cec_current_opus'] = [
+    '#type' => 'radios',
+    '#title' => 'Opus en cours',
+    '#description' => 'Filtre toutes les listes exposées aux joueurs pour éviter d\'inclure des données des Opus précédents.',
+    '#options' => [
+      'acte1' => 'Acte 1 - octobre 2010',
+      'acte2' => 'Acte 2 - mai 2013',
+      'acte3' => 'Acte 3 - mai 2017',
+    ],
+    '#default_value' => variable_get('cec_current_opus'),
+  ];
+
+  return system_settings_form($form);
+}
+
+/**
+ * Implements hook_views_pre_execute().
+ */
+function cec_commons_views_pre_build(&$view) {
+  /** @var views_display $display */
+  $display = $view->display[$view->current_display];
+  $filters = $display->handler->handlers['filter'];
+  if (!empty($filters['field_opus_value'])) {
+    /** @var views_handler_filter_field_list $filter */
+    $filter = $filters['field_opus_value'];
+    if ($filter->is_exposed()) {
+      $info = $filter->exposed_info();
+      if (empty($_GET[$info['value']])) {
+        $view->exposed_input[$info['value']] = variable_get('cec_current_opus');
+      }
+    }
+  }
+}
