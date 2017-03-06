@@ -14,7 +14,7 @@ function profiles_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'cec_profiles_limit';
-  $strongarm->value = '30 juillet 2016';
+  $strongarm->value = '15 mars 2017';
   $export['cec_profiles_limit'] = $strongarm;
 
   return $export;

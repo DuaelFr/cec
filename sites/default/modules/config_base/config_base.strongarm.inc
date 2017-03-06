@@ -206,12 +206,12 @@ function config_base_strongarm() {
     1 => array(
       'name' => 'User-1',
       'usertab' => 1,
-      'filesize' => 0,
-      'quota' => 0,
-      'tuquota' => 0,
+      'filesize' => '0',
+      'quota' => '0',
+      'tuquota' => '0',
       'extensions' => '*',
-      'dimensions' => '1200x1200',
-      'filenum' => 0,
+      'dimensions' => '0',
+      'filenum' => '0',
       'directories' => array(
         0 => array(
           'name' => '.',
@@ -245,7 +245,7 @@ function config_base_strongarm() {
           'suffix' => '',
         ),
       ),
-      'mkdirnum' => 0,
+      'mkdirnum' => '0',
     ),
     2 => array(
       'name' => 'Sample profile',

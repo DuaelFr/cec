@@ -21,6 +21,7 @@ function temperaments_uuid_features_default_terms() {
       'und' => array(
         0 => array(
           'tid' => 'fb5d29c5-8ba2-4103-9127-272b1951d08e',
+          'uuid' => 'fb5d29c5-8ba2-4103-9127-272b1951d08e',
         ),
       ),
     ),
@@ -36,6 +37,7 @@ function temperaments_uuid_features_default_terms() {
       'und' => array(
         0 => array(
           'tid' => '9b0cd4fb-4175-4b6c-855c-2647695f7a6a',
+          'uuid' => '9b0cd4fb-4175-4b6c-855c-2647695f7a6a',
         ),
       ),
     ),
@@ -51,6 +53,7 @@ function temperaments_uuid_features_default_terms() {
       'und' => array(
         0 => array(
           'tid' => '71a65d61-3f26-4fd6-a8a4-618c94504d40',
+          'uuid' => '71a65d61-3f26-4fd6-a8a4-618c94504d40',
         ),
       ),
     ),
@@ -66,6 +69,7 @@ function temperaments_uuid_features_default_terms() {
       'und' => array(
         0 => array(
           'tid' => 'b615424a-5dff-437d-be56-9bd6544563cc',
+          'uuid' => 'b615424a-5dff-437d-be56-9bd6544563cc',
         ),
       ),
     ),
@@ -74,13 +78,14 @@ function temperaments_uuid_features_default_terms() {
     'name' => 'Cupide',
     'description' => '<p>«&nbsp;<em>Tant que le luxe règnera chez les grands, la cupidité gouvernera tous les cœurs</em>.&nbsp;»</p><p>Vous êtes avare et économe; pour vous «&nbsp;un sou est un sou ». Vous êtes un matérialiste pour qui la richesse et la possession sont des raisons de vivre en soi.</p>',
     'format' => 'full_html',
-    'weight' => 5,
+    'weight' => 6,
     'uuid' => '71a65d61-3f26-4fd6-a8a4-618c94504d40',
     'vocabulary_machine_name' => 'temperament',
     'field_antonym' => array(
       'und' => array(
         0 => array(
           'tid' => '489d28dd-5d18-4040-9a1e-7215a7bb1224',
+          'uuid' => '489d28dd-5d18-4040-9a1e-7215a7bb1224',
         ),
       ),
     ),
@@ -96,6 +101,7 @@ function temperaments_uuid_features_default_terms() {
       'und' => array(
         0 => array(
           'tid' => 'eeb58def-31cb-40b4-9dcc-25780c049fd2',
+          'uuid' => 'eeb58def-31cb-40b4-9dcc-25780c049fd2',
         ),
       ),
     ),
@@ -111,6 +117,7 @@ function temperaments_uuid_features_default_terms() {
       'und' => array(
         0 => array(
           'tid' => '456c3a63-50c1-4b61-a7fa-672ff81713e4',
+          'uuid' => '456c3a63-50c1-4b61-a7fa-672ff81713e4',
         ),
       ),
     ),
@@ -119,13 +126,14 @@ function temperaments_uuid_features_default_terms() {
     'name' => 'Créatif',
     'description' => '<p>«&nbsp;<em>L’art est le fruit de la créativité des gens libres.</em>&nbsp;»</p><p>Vous êtes curieux et inventif, votre art vous vient naturellement, sans effort, et en abondance, vous n\'hésitez pas à le partager avec qui bon vous semble. Vous vivez le moment présent, demain est un autre jour, qui sait la découverte que vous ne manquerez pas d\'y faire?</p>',
     'format' => 'full_html',
-    'weight' => 7,
+    'weight' => 5,
     'uuid' => 'b0ad3db2-e2df-449f-874f-5ef79939ca1a',
     'vocabulary_machine_name' => 'temperament',
     'field_antonym' => array(
       'und' => array(
         0 => array(
           'tid' => 'edf3fa50-be89-4fd8-a29d-d3b228de9c2e',
+          'uuid' => 'edf3fa50-be89-4fd8-a29d-d3b228de9c2e',
         ),
       ),
     ),
@@ -144,6 +152,7 @@ function temperaments_uuid_features_default_terms() {
       'und' => array(
         0 => array(
           'tid' => '62261371-92f2-48cb-af13-dd52131354eb',
+          'uuid' => '62261371-92f2-48cb-af13-dd52131354eb',
         ),
       ),
     ),
@@ -152,13 +161,14 @@ function temperaments_uuid_features_default_terms() {
     'name' => 'Esthète',
     'description' => '<p>«&nbsp;<em>L’art n’est pas un mensonge.</em>&nbsp;»</p><p>Vous êtes un esthète, un épicurien. vous vous délectez jusqu’à la dernière goutte des émotions que peuvent vous procurer les&nbsp;œuvres&nbsp;d\'art. Votre enthousiasme n\'a d\'égal que votre gloutonnerie pour les&nbsp;œuvres&nbsp;que vous n\'avez pas encore découvertes…</p>',
     'format' => 'full_html',
-    'weight' => 6,
+    'weight' => 7,
     'uuid' => 'edf3fa50-be89-4fd8-a29d-d3b228de9c2e',
     'vocabulary_machine_name' => 'temperament',
     'field_antonym' => array(
       'und' => array(
         0 => array(
           'tid' => 'b0ad3db2-e2df-449f-874f-5ef79939ca1a',
+          'uuid' => 'b0ad3db2-e2df-449f-874f-5ef79939ca1a',
         ),
       ),
     ),
@@ -177,6 +187,7 @@ function temperaments_uuid_features_default_terms() {
       'und' => array(
         0 => array(
           'tid' => '9730cdab-60e3-44fd-92b7-afe5fb4cc970',
+          'uuid' => '9730cdab-60e3-44fd-92b7-afe5fb4cc970',
         ),
       ),
     ),
@@ -192,6 +203,7 @@ function temperaments_uuid_features_default_terms() {
       'und' => array(
         0 => array(
           'tid' => '10552fe8-8939-46d8-9526-5e1b02f1aee0',
+          'uuid' => '10552fe8-8939-46d8-9526-5e1b02f1aee0',
         ),
       ),
     ),

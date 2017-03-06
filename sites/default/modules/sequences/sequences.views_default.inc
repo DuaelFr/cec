@@ -130,7 +130,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -142,7 +142,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -188,12 +188,12 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
-  /* Sort criterion: Nœud: Horaires -  start date (field_dates) */
+  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['order'] = 'DESC';
-  /* Sort criterion: Nœud: Horaires - end date (field_dates:value2) */
+  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -252,7 +252,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['filters']['field_sequence_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_sequence_type_tid']['vocabulary'] = 'sequence_type';
   $handler->display->display_options['filters']['field_sequence_type_tid']['hierarchy'] = 1;
-  /* Filter criterion: Nœud: Horaires -  start date (field_dates) */
+  /* Filter criterion: Nœud: Dates -  start date (field_dates) */
   $handler->display->display_options['filters']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['filters']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['filters']['field_dates_value']['field'] = 'field_dates_value';
@@ -276,7 +276,7 @@ function sequences_views_default_views() {
   );
   $handler->display->display_options['filters']['field_dates_value']['granularity'] = 'minute';
   $handler->display->display_options['filters']['field_dates_value']['year_range'] = '1600:1650';
-  /* Filter criterion: Nœud: Horaires - end date (field_dates:value2) */
+  /* Filter criterion: Nœud: Dates - end date (field_dates:value2) */
   $handler->display->display_options['filters']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['filters']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['filters']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -443,7 +443,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -455,7 +455,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -479,11 +479,11 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_intrigue']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_intrigue']['multi_type'] = 'ul';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Nœud: Horaires -  start date (field_dates) */
+  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
-  /* Sort criterion: Nœud: Horaires - end date (field_dates:value2) */
+  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -559,7 +559,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -571,7 +571,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -612,11 +612,11 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Nœud: Horaires -  start date (field_dates) */
+  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
-  /* Sort criterion: Nœud: Horaires - end date (field_dates:value2) */
+  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -676,7 +676,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -688,7 +688,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -780,7 +780,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_sequence_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_sequence_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -793,7 +793,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -898,7 +898,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -910,7 +910,7 @@ Date de fin : [field_dates_1]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -1000,7 +1000,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_sequence_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_sequence_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -1013,7 +1013,7 @@ Date de fin : [field_dates_1]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -1200,7 +1200,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'field_sequence_type_tid';
   $handler->display->display_options['fields']['name']['label'] = 'Type';
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -1212,7 +1212,7 @@ Date de fin : [field_dates_1]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Horaires */
+  /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
