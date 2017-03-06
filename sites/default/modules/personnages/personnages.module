@@ -71,10 +71,12 @@ function personnages_menu() {
  * Rename default tab for zorgas.
  */
 function personnages_menu_local_tasks_alter(&$data, $router_item, $root_path) {
-  foreach ($data['tabs'][0]['output'] as $k => $v) {
-    if ($v['#link']['title'] == 'Vue joueur') {
-      $data['tabs'][0]['output'][0]['#link']['title'] = 'Vue orga';
-      break;
+  if (!empty($data['tabs'])) {
+    foreach ($data['tabs'][0]['output'] as $k => $v) {
+      if ($v['#link']['title'] == 'Vue joueur') {
+        $data['tabs'][0]['output'][0]['#link']['title'] = 'Vue orga';
+        break;
+      }
     }
   }
 }
