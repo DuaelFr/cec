@@ -250,11 +250,7 @@ function evenements_field_default_field_instances() {
   // Exported field_instance: 'node-event-field_opus'.
   $field_instances['node-event-field_opus'] = array(
     'bundle' => 'event',
-    'default_value' => array(
-      0 => array(
-        'value' => 'acte3',
-      ),
-    ),
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(

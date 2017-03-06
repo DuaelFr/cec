@@ -69,3 +69,12 @@ function cec_commons_views_pre_build(&$view) {
     }
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function cec_commons_form_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['field_opus']) && !empty($form['field_opus'][LANGUAGE_NONE]) && empty($form['field_opus'][LANGUAGE_NONE]['#default_value'])) {
+    $form['field_opus'][LANGUAGE_NONE]['#default_value'][] = variable_get('cec_current_opus');
+  }
+}

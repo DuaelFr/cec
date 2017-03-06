@@ -815,11 +815,7 @@ function personnages_field_default_field_instances() {
   // Exported field_instance: 'node-character-field_opus'.
   $field_instances['node-character-field_opus'] = array(
     'bundle' => 'character',
-    'default_value' => array(
-      0 => array(
-        'value' => 'acte3',
-      ),
-    ),
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
