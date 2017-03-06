@@ -57,6 +57,8 @@ function cec_commons_current_opus_form($form, $form_state) {
 function cec_commons_views_pre_build(&$view) {
   /** @var views_display $display */
   $display = $view->display[$view->current_display];
+
+  // Generic case: the opus field is used in exposed filters.
   $filters = $display->handler->handlers['filter'];
   if (!empty($filters['field_opus_value'])) {
     /** @var views_handler_filter_field_list $filter */
@@ -67,6 +69,14 @@ function cec_commons_views_pre_build(&$view) {
         $view->exposed_input[$info['value']] = variable_get('cec_current_opus');
       }
     }
+  }
+
+  // Generic case: the opus field is used in contextual filters.
+  $arguments = $display->handler->handlers['argument'];
+  if (!empty($arguments['field_opus_value'])) {
+    /** @var views_handler_argument_field_list_string $argument */
+    $argument = $arguments['field_opus_value'];
+    $argument->options['default_argument_options']['argument'] = variable_get('cec_current_opus');
   }
 }
 

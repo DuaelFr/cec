@@ -1292,7 +1292,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['arguments']['field_opus_value']['default_action'] = 'default';
   $handler->display->display_options['arguments']['field_opus_value']['exception']['title'] = 'Tout';
   $handler->display->display_options['arguments']['field_opus_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_opus_value']['default_argument_options']['argument'] = 'acte3';
+  $handler->display->display_options['arguments']['field_opus_value']['default_argument_options']['argument'] = '';
   $handler->display->display_options['arguments']['field_opus_value']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_opus_value']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_opus_value']['summary_options']['items_per_page'] = '25';
