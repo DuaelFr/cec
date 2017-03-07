@@ -254,7 +254,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
-  /* Relationship: User: Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
@@ -263,7 +263,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['relationships']['profile']['bundle_types'] = array(
     'inscription_administrative' => 'inscription_administrative',
   );
-  /* Relationship: Nœud: Avantages (field_avantages) */
+  /* Relationship: Content: Avantages (field_avantages) */
   $handler->display->display_options['relationships']['field_avantages_value']['id'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantages_value']['table'] = 'field_data_field_avantages';
   $handler->display->display_options['relationships']['field_avantages_value']['field'] = 'field_avantages_value';
@@ -289,11 +289,11 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Nom du personnage';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Nœud: Type */
+  /* Field: Content: Type */
   $handler->display->display_options['fields']['field_character_type']['id'] = 'field_character_type';
   $handler->display->display_options['fields']['field_character_type']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['fields']['field_character_type']['field'] = 'field_character_type';
-  /* Field: Profil: URL */
+  /* Field: Profile: URL */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
   $handler->display->display_options['fields']['url']['field'] = 'url';
@@ -303,7 +303,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['url']['display_as_link'] = FALSE;
   $handler->display->display_options['fields']['url']['link_to_entity'] = 1;
-  /* Field: Profil: Prénom */
+  /* Field: Profile: Prénom */
   $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
   $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
   $handler->display->display_options['fields']['field_lastname']['field'] = 'field_lastname';
@@ -311,7 +311,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_lastname']['label'] = '';
   $handler->display->display_options['fields']['field_lastname']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_lastname']['element_label_colon'] = FALSE;
-  /* Field: Profil: Nom */
+  /* Field: Profile: Nom */
   $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
   $handler->display->display_options['fields']['field_firstname']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['fields']['field_firstname']['field'] = 'field_firstname';
@@ -321,22 +321,22 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_firstname']['alter']['text'] = '[field_lastname] [field_firstname]';
   $handler->display->display_options['fields']['field_firstname']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_firstname']['alter']['path'] = '[url]';
-  /* Field: Nœud: Espèce */
+  /* Field: Content: Espèce */
   $handler->display->display_options['fields']['field_species']['id'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'text_plain';
-  /* Field: Nœud: Nationalité */
+  /* Field: Content: Nationalité */
   $handler->display->display_options['fields']['field_nationalite']['id'] = 'field_nationalite';
   $handler->display->display_options['fields']['field_nationalite']['table'] = 'field_data_field_nationalite';
   $handler->display->display_options['fields']['field_nationalite']['field'] = 'field_nationalite';
   $handler->display->display_options['fields']['field_nationalite']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Occupation */
+  /* Field: Content: Occupation */
   $handler->display->display_options['fields']['field_occupation']['id'] = 'field_occupation';
   $handler->display->display_options['fields']['field_occupation']['table'] = 'field_data_field_occupation';
   $handler->display->display_options['fields']['field_occupation']['field'] = 'field_occupation';
   $handler->display->display_options['fields']['field_occupation']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Confession */
+  /* Field: Content: Confession */
   $handler->display->display_options['fields']['field_confession']['id'] = 'field_confession';
   $handler->display->display_options['fields']['field_confession']['table'] = 'field_data_field_confession';
   $handler->display->display_options['fields']['field_confession']['field'] = 'field_confession';
@@ -367,7 +367,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_temperament5']['table'] = 'field_data_field_temperament5';
   $handler->display->display_options['fields']['field_temperament5']['field'] = 'field_temperament5';
   $handler->display->display_options['fields']['field_temperament5']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Crédit */
+  /* Field: Content: Crédit */
   $handler->display->display_options['fields']['field_credit']['id'] = 'field_credit';
   $handler->display->display_options['fields']['field_credit']['table'] = 'field_data_field_credit';
   $handler->display->display_options['fields']['field_credit']['field'] = 'field_credit';
@@ -375,7 +375,7 @@ function personnages_views_default_views() {
     'thousand_separator' => ' ',
     'prefix_suffix' => 1,
   );
-  /* Field: Nœud: Pugilat */
+  /* Field: Content: Pugilat */
   $handler->display->display_options['fields']['field_pugilat']['id'] = 'field_pugilat';
   $handler->display->display_options['fields']['field_pugilat']['table'] = 'field_data_field_pugilat';
   $handler->display->display_options['fields']['field_pugilat']['field'] = 'field_pugilat';
@@ -383,7 +383,7 @@ function personnages_views_default_views() {
     'thousand_separator' => ' ',
     'prefix_suffix' => 1,
   );
-  /* Field: SUM(Nœud: Valeur) */
+  /* Field: SUM(Content: Valeur) */
   $handler->display->display_options['fields']['field_value']['id'] = 'field_value';
   $handler->display->display_options['fields']['field_value']['table'] = 'field_data_field_value';
   $handler->display->display_options['fields']['field_value']['field'] = 'field_value';
@@ -418,7 +418,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  /* Field: Nœud: Opus */
+  /* Field: Content: Opus */
   $handler->display->display_options['fields']['field_opus']['id'] = 'field_opus';
   $handler->display->display_options['fields']['field_opus']['table'] = 'field_data_field_opus';
   $handler->display->display_options['fields']['field_opus']['field'] = 'field_opus';
@@ -481,7 +481,7 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Profil: Nom (field_firstname) */
+  /* Filter criterion: Profile: Nom (field_firstname) */
   $handler->display->display_options['filters']['field_firstname_value']['id'] = 'field_firstname_value';
   $handler->display->display_options['filters']['field_firstname_value']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['filters']['field_firstname_value']['field'] = 'field_firstname_value';
@@ -504,7 +504,7 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Profil: Prénom (field_lastname) */
+  /* Filter criterion: Profile: Prénom (field_lastname) */
   $handler->display->display_options['filters']['field_lastname_value']['id'] = 'field_lastname_value';
   $handler->display->display_options['filters']['field_lastname_value']['table'] = 'field_data_field_lastname';
   $handler->display->display_options['filters']['field_lastname_value']['field'] = 'field_lastname_value';
@@ -527,7 +527,7 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Type (field_character_type) */
+  /* Filter criterion: Content: Type (field_character_type) */
   $handler->display->display_options['filters']['field_character_type_value']['id'] = 'field_character_type_value';
   $handler->display->display_options['filters']['field_character_type_value']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['filters']['field_character_type_value']['field'] = 'field_character_type_value';
@@ -548,7 +548,7 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Nationalité (field_nationalite) */
+  /* Filter criterion: Content: Nationalité (field_nationalite) */
   $handler->display->display_options['filters']['field_nationalite_tid']['id'] = 'field_nationalite_tid';
   $handler->display->display_options['filters']['field_nationalite_tid']['table'] = 'field_data_field_nationalite';
   $handler->display->display_options['filters']['field_nationalite_tid']['field'] = 'field_nationalite_tid';
@@ -571,7 +571,7 @@ function personnages_views_default_views() {
   );
   $handler->display->display_options['filters']['field_nationalite_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_nationalite_tid']['vocabulary'] = 'nationalites';
-  /* Filter criterion: Nœud: Occupation (field_occupation) */
+  /* Filter criterion: Content: Occupation (field_occupation) */
   $handler->display->display_options['filters']['field_occupation_tid']['id'] = 'field_occupation_tid';
   $handler->display->display_options['filters']['field_occupation_tid']['table'] = 'field_data_field_occupation';
   $handler->display->display_options['filters']['field_occupation_tid']['field'] = 'field_occupation_tid';
@@ -594,7 +594,7 @@ function personnages_views_default_views() {
   );
   $handler->display->display_options['filters']['field_occupation_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_occupation_tid']['vocabulary'] = 'occupations';
-  /* Filter criterion: Nœud: Confession (field_confession) */
+  /* Filter criterion: Content: Confession (field_confession) */
   $handler->display->display_options['filters']['field_confession_tid']['id'] = 'field_confession_tid';
   $handler->display->display_options['filters']['field_confession_tid']['table'] = 'field_data_field_confession';
   $handler->display->display_options['filters']['field_confession_tid']['field'] = 'field_confession_tid';
@@ -753,11 +753,10 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -807,7 +806,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Nœud: Type */
+  /* Field: Content: Type */
   $handler->display->display_options['fields']['field_character_type']['id'] = 'field_character_type';
   $handler->display->display_options['fields']['field_character_type']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['fields']['field_character_type']['field'] = 'field_character_type';
@@ -884,7 +883,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Nœud: Type */
+  /* Field: Content: Type */
   $handler->display->display_options['fields']['field_character_type']['id'] = 'field_character_type';
   $handler->display->display_options['fields']['field_character_type']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['fields']['field_character_type']['field'] = 'field_character_type';
@@ -892,7 +891,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_character_type']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_character_type']['alter']['text'] = '[[field_character_type]]';
   $handler->display->display_options['fields']['field_character_type']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Groupe technique */
+  /* Field: Content: Groupe technique */
   $handler->display->display_options['fields']['field_group_is_technical']['id'] = 'field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['field'] = 'field_group_is_technical';
@@ -971,7 +970,7 @@ function personnages_views_default_views() {
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Nœud: Type (field_character_type) */
+  /* Filter criterion: Content: Type (field_character_type) */
   $handler->display->display_options['filters']['field_character_type_value']['id'] = 'field_character_type_value';
   $handler->display->display_options['filters']['field_character_type_value']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['filters']['field_character_type_value']['field'] = 'field_character_type_value';
@@ -1027,7 +1026,7 @@ function personnages_views_default_views() {
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Nœud: Type (field_character_type) */
+  /* Filter criterion: Content: Type (field_character_type) */
   $handler->display->display_options['filters']['field_character_type_value']['id'] = 'field_character_type_value';
   $handler->display->display_options['filters']['field_character_type_value']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['filters']['field_character_type_value']['field'] = 'field_character_type_value';
@@ -1053,7 +1052,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
-  /* Relationship: User: Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
@@ -1062,7 +1061,7 @@ function personnages_views_default_views() {
     'inscription_administrative' => 'inscription_administrative',
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Profil: Nom */
+  /* Field: Profile: Nom */
   $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
   $handler->display->display_options['fields']['field_firstname']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['fields']['field_firstname']['field'] = 'field_firstname';
@@ -1070,7 +1069,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_firstname']['label'] = '';
   $handler->display->display_options['fields']['field_firstname']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_firstname']['element_label_colon'] = FALSE;
-  /* Field: Profil: Prénom */
+  /* Field: Profile: Prénom */
   $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
   $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
   $handler->display->display_options['fields']['field_lastname']['field'] = 'field_lastname';
@@ -1114,7 +1113,7 @@ function personnages_views_default_views() {
     'image_style' => 'trombinoscope',
     'image_link' => '',
   );
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -1131,11 +1130,10 @@ function personnages_views_default_views() {
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -1263,7 +1261,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['relationships']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
-  /* Relationship: User: Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
@@ -1311,7 +1309,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Nom du personnage';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Profil: URL */
+  /* Field: Profile: URL */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'views_entity_profile2';
   $handler->display->display_options['fields']['url']['field'] = 'url';
@@ -1321,7 +1319,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['url']['display_as_link'] = FALSE;
   $handler->display->display_options['fields']['url']['link_to_entity'] = 1;
-  /* Field: Profil: Prénom */
+  /* Field: Profile: Prénom */
   $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
   $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
   $handler->display->display_options['fields']['field_lastname']['field'] = 'field_lastname';
@@ -1329,7 +1327,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_lastname']['label'] = '';
   $handler->display->display_options['fields']['field_lastname']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_lastname']['element_label_colon'] = FALSE;
-  /* Field: Profil: Nom */
+  /* Field: Profile: Nom */
   $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
   $handler->display->display_options['fields']['field_firstname']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['fields']['field_firstname']['field'] = 'field_firstname';
@@ -1368,18 +1366,17 @@ function personnages_views_default_views() {
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Nœud: Type (field_character_type) */
+  /* Filter criterion: Content: Type (field_character_type) */
   $handler->display->display_options['filters']['field_character_type_value']['id'] = 'field_character_type_value';
   $handler->display->display_options['filters']['field_character_type_value']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['filters']['field_character_type_value']['field'] = 'field_character_type_value';
   $handler->display->display_options['filters']['field_character_type_value']['value'] = array(
     'Joueur' => 'Joueur',
   );
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -1498,18 +1495,17 @@ function personnages_views_default_views() {
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Nœud: Type (field_character_type) */
+  /* Filter criterion: Content: Type (field_character_type) */
   $handler->display->display_options['filters']['field_character_type_value']['id'] = 'field_character_type_value';
   $handler->display->display_options['filters']['field_character_type_value']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['filters']['field_character_type_value']['field'] = 'field_character_type_value';
   $handler->display->display_options['filters']['field_character_type_value']['value'] = array(
     'Joueur' => 'Joueur',
   );
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -1670,11 +1666,11 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = 'Nom du personnage';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Nœud: Type */
+  /* Field: Content: Type */
   $handler->display->display_options['fields']['field_character_type']['id'] = 'field_character_type';
   $handler->display->display_options['fields']['field_character_type']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['fields']['field_character_type']['field'] = 'field_character_type';
-  /* Field: Profil: Prénom */
+  /* Field: Profile: Prénom */
   $handler->display->display_options['fields']['field_lastname']['id'] = 'field_lastname';
   $handler->display->display_options['fields']['field_lastname']['table'] = 'field_data_field_lastname';
   $handler->display->display_options['fields']['field_lastname']['field'] = 'field_lastname';
@@ -1682,7 +1678,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_lastname']['label'] = '';
   $handler->display->display_options['fields']['field_lastname']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_lastname']['element_label_colon'] = FALSE;
-  /* Field: Profil: Nom */
+  /* Field: Profile: Nom */
   $handler->display->display_options['fields']['field_firstname']['id'] = 'field_firstname';
   $handler->display->display_options['fields']['field_firstname']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['fields']['field_firstname']['field'] = 'field_firstname';
@@ -1691,22 +1687,22 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['field_firstname']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['field_firstname']['alter']['text'] = '[field_lastname] [field_firstname]';
   $handler->display->display_options['fields']['field_firstname']['alter']['path'] = '[url]';
-  /* Field: Nœud: Espèce */
+  /* Field: Content: Espèce */
   $handler->display->display_options['fields']['field_species']['id'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['table'] = 'field_data_field_species';
   $handler->display->display_options['fields']['field_species']['field'] = 'field_species';
   $handler->display->display_options['fields']['field_species']['type'] = 'text_plain';
-  /* Field: Nœud: Nationalité */
+  /* Field: Content: Nationalité */
   $handler->display->display_options['fields']['field_nationalite']['id'] = 'field_nationalite';
   $handler->display->display_options['fields']['field_nationalite']['table'] = 'field_data_field_nationalite';
   $handler->display->display_options['fields']['field_nationalite']['field'] = 'field_nationalite';
   $handler->display->display_options['fields']['field_nationalite']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Occupation */
+  /* Field: Content: Occupation */
   $handler->display->display_options['fields']['field_occupation']['id'] = 'field_occupation';
   $handler->display->display_options['fields']['field_occupation']['table'] = 'field_data_field_occupation';
   $handler->display->display_options['fields']['field_occupation']['field'] = 'field_occupation';
   $handler->display->display_options['fields']['field_occupation']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Confession */
+  /* Field: Content: Confession */
   $handler->display->display_options['fields']['field_confession']['id'] = 'field_confession';
   $handler->display->display_options['fields']['field_confession']['table'] = 'field_data_field_confession';
   $handler->display->display_options['fields']['field_confession']['field'] = 'field_confession';
@@ -1722,7 +1718,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  /* Field: Nœud: Opus */
+  /* Field: Content: Opus */
   $handler->display->display_options['fields']['field_opus']['id'] = 'field_opus';
   $handler->display->display_options['fields']['field_opus']['table'] = 'field_data_field_opus';
   $handler->display->display_options['fields']['field_opus']['field'] = 'field_opus';
@@ -1769,7 +1765,7 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Profil: Nom (field_firstname) */
+  /* Filter criterion: Profile: Nom (field_firstname) */
   $handler->display->display_options['filters']['field_firstname_value']['id'] = 'field_firstname_value';
   $handler->display->display_options['filters']['field_firstname_value']['table'] = 'field_data_field_firstname';
   $handler->display->display_options['filters']['field_firstname_value']['field'] = 'field_firstname_value';
@@ -1792,7 +1788,7 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Profil: Prénom (field_lastname) */
+  /* Filter criterion: Profile: Prénom (field_lastname) */
   $handler->display->display_options['filters']['field_lastname_value']['id'] = 'field_lastname_value';
   $handler->display->display_options['filters']['field_lastname_value']['table'] = 'field_data_field_lastname';
   $handler->display->display_options['filters']['field_lastname_value']['field'] = 'field_lastname_value';
@@ -1815,7 +1811,7 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Type (field_character_type) */
+  /* Filter criterion: Content: Type (field_character_type) */
   $handler->display->display_options['filters']['field_character_type_value']['id'] = 'field_character_type_value';
   $handler->display->display_options['filters']['field_character_type_value']['table'] = 'field_data_field_character_type';
   $handler->display->display_options['filters']['field_character_type_value']['field'] = 'field_character_type_value';
@@ -1836,7 +1832,7 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Nationalité (field_nationalite) */
+  /* Filter criterion: Content: Nationalité (field_nationalite) */
   $handler->display->display_options['filters']['field_nationalite_tid']['id'] = 'field_nationalite_tid';
   $handler->display->display_options['filters']['field_nationalite_tid']['table'] = 'field_data_field_nationalite';
   $handler->display->display_options['filters']['field_nationalite_tid']['field'] = 'field_nationalite_tid';
@@ -1859,7 +1855,7 @@ function personnages_views_default_views() {
   );
   $handler->display->display_options['filters']['field_nationalite_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_nationalite_tid']['vocabulary'] = 'nationalites';
-  /* Filter criterion: Nœud: Occupation (field_occupation) */
+  /* Filter criterion: Content: Occupation (field_occupation) */
   $handler->display->display_options['filters']['field_occupation_tid']['id'] = 'field_occupation_tid';
   $handler->display->display_options['filters']['field_occupation_tid']['table'] = 'field_data_field_occupation';
   $handler->display->display_options['filters']['field_occupation_tid']['field'] = 'field_occupation_tid';
@@ -1882,7 +1878,7 @@ function personnages_views_default_views() {
   );
   $handler->display->display_options['filters']['field_occupation_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_occupation_tid']['vocabulary'] = 'occupations';
-  /* Filter criterion: Nœud: Confession (field_confession) */
+  /* Filter criterion: Content: Confession (field_confession) */
   $handler->display->display_options['filters']['field_confession_tid']['id'] = 'field_confession_tid';
   $handler->display->display_options['filters']['field_confession_tid']['table'] = 'field_data_field_confession';
   $handler->display->display_options['filters']['field_confession_tid']['field'] = 'field_confession_tid';
@@ -1926,11 +1922,10 @@ function personnages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['group'] = 1;
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
@@ -2009,7 +2004,7 @@ function personnages_views_default_views() {
     t('Sélecteur PNJ (Reference)'),
     t('Admin Trombi (Page)'),
     t('Admin Trombinoscope'),
-    t('Profil'),
+    t('Profile'),
     t('[title] ([field_lastname] [field_firstname])'),
     t('[field_photo]*'),
     t('-Pas de photo-'),
@@ -2099,7 +2094,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Statut du Personnage */
+  /* Field: Content: Statut du Personnage */
   $handler->display->display_options['fields']['field_character_state']['id'] = 'field_character_state';
   $handler->display->display_options['fields']['field_character_state']['table'] = 'field_data_field_character_state';
   $handler->display->display_options['fields']['field_character_state']['field'] = 'field_character_state';
@@ -2115,7 +2110,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
-  /* Contextual filter: Nœud: Incarné par (field_incarnate) */
+  /* Contextual filter: Content: Incarné par (field_incarnate) */
   $handler->display->display_options['arguments']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
   $handler->display->display_options['arguments']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['arguments']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
@@ -2150,6 +2145,10 @@ function personnages_views_default_views() {
   $handler->display->display_options['filters']['sid']['value'] = array(
     13 => '13',
   );
+  /* Filter criterion: Content: Current opus (field_opus) */
+  $handler->display->display_options['filters']['current_opus']['id'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['current_opus']['field'] = 'current_opus';
 
   /* Display: Mes Persos (Page) */
   $handler = $view->new_display('page', 'Mes Persos (Page)', 'mes_persos');
@@ -2211,7 +2210,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['relationship'] = 'field_characters_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'JoueurTrombi';
-  /* Relationship: User: Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
@@ -2258,7 +2257,7 @@ function personnages_views_default_views() {
     'image_style' => 'trombinoscope',
     'image_link' => '',
   );
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -2301,6 +2300,11 @@ function personnages_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
+  /* Filter criterion: Content: Current opus (field_opus) */
+  $handler->display->display_options['filters']['current_opus']['id'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['current_opus']['field'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['group'] = 1;
   /* Filter criterion: Workflow: Current state */
   $handler->display->display_options['filters']['sid_1']['id'] = 'sid_1';
   $handler->display->display_options['filters']['sid_1']['table'] = 'workflow_node';
@@ -2309,6 +2313,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['filters']['sid_1']['value'] = array(
     13 => '13',
   );
+  $handler->display->display_options['filters']['sid_1']['group'] = 1;
 
   /* Display: Trombinoscope Zorgas */
   $handler = $view->new_display('block', 'Trombinoscope Zorgas', 'block_trombi_zorgas');
@@ -2331,7 +2336,7 @@ function personnages_views_default_views() {
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['relationship'] = 'field_characters_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'JoueurTrombi';
-  /* Relationship: User: Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
@@ -2378,7 +2383,7 @@ function personnages_views_default_views() {
     'image_style' => 'trombinoscope',
     'image_link' => '',
   );
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -2413,6 +2418,10 @@ function personnages_views_default_views() {
     'character' => 'character',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Current opus (field_opus) */
+  $handler->display->display_options['filters']['current_opus']['id'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['current_opus']['field'] = 'current_opus';
   $translatables['characters'] = array(
     t('Master'),
     t('plus'),

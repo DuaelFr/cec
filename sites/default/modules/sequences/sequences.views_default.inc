@@ -125,12 +125,12 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Nœud: Type de séquence */
+  /* Field: Content: Type de séquence */
   $handler->display->display_options['fields']['field_sequence_type']['id'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -142,7 +142,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -155,7 +155,7 @@ function sequences_views_default_views() {
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Field: Nœud: Intrigue */
+  /* Field: Content: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -167,7 +167,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  /* Field: Nœud: Opus */
+  /* Field: Content: Opus */
   $handler->display->display_options['fields']['field_opus']['id'] = 'field_opus';
   $handler->display->display_options['fields']['field_opus']['table'] = 'field_data_field_opus';
   $handler->display->display_options['fields']['field_opus']['field'] = 'field_opus';
@@ -188,12 +188,12 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
-  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
+  /* Sort criterion: Content: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['order'] = 'DESC';
-  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
+  /* Sort criterion: Content: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -228,7 +228,7 @@ function sequences_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Type de séquence (field_sequence_type) */
+  /* Filter criterion: Content: Type de séquence (field_sequence_type) */
   $handler->display->display_options['filters']['field_sequence_type_tid']['id'] = 'field_sequence_type_tid';
   $handler->display->display_options['filters']['field_sequence_type_tid']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['filters']['field_sequence_type_tid']['field'] = 'field_sequence_type_tid';
@@ -252,7 +252,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['filters']['field_sequence_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_sequence_type_tid']['vocabulary'] = 'sequence_type';
   $handler->display->display_options['filters']['field_sequence_type_tid']['hierarchy'] = 1;
-  /* Filter criterion: Nœud: Dates -  start date (field_dates) */
+  /* Filter criterion: Content: Dates -  start date (field_dates) */
   $handler->display->display_options['filters']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['filters']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['filters']['field_dates_value']['field'] = 'field_dates_value';
@@ -276,7 +276,7 @@ function sequences_views_default_views() {
   );
   $handler->display->display_options['filters']['field_dates_value']['granularity'] = 'minute';
   $handler->display->display_options['filters']['field_dates_value']['year_range'] = '1600:1650';
-  /* Filter criterion: Nœud: Dates - end date (field_dates:value2) */
+  /* Filter criterion: Content: Dates - end date (field_dates:value2) */
   $handler->display->display_options['filters']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['filters']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['filters']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -300,7 +300,7 @@ function sequences_views_default_views() {
   );
   $handler->display->display_options['filters']['field_dates_value2']['granularity'] = 'minute';
   $handler->display->display_options['filters']['field_dates_value2']['year_range'] = '1600:1650';
-  /* Filter criterion: Nœud: Intrigue (field_intrigue) */
+  /* Filter criterion: Content: Intrigue (field_intrigue) */
   $handler->display->display_options['filters']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['filters']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['filters']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
@@ -343,11 +343,10 @@ function sequences_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -436,12 +435,12 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Nœud: Type de séquence */
+  /* Field: Content: Type de séquence */
   $handler->display->display_options['fields']['field_sequence_type']['id'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -453,7 +452,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -466,7 +465,7 @@ function sequences_views_default_views() {
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Field: Nœud: Intrigue */
+  /* Field: Content: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -477,11 +476,11 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['field_intrigue']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_intrigue']['multi_type'] = 'ul';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
+  /* Sort criterion: Content: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
-  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
+  /* Sort criterion: Content: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -495,11 +494,10 @@ function sequences_views_default_views() {
     'sequence' => 'sequence',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -550,12 +548,12 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Nœud: Type de séquence */
+  /* Field: Content: Type de séquence */
   $handler->display->display_options['fields']['field_sequence_type']['id'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -567,7 +565,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -580,7 +578,7 @@ function sequences_views_default_views() {
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Field: Nœud: Intrigue */
+  /* Field: Content: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -608,11 +606,11 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Nœud: Dates -  start date (field_dates) */
+  /* Sort criterion: Content: Dates -  start date (field_dates) */
   $handler->display->display_options['sorts']['field_dates_value']['id'] = 'field_dates_value';
   $handler->display->display_options['sorts']['field_dates_value']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value']['field'] = 'field_dates_value';
-  /* Sort criterion: Nœud: Dates - end date (field_dates:value2) */
+  /* Sort criterion: Content: Dates - end date (field_dates:value2) */
   $handler->display->display_options['sorts']['field_dates_value2']['id'] = 'field_dates_value2';
   $handler->display->display_options['sorts']['field_dates_value2']['table'] = 'field_data_field_dates';
   $handler->display->display_options['sorts']['field_dates_value2']['field'] = 'field_dates_value2';
@@ -626,11 +624,10 @@ function sequences_views_default_views() {
     'sequence' => 'sequence',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -665,12 +662,12 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Nœud: Type de séquence */
+  /* Field: Content: Type de séquence */
   $handler->display->display_options['fields']['field_sequence_type']['id'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -682,7 +679,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -715,7 +712,7 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Nœud: Intrigue (field_intrigue) */
+  /* Contextual filter: Content: Intrigue (field_intrigue) */
   $handler->display->display_options['arguments']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
@@ -767,14 +764,14 @@ function sequences_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Type de séquence */
+  /* Field: Content: Type de séquence */
   $handler->display->display_options['fields']['field_sequence_type']['id'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_sequence_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -787,7 +784,7 @@ function sequences_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -801,7 +798,7 @@ function sequences_views_default_views() {
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Field: Nœud: Intrigue */
+  /* Field: Content: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -832,14 +829,14 @@ Date de fin : [field_dates_1]
   </div>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Nœud: Intrigue (field_intrigue) */
+  /* Contextual filter: Content: Intrigue (field_intrigue) */
   $handler->display->display_options['arguments']['field_intrigue_target_id']['id'] = 'field_intrigue_target_id';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['arguments']['field_intrigue_target_id']['field'] = 'field_intrigue_target_id';
@@ -887,12 +884,12 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Nœud: Type de séquence */
+  /* Field: Content: Type de séquence */
   $handler->display->display_options['fields']['field_sequence_type']['id'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -904,7 +901,7 @@ Date de fin : [field_dates_1]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -937,7 +934,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['sid_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['sid_1']['transliterate'] = TRUE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Nœud: Joueurs (field_players) */
+  /* Contextual filter: Content: Joueurs (field_players) */
   $handler->display->display_options['arguments']['field_players_target_id']['id'] = 'field_players_target_id';
   $handler->display->display_options['arguments']['field_players_target_id']['table'] = 'field_data_field_players';
   $handler->display->display_options['arguments']['field_players_target_id']['field'] = 'field_players_target_id';
@@ -987,14 +984,14 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Type de séquence */
+  /* Field: Content: Type de séquence */
   $handler->display->display_options['fields']['field_sequence_type']['id'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['field'] = 'field_sequence_type';
   $handler->display->display_options['fields']['field_sequence_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_sequence_type']['empty'] = '- Aucun -';
   $handler->display->display_options['fields']['field_sequence_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -1007,7 +1004,7 @@ Date de fin : [field_dates_1]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -1021,7 +1018,7 @@ Date de fin : [field_dates_1]
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_dates_1']['group_column'] = 'value2';
-  /* Field: Nœud: Intrigue */
+  /* Field: Content: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -1052,14 +1049,14 @@ Date de fin : [field_dates_1]
   </div>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Nœud: Joueurs (field_players) */
+  /* Contextual filter: Content: Joueurs (field_players) */
   $handler->display->display_options['arguments']['field_players_target_id']['id'] = 'field_players_target_id';
   $handler->display->display_options['arguments']['field_players_target_id']['table'] = 'field_data_field_players';
   $handler->display->display_options['arguments']['field_players_target_id']['field'] = 'field_players_target_id';
@@ -1165,12 +1162,12 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Nœud: Type de séquence (field_sequence_type) */
+  /* Relationship: Content: Type de séquence (field_sequence_type) */
   $handler->display->display_options['relationships']['field_sequence_type_tid']['id'] = 'field_sequence_type_tid';
   $handler->display->display_options['relationships']['field_sequence_type_tid']['table'] = 'field_data_field_sequence_type';
   $handler->display->display_options['relationships']['field_sequence_type_tid']['field'] = 'field_sequence_type_tid';
   $handler->display->display_options['relationships']['field_sequence_type_tid']['label'] = 'Type';
-  /* Relationship: Nœud: PNJ (field_nonplayers) */
+  /* Relationship: Content: PNJ (field_nonplayers) */
   $handler->display->display_options['relationships']['field_nonplayers_value']['id'] = 'field_nonplayers_value';
   $handler->display->display_options['relationships']['field_nonplayers_value']['table'] = 'field_data_field_nonplayers';
   $handler->display->display_options['relationships']['field_nonplayers_value']['field'] = 'field_nonplayers_value';
@@ -1194,7 +1191,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['relationship'] = 'field_sequence_type_tid';
   $handler->display->display_options['fields']['name']['label'] = 'Type';
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
@@ -1206,7 +1203,7 @@ Date de fin : [field_dates_1]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Dates */
+  /* Field: Content: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
   $handler->display->display_options['fields']['field_dates_1']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates_1']['field'] = 'field_dates';
@@ -1218,7 +1215,7 @@ Date de fin : [field_dates_1]
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Nœud: Intrigue */
+  /* Field: Content: Intrigue */
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
@@ -1228,7 +1225,7 @@ Date de fin : [field_dates_1]
   );
   $handler->display->display_options['fields']['field_intrigue']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_intrigue']['delta_offset'] = '0';
-  /* Field: Nœud: Intrigue */
+  /* Field: Content: Intrigue */
   $handler->display->display_options['fields']['field_intrigue_1']['id'] = 'field_intrigue_1';
   $handler->display->display_options['fields']['field_intrigue_1']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue_1']['field'] = 'field_intrigue';
@@ -1238,7 +1235,7 @@ Date de fin : [field_dates_1]
   );
   $handler->display->display_options['fields']['field_intrigue_1']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_intrigue_1']['delta_offset'] = '1';
-  /* Field: Nœud: Intrigue */
+  /* Field: Content: Intrigue */
   $handler->display->display_options['fields']['field_intrigue_2']['id'] = 'field_intrigue_2';
   $handler->display->display_options['fields']['field_intrigue_2']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue_2']['field'] = 'field_intrigue';
@@ -1248,7 +1245,7 @@ Date de fin : [field_dates_1]
   );
   $handler->display->display_options['fields']['field_intrigue_2']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_intrigue_2']['delta_offset'] = '2';
-  /* Field: Nœud: Lieu */
+  /* Field: Content: Lieu */
   $handler->display->display_options['fields']['field_location']['id'] = 'field_location';
   $handler->display->display_options['fields']['field_location']['table'] = 'field_data_field_location';
   $handler->display->display_options['fields']['field_location']['field'] = 'field_location';
@@ -1269,7 +1266,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_incarnate_npc']['table'] = 'field_data_field_incarnate_npc';
   $handler->display->display_options['fields']['field_incarnate_npc']['field'] = 'field_incarnate_npc';
   $handler->display->display_options['fields']['field_incarnate_npc']['relationship'] = 'field_nonplayers_value';
-  /* Field: Nœud: Matériel */
+  /* Field: Content: Matériel */
   $handler->display->display_options['fields']['field_matos']['id'] = 'field_matos';
   $handler->display->display_options['fields']['field_matos']['table'] = 'field_data_field_matos';
   $handler->display->display_options['fields']['field_matos']['field'] = 'field_matos';
@@ -1277,7 +1274,7 @@ Date de fin : [field_dates_1]
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_matos']['delta_offset'] = '0';
-  /* Field: Nœud: Joueurs */
+  /* Field: Content: Joueurs */
   $handler->display->display_options['fields']['field_players']['id'] = 'field_players';
   $handler->display->display_options['fields']['field_players']['table'] = 'field_data_field_players';
   $handler->display->display_options['fields']['field_players']['field'] = 'field_players';
@@ -1285,14 +1282,13 @@ Date de fin : [field_dates_1]
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_players']['delta_offset'] = '0';
-  /* Contextual filter: Nœud: Opus (field_opus) */
+  /* Contextual filter: Content: Opus (field_opus) */
   $handler->display->display_options['arguments']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['arguments']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['arguments']['field_opus_value']['field'] = 'field_opus_value';
   $handler->display->display_options['arguments']['field_opus_value']['default_action'] = 'default';
   $handler->display->display_options['arguments']['field_opus_value']['exception']['title'] = 'Tout';
   $handler->display->display_options['arguments']['field_opus_value']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_opus_value']['default_argument_options']['argument'] = '';
   $handler->display->display_options['arguments']['field_opus_value']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_opus_value']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_opus_value']['summary_options']['items_per_page'] = '25';

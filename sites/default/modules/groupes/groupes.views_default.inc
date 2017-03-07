@@ -142,7 +142,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucun groupe ne correspond à cette recherche.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Relationship: Nœud: Membres (field_group_members) */
+  /* Relationship: Content: Membres (field_group_members) */
   $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
@@ -176,7 +176,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['field_alternate_title']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = '[path]';
   $handler->display->display_options['fields']['field_alternate_title']['alter']['absolute'] = TRUE;
-  /* Field: Nœud: Type de groupe */
+  /* Field: Content: Type de groupe */
   $handler->display->display_options['fields']['field_group_type']['id'] = 'field_group_type';
   $handler->display->display_options['fields']['field_group_type']['table'] = 'field_data_field_group_type';
   $handler->display->display_options['fields']['field_group_type']['field'] = 'field_group_type';
@@ -196,7 +196,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['field_character']['group_type'] = 'count_distinct';
   $handler->display->display_options['fields']['field_character']['label'] = 'Personnages';
   $handler->display->display_options['fields']['field_character']['separator'] = ', ';
-  /* Field: Nœud: Groupe technique */
+  /* Field: Content: Groupe technique */
   $handler->display->display_options['fields']['field_group_is_technical']['id'] = 'field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['field'] = 'field_group_is_technical';
@@ -204,7 +204,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['sid']['id'] = 'sid';
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
-  /* Field: Nœud: Opus */
+  /* Field: Content: Opus */
   $handler->display->display_options['fields']['field_opus']['id'] = 'field_opus';
   $handler->display->display_options['fields']['field_opus']['table'] = 'field_data_field_opus';
   $handler->display->display_options['fields']['field_opus']['field'] = 'field_opus';
@@ -263,7 +263,7 @@ function groupes_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Type de groupe (field_group_type) */
+  /* Filter criterion: Content: Type de groupe (field_group_type) */
   $handler->display->display_options['filters']['field_group_type_tid']['id'] = 'field_group_type_tid';
   $handler->display->display_options['filters']['field_group_type_tid']['table'] = 'field_data_field_group_type';
   $handler->display->display_options['filters']['field_group_type_tid']['field'] = 'field_group_type_tid';
@@ -288,7 +288,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['filters']['field_group_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_group_type_tid']['vocabulary'] = 'type_de_groupe';
   $handler->display->display_options['filters']['field_group_type_tid']['hierarchy'] = 1;
-  /* Filter criterion: Nœud: Groupe technique (field_group_is_technical) */
+  /* Filter criterion: Content: Groupe technique (field_group_is_technical) */
   $handler->display->display_options['filters']['field_group_is_technical_value']['id'] = 'field_group_is_technical_value';
   $handler->display->display_options['filters']['field_group_is_technical_value']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['filters']['field_group_is_technical_value']['field'] = 'field_group_is_technical_value';
@@ -332,11 +332,10 @@ function groupes_views_default_views() {
     149933350 => 0,
   );
   $handler->display->display_options['filters']['sid']['expose']['reduce'] = TRUE;
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -379,7 +378,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Ce personnage n\'appartient à aucun groupe pour le moment.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Nœud: Membres (field_group_members) */
+  /* Relationship: Content: Membres (field_group_members) */
   $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
@@ -401,12 +400,12 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['field_alternate_title']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = '[path]';
   $handler->display->display_options['fields']['field_alternate_title']['alter']['absolute'] = TRUE;
-  /* Field: Nœud: Type de groupe */
+  /* Field: Content: Type de groupe */
   $handler->display->display_options['fields']['field_group_type']['id'] = 'field_group_type';
   $handler->display->display_options['fields']['field_group_type']['table'] = 'field_data_field_group_type';
   $handler->display->display_options['fields']['field_group_type']['field'] = 'field_group_type';
   $handler->display->display_options['fields']['field_group_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Groupe technique */
+  /* Field: Content: Groupe technique */
   $handler->display->display_options['fields']['field_group_is_technical']['id'] = 'field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['fields']['field_group_is_technical']['field'] = 'field_group_is_technical';
@@ -477,7 +476,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['row_options']['links'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Nœud: Membres (field_group_members) */
+  /* Relationship: Content: Membres (field_group_members) */
   $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
@@ -514,7 +513,7 @@ function groupes_views_default_views() {
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Nœud: Groupe technique (field_group_is_technical) */
+  /* Filter criterion: Content: Groupe technique (field_group_is_technical) */
   $handler->display->display_options['filters']['field_group_is_technical_value']['id'] = 'field_group_is_technical_value';
   $handler->display->display_options['filters']['field_group_is_technical_value']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['filters']['field_group_is_technical_value']['field'] = 'field_group_is_technical_value';
@@ -633,7 +632,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Ce personnage n\'appartient à aucun groupe pour le moment.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Relationship: Nœud: Membres (field_group_members) */
+  /* Relationship: Content: Membres (field_group_members) */
   $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
@@ -654,7 +653,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -707,13 +706,17 @@ function groupes_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
-  /* Filter criterion: Nœud: Groupe technique (field_group_is_technical) */
+  /* Filter criterion: Content: Groupe technique (field_group_is_technical) */
   $handler->display->display_options['filters']['field_group_is_technical_value']['id'] = 'field_group_is_technical_value';
   $handler->display->display_options['filters']['field_group_is_technical_value']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['filters']['field_group_is_technical_value']['field'] = 'field_group_is_technical_value';
   $handler->display->display_options['filters']['field_group_is_technical_value']['value'] = array(
     0 => '0',
   );
+  /* Filter criterion: Content: Current opus (field_opus) */
+  $handler->display->display_options['filters']['current_opus']['id'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['current_opus']['field'] = 'current_opus';
 
   /* Display: Groupes Personnage (Bloc) */
   $handler = $view->new_display('block', 'Groupes Personnage (Bloc)', 'groupes_perso');
@@ -742,7 +745,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Aucun des membres de ce groupe n\'est connu.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Nœud: Membres (field_group_members) */
+  /* Relationship: Content: Membres (field_group_members) */
   $handler->display->display_options['relationships']['field_group_members_value']['id'] = 'field_group_members_value';
   $handler->display->display_options['relationships']['field_group_members_value']['table'] = 'field_data_field_group_members';
   $handler->display->display_options['relationships']['field_group_members_value']['field'] = 'field_group_members_value';
@@ -760,7 +763,7 @@ function groupes_views_default_views() {
   $handler->display->display_options['relationships']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['relationship'] = 'field_character_target_id';
   $handler->display->display_options['relationships']['field_incarnate_target_id']['label'] = 'Joueur';
-  /* Relationship: User: Profil */
+  /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
@@ -807,7 +810,7 @@ function groupes_views_default_views() {
     'image_style' => 'trombinoscope',
     'image_link' => '',
   );
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -872,6 +875,12 @@ function groupes_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['sid_1']['group'] = 1;
+  /* Filter criterion: Content: Current opus (field_opus) */
+  $handler->display->display_options['filters']['current_opus']['id'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['current_opus']['field'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['relationship'] = 'field_character_target_id';
+  $handler->display->display_options['filters']['current_opus']['group'] = 1;
   /* Filter criterion: Field collection item: Membre secret (field_member_is_secret) */
   $handler->display->display_options['filters']['field_member_is_secret_value']['id'] = 'field_member_is_secret_value';
   $handler->display->display_options['filters']['field_member_is_secret_value']['table'] = 'field_data_field_member_is_secret';
@@ -895,7 +904,7 @@ function groupes_views_default_views() {
     'group' => 'group',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Nœud: Groupe technique (field_group_is_technical) */
+  /* Filter criterion: Content: Groupe technique (field_group_is_technical) */
   $handler->display->display_options['filters']['field_group_is_technical_value']['id'] = 'field_group_is_technical_value';
   $handler->display->display_options['filters']['field_group_is_technical_value']['table'] = 'field_data_field_group_is_technical';
   $handler->display->display_options['filters']['field_group_is_technical_value']['field'] = 'field_group_is_technical_value';
@@ -903,6 +912,10 @@ function groupes_views_default_views() {
     0 => '0',
   );
   $handler->display->display_options['filters']['field_group_is_technical_value']['group'] = 1;
+  /* Filter criterion: Content: Current opus (field_opus) */
+  $handler->display->display_options['filters']['current_opus']['id'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['current_opus']['field'] = 'current_opus';
   $translatables['groups'] = array(
     t('Master'),
     t('plus'),

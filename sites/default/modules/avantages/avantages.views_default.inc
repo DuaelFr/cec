@@ -147,13 +147,13 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['field_alternate_title']['field'] = 'field_alternate_title';
   $handler->display->display_options['fields']['field_alternate_title']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_alternate_title']['alter']['path'] = 'node/[nid]';
-  /* Field: Nœud: Type d'avantage */
+  /* Field: Content: Type d'avantage */
   $handler->display->display_options['fields']['field_avantage_type']['id'] = 'field_avantage_type';
   $handler->display->display_options['fields']['field_avantage_type']['table'] = 'field_data_field_avantage_type';
   $handler->display->display_options['fields']['field_avantage_type']['field'] = 'field_avantage_type';
   $handler->display->display_options['fields']['field_avantage_type']['label'] = 'Type';
   $handler->display->display_options['fields']['field_avantage_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Nœud: Valeur */
+  /* Field: Content: Valeur */
   $handler->display->display_options['fields']['field_value']['id'] = 'field_value';
   $handler->display->display_options['fields']['field_value']['table'] = 'field_data_field_value';
   $handler->display->display_options['fields']['field_value']['field'] = 'field_value';
@@ -183,7 +183,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['fields']['sid']['field'] = 'sid';
   $handler->display->display_options['fields']['sid']['label'] = 'Etat actuel';
-  /* Field: Nœud: Opus */
+  /* Field: Content: Opus */
   $handler->display->display_options['fields']['field_opus']['id'] = 'field_opus';
   $handler->display->display_options['fields']['field_opus']['table'] = 'field_data_field_opus';
   $handler->display->display_options['fields']['field_opus']['field'] = 'field_opus';
@@ -238,7 +238,7 @@ function avantages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Type d&#039;avantage (field_avantage_type) */
+  /* Filter criterion: Content: Type d&#039;avantage (field_avantage_type) */
   $handler->display->display_options['filters']['field_avantage_type_tid']['id'] = 'field_avantage_type_tid';
   $handler->display->display_options['filters']['field_avantage_type_tid']['table'] = 'field_data_field_avantage_type';
   $handler->display->display_options['filters']['field_avantage_type_tid']['field'] = 'field_avantage_type_tid';
@@ -263,7 +263,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['filters']['field_avantage_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_avantage_type_tid']['vocabulary'] = 'avantage_type';
   $handler->display->display_options['filters']['field_avantage_type_tid']['hierarchy'] = 1;
-  /* Filter criterion: Nœud: Valeur (field_value) */
+  /* Filter criterion: Content: Valeur (field_value) */
   $handler->display->display_options['filters']['field_value_value']['id'] = 'field_value_value';
   $handler->display->display_options['filters']['field_value_value']['table'] = 'field_data_field_value';
   $handler->display->display_options['filters']['field_value_value']['field'] = 'field_value_value';
@@ -328,11 +328,10 @@ function avantages_views_default_views() {
     199742668 => 0,
     168020977 => 0,
   );
-  /* Filter criterion: Nœud: Opus (field_opus) */
+  /* Filter criterion: Content: Opus (field_opus) */
   $handler->display->display_options['filters']['field_opus_value']['id'] = 'field_opus_value';
   $handler->display->display_options['filters']['field_opus_value']['table'] = 'field_data_field_opus';
   $handler->display->display_options['filters']['field_opus_value']['field'] = 'field_opus_value';
-  $handler->display->display_options['filters']['field_opus_value']['value'] = array();
   $handler->display->display_options['filters']['field_opus_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_opus_value']['expose']['operator_id'] = 'field_opus_value_op';
   $handler->display->display_options['filters']['field_opus_value']['expose']['label'] = 'Opus';
@@ -502,7 +501,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'Aucun avantage validé pour le moment.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
-  /* Relationship: Nœud: Avantages (field_avantages) */
+  /* Relationship: Content: Avantages (field_avantages) */
   $handler->display->display_options['relationships']['field_avantages_value']['id'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantages_value']['table'] = 'field_data_field_avantages';
   $handler->display->display_options['relationships']['field_avantages_value']['field'] = 'field_avantages_value';
@@ -525,14 +524,14 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['relationship'] = 'field_avantage_target_id';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Pièce jointe */
+  /* Field: Content: Pièce jointe */
   $handler->display->display_options['fields']['field_attachment']['id'] = 'field_attachment';
   $handler->display->display_options['fields']['field_attachment']['table'] = 'field_data_field_attachment';
   $handler->display->display_options['fields']['field_attachment']['field'] = 'field_attachment';
@@ -543,7 +542,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['field_attachment']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_attachment']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_attachment']['multi_type'] = 'ul';
-  /* Sort criterion: Nœud: Type d&#039;avantage (field_avantage_type) */
+  /* Sort criterion: Content: Type d&#039;avantage (field_avantage_type) */
   $handler->display->display_options['sorts']['field_avantage_type_tid']['id'] = 'field_avantage_type_tid';
   $handler->display->display_options['sorts']['field_avantage_type_tid']['table'] = 'field_data_field_avantage_type';
   $handler->display->display_options['sorts']['field_avantage_type_tid']['field'] = 'field_avantage_type_tid';
@@ -597,6 +596,16 @@ function avantages_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
+  /* Filter criterion: Content: Current opus (field_opus) */
+  $handler->display->display_options['filters']['current_opus']['id'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['current_opus']['field'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['filters']['current_opus']['group'] = 1;
+  $handler->display->display_options['filters']['current_opus']['expose']['operator_id'] = 'current_opus_op';
+  $handler->display->display_options['filters']['current_opus']['expose']['label'] = 'Current opus (field_opus)';
+  $handler->display->display_options['filters']['current_opus']['expose']['operator'] = 'current_opus_op';
+  $handler->display->display_options['filters']['current_opus']['expose']['identifier'] = 'current_opus';
   /* Filter criterion: Field collection item: Validé (field_avantage_valide) */
   $handler->display->display_options['filters']['field_avantage_valide_value']['id'] = 'field_avantage_valide_value';
   $handler->display->display_options['filters']['field_avantage_valide_value']['table'] = 'field_data_field_avantage_valide';
@@ -635,7 +644,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = 'Vous ne disposez d\'aucune botte.';
   $handler->display->display_options['empty']['area']['format'] = 'full_html';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Nœud: Avantages (field_avantages) */
+  /* Relationship: Content: Avantages (field_avantages) */
   $handler->display->display_options['relationships']['field_avantages_value']['id'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantages_value']['table'] = 'field_data_field_avantages';
   $handler->display->display_options['relationships']['field_avantages_value']['field'] = 'field_avantages_value';
@@ -647,7 +656,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['relationships']['field_avantage_target_id']['field'] = 'field_avantage_target_id';
   $handler->display->display_options['relationships']['field_avantage_target_id']['relationship'] = 'field_avantages_value';
   $handler->display->display_options['relationships']['field_avantage_target_id']['label'] = 'Avantage';
-  /* Relationship: Nœud: Type d&#039;avantage (field_avantage_type) */
+  /* Relationship: Content: Type d&#039;avantage (field_avantage_type) */
   $handler->display->display_options['relationships']['field_avantage_type_tid']['id'] = 'field_avantage_type_tid';
   $handler->display->display_options['relationships']['field_avantage_type_tid']['table'] = 'field_data_field_avantage_type';
   $handler->display->display_options['relationships']['field_avantage_type_tid']['field'] = 'field_avantage_type_tid';
@@ -664,14 +673,14 @@ function avantages_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Description */
+  /* Field: Content: Description */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['relationship'] = 'field_avantage_target_id';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Field: Nœud: Pièce jointe */
+  /* Field: Content: Pièce jointe */
   $handler->display->display_options['fields']['field_attachment']['id'] = 'field_attachment';
   $handler->display->display_options['fields']['field_attachment']['table'] = 'field_data_field_attachment';
   $handler->display->display_options['fields']['field_attachment']['field'] = 'field_attachment';
@@ -696,7 +705,7 @@ function avantages_views_default_views() {
   $handler->display->display_options['sorts']['title']['field'] = 'title';
   $handler->display->display_options['sorts']['title']['relationship'] = 'field_avantage_target_id';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Nœud: Incarné par (field_incarnate) */
+  /* Contextual filter: Content: Incarné par (field_incarnate) */
   $handler->display->display_options['arguments']['field_incarnate_target_id']['id'] = 'field_incarnate_target_id';
   $handler->display->display_options['arguments']['field_incarnate_target_id']['table'] = 'field_data_field_incarnate';
   $handler->display->display_options['arguments']['field_incarnate_target_id']['field'] = 'field_incarnate_target_id';
@@ -754,12 +763,19 @@ function avantages_views_default_views() {
     13 => '13',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
+  /* Filter criterion: Content: Current opus (field_opus) */
+  $handler->display->display_options['filters']['current_opus']['id'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['current_opus']['field'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['filters']['current_opus']['group'] = 1;
   /* Filter criterion: Taxonomy term: Name */
   $handler->display->display_options['filters']['name']['id'] = 'name';
   $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['filters']['name']['field'] = 'name';
   $handler->display->display_options['filters']['name']['relationship'] = 'field_avantage_type_tid';
   $handler->display->display_options['filters']['name']['value'] = 'Botte';
+  $handler->display->display_options['filters']['name']['group'] = 1;
   $handler->display->display_options['path'] = 'mes-bottes';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Mes bottes';
@@ -789,6 +805,12 @@ function avantages_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['field_avantage_valide_value']['group'] = 1;
+  /* Filter criterion: Content: Current opus (field_opus) */
+  $handler->display->display_options['filters']['current_opus']['id'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['filters']['current_opus']['field'] = 'current_opus';
+  $handler->display->display_options['filters']['current_opus']['relationship'] = 'field_avantage_target_id';
+  $handler->display->display_options['filters']['current_opus']['group'] = 1;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
@@ -814,6 +836,7 @@ function avantages_views_default_views() {
     t('Pièces jointes'),
     t('Tout'),
     t('Avantages de %1'),
+    t('Current opus (field_opus)'),
     t('Avantages Personnage (Bloc)'),
     t('more'),
     t('Mes bottes (Page)'),
