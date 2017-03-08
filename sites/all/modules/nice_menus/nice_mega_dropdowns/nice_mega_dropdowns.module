@@ -1,0 +1,135 @@
+<?php
+
+/**
+ * @file
+ * Module which allows nodes to be used as dropdown menus.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function nice_mega_dropdowns_menu() {
+  $items['nice_mega_dropdowns/autocomplete'] = array(
+    'title' => 'Autocomplete results for Nice Mega Dropdowns',
+    'page callback' => 'nice_mega_dropdowns_autocomplete',
+    'page arguments' => array(2),
+    'access arguments' => array('administer site configuration'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nice_mega_dropdowns_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
+  $dropdowns = variable_get('nice_mega_dropdowns', 0);
+  $mlid = $form['mlid']['#value'];
+  $dropdown_title = '';
+  if (array_key_exists($mlid, $dropdowns)) {
+    $query = new EntityFieldQuery;
+    $result = $query
+      ->entityCondition('entity_type', 'node')
+      ->entityCondition('entity_id', $dropdowns[$mlid])
+      ->execute();
+    if ($dropdown_node = array_pop($result['node'])) {
+      $dropdown_node = node_load($dropdown_node->nid);
+      $dropdown_title = $dropdown_node->title;
+    }
+  }
+  $form['menu']['dropdown'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Dropdown',
+    '#default_value' => $dropdown_title,
+    '#autocomplete_path' => 'nice_mega_dropdowns/autocomplete',
+    '#required' => FALSE,
+    '#description' => 'Select a mega dropdown node, which will be displayed instead of child menu items.',
+    '#tree' => TRUE,
+  '#access' => TRUE
+  );
+  $form['#validate'][] = 'nice_mega_dropdowns_menu_edit_item_validate';
+  $form['#submit'][] = 'nice_mega_dropdowns_menu_edit_item_submit';
+}
+
+function nice_mega_dropdowns_menu_edit_item_validate(&$form, &$form_state) {
+  if (empty($form_state['values']['dropdown'])) {
+    return;
+  }
+  if ($node = node_load($form_state['values']['dropdown'])) {
+    form_set_error('dropdown', 'Invalid node.');
+  }
+}
+
+function nice_mega_dropdowns_menu_edit_item_submit(&$form, &$form_state) {
+  $dropdowns = variable_get('nice_mega_dropdowns', 0);
+  if (!$dropdowns) {
+    $dropdowns = array();
+  }
+  if($form_state['values']['dropdown']) {
+    $query = new EntityFieldQuery;
+    $result = $query
+      ->entityCondition('entity_type', 'node')
+      ->propertyCondition('title', $form_state['values']['dropdown'])
+      ->execute();
+    $dropdowns[$form_state['values']['mlid']] = array_pop($result['node'])->nid;
+    variable_set('nice_mega_dropdowns', $dropdowns);
+  }
+  else {
+    unset($dropdowns[$form_state['values']['mlid']]);
+    variable_set('nice_mega_dropdowns', $dropdowns);
+  }
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function nice_mega_dropdowns_node_delete($node) {
+  $dropdowns = variable_get('nice_mega_dropdowns', array());
+  foreach ($dropdowns as $mlid => $nid) {
+    if ($nid == $node->nid) {
+      unset($dropdowns[$mlid]);
+    }
+  }
+  variable_set('nice_mega_dropdowns', $dropdowns);
+}
+
+function nice_mega_dropdowns_autocomplete($string) {
+  $items = array();
+  $string = $string . '%%';
+  $result = db_query("SELECT nid, title FROM {node} WHERE status = 1 AND title LIKE :string", array(':string' => $string));
+  foreach ($result as $record) {
+    $items[$record->title] = $record->title;
+  }
+  drupal_json_output($items);
+}
+
+/**
+ * This function is called by nice_menus module to get the dropdown content for a given menu item.
+ */
+function nice_mega_dropdowns_get_dropdown($menu_item) {
+  $dropdowns = variable_get('nice_mega_dropdowns', array());
+  $mlid = $menu_item['link']['mlid'];
+  // Check if this menu item has a mega dropdown
+  if (isset($dropdowns[$mlid])) {
+    $cache = cache_get('nice_mega_dropdowns');
+    // If this dropdown is cached, return it immediately
+    if (isset($cache->data[$mlid])) {
+      return $cache->data[$mlid];
+    }
+    // This dropdown is not cached
+    else {
+      $nid = $dropdowns[$mlid];
+      $node = node_load($nid);
+      if ($node->status == 1) {
+        $body = field_view_field('node', $node, 'body');
+        // Cache the dropdown before returning it
+        $cache->data[$mlid] = $body[0]['#markup'];
+        cache_set('nice_mega_dropdowns', $cache->data);
+        return $body[0]['#markup'];
+      }
+    }
+  }
+  else {
+    return FALSE;
+  }
+}

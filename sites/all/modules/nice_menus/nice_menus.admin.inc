@@ -9,17 +9,22 @@
  * Settings form as implemented by hook_menu.
  */
 function nice_menus_admin_settings($form, &$form_state) {
+  // Number of Nice Menus blocks.
   $form['nice_menus_number'] = array(
     '#type' => 'textfield',
+    '#title' => t('Number of Nice Menus blocks'),
     '#description' => t('The total number of independent Nice menus blocks you want. Enter a number between 0 and 99. If you set this to 0, you will have no blocks created but you can still use the Nice menus theme functions directly in your theme.'),
-    '#default_value' => variable_get('nice_menus_number', '2'),
+    '#default_value' => variable_get('nice_menus_number', 2),
     '#size' => 2,
+    '#title_display' => 'invisible',
+    '#maxlength' => 2,
   );
+  // Use JavaScript configuration setting.
   $form['nice_menus_js'] = array(
     '#type' => 'checkbox',
     '#title' => t('Use JavaScript'),
     '#description' => t('This will add Superfish jQuery to Nice menus. This is required for Nice menus to work properly in Internet Explorer.'),
-    '#default_value' => variable_get('nice_menus_js', 1),
+    '#default_value' => variable_get('nice_menus_js', TRUE),
   );
   $form['nice_menus_sf_options'] = array(
     '#type' => 'fieldset',
@@ -28,6 +33,7 @@ function nice_menus_admin_settings($form, &$form_state) {
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
+  // Mouse delay textfield for the time before the menus is closed.
   $form['nice_menus_sf_options']['nice_menus_sf_delay'] = array(
     '#type' => 'textfield',
     '#title' => t('Mouse delay'),
@@ -35,17 +41,17 @@ function nice_menus_admin_settings($form, &$form_state) {
     '#default_value' => variable_get('nice_menus_sf_delay', 800),
     '#size' => 5,
   );
+  // Display speed of the animation for the menu to open/close.
   $form['nice_menus_sf_options']['nice_menus_sf_speed'] = array(
     '#type' => 'select',
     '#title' => t('Animation speed'),
-    '#multiple' => FALSE,
     '#description' => t('Speed of the menu open/close animation.'),
     '#options' => array(
       'slow' => t('slow'),
       'normal' => t('normal'),
       'fast' => t('fast'),
     ),
-    '#default_value' => variable_get('nice_menus_sf_speed', 1),
+    '#default_value' => variable_get('nice_menus_sf_speed', 'normal'),
   );
 
   // Custom validation to make sure the user is entering numbers.

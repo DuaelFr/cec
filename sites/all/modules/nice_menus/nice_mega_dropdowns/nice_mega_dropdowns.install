@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ *  Update functions for Nice Mega Dropdowns.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function nice_mega_dropdowns_install() {
+  variable_set('nice_mega_dropdowns', array());
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function nice_mega_dropdowns_uninstall() {
+  variable_del('nice_mega_dropdowns');
+}
+

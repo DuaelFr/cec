@@ -26,6 +26,22 @@ function nice_menus_help($path, $arg) {
 }
 
 /**
+ * Implements hook_requirements().
+ */
+function nice_menus_requirements($phase) {
+  $requirements = array();
+  $jquery = drupal_get_library('system', 'jquery');
+  if (version_compare($jquery['version'], '1.8', '<')) {
+    $requirements['nice_menus'] = array(
+      'title' => t('Nice menus'),
+      'value' => 'jQuery >=1.8',
+      'severity' => REQUIREMENT_ERROR,
+    );
+  }
+  return $requirements;
+}
+
+/**
  * Implements hook_form_alter().
  */
 function nice_menus_form_alter(&$form, $form_state, $form_id) {
@@ -82,11 +98,11 @@ function nice_menus_menu() {
  */
 function nice_menus_library() {
   $module_path = drupal_get_path('module', 'nice_menus');
-  // Jquery bgiframe.
+  // Jquery bgiframe, jquery >=1.2.6.
   $libraries['jquery.bgiframe'] = array(
     'title' => 'bgiframe',
-    'website' => 'http://docs.jquery.com/Plugins/bgiframe',
-    'version' => '2.1',
+    'website' => 'http://plugins.jquery.com/bgiframe',
+    'version' => '3.0.0',
     'js' => array(
       $module_path . '/js/jquery.bgiframe.js' => array(),
     ),
@@ -95,18 +111,18 @@ function nice_menus_library() {
   // Jquery hoverIntent.
   $libraries['jquery.hoverIntent'] = array(
     'title' => 'hoverIntent',
-    'website' => 'http://cherne.net/brian/resources/jquery.hoverIntent.html',
-    'version' => '0.5',
+    'website' => 'https://github.com/briancherne/jquery-hoverIntent',
+    'version' => 'r7',
     'js' => array(
       $module_path . '/js/jquery.hoverIntent.js' => array(),
     ),
   );
 
-  // Superfish.
+  // Superfish, jquery jquery >=1.8.
   $libraries['superfish'] = array(
     'title' => 'Superfish',
-    'website' => 'http://users.tpg.com.au/j_birch/plugins/superfish/',
-    'version' => '1.4.8',
+    'website' => 'http://plugins.jquery.com/superfish/',
+    'version' => '1.7.4',
     'js' => array(
       $module_path . '/js/superfish.js' => array(),
     ),
@@ -140,95 +156,7 @@ function nice_menus_library() {
     ),
   );
 
-  $jquery = drupal_get_library('system', 'jquery');
-  if (version_compare($jquery['version'], '1.7', '>=')) {
-    $plugins = array(
-      'jquery.hoverIntent' => array(
-        'js' => 'jquery.hoverIntent.js',
-        'version_pattern' => '@hoverIntent\s+(r[0-9]+)@i'
-      ),
-      'jquery.bgiframe' => array(
-        'js' => 'jquery.bgiframe.js',
-        'version_pattern' => '@version\s+([0-9a-zA-Z\.-]+)@i'
-      ),
-      'superfish' => array(
-        'js' => 'superfish.js',
-        'version_pattern' => '@Superfish\s(v[0-9\.-]+)@i'
-      )
-    );
-
-    // config libraries directory.
-    $searchdir = array(
-      'libraries/',
-      conf_path() . '/libraries/',
-      'profiles/' . drupal_get_profile() . '/libraries/',
-      'sites/all/libraries/'
-    );
-
-    foreach ($plugins as $plugin => $file_info) {
-
-      $libraries_file = NULL;
-
-      // check libraries module.
-      if (module_exists('libraries') && libraries_get_path($plugin) != '') {
-        $library_directory = libraries_get_path($plugin);
-        if (is_file(DRUPAL_ROOT . '/' . $library_directory . $plugin . '/' . $file_info['js'])) {
-          $libraries_file = $library_directory . $plugin . '/' . $file_info['js'];
-        }
-      }
-
-      // scan dir.
-      if ($libraries_file === NULL) {
-        foreach ($searchdir as $libraries_dir) {
-          if (is_file(DRUPAL_ROOT . '/' . $libraries_dir . $plugin . '/' . $file_info['js'])) {
-            $libraries_file = $libraries_dir . $plugin . '/' . $file_info['js'];
-            break;
-          }
-        }
-      }
-
-      // add to libraries.
-      if ($libraries_file !== NULL) {
-        $libraries[$plugin]['version'] = nice_menus_get_version($libraries_file, array(
-          'pattern' => $file_info['version_pattern']
-        ));
-        $libraries[$plugin]['js'] = array($libraries_file => array());
-      }
-    }
-  }
-
   return $libraries;
-}
-
-/**
- * Gets the version information from an arbitrary library.
- *
- * @return
- *   A string containing the version of the library.
- */
-function nice_menus_get_version($file, $options = array()) {
-  // Provide defaults.
-  $options += array(
-    'file' => '',
-    'pattern' => '',
-    'lines' => 10,
-    'cols' => 200,
-  );
-
-  $file = DRUPAL_ROOT . '/' . $file;
-
-  if (!is_file($file)) {
-    return;
-  }
-  $file = fopen($file, 'r');
-  while ($options['lines'] && $line = fgets($file, $options['cols'])) {
-    if (preg_match($options['pattern'], $line, $version)) {
-      fclose($file);
-      return $version[1];
-    }
-    $options['lines']--;
-  }
-  fclose($file);
 }
 
 /**
@@ -303,7 +231,11 @@ function nice_menus_block_save($delta, $edit) {
  */
 function nice_menus_block_view($delta = 1) {
   // Build the Nice menu for the block.
-  list($menu_name, $mlid) = explode(':', variable_get('nice_menus_menu_' . $delta, 'navigation:0'));
+  $parts = explode(':', variable_get('nice_menus_menu_' . $delta, 'navigation:0'));
+  if (!isset($parts[1])) {
+    $parts[1] = '0';
+  }
+  list($menu_name, $mlid) = $parts;
   $direction = variable_get('nice_menus_type_' . $delta, 'right');
   $depth = variable_get('nice_menus_depth_' . $delta, '-1');
   $respect_expanded = variable_get('nice_menus_respect_expand_' . $delta, 0);
@@ -532,12 +464,13 @@ function theme_nice_menus_build($variables) {
 
   // The number of children levels to display. Use -1 to display all children
   // and use 0 to display no children.
-  $depth = $variables['depth'];
+  $depth = isset($variables['depth']) ? $variables['depth'] : '-1';
 
   // An array of parent menu items.
-  $trail = $variables['trail'];
+  $trail = isset($variables['trail']) ? $variables['trail'] : array();
+
   // "Show as expanded" option.
-  $respect_expanded = $variables['respect_expanded'];
+  $respect_expanded = isset($variables['respect_expanded']) ? $variables['respect_expanded'] : 0;
 
   $output = '';
   // Prepare to count the links so we can mark first, last, odd and even.
@@ -566,10 +499,31 @@ function theme_nice_menus_build($variables) {
       if ($trail && in_array($mlid, $trail)) {
         $class .= ' active-trail';
       }
+      // If this menu item has a mega dropdown, use it, and ignore any child items.
+      if (module_exists('nice_mega_dropdowns') && $dropdown_node = nice_mega_dropdowns_get_dropdown($menu_item)) {
+        $parent_class = 'menuparent';
+        $dropdown = array(
+          '#type' => 'markup',
+          '#markup' => '<ul><li class="mega-dropdown">' . $dropdown_node . '</li></ul>' . "\n",
+        );
+        $element = array(
+          '#below' => $dropdown,
+          '#title' => $menu_item['link']['link_title'],
+          '#href' =>  $menu_item['link']['href'],
+          '#localized_options' => $menu_item['link']['localized_options'],
+          '#attributes' => array(
+            'class' => array('menu-' . $mlid, $parent_class, $class, $first_class, $oddeven_class, $last_class),
+          ),
+          '#original_link' => $menu_item['link'],
+        );
+        $variables['element'] = $element;
+        $output .= theme('menu_link', $variables);
+        unset($menu_item['below']);
+      }
       // If it has children build a nice little tree under it.
       // Build a nice little tree under it if it has children, and has been set
       // to expand (when that option is being respected).
-      if ((!empty($menu_item['link']['has_children'])) &&
+      elseif ((!empty($menu_item['link']['has_children'])) &&
           (!empty($menu_item['below'])) && $depth != 0 &&
           ($respect_expanded == 0 || $menu_item['link']['expanded'])) {
         // Keep passing children into the function 'til we get them all.
@@ -678,18 +632,18 @@ function theme_nice_menus($variables) {
   // The menu ID from which to build the displayed menu.
   $mlid = $variables['mlid'];
   // Optional. The direction the menu expands. Default is 'right'.
-  $direction = $variables['direction'];
+  $direction = isset($variables['direction']) ? $variables['direction'] : 'right';
   // The number of children levels to display. Use -1 to display all children
   // and use 0 to display no children.
-  $depth = $variables['depth'];
+  $depth = isset($variables['depth']) ? $variables['depth'] : -1;
   /*
    * Optional. A custom menu array to use for theming --
    * it should have the same structure as that returned
    * by menu_tree_all_data(). Default is the standard menu tree.
    */
   $menu = $variables['menu'];
-  // "Show as expanded" option.
-  $respect_expanded = $variables['respect_expanded'];
+  // "Show as expanded" option, default value is 0.
+  $respect_expanded = isset($variables['respect_expanded']) ? $variables['respect_expanded'] : 0;
   if ($menu_tree = theme('nice_menus_tree', array(
     'menu_name' => $menu_name,
     'mlid' => $mlid,
@@ -712,11 +666,11 @@ function theme_nice_menus($variables) {
  */
 function theme_nice_menus_main_menu($variables) {
   // Optional. The direction the menu expands. Default is 'down'.
-  $direction = $variables['direction'];
+  $direction = isset($variables['direction']) ? $variables['direction'] : 'down';
 
   // The number of children levels to display. Use -1 to display all children.
   // and use 0 to display no children.
-  $depth = $variables['depth'];
+  $depth = isset($variables['depth']) ? $variables['depth'] : -1;
   $menu_name = variable_get('menu_main_links_source', 'main-menu');
   $output = theme('nice_menus', array(
     'id' => 0,
@@ -736,11 +690,11 @@ function theme_nice_menus_main_menu($variables) {
  */
 function theme_nice_menus_secondary_menu($variables) {
   // Optional. The direction the menu expands. Default is 'down'.
-  $direction = $variables['direction'];
+  $direction = isset($variables['direction']) ? $variables['direction'] : 'down';
 
   // The number of children levels to display. Use -1 to display all children
   // and use 0 to display no children.
-  $depth = $variables['depth'];
+  $depth = isset($variables['depth']) ? $variables['depth'] : -1;
   $menu_name = variable_get('menu_secondary_links_source', 'user-menu');
   $output = theme('nice_menus', array(
     'id' => 0,

@@ -190,6 +190,17 @@ ul.nice-menu li {
   top: 1.7em;
 }
 
+/******************************
+ Bartik-specific CSS
+******************************/
+/**
+ * Global CSS for ALL menu types
+ */
+.block ul.nice-menu,
+.block ul.nice-menu ul {
+  padding: 0;
+}
+
 /**
  * HORIZONTAL (down) menus
  */
