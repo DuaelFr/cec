@@ -2,10 +2,24 @@
 /*
  * Implements hook_preprocess_html().
  */
-function rubik_preprocess_html() {
-  if (module_exists('views')) {
-    drupal_add_css(drupal_get_path('module', 'views') . '/css/views-admin.seven.css', 'theme');
+function rubik_preprocess_html(&$vars) {
+  if (theme_get_setting('rubik_inline_field_descriptions')) {
+    $vars['classes_array'][] = 'rubik-inline-field-descriptions';
   }
+
+   // add in a specific stylesheet for overrides in IE7. (BLAH)
+  drupal_add_css(drupal_get_path('theme', 'rubik') . '/css/ie.css', array(
+    'browsers' => array(
+      '!IE' => FALSE,
+    ),
+    'weight' => 500,
+    'group' => 5000,
+    'every_page' => TRUE,
+  ));
+
+  // Disable sticky in the sidebar. Set option in JS
+  $disable_sticky = theme_get_setting('rubik_disable_sticky_sidebar');
+  drupal_add_js(array('rubik' => array('disable_sticky' => $disable_sticky)), array('type' => 'setting'));
 }
 
 /**
@@ -14,14 +28,10 @@ function rubik_preprocess_html() {
  */
 function rubik_css_alter(&$css) {
   if (isset($css['modules/overlay/overlay-child.css'])) {
-    $css['modules/overlay/overlay-child.css']['data'] = drupal_get_path('theme', 'rubik') . '/overlay-child.css';
+    $css['modules/overlay/overlay-child.css']['data'] = drupal_get_path('theme', 'rubik') . '/css/overlay-child.css';
   }
   if (isset($css['modules/shortcut/shortcut.css'])) {
-    $css['modules/shortcut/shortcut.css']['data'] = drupal_get_path('theme', 'rubik') . '/shortcut.css';
-  }
-  // This can be removed once http://drupal.org/node/1221560 is released
-  if (isset($css['sites/all/modules/views/css/views-admin.rubik.css'])) {
-    $css['sites/all/modules/views/css/views-admin.rubik.css']['data'] = drupal_get_path('theme', 'rubik') . '/views-admin.rubik.css';
+    $css['modules/shortcut/shortcut.css']['data'] = drupal_get_path('theme', 'rubik') . '/css/shortcut.css';
   }
 }
 
@@ -53,55 +63,56 @@ function rubik_theme() {
     'process functions' => array('template_process'),
   );
 
-  // Form layout: default (2 column).
-  $items['block_add_block_form'] =
-  $items['block_admin_configure'] =
-  $items['comment_form'] =
-  $items['contact_admin_edit'] =
-  $items['contact_mail_page'] =
-  $items['contact_mail_user'] =
-  $items['filter_admin_format_form'] =
-  $items['forum_form'] =
-  $items['locale_languages_edit_form'] =
-  $items['menu_edit_menu'] =
-  $items['menu_edit_item'] =
-  $items['node_type_form'] =
-  $items['path_admin_form'] =
-  $items['system_settings_form'] =
-  $items['system_themes_form'] =
-  $items['system_modules'] =
-  $items['system_actions_configure'] =
-  $items['taxonomy_form_term'] =
-  $items['taxonomy_form_vocabulary'] =
-  $items['user_profile_form'] =
-  $items['user_admin_access_add_form'] = array(
-    'render element' => 'form',
-    'path' => drupal_get_path('theme', 'rubik') .'/templates',
-    'template' => 'form-default',
-    'preprocess functions' => array(
-      'rubik_preprocess_form_buttons',
-    ),
-  );
+  if (!theme_get_setting('rubik_disable_sidebar_in_form')) {
+    // Form layout: default (2 column).
+    $items['block_add_block_form'] =
+    $items['block_admin_configure'] =
+    $items['comment_form'] =
+    $items['contact_admin_edit'] =
+    $items['contact_mail_page'] =
+    $items['contact_mail_user'] =
+    $items['filter_admin_format_form'] =
+    $items['forum_form'] =
+    $items['locale_languages_edit_form'] =
+    $items['menu_edit_menu'] =
+    $items['menu_edit_item'] =
+    $items['node_type_form'] =
+    $items['path_admin_form'] =
+    $items['system_settings_form'] =
+    $items['system_themes_form'] =
+    $items['system_modules'] =
+    $items['system_actions_configure'] =
+    $items['taxonomy_form_term'] =
+    $items['taxonomy_form_vocabulary'] =
+    $items['user_profile_form'] =
+    $items['user_admin_access_add_form'] = array(
+      'render element' => 'form',
+      'path' => drupal_get_path('theme', 'rubik') .'/templates',
+      'template' => 'form-default',
+      'preprocess functions' => array(
+        'rubik_preprocess_form_buttons',
+      ),
+    );
 
-  // These forms require additional massaging.
-  $items['confirm_form'] = array(
-    'render element' => 'form',
-    'path' => drupal_get_path('theme', 'rubik') .'/templates',
-    'template' => 'form-simple',
-    'preprocess functions' => array(
-      'rubik_preprocess_form_confirm'
-    ),
-  );
-  $items['node_form'] = array(
-    'render element' => 'form',
-    'path' => drupal_get_path('theme', 'rubik') .'/templates',
-    'template' => 'form-default',
-    'preprocess functions' => array(
-      'rubik_preprocess_form_buttons',
-      'rubik_preprocess_form_node',
-    ),
-  );
-
+    // These forms require additional massaging.
+    $items['confirm_form'] = array(
+      'render element' => 'form',
+      'path' => drupal_get_path('theme', 'rubik') .'/templates',
+      'template' => 'form-simple',
+      'preprocess functions' => array(
+        'rubik_preprocess_form_confirm'
+      ),
+    );
+    $items['node_form'] = array(
+      'render element' => 'form',
+      'path' => drupal_get_path('theme', 'rubik') .'/templates',
+      'template' => 'form-default',
+      'preprocess functions' => array(
+        'rubik_preprocess_form_buttons',
+        'rubik_preprocess_form_node',
+      ),
+    );
+  }
   return $items;
 }
 
@@ -111,7 +122,7 @@ function rubik_theme() {
 function rubik_preprocess_page(&$vars) {
   // Show a warning if base theme is not present.
   if (!function_exists('tao_theme') && user_access('administer site configuration')) {
-    drupal_set_message(t('The Rubik theme requires the !tao base theme in order to work properly.', array('!tao' => l('Tao', 'http://code.developmentseed.org/tao'))), 'warning');
+    drupal_set_message(t('The Rubik theme requires the !tao base theme in order to work properly.', array('!tao' => l('Tao', 'http://drupal.org/project/tao'))), 'warning');
   }
 
   // Set a page icon class.
@@ -171,13 +182,23 @@ function rubik_preprocess_form_confirm(&$vars) {
  */
 function rubik_preprocess_form_node(&$vars) {
   $vars['sidebar'] = isset($vars['sidebar']) ? $vars['sidebar'] : array();
+  $map = array();
+  // Support field_group if present.
+  if (module_exists('field_group')) {
+    $map += array(
+      'group_sidebar' => 'sidebar',
+      'group_footer' => 'footer',
+    );
+  }
   // Support nodeformcols if present.
   if (module_exists('nodeformcols')) {
-    $map = array(
+    $map += array(
       'nodeformcols_region_right' => 'sidebar',
       'nodeformcols_region_footer' => 'footer',
       'nodeformcols_region_main' => NULL,
     );
+  }
+    if (isset($map)) {
     foreach ($map as $region => $target) {
       if (isset($vars['form'][$region])) {
         if (isset($vars['form'][$region]['#prefix'], $vars['form'][$region]['#suffix'])) {
@@ -210,9 +231,12 @@ function rubik_preprocess_button(&$vars) {
     $classes = array(
       t('Save') => 'yes',
       t('Submit') => 'yes',
-      t('Add') => 'yes',
-      t('Delete') => 'no',
+      t('Yes') => 'yes',
+      t('Add') => 'add',
+      t('Delete') => 'remove',
+      t('Remove') => 'remove',
       t('Cancel') => 'no',
+      t('No') => 'no',
     );
     foreach ($classes as $search => $class) {
       if (strpos($vars['element']['#value'], $search) !== FALSE) {
@@ -265,9 +289,10 @@ function rubik_preprocess_help_page(&$vars) {
 
   // Truly hackish way to navigate help pages.
   $module_info = system_rebuild_module_data();
+  $empty_arg = drupal_help_arg();
   $modules = array();
   foreach (module_implements('help', TRUE) as $module) {
-    if (module_invoke($module, 'help', "admin/help#$module", NULL)) {
+    if (module_invoke($module, 'help', "admin/help#$module", $empty_arg)) {
       $modules[$module] = $module_info[$module]->info['name'];
     }
   }
@@ -285,7 +310,9 @@ function rubik_preprocess_help_page(&$vars) {
  */
 function rubik_preprocess_node(&$vars) {
   $vars['layout'] = TRUE;
-  $vars['submitted'] = _rubik_submitted($vars['node']);
+  if ($vars['display_submitted']) {
+    $vars['submitted'] = _rubik_submitted($vars['node']);
+  }
 }
 
 /**
@@ -326,7 +353,7 @@ function rubik_preprocess_admin_block(&$vars) {
   }
   $vars['block']['localized_options']['html'] = TRUE;
   if (isset($vars['block']['link_title'])) {
-    $vars['block']['title'] = l("<span class='icon'></span>" . filter_xss_admin($vars['block']['link_title']), $vars['block']['href'], $vars['block']['localized_options']);
+    $vars['block']['title'] = l("<span class='icon'></span>" . filter_xss_admin($vars['block']['title']), $vars['block']['href'], $vars['block']['localized_options']);
   }
 
   if (empty($vars['block']['content'])) {
@@ -345,7 +372,7 @@ function rubik_breadcrumb($vars) {
     $item = menu_get_item();
     $end = end($vars['breadcrumb']);
     if ($end && strip_tags($end) !== $item['title']) {
-      $vars['breadcrumb'][] = "<strong>". check_plain($item['title']) ."</strong>";
+      $vars['breadcrumb'][] = (isset($item['localized_options']['html']) && $item['localized_options']['html']) ? $item['title'] : check_plain($item['title']);
     }
   }
 
@@ -357,6 +384,13 @@ function rubik_breadcrumb($vars) {
 
   $depth = 0;
   foreach ($vars['breadcrumb'] as $link) {
+
+    // If the item isn't a link, surround it with a strong tag to format it like
+    // one.
+    if (!preg_match('/^<a/', $link) && !preg_match('/^<strong/', $link)) {
+      $link = '<strong>' . $link . '</strong>';
+    }
+
     $output .= "<span class='breadcrumb-link breadcrumb-depth-{$depth}'>{$link}</span>";
     $depth++;
   }
@@ -405,9 +439,9 @@ function rubik_admin_block_content($vars) {
 
   $output = '';
   if (!empty($content)) {
-  
+
     foreach ($content as $k => $item) {
-    
+
       //-- Safety check for invalid clients of the function
       if (empty($content[$k]['localized_options']['attributes']['class'])) {
         $content[$k]['localized_options']['attributes']['class'] = array();
@@ -415,7 +449,7 @@ function rubik_admin_block_content($vars) {
       if (!is_array($content[$k]['localized_options']['attributes']['class'])) {
         $content[$k]['localized_options']['attributes']['class'] = array($content[$k]['localized_options']['attributes']['class']);
       }
-    
+
       $content[$k]['title'] = "<span class='icon'></span>" . filter_xss_admin($item['title']);
       $content[$k]['localized_options']['html'] = TRUE;
       if (!empty($content[$k]['localized_options']['attributes']['class'])) {
@@ -463,8 +497,9 @@ function rubik_admin_drilldown_menu_item_link($link) {
  */
 function rubik_preprocess_textfield(&$vars) {
   if ($vars['element']['#size'] >= 30 && empty($vars['element']['#field_prefix']) && empty($vars['element']['#field_suffix'])) {
-    $vars['element']['#size'] = '';
-    if (!isset($vars['element']['#attributes']['class']) 
+    // Set text field to default size.
+    $vars['element']['#size'] = 20;
+    if (!isset($vars['element']['#attributes']['class'])
       || !is_array($vars['element']['#attributes']['class'])) {
        $vars['element']['#attributes']['class'] = array();
     }
@@ -518,6 +553,44 @@ function rubik_render_clone($elements) {
   $instance++;
   return drupal_render($elements);
 }
+
+function rubik_form_field_ui_field_edit_form_alter(&$form, &$form_state) { 
+  $rubik_sidebar_field_ui = theme_get_setting('rubik_sidebar_field_ui', 'rubik');
+  $rubik_disable_sidebar_in_form = theme_get_setting('rubik_disable_sidebar_in_form', 'rubik');
+    if ($rubik_sidebar_field_ui == 1 && $rubik_disable_sidebar_in_form == 0) {
+      $options = array(
+        'default' => t('Default'),
+        'rubik_sidebar_field' => t('Sidebar'),
+      );
+      $default = (isset($form_state['build_info']['args'][0]['rubik_edit_field_display'])) ? $form_state['build_info']['args'][0]['rubik_edit_field_display'] : 'default';
+      $form['instance']['rubik_edit_field_display'] = array(
+        '#type' => 'radios',
+        '#title' => t('Set field display location'),
+        '#description' => t('Choose where this field should be displayed.'),
+        '#default_value' => $default,
+        '#options' => $options,
+      );
+    }
+  }
+
+  function rubik_form_node_form_alter(&$form, $form_state) {
+    $rubik_sidebar_field_ui = theme_get_setting('rubik_sidebar_field_ui', 'rubik');
+    if ($rubik_sidebar_field_ui == TRUE) {
+      if (isset($form_state['field']) && is_array($form_state['field'])) {
+        foreach ($form_state['field'] AS $name => $field) {
+          if (!isset($field[LANGUAGE_NONE]['instance'])) {
+            continue;
+          }
+          if (isset($field[LANGUAGE_NONE]['instance']['rubik_edit_field_display'])) {
+            $display = $field[LANGUAGE_NONE]['instance']['rubik_edit_field_display'];
+            if ($display == 'rubik_sidebar_field') {
+              $form[$name]['#attributes']['class'][] = 'rubik_sidebar_field';
+            }
+          }
+        }
+      }
+    }
+  }
 
 /**
  * Helper function to submitted info theming functions.
