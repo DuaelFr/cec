@@ -184,40 +184,40 @@ h4 {
 
 .view table tr[class*="state-"] td.views-field-sid { font-weight: bold; }
 
-.view table .state-en-discussion td,
-.view table .state-en-discussion td.active,
-.view table .state-en-discussion.even td,
-.view table .state-en-discussion.even td.active{}
+.view table tr.state-en-discussion td,
+.view table tr.state-en-discussion td.active,
+.view table tr.state-en-discussion.even td,
+.view table tr.state-en-discussion.even td.active{}
 
-.view table .state-en-prepa-redaction td,
-.view table .state-en-prepa-redaction td.active,
-.view table .state-en-prepa-redaction.even td,
-.view table .state-en-prepa-redaction.even td.active { background: #e5d69d; }
+.view table tr.state-en-prepa-redaction td,
+.view table tr.state-en-prepa-redaction td.active,
+.view table tr.state-en-prepa-redaction.even td,
+.view table tr.state-en-prepa-redaction.even td.active { background: #e5d69d; }
 
-.view table .state-en-validation td,
-.view table .state-en-validation td.active,
-.view table .state-en-validation.even td,
-.view table .state-en-validation.even td.active { background: #ebca98; }
+.view table tr.state-en-validation td,
+.view table tr.state-en-validation td.active,
+.view table tr.state-en-validation.even td,
+.view table tr.state-en-validation.even td.active { background: #ebca98; }
 
-.view table .state-en-redaction td,
-.view table .state-en-redaction td.active,
-.view table .state-en-redaction.even td,
-.view table .state-en-redaction.even td.active { background: #f1bc95; }
+.view table tr.state-en-redaction td,
+.view table tr.state-en-redaction td.active,
+.view table tr.state-en-redaction.even td,
+.view table tr.state-en-redaction.even td.active { background: #f1bc95; }
 
-.view table .state-en-relecture td,
-.view table .state-en-relecture td.active,
-.view table .state-en-relecture.even td,
-.view table .state-en-relecture.even td.active { background: #f6af94; }
+.view table tr.state-en-relecture td,
+.view table tr.state-en-relecture td.active,
+.view table tr.state-en-relecture.even td,
+.view table tr.state-en-relecture.even td.active { background: #f6af94; }
 
-.view table .state-en-att-publication td,
-.view table .state-en-att-publication td.active,
-.view table .state-en-att-publication.even td,
-.view table .state-en-att-publication.even td.active { background: #fba094; }
+.view table tr.state-en-att-publication td,
+.view table tr.state-en-att-publication td.active,
+.view table tr.state-en-att-publication.even td,
+.view table tr.state-en-att-publication.even td.active { background: #fba094; }
 
-.view table .state-publie- td,
-.view table .state-publie- td.active,
-.view table .state-publie-.even td,
-.view table .state-publie-.even td.active { background: #ff9294; }
+.view table tr.state-publie- td,
+.view table tr.state-publie- td.active,
+.view table tr.state-publie-.even td,
+.view table tr.state-publie-.even td.active { background: #ff9294; }
 
 /**********************/
 /* Views per intrigue */
