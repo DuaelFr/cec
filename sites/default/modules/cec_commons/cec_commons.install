@@ -89,3 +89,10 @@ function cec_commons_update_7005(&$sandbox) {
 function cec_commons_update_7006(&$sandbox) {
   module_enable(array('cec_debriefs'));
 }
+
+/**
+ * Enable jquery_update.
+ */
+function cec_commons_update_7007(&$sandbox) {
+  module_enable(array('jquery_update'));
+}
