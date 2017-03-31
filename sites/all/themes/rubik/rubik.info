@@ -33,9 +33,9 @@ settings[rubik_show_branding] = 1
 ; is displayed at the top of the page, in #branding section.
 features[] = secondary_menu
 
-; Information added by Drupal.org packaging script on 2016-03-05
-version = "7.x-4.4"
+; Information added by Drupal.org packaging script on 2016-08-26
+version = "7.x-4.4+8-dev"
 core = "7.x"
 project = "rubik"
-datestamp = "1457209443"
+datestamp = "1472198340"
 

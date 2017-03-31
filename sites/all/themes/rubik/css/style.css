@@ -160,6 +160,8 @@ table th {
  ******************************************************************************/
 #page-title {
   background: #fff url(../images/bleeds.png) 0 -350px repeat-x;
+  z-index: 11;
+  position: relative;
 }
 #page-title .limiter {
   position: relative;
@@ -449,6 +451,12 @@ tables, in the same line as table heading. */
 #rules-form-wrapper .rules-elements-table .tabledrag-toggle-weight-wrapper {
   padding-top: 0;
   padding-right: 0;
+}
+/* Reset the width of autocomplete fields within Views, so that they don't break
+the layout (e.g. on /admin/structure/views/add when you have a tagging field
+added to any content type). */
+.views-ui-ajax-wrapper input.fluid.form-autocomplete {
+  width: auto;
 }
 /* Views exposed filters forms. */
 div.views-exposed-form {
