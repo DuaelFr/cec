@@ -302,31 +302,39 @@ function tao_pager($vars) {
   $pager_list = theme('pager_list', $vars);
 
   $links = array();
-  $links['pager-first'] = theme('pager_first', array(
-    'text' => (isset($tags[0]) ? $tags[0] : t('First')),
-    'element' => $element,
-    'parameters' => $parameters
-  ));
-  $links['pager-previous'] = theme('pager_previous', array(
-    'text' => (isset($tags[1]) ? $tags[1] : t('Prev')),
-    'element' => $element,
-    'interval' => 1,
-    'parameters' => $parameters
-  ));
-  $links['pager-next'] = theme('pager_next', array(
+  $links['pager-first'] = array(
+    'data' => theme('pager_first', array(
+      'text' => (isset($tags[0]) ? $tags[0] : t('First')),
+      'element' => $element,
+      'parameters' => $parameters,
+    )),
+  'class' => array('pager-first'));
+  $links['pager-previous'] = array(
+    'data' => theme('pager_previous', array(
+      'text' => (isset($tags[1]) ? $tags[1] : t('Prev')),
+      'element' => $element,
+      'interval' => 1,
+      'parameters' => $parameters
+    )),
+  'class' => array('pager-previous'));
+  $links['pager-next'] = array(
+    'data' => theme('pager_next', array(
     'text' => (isset($tags[3]) ? $tags[3] : t('Next')),
     'element' => $element,
     'interval' => 1,
     'parameters' => $parameters
-  ));
-  $links['pager-last'] = theme('pager_last', array(
+    )),
+  'class' => array('pager-next'));
+  $links['pager-last'] = array(
+    'data' => theme('pager_last', array(
     'text' => (isset($tags[4]) ? $tags[4] : t('Last')),
     'element' => $element,
     'parameters' => $parameters
-  ));
+    )),
+  'class' => array('pager-last'));
   $links = array_filter($links);
-  $pager_links = theme('links', array(
-    'links' => $links,
+  $pager_links = theme('item_list', array(
+    'items' => $links,
     'attributes' => array('class' => 'links pager pager-links')
   ));
   if ($pager_list) {
@@ -379,27 +387,34 @@ function tao_pager_list($vars) {
       // Now generate the actual pager piece.
       for ($i; $i <= $pager_last && $i <= $pager_max; $i++) {
         if ($i < $pager_current) {
-          $links["$i pager-item"] = theme('pager_previous', array(
-            'text' => $i,
-            'element' => $element,
-            'interval' => ($pager_current - $i),
-            'parameters' => $parameters
-          ));
+          $links["$i pager-item"] = array(
+            'data' => theme('pager_previous', array(
+              'text' => $i,
+              'element' => $element,
+              'interval' => ($pager_current - $i),
+              'parameters' => $parameters,
+            )),
+          'class' => array('pager-item'));
         }
         if ($i == $pager_current) {
-          $links["$i pager-current"] = array('title' => $i);
+          $links["$i pager-current"] = array(
+            'data' => $i,
+            'class' => array('pager-current')
+          );
         }
         if ($i > $pager_current) {
-          $links["$i pager-item"] = theme('pager_next', array(
-            'text' => $i,
-            'element' => $element,
-            'interval' => ($i - $pager_current),
-            'parameters' => $parameters
-          ));
+          $links["$i pager-item"] = array(
+            'data' => theme('pager_next', array(
+              'text' => $i,
+              'element' => $element,
+              'interval' => ($i - $pager_current),
+              'parameters' => $parameters,
+            )),
+          'class' => array('pager-item'));
         }
       }
-      return theme('links', array(
-        'links' => $links,
+      return theme('item_list', array(
+        'items' => $links,
         'attributes' => array('class' => 'links pager pager-list')
       ));
     }
@@ -448,55 +463,7 @@ function tao_pager_link($vars) {
       $attributes['title'] = t('Go to page @number', array('@number' => $text));
     }
   }
-
-  return array(
-    'title' => $text,
-    'href' => $_GET['q'],
-    'attributes' => $attributes,
-    'query' => count($query) ? $query : NULL,
-  );
-}
-
-/**
- * Override of theme_views_mini_pager().
- */
-function tao_views_mini_pager($vars) {
-  $tags = $vars['tags'];
-  $quantity = $vars['quantity'];
-  $element = $vars['element'];
-  $parameters = $vars['parameters'];
-
-  global $pager_page_array, $pager_total;
-
-  // Calculate various markers within this pager piece:
-  // Middle is used to "center" pages around the current page.
-  $pager_middle = ceil($quantity / 2);
-  // current is the page we are currently paged to
-  $pager_current = $pager_page_array[$element] + 1;
-  // max is the maximum page number
-  $pager_max = $pager_total[$element];
-  // End of marker calculations.
-
-  $links = array();
-  if ($pager_total[$element] > 1) {
-    $links['pager-previous'] = theme('pager_previous', array(
-      'text' => (isset($tags[1]) ? $tags[1] : t('Prev')),
-      'element' => $element,
-      'interval' => 1,
-      'parameters' => $parameters
-    ));
-    $links['pager-current'] = array(
-      'title' => t('@current of @max', array(
-        '@current' => $pager_current,
-        '@max' => $pager_max)
-      )
-    );
-    $links['pager-next'] = theme('pager_next', array(
-      'text' => (isset($tags[3]) ? $tags[3] : t('Next')),
-      'element' => $element,
-      'interval' => 1,
-      'parameters' => $parameters
-    ));
-    return theme('links', array('links' => $links, 'attributes' => array('class' => array('links', 'pager', 'views-mini-pager'))));
-  }
+  
+  $attributes['href'] = url($_GET['q'], array('query' => $query));
+  return '<a' . drupal_attributes($attributes) . '>' . check_plain($text) . '</a>';
 }

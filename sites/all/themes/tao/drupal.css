@@ -289,7 +289,10 @@ html.js .no-js { display:none; }
   float:left;
   }
 
-.ajax-progress-bar { width:16em; }
+.ajax-progress-bar {
+  float: right;
+  width: 10em;
+}
 
 /**
  * Formatting for welcome page
