@@ -96,8 +96,6 @@ Drupal.behaviors.rubik.attach = function(context, settings) {
   }
 
   function adjustPrimaryTabs() {
-    // Get the position of whole element.
-    var parentPosition = $primaryTabs.offset().top;
     // Complicated count.
     var count = [];
     var rowNumber = 1;

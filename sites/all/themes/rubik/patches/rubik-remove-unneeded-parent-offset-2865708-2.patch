@@ -1,0 +1,13 @@
+diff --git a/js/rubik.js b/js/rubik.js
+index 9d4978f..a497069 100644
+--- a/js/rubik.js
++++ b/js/rubik.js
+@@ -96,8 +96,6 @@ Drupal.behaviors.rubik.attach = function(context, settings) {
+   }
+ 
+   function adjustPrimaryTabs() {
+-    // Get the position of whole element.
+-    var parentPosition = $primaryTabs.offset().top;
+     // Complicated count.
+     var count = [];
+     var rowNumber = 1;
