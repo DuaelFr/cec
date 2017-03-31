@@ -31,9 +31,12 @@ function personnages_node_access($node, $op, $account) {
     $return = NODE_ACCESS_DENY;
     $type = reset(field_get_items('node', $node, 'field_character_type'));
     if ($type['value'] == 'Joueur') {
-      $incarnate = reset(field_get_items('node', $node, 'field_incarnate'));
-      if (user_access('view all playable characters') || $user->uid == $incarnate['target_id']) {
-        $return = NODE_ACCESS_ALLOW;
+      $incarnate = field_get_items('node', $node, 'field_incarnate');
+      if (!empty($incarnate)) {
+        $incarnate = reset($incarnate);
+        if (user_access('view all playable characters') || $user->uid == $incarnate['target_id']) {
+          $return = NODE_ACCESS_ALLOW;
+        }
       }
     }
     elseif ($type['value'] == 'PNJ' && user_access('view all non-playable characters')) {

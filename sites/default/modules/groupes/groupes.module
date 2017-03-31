@@ -42,7 +42,11 @@ function groupes_node_access($node, $op, $account) {
         $members = field_get_items('node', $node, 'field_group_members');
         foreach ($members as $member) {
           $collection = field_collection_item_load($member['value']);
-          $character = reset(field_get_items('field_collection_item', $collection, 'field_character'));
+          $character = field_get_items('field_collection_item', $collection, 'field_character');
+          if (empty($character)) {
+            continue;
+          }
+          $character = reset($character);
           $character = node_load($character['target_id']);
           $return = personnages_node_access($character, $op, $account);
           if ($return == NODE_ACCESS_ALLOW) {
