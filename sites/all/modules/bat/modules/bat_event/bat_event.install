@@ -1,0 +1,448 @@
+<?php
+
+/**
+ * @file
+ * Sets up the base table for our entity and a table to store information about
+ * the entity types.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function bat_event_uninstall() {
+  drupal_load('module', 'bat_event');
+
+  $event_types = db_select('bat_event_type', 'b')
+    ->fields('b', array('type'))
+    ->execute()
+    ->fetchAll();
+
+  foreach ($event_types as $event_type) {
+    bat_event_delete_event_type_schema($event_type->type);
+  }
+}
+
+/**
+ * Implements hook_field_schema().
+ */
+function bat_event_field_schema($field) {
+  $columns = array(
+    'state_id' => array(
+      'type'     => 'int',
+      'unsigned' => TRUE,
+      'not null' => FALSE,
+    ),
+  );
+  return array(
+    'columns' => $columns,
+    'indexes' => array('state_id' => array('state_id')),
+    'foreign keys' => array(
+      'state_id' => array(
+        'table' => 'bat_event_state',
+        'columns' => array('state_id' => 'state_id'),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_schema().
+ */
+function bat_event_schema() {
+  $schema = array();
+
+  $schema['bat_events'] = array(
+    'description' => 'The base table for Events.',
+    'fields' => array(
+      'event_id' => array(
+        'description' => 'Primary Key: Identifier for an Event.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'description' => 'The type of this Event.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'language' => array(
+        'description' => 'The language of the Event.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'created' => array(
+        'description' => 'The Unix timestamp when the Event was created.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'changed' => array(
+        'description' => 'The Unix timestamp when the Event was most recently saved.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'uid' => array(
+        'description' => 'The {users}.uid that owns this event.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'start_date' => array(
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'pgsql_type' => 'timestamp without time zone',
+        'sqlite_type' => 'varchar',
+        'sqlsrv_type' => 'smalldatetime',
+        'not null' => FALSE,
+        'description' => 'The start date for the event.',
+      ),
+      'end_date' => array(
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'pgsql_type' => 'timestamp without time zone',
+        'sqlite_type' => 'varchar',
+        'sqlsrv_type' => 'smalldatetime',
+        'not null' => FALSE,
+        'description' => 'The end date for the event.',
+      ),
+      'data' => array(
+        'type' => 'blob',
+        'not null' => FALSE,
+        'size' => 'big',
+        'serialize' => TRUE,
+        'description' => 'A serialized array of additional data.',
+      ),
+    ),
+    'primary key' => array('event_id'),
+    'indexes' => array(
+      'event_id' => array('event_id'),
+      'type' => array('type'),
+      'uid' => array('uid'),
+    ),
+  );
+
+  $schema['bat_event_type'] = array(
+    'description' => 'Stores information about defined event types.',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique event type identifier.',
+      ),
+      'type' => array(
+        'description' => 'The machine-readable name of this event type.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'label' => array(
+        'description' => 'The human-readable name of this event type.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'event_granularity' => array(
+        'description' => 'Event Granularity (bat_daily/bat_hourly).',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => 'daily',
+      ),
+      'fixed_event_states' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Fixed event states (0/1).',
+      ),
+      'weight' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'tiny',
+        'description' => 'The weight of this event type in relation to others.',
+      ),
+      'default_event_value_field_ids' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+        'size' => 'big',
+        'serialize' => TRUE,
+        'description' => 'A serialized array that stores this type bundle\'s default event field configuration.',
+      ),
+      'default_event_label_field_name' => array(
+        'type' => 'varchar',
+        'not null' => FALSE,
+        'length' => 32,
+        'description' => 'The name of a field to use to retrieve label information.',
+      ),
+      'data' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+        'size' => 'big',
+        'serialize' => TRUE,
+        'description' => 'A serialized array of additional data related to this event type.',
+      ),
+      'status' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0x01,
+        'size' => 'tiny',
+        'description' => 'The exportable status of the entity.',
+      ),
+      'module' => array(
+        'description' => 'The name of the providing module if the entity has been defined in code.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+      'target_entity_type' => array(
+        'description' => 'The machine name of the target entity type for this event type.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('id'),
+    'unique keys' => array(
+      'type' => array('type'),
+    ),
+  );
+
+  $schema['bat_event_state'] = array(
+    'description' => 'Stores information about defined event states.',
+    'fields' => array(
+      'id' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique event state identifier.',
+      ),
+      'machine_name' => array(
+        'description' => 'Machine name.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'event_type' => array(
+        'description' => 'Event type machine name.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'label' => array(
+        'description' => 'The human-readable name of this event state.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'color' => array(
+        'description' => 'The color hex.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'calendar_label' => array(
+        'description' => 'The calendar label.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'locked' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'tiny',
+        'description' => 'Lock.',
+      ),
+      'blocking' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'tiny',
+        'description' => 'Blocking.',
+      ),
+      'default_state' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'tiny',
+        'description' => 'Default state.',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function bat_event_requirements($phase) {
+  $requirements = array();
+  $t = get_t();
+  switch ($phase) {
+    case 'runtime':
+      module_load_include('inc', 'composer_manager', 'composer_manager.admin');
+
+      $composer_manager_installed_packages = composer_manager_installed_packages();
+
+      if (!isset($composer_manager_installed_packages['roomify/bat'])) {
+        $requirements['bat_library'] = array(
+          'title' => $t('BAT PHP Library'),
+          'value' => $t('BAT PHP Library missing'),
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+      else {
+        $requirements['bat_library'] = array(
+          'title' => $t('BAT PHP Library'),
+          'value' => $t('BAT PHP Library installed'),
+          'severity' => REQUIREMENT_OK,
+        );
+      }
+  }
+
+  return $requirements;
+}
+
+/**
+ * Add default label name field.
+ */
+function bat_event_update_7100() {
+  $field = array(
+    'type' => 'varchar',
+    'not null' => FALSE,
+    'length' => 32,
+    'description' => 'The name of a field to use to retrieve label information.',
+  );
+
+  db_add_field('bat_event_type', 'default_event_label_field_name', $field);
+}
+
+/**
+ * Add event state machine name field.
+ */
+function bat_event_update_7101() {
+  $field = array(
+    'description' => 'Machine name.',
+    'type' => 'varchar',
+    'length' => 255,
+    'not null' => TRUE,
+    'initial' => 'machine_name',
+  );
+
+  db_add_field('bat_event_state', 'machine_name', $field);
+}
+
+/**
+ * Generate machine names for the existing states.
+ */
+function bat_event_update_7102() {
+  foreach (bat_event_get_states() as $state) {
+    $state['machine_name'] = $state['event_type'] . '_' . $state['id'];
+    bat_event_save_state($state, $state['event_type']);
+  }
+}
+
+/**
+ * Add target entity type field and update existing event types.
+ */
+function bat_event_update_7103() {
+  $field = array(
+    'type' => 'varchar',
+    'not null' => FALSE,
+    'length' => 32,
+    'description' => 'The machine name of the target entity type for this event type.',
+  );
+  db_add_field('bat_event_type', 'target_entity_type', $field);
+
+  db_update('bat_event_type')
+    ->fields(array('target_entity_type' => 'bat_unit'))
+    ->execute();
+
+  // Copy data from the old field.
+  $old_name = 'event_unit_reference';
+  $new_name = 'event_bat_unit_reference';
+  $entity_type = 'bat_event';
+
+  // Get old field info.
+  $old_field = field_info_field($old_name);
+
+  // Create new field.
+  $new_field = $old_field;
+  $new_field['field_name'] = $new_name;
+
+  if (!field_info_field($new_name)) {
+    field_create_field($new_field);
+  }
+  else {
+    field_update_field($new_field);
+  }
+
+  foreach (bat_event_get_types() as $bundle => $event_type) {
+    // Get old field instance.
+    $old_instance = field_info_instance($entity_type, $old_name, $bundle);
+
+    if ($old_instance) {
+      $new_instance = $old_instance;
+      $new_instance['field_name'] = $new_name;
+
+      if (!field_info_instance($entity_type, $new_name, $bundle)) {
+        field_create_instance($new_instance);
+      }
+      else {
+        field_update_instance($new_instance);
+      }
+
+      // Migrate old fields' data to the new ones.
+      $field_data = db_select('field_data_' . $old_name, 'old')
+        ->fields('old')
+        ->condition('entity_type', $entity_type)
+        ->condition('bundle', $bundle)
+        ->execute();
+
+      while ($data = $field_data->fetchAssoc()) {
+        $data_new = array();
+        foreach ($data as $column => $value) {
+          $column = str_replace($old_name, $new_name, $column);
+          $data_new[$column] = $value;
+        }
+        db_insert('field_data_' . $new_name)
+          ->fields($data_new)
+          ->execute();
+      }
+
+      // Migrate old fields' revision data to the new ones.
+      $field_revision = db_select('field_revision_' . $old_name, 'old')
+        ->fields('old')
+        ->condition('entity_type', $entity_type)
+        ->condition('bundle', $bundle)
+        ->execute();
+
+      while ($revision = $field_revision->fetchAssoc()) {
+        $revision_new = array();
+        foreach ($revision as $column => $value) {
+          $column = str_replace($old_name, $new_name, $column);
+          $revision_new[$column] = $value;
+        }
+        db_insert('field_revision_' . $new_name)
+          ->fields($revision_new)
+          ->execute();
+      }
+
+      // Delete old instance.
+      field_delete_instance($old_instance);
+
+      // Purge fields.
+      field_purge_batch(1000);
+    }
+  }
+}

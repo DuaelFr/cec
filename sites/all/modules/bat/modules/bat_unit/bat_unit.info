@@ -1,0 +1,39 @@
+name = BAT Unit
+description = Create and manage units (e.g. rooms).
+core = 7.x
+
+package = BAT
+
+dependencies[] = bat
+dependencies[] = ctools
+dependencies[] = entity
+dependencies[] = views
+dependencies[] = views_bulk_operations
+dependencies[] = views_megarow
+
+files[] = bat_unit_bundle.admin.inc
+files[] = bat_unit.admin.inc
+files[] = bat_type.admin.inc
+files[] = bat_type_bundle.admin.inc
+files[] = views/bat_unit.views.inc
+files[] = views/bat_unit.views_default.inc
+files[] = views/bat_unit_handler_link_field.inc
+files[] = views/bat_unit_handler_delete_link_field.inc
+files[] = views/bat_unit_handler_edit_link_field.inc
+files[] = views/bat_unit_handler_type_id_filter.inc
+files[] = views/bat_unit_handler_type_id_field.inc
+files[] = views/bat_type_handler_delete_link_field.inc
+files[] = views/bat_type_handler_edit_link_field.inc
+files[] = views/bat_type_handler_link_field.inc
+files[] = views/bat_type_handler_type_calendars_field.inc
+files[] = views/bat_type_handler_type_operations_field.inc
+files[] = views/bat_unit_handler_field_megarow_links.inc
+files[] = views/bat_type_handler_type_revision_operations_field.inc
+files[] = views/bat_type_handler_type_revision_status_field.inc
+
+; Information added by Drupal.org packaging script on 2017-03-23
+version = "7.x-1.19"
+core = "7.x"
+project = "bat"
+datestamp = "1490285594"
+

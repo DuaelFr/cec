@@ -1,0 +1,15 @@
+.calendar-set {
+  margin-bottom: 15px;
+}
+
+.fc-timeline-event {
+  height: 120%;
+}
+
+.open_event_states .fc-bgevent {
+  opacity: 0.8;
+}
+
+.fc-ltr .fc-timeline-event .fc-title {
+  display: inline-block;
+}

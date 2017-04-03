@@ -1,0 +1,1318 @@
+<?php
+
+/**
+ * @file
+ * API access to booking data for BAT.
+ */
+
+use Roomify\Bat\Event\Event;
+use Roomify\Bat\Calendar\Calendar;
+use Roomify\Bat\Store\DrupalDBStore;
+use Roomify\Bat\Unit\Unit;
+use Drupal\bat_fullcalendar\FullCalendarOpenStateEventFormatter;
+use Drupal\bat_fullcalendar\FullCalendarFixedStateEventFormatter;
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function bat_api_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "services" && $api == "services") {
+    return array("version" => "3");
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function bat_api_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'bat_api' && $plugin_type == 'bat_unit_field_handler') {
+    return 'plugins/bat_unit_field_handler';
+  }
+
+  if ($owner == 'bat_api' && $plugin_type == 'bat_type_field_handler') {
+    return 'plugins/bat_type_field_handler';
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function bat_api_ctools_plugin_type() {
+  return array(
+    'bat_unit_field_handler' => array(
+      'use hooks' => TRUE,
+    ),
+    'bat_type_field_handler' => array(
+      'use hooks' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_permission().
+ */
+function bat_api_permission() {
+  return array(
+    'access types index service' => array(
+      'title' => t('Access types index service'),
+      'description' => t('Access types index service.'),
+    ),
+    'access edit type service' => array(
+      'title' => t('Access edit type service'),
+      'description' => t('Access edit type service.'),
+    ),
+    'access add type service' => array(
+      'title' => t('Access add type service'),
+      'description' => t('Access add type service.'),
+    ),
+    'access units index service' => array(
+      'title' => t('Access units index service'),
+      'description' => t('Access units index service.'),
+    ),
+    'access edit unit service' => array(
+      'title' => t('Access edit unit service'),
+      'description' => t('Access edit unit service.'),
+    ),
+    'access add unit service' => array(
+      'title' => t('Access add unit service'),
+      'description' => t('Access add unit service.'),
+    ),
+    'access units calendar index service' => array(
+      'title' => t('Access units calendar index service'),
+      'description' => t('Access units calendar index service.'),
+    ),
+    'access matching units calendar index service' => array(
+      'title' => t('Access matching units calendar index service'),
+      'description' => t('Access matching units calendar index service.'),
+    ),
+    'access events index service' => array(
+      'title' => t('Access events index service'),
+      'description' => t('Access events index service.'),
+    ),
+    'access events calendar index service' => array(
+      'title' => t('Access events calendar index service'),
+      'description' => t('Access events calendar index service.'),
+    ),
+    'access edit event service' => array(
+      'title' => t('Access edit event service'),
+      'description' => t('Access edit event service.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_services_resources().
+ */
+function bat_api_services_resources() {
+  $resources = array();
+
+  $resources['types'] = array(
+    'operations' => array(
+      'index' => array(
+        'callback' => 'bat_api_services_types_index',
+        'help' => t('Returns an object containing types information.'),
+        'access arguments' => array('access types index service'),
+        'args'     => array(
+          array(
+            'name'         => 'ids',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => '',
+            'description'  => t('IDs'),
+            'source'       => array('param' => 'ids'),
+          ),
+          array(
+            'name'         => 'offset',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => 0,
+            'description'  => t('Result offset to start listing'),
+            'source'       => array('param' => 'offset'),
+          ),
+          array(
+            'name'         => 'limit',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => 100,
+            'description'  => t('Number of items to return'),
+            'source'       => array('param' => 'limit'),
+          ),
+        ),
+      ),
+      'update' => array(
+        'callback' => 'bat_api_services_edit_type',
+        'access arguments' => array('access edit type service'),
+        'help'     => t('Edit an existing BAT Type.'),
+        'args'     => array(
+          array(
+            'name'         => 'type_id',
+            'type'         => 'integer',
+            'description'  => t('Type ID'),
+            'source'       => array('path' => 0),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'bat_type',
+            'type'         => 'array',
+            'description'  => t('The type data to update'),
+            'source'       => 'data',
+            'optional'     => FALSE,
+          ),
+        ),
+      ),
+    ),
+    'actions' => array(
+      'add' => array(
+        'callback' => 'bat_api_services_add_type',
+        'access arguments' => array('access add type service'),
+        'help'     => t('Add a new BAT Type.'),
+        'args'     => array(
+          array(
+            'name'         => 'name',
+            'type'         => 'string',
+            'description'  => t('Name'),
+            'source'       => array('data' => 'name'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'type',
+            'type'         => 'string',
+            'description'  => t('Type'),
+            'source'       => array('data' => 'type'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'uid',
+            'type'         => 'integer',
+            'description'  => t('UID'),
+            'source'       => array('data' => 'uid'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'status',
+            'type'         => 'integer',
+            'description'  => t('Status'),
+            'source'       => array('data' => 'status'),
+            'optional'     => FALSE,
+          ),
+        ),
+      ),
+    ),
+  );
+
+  $resources['units'] = array(
+    'operations' => array(
+      'index' => array(
+        'callback' => 'bat_api_services_units_index',
+        'help' => t('Returns an object containing units information.'),
+        'access arguments' => array('access units index service'),
+        'args'     => array(
+          array(
+            'name'         => 'ids',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => '',
+            'description'  => t('IDs'),
+            'source'       => array('param' => 'ids'),
+          ),
+          array(
+            'name'         => 'offset',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => 0,
+            'description'  => t('Result offset to start listing'),
+            'source'       => array('param' => 'offset'),
+          ),
+          array(
+            'name'         => 'limit',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => 100,
+            'description'  => t('Number of items to return'),
+            'source'       => array('param' => 'limit'),
+          ),
+        ),
+      ),
+      'update' => array(
+        'callback' => 'bat_api_services_edit_unit',
+        'access arguments' => array('access edit unit service'),
+        'help'     => t('Edit an existing Bookable Unit.'),
+        'args'     => array(
+          array(
+            'name'         => 'unit_id',
+            'type'         => 'integer',
+            'description'  => t('Unit ID'),
+            'source'       => array('path' => 0),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'bat_unit',
+            'type'         => 'array',
+            'description'  => t('The unit data to update'),
+            'source'       => 'data',
+            'optional'     => FALSE,
+          ),
+        ),
+      ),
+    ),
+    'actions' => array(
+      'add' => array(
+        'callback' => 'bat_api_services_add_unit',
+        'access arguments' => array('access add unit service'),
+        'help'     => t('Add a new Bookable Unit.'),
+        'args'     => array(
+          array(
+            'name'         => 'name',
+            'type'         => 'string',
+            'description'  => t('Name'),
+            'source'       => array('data' => 'name'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'type',
+            'type'         => 'string',
+            'description'  => t('Type'),
+            'source'       => array('data' => 'type'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'type_id',
+            'type'         => 'integer',
+            'description'  => t('Type ID'),
+            'source'       => array('data' => 'type_id'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'uid',
+            'type'         => 'integer',
+            'description'  => t('UID'),
+            'source'       => array('data' => 'uid'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'status',
+            'type'         => 'integer',
+            'description'  => t('Status'),
+            'source'       => array('data' => 'status'),
+            'optional'     => FALSE,
+          ),
+        ),
+      ),
+    ),
+  );
+
+  $resources['units-calendar'] = array(
+    'operations' => array(
+      'index' => array(
+        'callback' => 'bat_api_services_units_index_calendar',
+        'help' => t('Returns an object containing units information.'),
+        'access arguments' => array('access units calendar index service'),
+        'args'     => array(
+          array(
+            'name'         => 'types',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => '',
+            'description'  => t('Types'),
+            'source'       => array('param' => 'types'),
+          ),
+          array(
+            'name'         => 'ids',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => '',
+            'description'  => t('IDs'),
+            'source'       => array('param' => 'ids'),
+          ),
+          array(
+            'name'         => 'event_type',
+            'type'         => 'string',
+            'description'  => t('Event Type'),
+            'source'       => array('param' => 'event_type'),
+            'optional'     => TRUE,
+          ),
+          array(
+            'name'         => 'children',
+            'type'         => 'boolean',
+            'description'  => t('Return children'),
+            'source'       => array('param' => 'children'),
+            'optional'     => TRUE,
+            'default value' => TRUE,
+          ),
+          array(
+            'name'         => 'offset',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => 0,
+            'description'  => t('Result offset to start listing'),
+            'source'       => array('param' => 'offset'),
+          ),
+          array(
+            'name'         => 'limit',
+            'type'         => 'string',
+            'optional'     => TRUE,
+            'default value' => 100,
+            'description'  => t('Number of items to return'),
+            'source'       => array('param' => 'limit'),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  $resources['events'] = array(
+    'operations' => array(
+      'index' => array(
+        'callback' => 'bat_api_services_events_index',
+        'help' => t('Returns an object containing events information.'),
+        'access arguments' => array('access events index service'),
+        'args'     => array(
+          array(
+            'name'         => 'target_ids',
+            'type'         => 'string',
+            'description'  => t('Targe Entity IDs'),
+            'source'       => array('param' => 'target_ids'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'target_types',
+            'type'         => 'string',
+            'description'  => t('Target Types'),
+            'source'       => array('param' => 'target_types'),
+            'optional'     => TRUE,
+          ),
+          array(
+            'name'         => 'target_entity_type',
+            'type'         => 'string',
+            'description'  => t('Target Entity Type'),
+            'source'       => array('param' => 'target_entity_type'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'start_date',
+            'type'         => 'string',
+            'description'  => t('Start date'),
+            'source'       => array('param' => 'start_date'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'end_date',
+            'type'         => 'string',
+            'description'  => t('End date'),
+            'source'       => array('param' => 'end_date'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'event_types',
+            'type'         => 'string',
+            'description'  => t('Type'),
+            'source'       => array('param' => 'event_types'),
+            'optional'     => FALSE,
+          ),
+        ),
+      ),
+      'update' => array(
+        'callback' => 'bat_api_services_edit_event',
+        'access arguments' => array('access edit event service'),
+        'help'     => t('Edit an existing Event.'),
+        'args'     => array(
+          array(
+            'name'         => 'event_id',
+            'type'         => 'integer',
+            'description'  => t('Event ID'),
+            'source'       => array('path' => 0),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name' => 'bat_event',
+            'type' => 'array',
+            'description' => t('The event data to update'),
+            'source' => 'data',
+            'optional' => FALSE,
+          ),
+        ),
+      ),
+    ),
+  );
+
+  $resources['events-calendar'] = array(
+    'operations' => array(
+      'index' => array(
+        'callback' => 'bat_api_services_events_index_calendar',
+        'help' => t('Returns an object containing events information.'),
+        'access arguments' => array('access events calendar index service'),
+        'args'     => array(
+          array(
+            'name'         => 'unit_ids',
+            'type'         => 'string',
+            'description'  => t('Unit IDs'),
+            'source'       => array('param' => 'unit_ids'),
+            'optional'     => TRUE,
+          ),
+          array(
+            'name'         => 'unit_types',
+            'type'         => 'string',
+            'description'  => t('Unit Types'),
+            'source'       => array('param' => 'unit_types'),
+            'optional'     => TRUE,
+          ),
+          array(
+            'name'         => 'start',
+            'type'         => 'string',
+            'description'  => t('Start date'),
+            'source'       => array('param' => 'start'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'end',
+            'type'         => 'string',
+            'description'  => t('End date'),
+            'source'       => array('param' => 'end'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'event_types',
+            'type'         => 'string',
+            'description'  => t('Type'),
+            'source'       => array('param' => 'event_types'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'background',
+            'type'         => 'boolean',
+            'description'  => t('Background'),
+            'source'       => array('param' => 'background'),
+            'optional'     => TRUE,
+            'default value' => TRUE,
+          ),
+        ),
+      ),
+    ),
+  );
+
+  $resources['matching-units-calendar'] = array(
+    'operations' => array(
+      'index' => array(
+        'callback' => 'bat_api_services_matching_units_calendar',
+        'help' => t('Returns an object containing events information.'),
+        'access arguments' => array('access matching units calendar index service'),
+        'args'     => array(
+          array(
+            'name'         => 'unit_types',
+            'type'         => 'string',
+            'description'  => t('Unit Types'),
+            'source'       => array('param' => 'unit_types'),
+            'optional'     => TRUE,
+          ),
+          array(
+            'name'         => 'start',
+            'type'         => 'string',
+            'description'  => t('Start date'),
+            'source'       => array('param' => 'start'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'end',
+            'type'         => 'string',
+            'description'  => t('End date'),
+            'source'       => array('param' => 'end'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'event_type',
+            'type'         => 'string',
+            'description'  => t('Type'),
+            'source'       => array('param' => 'event_type'),
+            'optional'     => FALSE,
+          ),
+          array(
+            'name'         => 'event_states',
+            'type'         => 'string',
+            'description'  => t('Event States'),
+            'source'       => array('param' => 'event_states'),
+            'optional'     => FALSE,
+          ),
+        ),
+      ),
+    ),
+  );
+
+  return $resources;
+}
+
+/**
+ * Retrieve a list of units to use with Fullcalendar scheduler.
+ *
+ * @param string $unit_types
+ * @param string $unit_ids
+ * @param string $event_type
+ * @param bool $return_children
+ * @param string $offset
+ * @param string $limit
+ */
+function bat_api_services_units_index_calendar($unit_types, $unit_ids, $event_type, $return_children, $offset, $limit) {
+  $create_event_access = FALSE;
+
+  if (bat_event_access('create', bat_event_create(array('type' => $event_type)))) {
+    $create_event_access = TRUE;
+  }
+
+  $ids = array_filter(explode(',', $unit_ids));
+
+  if ($unit_types == 'all') {
+    $types = array();
+
+    foreach (bat_unit_get_types() as $type) {
+      $type_bundle = bat_type_bundle_load($type->type);
+
+      if (is_array($type_bundle->default_event_value_field_ids)) {
+        if (isset($type_bundle->default_event_value_field_ids[$event_type]) && !empty($type_bundle->default_event_value_field_ids[$event_type])) {
+          $types[] = $type->type_id;
+        }
+      }
+    }
+  }
+  else {
+    $types = array_filter(explode(',', $unit_types));
+  }
+
+  $bat_event_type = bat_event_type_load($event_type);
+
+  $target_entity_type = $bat_event_type->target_entity_type;
+
+  $controller = entity_get_controller($target_entity_type);
+
+  $units = array();
+
+  foreach ($types as $type) {
+    $entities = $controller->getReferencedIds($type, $ids);
+
+    $childrens = array();
+
+    foreach ($entities as $entity) {
+      $childrens[$entity['type_id']][] = array(
+        'id' => 'S' . $entity['id'],
+        'title' => $entity['name'],
+        'create_event' => $create_event_access,
+      );
+    }
+
+    foreach ($childrens as $type_id => $children) {
+      $unit_type = bat_type_load($type_id);
+
+      if ($return_children) {
+        $units[] = array(
+          'id' => $unit_type->type_id,
+          'title' => $unit_type->name,
+          'children' => $children,
+        );
+      }
+      else {
+        $units[] = array(
+          'id' => $unit_type->type_id,
+          'title' => $unit_type->name,
+        );
+      }
+    }
+  }
+
+  drupal_alter('bat_api_units_index_calendar', $units);
+
+  return $units;
+}
+
+/**
+ * Retrieve a list of units.
+ *
+ * @param string $unit_ids
+ * @param string $offset
+ * @param string $limit
+ */
+function bat_api_services_units_index($unit_ids, $offset, $limit) {
+  $return = new stdClass();
+  $return->sessid = session_id();
+
+  ctools_include('plugins');
+  $field_handlers = ctools_get_plugins('bat_api', 'bat_unit_field_handler');
+
+  $ids = array_filter(explode(',', $unit_ids));
+
+  $query = db_select('bat_units', 'n')
+    ->fields('n', array(
+      'unit_id',
+      'type',
+      'type_id',
+      'name',
+      'language',
+      'status',
+      'uid',
+    ));
+  if (!empty($ids)) {
+    $query->condition('unit_id', $ids, 'IN');
+  }
+  $query->orderBy('unit_id');
+  $query->range($offset, $limit);
+  $bat_units = $query->execute()->fetchAll();
+
+  $units = array();
+  foreach ($bat_units as $unit) {
+    $units[$unit->unit_id] = array(
+      'properties' => array(
+        'name' => $unit->name,
+        'type' => $unit->type,
+        'type_id' => $unit->type_id,
+        'language' => $unit->language,
+        'status' => $unit->status,
+        'uid' => $unit->uid,
+      ),
+      'fields' => array(),
+    );
+
+    foreach ($field_handlers as $handler) {
+      $class = ctools_plugin_get_class($handler, 'handler');
+      $object_handler = new $class(bat_unit_load($unit->unit_id));
+
+      $field_type = $object_handler->getFieldType();
+      $field_info = $object_handler->getFieldInfo();
+
+      if (!empty($field_info)) {
+        $units[$unit->unit_id]['fields'][$field_type] = $field_info;
+      }
+    }
+  }
+
+  $return->units = $units;
+
+  return $return;
+}
+
+/**
+ * Create a new unit.
+ *
+ * @param string $name
+ * @param string $type
+ * @param int $type_id
+ * @param int $uid
+ * @param int $status
+ */
+function bat_api_services_add_unit($name, $type, $type_id, $uid, $status) {
+  $return = new stdClass();
+  $return->sessid = session_id();
+
+  if (bat_unit_bundle_load($type) !== FALSE && bat_type_load($type_id) !== FALSE && $name != '') {
+    $unit = bat_unit_create(
+      array(
+        'name' => $name,
+        'type' => $type,
+        'type_id' => $type_id,
+        'status' => $status,
+        'uid' => $uid,
+        'created' => REQUEST_TIME,
+        'changed' => REQUEST_TIME,
+      )
+    );
+
+    bat_unit_save($unit);
+
+    $return->unit_id = $unit->unit_id;
+    $return->status = 1;
+  }
+  else {
+    $return->status = 0;
+  }
+
+  return $return;
+}
+
+/**
+ * Update an existing unit.
+ *
+ * @param int $unit_id
+ * @param array $bat_unit_data
+ */
+function bat_api_services_edit_unit($unit_id, $bat_unit_data) {
+  $return = new stdClass();
+  $return->sessid = session_id();
+
+  if ($unit = bat_unit_load($unit_id)) {
+    $unit->name = (isset($bat_unit_data['name'])) ? $bat_unit_data['name'] : $unit->name;
+    $unit->status = (isset($bat_unit_data['status'])) ? $bat_unit_data['status'] : $unit->status;
+    $unit->uid = (isset($bat_unit_data['uid'])) ? $bat_unit_data['uid'] : $unit->uid;
+    $unit->data = (isset($bat_unit_data['data'])) ? $bat_unit_data['data'] : $unit->data;
+
+    $unit->changed = REQUEST_TIME;
+
+    bat_unit_save($unit);
+
+    $return->status = 1;
+  }
+  else {
+    $return->status = 0;
+  }
+
+  return $return;
+}
+
+/**
+ * Retrieve a list of events.
+ *
+ * @param string $target_ids
+ * @param string $target_types
+ * @param string $target_entity_type
+ * @param string $start_date
+ * @param string $end_date
+ * @param string $event_types
+ */
+function bat_api_services_events_index($target_ids, $target_types, $target_entity_type, $start_date, $end_date, $event_types) {
+  global $databases;
+
+  $return = new stdClass();
+  $return->sessid = session_id();
+
+  $target_types = array_filter(explode(',', $target_types));
+
+  $types = array_filter(explode(',', $event_types));
+
+  $events_json = array();
+
+  foreach ($types as $type) {
+    $prefix = (isset($databases['default']['default']['prefix'])) ? $databases['default']['default']['prefix'] : '';
+    $event_store = new DrupalDBStore($type, DrupalDBStore::BAT_EVENT, $prefix);
+
+    $start_date_object = new DateTime($start_date);
+    $end_date_object = new DateTime($end_date);
+
+    $today = new DateTime();
+    if (!user_access('view past event information') && $today > $start_date_object) {
+      if ($today > $end_date_object) {
+        $return->events = array();
+        return $return;
+      }
+
+      $start_date_object = $today;
+    }
+
+    $ids = explode(',', $target_ids);
+
+    $units = array();
+    foreach ($ids as $id) {
+      if ($target_entity = entity_load_single($target_entity_type, $id)) {
+        if (in_array($target_entity->type, $target_types) || empty($target_types)) {
+          // Setting the default value to 0 since we are dealing with the events array
+          // so getting event IDs.
+          $units[] = new Unit($id, 0);
+        }
+      }
+    }
+
+    if (!empty($units)) {
+      $event_calendar = new Calendar($units, $event_store);
+      $event_ids = $event_calendar->getEvents($start_date_object, $end_date_object);
+
+      $bat_event_type = bat_event_type_load($type);
+      if ($bat_event_type->fixed_event_states) {
+        $event_formatter = new FullCalendarFixedStateEventFormatter($bat_event_type);
+      }
+      else {
+        $event_formatter = new FullCalendarOpenStateEventFormatter($bat_event_type);
+      }
+
+      foreach ($event_ids as $unit_id => $unit_events) {
+        foreach ($unit_events as $key => $event) {
+          $events_json[] = array(
+            'id' => (string) $key . $unit_id,
+            'bat_id' => $event->getValue(),
+            'resourceId' => 'S' . $unit_id,
+          ) + $event->toJson($event_formatter);
+        }
+      }
+    }
+  }
+
+  $return->events = $events_json;
+
+  return $return;
+}
+
+/**
+ * Retrieve a list of events to use with Fullcalendar scheduler.
+ *
+ * @param string $unit_ids
+ * @param string $unit_types
+ * @param string $start_date
+ * @param string $end_date
+ * @param string $event_types
+ * @param bool $background
+ */
+function bat_api_services_events_index_calendar($unit_ids, $unit_types, $start_date, $end_date, $event_types, $background) {
+  global $databases;
+
+  if ($unit_types == 'all') {
+    $unit_types = array();
+    foreach (bat_unit_get_types() as $type => $info) {
+      $unit_types[] = $type;
+    }
+  }
+  else {
+    $unit_types = array_filter(explode(',', $unit_types));
+  }
+
+  if ($event_types == 'all') {
+    $types = array();
+    foreach (bat_event_get_types() as $type => $info) {
+      $types[] = $type;
+    }
+  }
+  else {
+    $types = array_filter(explode(',', $event_types));
+  }
+
+  $events_json = array();
+
+  foreach ($types as $type) {
+    // Check if user has permission to view calendar data for this event type.
+    if (!user_access('view calendar data for any ' . $type . ' event')) {
+      continue;
+    }
+
+    // Get the event type definition from Drupal.
+    $bat_event_type = bat_event_type_load($type);
+
+    $target_entity_type = $bat_event_type->target_entity_type;
+
+    $controller = entity_get_controller($target_entity_type);
+
+    // For each type of event create a state store and an event store.
+    $prefix = (isset($databases['default']['default']['prefix'])) ? $databases['default']['default']['prefix'] : '';
+    $event_store = new DrupalDBStore($type, DrupalDBStore::BAT_EVENT, $prefix);
+
+    $start_date_object = new DateTime($start_date);
+    $end_date_object = new DateTime($end_date);
+
+    $today = new DateTime();
+    if (!user_access('view past event information') && $today > $start_date_object) {
+      if ($today > $end_date_object) {
+        $return->events = array();
+        return $return;
+      }
+      $start_date_object = $today;
+    }
+
+    $ids = array_filter(explode(',', $unit_ids));
+
+    foreach ($unit_types as $unit_type) {
+      $entities = $controller->getReferencedIds($unit_type, $ids);
+
+      $childrens = array();
+
+      // Create an array of unit objects - the default value is set to 0 since we want
+      // to know if the value in the database is actually 0. This will allow us to identify
+      // which events are represented by events in the database (i.e. have a value different to 0)
+      $units = array();
+      foreach ($entities as $entity) {
+        $units[] = new Unit($entity['id'], 0);
+      }
+
+      if (!empty($units)) {
+        $event_calendar = new Calendar($units, $event_store);
+
+        $event_ids = $event_calendar->getEvents($start_date_object, $end_date_object);
+
+        // @TODO - this is an undeclared dependency of bat_event_ui
+        if ($bat_event_type->fixed_event_states) {
+          $event_formatter = new FullCalendarFixedStateEventFormatter($bat_event_type, $background);
+        }
+        else {
+          $event_formatter = new FullCalendarOpenStateEventFormatter($bat_event_type, $background);
+        }
+
+        foreach ($event_ids as $unit_id => $unit_events) {
+          foreach ($unit_events as $key => $event) {
+            $events_json[] = array(
+              'id' => (string) $key . $unit_id,
+              'bat_id' => $event->getValue(),
+              'resourceId' => 'S' . $unit_id,
+            ) + $event->toJson($event_formatter);
+          }
+        }
+      }
+    }
+  }
+
+  $events_json = _bat_api_merge_non_blocking_events($events_json);
+
+  $context = array(
+    'unit_ids' => $unit_ids,
+    'unit_types' => $unit_types,
+    'start_date' => $start_date_object,
+    'end_date' => $end_date_object,
+    'event_types' => $event_types,
+    'background' => $background,
+  );
+
+  drupal_alter('bat_api_events_index_calendar', $events_json, $context);
+
+  return array_values($events_json);
+}
+
+/**
+ * Update an existing event.
+ *
+ * @param int $event_id
+ * @param array $bat_event_data
+ */
+function bat_api_services_edit_event($event_id, $bat_event_data) {
+  $return = new stdClass();
+  $return->status = 0;
+  $return->sessid = session_id();
+
+  if ($event_id && $event = bat_event_load($event_id)) {
+    $event->start_date = (isset($bat_event_data['start_date'])) ? $bat_event_data['start_date'] : $event->start_date;
+    $event->end_date = (isset($bat_event_data['end_date'])) ? $bat_event_data['end_date'] : $event->end_date;
+    $event->uid = (isset($bat_event_data['uid'])) ? $bat_event_data['uid'] : $event->uid;
+    $event->data = (isset($bat_event_data['data'])) ? $bat_event_data['data'] : $event->data;
+
+    $event->changed = REQUEST_TIME;
+
+    // Set new target_id if present.
+    if (isset($bat_event_data['target_id'])) {
+      $event_type = bat_event_type_load($event->type);
+      // Construct target entity reference field name using this event type's target entity type.
+      $target_field_name = 'event_' . $event_type->target_entity_type . '_reference';
+      $event->{$target_field_name} = array(
+        LANGUAGE_NONE => array(
+          0 => array(
+            'target_id' => $bat_event_data['target_id'],
+          )
+        )
+      );
+    }
+
+    // Set new state id if present.
+    if (isset($bat_event_data['state_id'])) {
+      $event->event_state_reference = array(
+        LANGUAGE_NONE => array(
+          0 => array(
+            'state_id' => $bat_event_data['state_id'],
+          )
+        )
+      );
+    }
+
+    $event->save();
+
+    $return->status = 1;
+  }
+  elseif ($event_id == 'undefined') {
+    // This is a new event, save it.
+    $event = bat_event_create(array('type' => $bat_event_data['type']));
+    $event->start_date = $bat_event_data['start_date'];
+    $event->end_date = $bat_event_data['end_date'];
+    $event->uid = (isset($bat_event_data['uid'])) ? $bat_event_data['uid'] : 0;
+    $event->data = (isset($bat_event_data['data'])) ? $bat_event_data['data'] : NULL;
+
+    $event->created = REQUEST_TIME;
+    $event->changed = REQUEST_TIME;
+
+    // Set new target_id if present.
+    if (isset($bat_event_data['target_id'])) {
+      $event_type = bat_event_type_load($event->type);
+      // Construct target entity reference field name using this event type's target entity type.
+      $target_field_name = 'event_' . $event_type->target_entity_type . '_reference';
+      $event->{$target_field_name} = array(
+        LANGUAGE_NONE => array(
+          0 => array(
+            'target_id' => $bat_event_data['target_id'],
+          )
+        )
+      );
+    }
+
+    // Set new state id if present.
+    if (isset($bat_event_data['state_id'])) {
+      $event->event_state_reference = array(
+        LANGUAGE_NONE => array(
+          0 => array(
+            'state_id' => $bat_event_data['state_id'],
+          )
+        )
+      );
+    }
+
+    $event->save();
+
+    $return->status = 1;
+  }
+
+  return $return;
+}
+
+/**
+ * Merge non blocking events so that we display them as a continuous single event.
+ *
+ * @param array $events
+ *
+ * @return array
+ */
+function _bat_api_merge_non_blocking_events($events) {
+  $prev_id = FALSE;
+
+  foreach ($events as $id => $event) {
+    if ($prev_id !== FALSE && isset($event['rendering']) && $event['rendering'] == 'background' && !$event['blocking']) {
+      $last_event = $events[$prev_id];
+      if (isset($last_event['rendering']) && $last_event['rendering'] == 'background' && !$last_event['blocking']) {
+        if ($last_event['resourceId'] == $event['resourceId'] &&
+            $last_event['title'] == $event['title'] &&
+            $last_event['color'] == $event['color']) {
+          $events[$prev_id]['end'] = $event['end'];
+
+          unset($events[$id]);
+          continue;
+        }
+      }
+    }
+
+    $prev_id = $id;
+  }
+
+  return $events;
+}
+
+/**
+ * Retrieve a list of events to use with Fullcalendar scheduler.
+ *
+ * @param string $unit_types
+ * @param string $start_date
+ * @param string $end_date
+ * @param string $event_type
+ * @param string $event_states
+ */
+function bat_api_services_matching_units_calendar($unit_types, $start_date, $end_date, $event_type, $event_states) {
+  if ($unit_types == 'all') {
+    $unit_types = array();
+    foreach (bat_unit_get_types() as $type => $info) {
+      $unit_types[] = $type;
+    }
+  }
+  else {
+    $unit_types = array_filter(explode(',', $unit_types));
+  }
+
+  $states = array_filter(explode(',', $event_states));
+
+  $events_json = array();
+
+  // Get the event type definition from Drupal.
+  $bat_event_type = bat_event_type_load($event_type);
+
+  $target_entity_type = $bat_event_type->target_entity_type;
+
+  $controller = entity_get_controller($target_entity_type);
+
+  // For each type of event create a state store and an event store.
+  $state_store = new DrupalDBStore($event_type, DrupalDBStore::BAT_STATE);
+
+  $start_date_object = new DateTime($start_date);
+  $end_date_object = new DateTime($end_date);
+
+  $today = new DateTime();
+  if (!user_access('view past event information') && $today > $start_date_object) {
+    if ($today > $end_date_object) {
+      $return->events = array();
+      return $return;
+    }
+    $start_date_object = $today;
+  }
+
+  foreach ($unit_types as $unit_type) {
+    $entities = $controller->getReferencedIds($unit_type);
+
+    $childrens = array();
+
+    $units = array();
+    foreach ($entities as $entity) {
+      $target_entity = entity_load_single($target_entity_type, $entity['id']);
+      $units[] = new Unit($entity['id'], $target_entity->getEventDefaultValue($event_type));
+    }
+
+    if (!empty($units)) {
+      $dates = array(
+        $end_date_object->getTimestamp() => $end_date_object,
+      );
+
+      $calendar = new Calendar($units, $state_store);
+
+      $event_ids = $calendar->getEvents($start_date_object, $end_date_object);
+
+      foreach ($event_ids as $unit_id => $unit_events) {
+        foreach ($unit_events as $key => $event) {
+          $event_start_date = $event->getStartDate();
+          $dates[$event_start_date->getTimestamp()] = $event_start_date;
+        }
+      }
+
+      ksort($dates);
+      $dates = array_values($dates);
+
+      for ($i = 0; $i < (count($dates) - 1); $i++) {
+        $sd = $dates[$i];
+        $ed = clone($dates[$i + 1]);
+        $ed->sub(new DateInterval('PT1M'));
+
+        $response = $calendar->getMatchingUnits($sd, $ed, $states, array(), FALSE, FALSE);
+
+        if (count(array_keys($response->getIncluded()))) {
+          $color = 'green';
+        }
+        else {
+          $color = 'red';
+        }
+        $events_json[] = array(
+          'id' => $unit_type,
+          'resourceId' => $unit_type,
+          'start' => $sd->format('Y-m-d') . 'T' . $sd->format('H:i:00'),
+          'end' => $ed->format('Y-m-d') . 'T' . $ed->format('H:i:00'),
+          'color' => $color,
+          'rendering' => 'background',
+          'blocking' => 0,
+          'title' => '',
+        );
+      }
+    }
+  }
+
+  $events_json = _bat_api_merge_non_blocking_events($events_json);
+
+  $context = array(
+    'unit_types' => $unit_types,
+    'start_date' => $start_date_object,
+    'end_date' => $end_date_object,
+    'event_type' => $event_type,
+    'event_states' => $event_states,
+  );
+
+  drupal_alter('bat_api_matching_units_calendar', $events_json, $context);
+
+  return array_values($events_json);
+}
+
+/**
+ * Retrieve a list of types.
+ *
+ * @param string $type_ids
+ * @param string $offset
+ * @param string $limit
+ */
+function bat_api_services_types_index($type_ids, $offset, $limit) {
+  $return = new stdClass();
+  $return->sessid = session_id();
+
+  ctools_include('plugins');
+  $field_handlers = ctools_get_plugins('bat_api', 'bat_type_field_handler');
+
+  $ids = array_filter(explode(',', $type_ids));
+
+  $query = db_select('bat_types', 'n')
+    ->fields('n', array('type_id', 'type', 'name', 'language', 'status', 'uid'));
+  if (!empty($ids)) {
+    $query->condition('type_id', $ids, 'IN');
+  }
+  $query->orderBy('type_id');
+  $query->range($offset, $limit);
+  $bat_types = $query->execute()->fetchAll();
+
+  $types = array();
+  foreach ($bat_types as $type) {
+    $types[$type->type_id] = array(
+      'properties' => array(
+        'name' => $type->name,
+        'type' => $type->type,
+        'language' => $type->language,
+        'status' => $type->status,
+        'uid' => $type->uid,
+      ),
+      'fields' => array(),
+    );
+
+    foreach ($field_handlers as $handler) {
+      $class = ctools_plugin_get_class($handler, 'handler');
+      $object_handler = new $class(bat_type_load($type->type_id));
+
+      $field_type = $object_handler->getFieldType();
+      $field_info = $object_handler->getFieldInfo();
+
+      if (!empty($field_info)) {
+        $types[$type->type_id]['fields'][$field_type] = $field_info;
+      }
+    }
+  }
+
+  $return->types = $types;
+
+  return $return;
+}
+
+/**
+ * Update an existing type.
+ *
+ * @param int $type_id
+ * @param array $bat_type_data
+ */
+function bat_api_services_edit_type($type_id, $bat_type_data) {
+  $return = new stdClass();
+  $return->sessid = session_id();
+
+  if ($type = bat_type_load($type_id)) {
+    $type->name = (isset($bat_type_data['name'])) ? $bat_type_data['name'] : $type->name;
+    $type->status = (isset($bat_type_data['status'])) ? $bat_type_data['status'] : $type->status;
+    $type->uid = (isset($bat_type_data['uid'])) ? $bat_type_data['uid'] : $type->uid;
+    $type->data = (isset($bat_type_data['data'])) ? $bat_type_data['data'] : $type->data;
+
+    $type->changed = REQUEST_TIME;
+
+    bat_type_save($type);
+
+    $return->status = 1;
+  }
+  else {
+    $return->status = 0;
+  }
+
+  return $return;
+}
+
+/**
+ * Create a new type.
+ *
+ * @param string $name
+ * @param string $type
+ * @param int $uid
+ * @param int $status
+ */
+function bat_api_services_add_type($name, $type, $uid, $status) {
+  $return = new stdClass();
+  $return->sessid = session_id();
+
+  if (bat_type_bundle_load($type) !== FALSE && $name != '') {
+    $bat_type = bat_type_create(
+      array(
+        'name' => $name,
+        'type' => $type,
+        'status' => $status,
+        'uid' => $uid,
+        'created' => REQUEST_TIME,
+        'changed' => REQUEST_TIME,
+      )
+    );
+
+    bat_type_save($bat_type);
+
+    $return->type_id = $bat_type->type_id;
+    $return->status = 1;
+  }
+  else {
+    $return->status = 0;
+  }
+
+  return $return;
+}

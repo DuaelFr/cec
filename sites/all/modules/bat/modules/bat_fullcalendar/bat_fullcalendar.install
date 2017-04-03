@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @file
+ * Install for BAT Fullcalendar module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function bat_fullcalendar_requirements($phase) {
+  $requirements = array();
+  $t = get_t();
+  switch ($phase) {
+    case 'runtime':
+      if (!bat_fullcalendar_library_loaded('fullcalendar-scheduler', 'minified')) {
+        $description = array();
+        $fullcalendar_library = libraries_detect('fullcalendar-scheduler');
+        if (!$fullcalendar_library['installed']) {
+          $description[] = $t('Could not load the FullCalendar Scheduler Javascript Library');
+        }
+        if (!bat_fullcalendar_library_loaded('fullcalendar')) {
+          $description[] = $t('Could not load the FullCalendar Library');
+        }
+        $requirements['fullcalendar'] = array(
+          'title' => $t('FullCalendar'),
+          'description' => implode('<br />', $description),
+          'value' => $t('FullCalendar Scheduler Libraries Missing'),
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+      else {
+        $requirements['fullcalendar'] = array(
+          'title' => $t('FullCalendar'),
+          'description' => $t('The FullCalendar, FullCalendar Scheduler and the Moment Library are installed'),
+          'value' => $t('FullCalendar, Scheduler and Moment Installed'),
+          'severity' => REQUIREMENT_OK,
+        );
+      }
+
+      $jquery_version = variable_get('jquery_update_jquery_version', '1.10');
+
+      $admin_theme = variable_get('admin_theme', FALSE);
+      if (theme_get_setting('jquery_update_jquery_version', $admin_theme) != '') {
+        $jquery_version = theme_get_setting('jquery_update_jquery_version', $admin_theme);
+      }
+
+      if (function_exists('jquery_update_get_versions')) {
+        $jquery_versions = array_keys(jquery_update_get_versions());
+      }
+      else {
+        $jquery_versions = array('1.5', '1.6', '1.7', '1.8', '1.9', '1.10');
+      }
+
+      if ($jquery_version == 'default' || array_search($jquery_version, $jquery_versions) < array_search('1.8', $jquery_versions)) {
+        $requirements['bat_jquery'] = array(
+          'title' => $t('BAT jQuery Requirements'),
+          'description' => $t('Please ensure that you are using version 1.8 or greater of the jQuery library (<a href="@link">configure</a>)', array('@link' => url('admin/config/development/jquery_update'))),
+          'value' => ($jquery_version == 'default') ? '1.4' : $jquery_version,
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+      else {
+        $requirements['bat_jquery'] = array(
+          'title' => $t('BAT jQuery Requirements'),
+          'value' => $jquery_version,
+          'severity' => REQUIREMENT_OK,
+        );
+      }
+  }
+
+  return $requirements;
+}
