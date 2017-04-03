@@ -13,8 +13,8 @@ function sequences_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'sequence_node_form') {
     if (empty($form['field_dates'][LANGUAGE_NONE][0]['#default_value']['value'])) {
       $form['field_dates'][LANGUAGE_NONE][0]['#default_value'] = array(
-        'value' => '2017-05-28 16:00:00',
-        'value2' => '2017-05-28 16:00:00',
+        'value' => '2017-04-27 16:00:00',
+        'value2' => '2017-05-01 16:00:00',
         'timezone' => 'Europe/Paris',
         'timezone_db' => 'Europe/Paris',
         'date_type' => 'datetime',
@@ -29,6 +29,7 @@ function sequences_form_alter(&$form, &$form_state, $form_id) {
  */
 function sequences_date_select_process_alter(&$element, &$form_state, $context) {
   if ($context['form']['#form_id'] == 'sequence_node_form') {
-    $element['day']['#options'] = array('' => '', 8 => 'Mercredi 8', 9 => 'Jeudi 9', 10 => 'Vendredi 10', 11 => 'Samedi 11', 12 => 'Dimanche 12');
+    $element['day']['#options'] = array(27 => 'Jeudi 27', 28 => 'Vendredi 28', 29 => 'Samedi 29', 30 => 'Dimanche 30', 01 => 'Lundi 1er');
+    $element['month']['#options'] = array(04 => 'Avril', 05 => 'Mai');
   }
 }
