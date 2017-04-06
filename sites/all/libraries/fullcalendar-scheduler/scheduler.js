@@ -1,8 +1,8 @@
 
 /*!
-FullCalendar Scheduler v1.5.0
-Docs & License: http://fullcalendar.io/scheduler/
-(c) 2016 Adam Shaw
+FullCalendar Scheduler v1.5.1
+Docs & License: https://fullcalendar.io/scheduler/
+(c) 2017 Adam Shaw
  */
 (function(factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -27,9 +27,9 @@ var COL_MIN_WIDTH, Calendar, CalendarExtension, Class, ClippedScroller, CoordCac
 
 FC = $.fullCalendar;
 
-FC.schedulerVersion = "1.5.0";
+FC.schedulerVersion = "1.5.1";
 
-if (FC.internalApiVersion !== 7) {
+if (FC.internalApiVersion !== 8) {
   FC.warn('v' + FC.schedulerVersion + ' of FullCalendar Scheduler ' + 'is incompatible with v' + FC.version + ' of the core.\n' + 'Please see http://fullcalendar.io/support/ for more information.');
   return;
 }
@@ -1151,6 +1151,24 @@ CalendarExtension = (function(superClass) {
     return CalendarExtension.__super__.isSpanAllowed.apply(this, arguments);
   };
 
+  CalendarExtension.prototype.mutateSeg = function(span, newProps, largeUnit) {
+    var mutatedResourceIds, newResourceId, oldResourceId, ref;
+    if (newProps.resourceId) {
+      oldResourceId = ((ref = span.resource) != null ? ref.id : void 0) || span.resourceId;
+      newResourceId = newProps.resourceId;
+      mutatedResourceIds = this.getEventResourceIds(span.event);
+      if (oldResourceId !== newResourceId) {
+        mutatedResourceIds = mutatedResourceIds.filter(function(resourceId) {
+          return resourceId !== oldResourceId && resourceId !== newResourceId;
+        });
+        mutatedResourceIds.push(newResourceId);
+      }
+      newProps = $.extend({}, newProps);
+      this.setEventResourceIds(newProps, mutatedResourceIds);
+    }
+    return this.mutateEvent(span.event, newProps, largeUnit);
+  };
+
   CalendarExtension.prototype.getPeerEvents = function(span, event) {
     var filteredPeerEvents, isPeer, j, k, l, len, len1, len2, newResourceId, newResourceIds, peerEvent, peerEvents, peerResourceId, peerResourceIds;
     peerEvents = CalendarExtension.__super__.getPeerEvents.apply(this, arguments);
@@ -1263,7 +1281,12 @@ CalendarExtension = (function(superClass) {
   };
 
   CalendarExtension.prototype.setEventResourceId = function(event, resourceId) {
-    return event[this.getEventResourceField()] = String(resourceId != null ? resourceId : '');
+    return this.setEventResourceIds(event, resourceId ? [resourceId] : []);
+  };
+
+  CalendarExtension.prototype.setEventResourceIds = function(event, resourceIds) {
+    event[this.getEventResourceField()] = resourceIds.length === 1 ? resourceIds[0] : null;
+    return event.resourceIds = resourceIds.length > 1 ? resourceIds : null;
   };
 
   CalendarExtension.prototype.getEventResourceField = function() {
@@ -1330,7 +1353,9 @@ Calendar.defaults.refetchResourcesOnNavigate = false;
 View.prototype.setElement = function() {
   var promise;
   promise = origSetElement.apply(this, arguments);
-  this.bindResources();
+  if (!this.opt('refetchResourcesOnNavigate')) {
+    this.bindResources();
+  }
   return promise;
 };
 
@@ -1341,14 +1366,28 @@ View.prototype.removeElement = function() {
   return origRemoveElement.apply(this, arguments);
 };
 
+
+/*
+Replace the supermethod's logic. Important to unbind/bind *events* (TODO: make more DRY)
+ */
+
 View.prototype.handleDate = function(date, isReset) {
-  if (isReset && this.opt('refetchResourcesOnNavigate')) {
-    this.unsetResources({
+  var resourcesNeedDate;
+  resourcesNeedDate = this.opt('refetchResourcesOnNavigate');
+  this.unbindEvents();
+  if (resourcesNeedDate) {
+    this.unbindResources({
       skipUnrender: true
     });
-    this.fetchResources();
   }
-  return origHandleDate.apply(this, arguments);
+  return this.requestDateRender(date).then((function(_this) {
+    return function() {
+      _this.bindEvents();
+      if (resourcesNeedDate) {
+        return _this.bindResources(true);
+      }
+    };
+  })(this));
 };
 
 View.prototype.onDateRender = function() {
@@ -1364,12 +1403,12 @@ View.prototype.executeEventsRender = function(events) {
   })(this));
 };
 
-View.prototype.bindResources = function() {
+View.prototype.bindResources = function(forceInitialFetch) {
   var promise;
   if (!this.isResourcesBound) {
     this.isResourcesBound = true;
     this.trigger('resourcesBind');
-    promise = this.opt('refetchResourcesOnNavigate') ? this.fetchResources() : this.requestResources();
+    promise = forceInitialFetch ? this.fetchResources() : this.requestResources();
     return this.rejectOn('resourcesUnbind', promise).then((function(_this) {
       return function(resources) {
         _this.listenTo(_this.calendar.resourceManager, {
@@ -1461,12 +1500,33 @@ View.prototype.handleResourceRemove = function(resource) {
   }
 };
 
+
+/*
+Like fetchResources, but won't refetch if already fetched (regardless of start/end).
+If refetchResourcesOnNavigate is enabled,
+this function expects the view's start/end to be already populated.
+ */
+
 View.prototype.requestResources = function() {
-  return this.calendar.resourceManager.getResources();
+  if (this.opt('refetchResourcesOnNavigate')) {
+    return this.calendar.resourceManager.getResources(this.start, this.end);
+  } else {
+    return this.calendar.resourceManager.getResources();
+  }
 };
 
+
+/*
+If refetchResourcesOnNavigate is enabled,
+this function expects the view's start/end to be already populated.
+ */
+
 View.prototype.fetchResources = function() {
-  return this.calendar.resourceManager.fetchResources();
+  if (this.opt('refetchResourcesOnNavigate')) {
+    return this.calendar.resourceManager.fetchResources(this.start, this.end);
+  } else {
+    return this.calendar.resourceManager.fetchResources();
+  }
 };
 
 View.prototype.getCurrentResources = function() {
@@ -1575,11 +1635,23 @@ ResourceManager = (function(superClass) {
     this.initializeCache();
   }
 
-  ResourceManager.prototype.getResources = function() {
-    return this.fetching || this.fetchResources();
+
+  /*
+  	Like fetchResources, but won't refetch if already fetched (regardless of start/end).
+   */
+
+  ResourceManager.prototype.getResources = function(start, end) {
+    return this.fetching || this.fetchResources(start, end);
   };
 
-  ResourceManager.prototype.fetchResources = function() {
+
+  /*
+  	Will always fetch, even if done previously.
+  	Accepts optional chrono-related params to pass on to the raw resource sources.
+  	Returns a promise.
+   */
+
+  ResourceManager.prototype.fetchResources = function(start, end) {
     var currentFetchId;
     currentFetchId = (this.fetchId += 1);
     return this.fetching = new Promise((function(_this) {
@@ -1591,14 +1663,22 @@ ResourceManager = (function(superClass) {
           } else {
             return reject();
           }
-        });
+        }, start, end);
       };
     })(this));
   };
 
-  ResourceManager.prototype.fetchResourceInputs = function(callback) {
-    var source;
-    source = this.calendar.options['resources'];
+
+  /*
+  	Accepts optional chrono-related params to pass on to the raw resource sources.
+  	Calls callback when done.
+   */
+
+  ResourceManager.prototype.fetchResourceInputs = function(callback, start, end) {
+    var calendar, options, requestParams, source;
+    calendar = this.calendar;
+    options = calendar.options;
+    source = options.resources;
     if ($.type(source) === 'string') {
       source = {
         url: source
@@ -1612,12 +1692,22 @@ ResourceManager = (function(superClass) {
             _this.calendar.popLoading();
             return callback(resourceInputs);
           };
-        })(this));
+        })(this), start, end, options.timezone);
       case 'object':
-        this.calendar.pushLoading();
-        return $.ajax($.extend({}, ResourceManager.ajaxDefaults, source)).then((function(_this) {
+        calendar.pushLoading();
+        requestParams = {};
+        if (start && end) {
+          requestParams[options.startParam] = start.format();
+          requestParams[options.endParam] = end.format();
+          if (options.timezone && options.timezone !== 'local') {
+            requestParams[options.timezoneParam] = options.timezone;
+          }
+        }
+        return $.ajax($.extend({
+          data: requestParams
+        }, ResourceManager.ajaxDefaults, source)).then((function(_this) {
           return function(resourceInputs) {
-            _this.calendar.popLoading();
+            calendar.popLoading();
             return callback(resourceInputs);
           };
         })(this));
@@ -2064,15 +2154,6 @@ ResourceViewMixin = {
   	But mutateEvent isn't aware of eventResourceField, so it might be setting the wrong property. Workaround.
   	TODO: normalize somewhere else. maybe make a hook in core.
    */
-  reportEventDrop: function() {
-    var dropLocation, event, otherArgs, ref;
-    event = arguments[0], dropLocation = arguments[1], otherArgs = 3 <= arguments.length ? slice.call(arguments, 2) : [];
-    dropLocation = this.normalizeDropLocation(dropLocation);
-    if (dropLocation.resourceId && event.resourceIds) {
-      dropLocation.resourceIds = null;
-    }
-    return (ref = View.prototype.reportEventDrop).call.apply(ref, [this, event, dropLocation].concat(slice.call(otherArgs)));
-  },
   reportExternalDrop: function() {
     var dropLocation, meta, otherArgs, ref;
     meta = arguments[0], dropLocation = arguments[1], otherArgs = 3 <= arguments.length ? slice.call(arguments, 2) : [];
@@ -2711,6 +2792,14 @@ TimelineView = (function(superClass) {
     return this.timeGrid.unrenderNowIndicator();
   };
 
+  TimelineView.prototype.hitsNeeded = function() {
+    return this.timeGrid.hitsNeeded();
+  };
+
+  TimelineView.prototype.hitsNotNeeded = function() {
+    return this.timeGrid.hitsNotNeeded();
+  };
+
   TimelineView.prototype.prepareHits = function() {
     return this.timeGrid.prepareHits();
   };
@@ -3043,7 +3132,7 @@ TimelineGrid = (function(superClass) {
     snapsPerSlot = this.snapsPerSlot;
     slatCoordCache = this.slatCoordCache;
     containerCoordCache = this.containerCoordCache;
-    if (containerCoordCache.isTopInBounds(topOffset)) {
+    if (containerCoordCache.isPointInBounds(leftOffset, topOffset)) {
       slatIndex = slatCoordCache.getHorizontalIndex(leftOffset);
       if (slatIndex != null) {
         slatWidth = slatCoordCache.getWidth(slatIndex);
@@ -6421,7 +6510,7 @@ FC.views.month.queryResourceClass = function(viewSpec) {
   }
 };
 
-RELEASE_DATE = '2016-12-05';
+RELEASE_DATE = '2017-02-14';
 
 UPGRADE_WINDOW = {
   years: 1,
