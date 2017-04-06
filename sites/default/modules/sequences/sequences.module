@@ -22,6 +22,11 @@ function sequences_form_alter(&$form, &$form_state, $form_id) {
     }
     $form['#attached']['js'][] = drupal_get_path('module', 'sequences') . '/sequences.js';
   }
+
+  // Hide Unit field that's automatically filled.
+  if (!empty($form['field_unit_ref'])) {
+    $form['field_unit_ref']['#access'] = FALSE;
+  }
 }
 
 /**
@@ -31,5 +36,59 @@ function sequences_date_select_process_alter(&$element, &$form_state, $context) 
   if ($context['form']['#form_id'] == 'sequence_node_form') {
     $element['day']['#options'] = array(27 => 'Jeudi 27', 28 => 'Vendredi 28', 29 => 'Samedi 29', 30 => 'Dimanche 30', 01 => 'Lundi 1er');
     $element['month']['#options'] = array(04 => 'Avril', 05 => 'Mai');
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function sequences_node_presave($node) {
+  if (in_array($node->type, ['stuff', 'character'])) {
+    $type = 'stuff';
+    if ($node->type == 'character') {
+      $type = $node->field_character_type->value == 'PNJ' ? 'npc' : 'pc';
+    }
+
+    $mapping = ['stuff' => 'Matériel', 'npc' => 'PNJ', 'pc' => 'PJ'];
+
+    if (!empty($node->field_unit_ref[LANGUAGE_NONE])) {
+      $unit = bat_unit_load($node->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
+      $unit->name = $node->title;
+      $unit->changed = REQUEST_TIME;
+    }
+    else {
+      $unit = bat_unit_create([
+        'name' => $node->title,
+        'type' => $type,
+        'type_id' => array_search($mapping[$type], bat_unit_types_ids()),
+        'created' => REQUEST_TIME,
+      ]);
+    }
+    if (!empty($node->nid)) {
+      $unit->{'field_' . $type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
+    }
+    bat_unit_save($unit);
+
+    // Save the Unit ID to the node.
+    $node->field_unit_ref = [LANGUAGE_NONE => [[
+      'unit_id' => $unit->unit_id,
+      'event_type_id' => bat_event_get_types('availability')->id,
+    ]]];
+  }
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function sequences_node_insert($node) {
+  if (!empty($node->field_unit_ref)) {
+    $type = 'stuff';
+    if ($node->type == 'character') {
+      $type = $node->field_character_type->value == 'PNJ' ? 'npc' : 'pc';
+    }
+
+    $unit = bat_unit_load($node->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
+    $unit->{'field_' . $type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
+    bat_unit_save($unit);
   }
 }

@@ -10,6 +10,265 @@
 function sequences_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'bat_event-availability-event_bat_unit_reference'.
+  $field_instances['bat_event-availability-event_bat_unit_reference'] = array(
+    'bundle' => 'availability',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'bat_event',
+    'field_name' => 'event_bat_unit_reference',
+    'label' => 'Unit',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance: 'bat_event-availability-event_state_reference'.
+  $field_instances['bat_event-availability-event_state_reference'] = array(
+    'bundle' => 'availability',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'bat_event',
+        'settings' => array(),
+        'type' => 'bat_event_state_reference_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'bat_event',
+    'field_name' => 'event_state_reference',
+    'label' => 'State',
+    'required' => FALSE,
+    'settings' => array(
+      'event_type' => 'availability',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'bat_event',
+      'settings' => array(
+        'autocomplete_match' => 'contains',
+        'autocomplete_path' => 'bat_event/state_event/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'bat_event_reference_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'bat_event-availability-field_sequence_ref'.
+  $field_instances['bat_event-availability-field_sequence_ref'] = array(
+    'bundle' => 'availability',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'bat_event',
+    'field_name' => 'field_sequence_ref',
+    'label' => 'Séquence',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'bat_type-resource-field_default_state'.
+  $field_instances['bat_type-resource-field_default_state'] = array(
+    'bundle' => 'resource',
+    'default_value' => array(
+      0 => array(
+        'state_id' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'bat_event',
+        'settings' => array(),
+        'type' => 'bat_event_state_reference_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'bat_type',
+    'field_name' => 'field_default_state',
+    'label' => 'Default state',
+    'required' => 0,
+    'settings' => array(
+      'event_type' => 'availability',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'bat_event',
+      'settings' => array(
+        'autocomplete_match' => 'contains',
+        'autocomplete_path' => 'bat_event/state_event/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'bat_event_reference_autocomplete',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'bat_unit-npc-field_npc_ref'.
+  $field_instances['bat_unit-npc-field_npc_ref'] = array(
+    'bundle' => 'npc',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'bat_unit',
+    'field_name' => 'field_npc_ref',
+    'label' => 'Personnage',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 31,
+    ),
+  );
+
+  // Exported field_instance: 'bat_unit-pc-field_pc_ref'.
+  $field_instances['bat_unit-pc-field_pc_ref'] = array(
+    'bundle' => 'pc',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'bat_unit',
+    'field_name' => 'field_pc_ref',
+    'label' => 'Personnage',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 31,
+    ),
+  );
+
+  // Exported field_instance: 'bat_unit-stuff-field_stuff_ref'.
+  $field_instances['bat_unit-stuff-field_stuff_ref'] = array(
+    'bundle' => 'stuff',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'bat_unit',
+    'field_name' => 'field_stuff_ref',
+    'label' => 'Matériel',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 31,
+    ),
+  );
+
   // Exported field_instance: 'comment-comment_node_sequence-comment_body'.
   $field_instances['comment-comment_node_sequence-comment_body'] = array(
     'bundle' => 'comment_node_sequence',
@@ -572,6 +831,7 @@ function sequences_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Comment');
+  t('Default state');
   t('Description');
   t('Horaires');
   t('Incarné par');
@@ -581,8 +841,12 @@ function sequences_field_default_field_instances() {
   t('Matériel');
   t('Opus');
   t('PNJ');
+  t('Personnage');
   t('Rôle');
+  t('State');
+  t('Séquence');
   t('Type de séquence');
+  t('Unit');
 
   return $field_instances;
 }
