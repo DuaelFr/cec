@@ -73,6 +73,7 @@ features[user_permission][] = delete terms in sequence_type
 features[user_permission][] = edit any sequence content
 features[user_permission][] = edit own sequence content
 features[user_permission][] = edit terms in sequence_type
+features[variable][] = bat_fullcalendar_scheduler_key
 features[variable][] = comment_anonymous_sequence
 features[variable][] = comment_default_mode_sequence
 features[variable][] = comment_default_per_page_sequence
