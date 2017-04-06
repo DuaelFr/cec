@@ -46,17 +46,23 @@ function sequences_node_presave($node) {
   if (in_array($node->type, ['stuff', 'character'])) {
     $type = 'stuff';
     if ($node->type == 'character') {
-      $type = $node->field_character_type->value == 'PNJ' ? 'npc' : 'pc';
+      $type = $node->field_character_type[LANGUAGE_NONE][0]['value'] == 'PNJ' ? 'npc' : 'pc';
     }
 
     $mapping = ['stuff' => 'Matériel', 'npc' => 'PNJ', 'pc' => 'PJ'];
 
     if (!empty($node->field_unit_ref[LANGUAGE_NONE])) {
       $unit = bat_unit_load($node->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
-      $unit->name = $node->title;
-      $unit->changed = REQUEST_TIME;
+      if ($unit->type == $type) {
+        $unit->name = $node->title;
+        $unit->changed = REQUEST_TIME;
+      }
+      else {
+        bat_unit_delete($unit);
+        unset($unit);
+      }
     }
-    else {
+    if (empty($unit)) {
       $unit = bat_unit_create([
         'name' => $node->title,
         'type' => $type,
