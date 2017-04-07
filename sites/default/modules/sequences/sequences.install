@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * Force feature revert to prepare next updates.
+ */
+function sequences_update_7001(&$sandbox) {
+  $components = [
+    'sequences' => [
+      'dependencies',
+      'bat_event_type',
+      'bat_type_bundle',
+      'bat_unit_bundle',
+      'field_base',
+      'field_instance',
+    ],
+  ];
+  features_include(TRUE);
+  foreach ($components as $feature_name => $feature_cmps) {
+    features_include_defaults($feature_cmps, TRUE);
+  }
+  features_revert($components);
+  drupal_flush_all_caches();
+}
+
+/**
+ * Add default BAT Types.
+ */
+function sequences_update_7002(&$sandbox) {
+  $sid = bat_event_load_state_by_machine_name('available')['id'];
+  foreach (['Matériel', 'PNJ', 'PJ'] as $name) {
+    $type = bat_type_create(['name' => $name, 'type' => 'resource', 'field_default_state' => [LANGUAGE_NONE => [['state_id' => $sid]]]]);
+    bat_type_save($type);
+  }
+}
+
+/**
+ * Generate BAT Units for stuff and characters.
+ */
+function sequences_update_7003(&$sandbox) {
+  if (!isset($sandbox['total'])) {
+    $q = new EntityFieldQuery();
+    $q->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', ['stuff', 'character']);
+    $r = $q->execute();
+
+    $sandbox['items'] = array_keys($r['node']);
+    $sandbox['total'] = count($sandbox['items']);
+  }
+
+  $nids = array_splice($sandbox['items'], 0, 20);
+  foreach (node_load_multiple($nids) as $node) {
+    // Just save the node and let hook_node_presave do the job.
+    node_save($node);
+  }
+
+  $sandbox['#finished'] = ($sandbox['total'] - count($sandbox['items'])) / $sandbox['total'];
+}
