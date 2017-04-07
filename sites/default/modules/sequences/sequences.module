@@ -4,6 +4,10 @@
  * Code for the Séquences feature.
  */
 
+use Roomify\Bat\Calendar\Calendar;
+use Roomify\Bat\Store\DrupalDBStore;
+use Roomify\Bat\Unit\Unit;
+
 include_once 'sequences.features.inc';
 
 /**
@@ -21,6 +25,8 @@ function sequences_form_alter(&$form, &$form_state, $form_id) {
       );
     }
     $form['#attached']['js'][] = drupal_get_path('module', 'sequences') . '/sequences.js';
+
+    $form['field_event_refs']['#access'] = FALSE;
   }
 
   // Hide Unit field that's automatically filled.
@@ -36,6 +42,105 @@ function sequences_date_select_process_alter(&$element, &$form_state, $context) 
   if ($context['form']['#form_id'] == 'sequence_node_form') {
     $element['day']['#options'] = array(27 => 'Jeudi 27', 28 => 'Vendredi 28', 29 => 'Samedi 29', 30 => 'Dimanche 30', 01 => 'Lundi 1er');
     $element['month']['#options'] = array(04 => 'Avril', 05 => 'Mai');
+  }
+}
+
+/**
+ * Implements hook_node_validate().
+ */
+function sequences_node_validate($node, $form, &$form_state) {
+  if ($node->type == 'sequence') {
+    $event_type = bat_event_type_load('availability');
+    if ($event_type->fixed_event_states) {
+      $wrapper = entity_metadata_wrapper('node', $node);
+
+      $start_date = new DateTime($wrapper->field_dates->value()['value']);
+      $end_date = new DateTime($wrapper->field_dates->value()['value2']);
+      $end_date->sub(new DateInterval('PT1M'));
+
+      $resources = $wrapper->field_matos->raw();
+      $resources = array_merge($resources, $wrapper->field_players->raw());
+      foreach ($form_state['values']['field_nonplayers'][LANGUAGE_NONE] as $npc) {
+        if (!empty($npc['field_nonplayer_role'][LANGUAGE_NONE][0]['target_id'])) {
+          $resources[] = $npc['field_nonplayer_role'][LANGUAGE_NONE][0]['target_id'];
+        }
+      }
+      $resources = node_load_multiple($resources);
+
+      $existing_events = [];
+      foreach ($form_state['values']['field_event_refs'][LANGUAGE_NONE] as $event) {
+        if (!empty($event['target_id'])) {
+          $existing_events[] = $event['target_id'];
+        }
+      }
+
+      $bat_units = [];
+      foreach ($resources as $resource) {
+        if (!empty($resource->field_unit_ref[LANGUAGE_NONE][0]['unit_id'])) {
+          $bat_units[] = new Unit($resource->field_unit_ref[LANGUAGE_NONE][0]['unit_id'], 0);
+        }
+      }
+
+      global $databases;
+      $prefix = (isset($databases['default']['default']['prefix'])) ? $databases['default']['default']['prefix'] : '';
+      $event_store = new DrupalDBStore($event_type->type, DrupalDBStore::BAT_EVENT, $prefix);
+      $calendar = new Calendar($bat_units, $event_store);
+      $events = $calendar->getEvents($start_date, $end_date);
+
+      foreach ($events as $unit_id => $unit_events) {
+        foreach ($unit_events as $event) {
+          $event_id = $event->getValue();
+
+          if (!in_array($event_id, $existing_events)) {
+            if ($event = bat_event_load($event_id)) {
+              $state = bat_event_load_state($event->event_state_reference[LANGUAGE_NONE][0]['state_id']);
+
+              if ($state['blocking']) {
+                $unit = bat_unit_load($unit_id);
+                $sequence = node_load($event->field_sequence_ref[LANGUAGE_NONE][0]['target_id']);
+
+                $params = [
+                  '!sequence' => l($sequence->title, 'node/' . $sequence->nid),
+                ];
+                switch ($unit->type) {
+                  case 'stuff':
+                    $item = node_load($unit->field_stuff_ref[LANGUAGE_NONE][0]['target_id']);
+                    $params['!item'] = l($item->title, 'node/' . $item->nid);
+                      form_set_error(
+                        'field_matos][und][' . $item->nid,
+                        format_string('Le matériel !item est déjà utilisé par la séquence !sequence à ce moment.', $params)
+                      );
+                    break;
+
+                  case 'npc':
+                    $item = node_load($unit->field_npc_ref[LANGUAGE_NONE][0]['target_id']);
+                    $params['!item'] = l($item->title, 'node/' . $item->nid);
+                    foreach ($form_state['values']['field_nonplayers'][LANGUAGE_NONE] as $delta => $npc) {
+                      if (!empty($npc['field_nonplayer_role'][LANGUAGE_NONE][0]['target_id']) && $npc['field_nonplayer_role'][LANGUAGE_NONE][0]['target_id'] == $item->nid) {
+                        break;
+                      }
+                    }
+                    form_set_error(
+                      'field_nonplayers][und][' . $delta . '][field_nonplayer_role',
+                      format_string('Le PNJ !item est déjà utilisé par la séquence !sequence à ce moment.', $params)
+                    );
+                    break;
+
+                  case 'pc':
+                    $item = node_load($unit->field_pc_ref[LANGUAGE_NONE][0]['target_id']);
+                    $params['!item'] = l($item->title, 'node/' . $item->nid);
+                    form_set_error(
+                      'field_players][und][' . $item->nid,
+                      format_string('Le PJ !item est déjà utilisé par la séquence !sequence à ce moment.', $params)
+                    );
+                    break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 

@@ -389,7 +389,7 @@ function sequences_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'full_zorga' => array(
         'label' => 'hidden',
@@ -445,7 +445,7 @@ function sequences_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'full_zorga' => array(
         'label' => 'inline',
@@ -497,6 +497,52 @@ function sequences_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-sequence-field_event_refs'.
+  $field_instances['node-sequence-field_event_refs'] = array(
+    'bundle' => 'sequence',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'full_zorga' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_event_refs',
+    'label' => 'Events',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 31,
+    ),
+  );
+
   // Exported field_instance: 'node-sequence-field_intrigue'.
   $field_instances['node-sequence-field_intrigue'] = array(
     'bundle' => 'sequence',
@@ -508,7 +554,7 @@ function sequences_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'full_zorga' => array(
         'label' => 'inline',
@@ -557,7 +603,7 @@ function sequences_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'full_zorga' => array(
         'label' => 'inline',
@@ -602,7 +648,7 @@ function sequences_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -647,7 +693,7 @@ function sequences_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -696,7 +742,7 @@ function sequences_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -751,7 +797,7 @@ function sequences_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -796,7 +842,7 @@ function sequences_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'full_zorga' => array(
         'label' => 'inline',
@@ -833,6 +879,7 @@ function sequences_field_default_field_instances() {
   t('Comment');
   t('Default state');
   t('Description');
+  t('Events');
   t('Horaires');
   t('Incarné par');
   t('Intrigue');

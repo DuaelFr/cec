@@ -105,6 +105,9 @@ function sequences_strongarm() {
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
+      'bat_list' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -117,11 +120,14 @@ function sequences_strongarm() {
         'workflow' => array(
           'weight' => '9',
         ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(
         'comments' => array(
           'default' => array(
-            'weight' => '3',
+            'weight' => '5',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
@@ -135,7 +141,7 @@ function sequences_strongarm() {
         ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '3',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
@@ -149,7 +155,7 @@ function sequences_strongarm() {
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
@@ -163,7 +169,7 @@ function sequences_strongarm() {
         ),
         'cec_comments' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '1',
             'visible' => FALSE,
           ),
           'full_zorga' => array(

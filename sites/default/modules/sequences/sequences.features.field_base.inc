@@ -76,6 +76,42 @@ function sequences_field_default_field_bases() {
     'type' => 'bat_event_state_reference',
   );
 
+  // Exported field_base: 'field_event_refs'.
+  $field_bases['field_event_refs'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_event_refs',
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'availability' => 'availability',
+        ),
+      ),
+      'profile2_private' => FALSE,
+      'target_type' => 'bat_event',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
   // Exported field_base: 'field_incarnate_npc'.
   $field_bases['field_incarnate_npc'] = array(
     'active' => 1,
