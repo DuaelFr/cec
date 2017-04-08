@@ -98,6 +98,9 @@ function matos_strongarm() {
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
+      'bat_list' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -105,16 +108,19 @@ function matos_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '6',
         ),
         'workflow' => array(
-          'weight' => '3',
+          'weight' => '5',
+        ),
+        'redirect' => array(
+          'weight' => '7',
         ),
       ),
       'display' => array(
         'comments' => array(
           'default' => array(
-            'weight' => '2',
+            'weight' => '5',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
@@ -124,22 +130,32 @@ function matos_strongarm() {
         ),
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '2',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '3',
+            'weight' => '6',
             'visible' => FALSE,
           ),
         ),
         'workflow' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '3',
             'visible' => FALSE,
           ),
           'full_zorga' => array(
-            'weight' => '4',
+            'weight' => '7',
             'visible' => FALSE,
+          ),
+        ),
+        'cec_comments' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'full_zorga' => array(
+            'weight' => '4',
+            'visible' => TRUE,
           ),
         ),
       ),

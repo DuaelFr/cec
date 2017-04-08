@@ -191,7 +191,7 @@ function personnages_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -451,7 +451,7 @@ function personnages_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 20,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1331,6 +1331,58 @@ function personnages_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-character-field_unit_ref'.
+  $field_instances['node-character-field_unit_ref'] = array(
+    'bundle' => 'character',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'bat_calendar_reference',
+        'settings' => array(),
+        'type' => 'bat_calendar_reference_timeline_view',
+        'weight' => 30,
+      ),
+      'full_zorga' => array(
+        'label' => 'above',
+        'module' => 'bat_calendar_reference',
+        'settings' => array(),
+        'type' => 'bat_calendar_reference_timeline_view',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'trombinoscope' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_unit_ref',
+    'label' => 'Disponibilité',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'bat_calendar_reference',
+      'settings' => array(
+        'autocomplete_match' => 'contains',
+      ),
+      'type' => 'bat_calendar_reference_unit_autocomplete',
+      'weight' => 32,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Avantage');
@@ -1344,6 +1396,7 @@ function personnages_field_default_field_instances() {
   t('Dernier Tempérament');
   t('Descriptif orga');
   t('Description');
+  t('Disponibilité');
   t('Espèce');
   t('Incarné par');
   t('Nationalité');

@@ -118,10 +118,43 @@ function cec_commons_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'user-user-field_unit_ref'.
+  $field_instances['user-user-field_unit_ref'] = array(
+    'bundle' => 'user',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'user',
+    'field_name' => 'field_unit_ref',
+    'label' => 'Disponibilité',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'bat_calendar_reference',
+      'settings' => array(
+        'autocomplete_match' => 'contains',
+      ),
+      'type' => 'bat_calendar_reference_unit_autocomplete',
+      'weight' => 52,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Cible Interprétation');
   t('Contenu Interprétation');
+  t('Disponibilité');
   t('Intitulé interprétation');
 
   return $field_instances;

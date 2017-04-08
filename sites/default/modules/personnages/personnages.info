@@ -101,6 +101,7 @@ features[field_instance][] = node-character-field_temperament2
 features[field_instance][] = node-character-field_temperament3
 features[field_instance][] = node-character-field_temperament4
 features[field_instance][] = node-character-field_temperament5
+features[field_instance][] = node-character-field_unit_ref
 features[image][] = trombinoscope
 features[node][] = character
 features[taxonomy][] = nationalites

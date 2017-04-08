@@ -54,14 +54,14 @@ function matos_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'full_zorga' => array(
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -105,7 +105,7 @@ function matos_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 4,
       ),
       'full_zorga' => array(
         'label' => 'above',
@@ -139,7 +139,7 @@ function matos_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -154,7 +154,7 @@ function matos_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'full_zorga' => array(
         'label' => 'inline',
@@ -176,6 +176,45 @@ function matos_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-stuff-field_unit_ref'.
+  $field_instances['node-stuff-field_unit_ref'] = array(
+    'bundle' => 'stuff',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'full_zorga' => array(
+        'label' => 'above',
+        'module' => 'bat_calendar_reference',
+        'settings' => array(),
+        'type' => 'bat_calendar_reference_timeline_view',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_unit_ref',
+    'label' => 'Disponibilité',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'bat_calendar_reference',
+      'settings' => array(
+        'autocomplete_match' => 'contains',
+      ),
+      'type' => 'bat_calendar_reference_unit_autocomplete',
       'weight' => 2,
     ),
   );
@@ -184,6 +223,7 @@ function matos_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Comment');
   t('Description');
+  t('Disponibilité');
   t('Opus');
   t('Type de matériel');
 

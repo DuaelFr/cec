@@ -34,7 +34,7 @@ function sequences_update_7002(&$sandbox) {
 }
 
 /**
- * Generate BAT Units for stuff and characters.
+ * Generate BAT Units for stuff and Player characters.
  */
 function sequences_update_7003(&$sandbox) {
   if (!isset($sandbox['total'])) {
@@ -51,6 +51,29 @@ function sequences_update_7003(&$sandbox) {
   foreach (node_load_multiple($nids) as $node) {
     // Just save the node and let hook_node_presave do the job.
     node_save($node);
+  }
+
+  $sandbox['#finished'] = ($sandbox['total'] - count($sandbox['items'])) / $sandbox['total'];
+}
+
+/**
+ * Generate BAT Units for Non-Player characters.
+ */
+function sequences_update_7004(&$sandbox) {
+  if (!isset($sandbox['total'])) {
+    $q = new EntityFieldQuery();
+    $q->entityCondition('entity_type', 'user')
+      ->propertyCondition('uid', 1, '>');
+    $r = $q->execute();
+
+    $sandbox['items'] = array_keys($r['user']);
+    $sandbox['total'] = count($sandbox['items']);
+  }
+
+  $uids = array_splice($sandbox['items'], 0, 20);
+  foreach (user_load_multiple($uids) as $account) {
+    // Just save the user and let hook_user_presave do the job.
+    user_save($account);
   }
 
   $sandbox['#finished'] = ($sandbox['total'] - count($sandbox['items'])) / $sandbox['total'];

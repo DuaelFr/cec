@@ -408,6 +408,35 @@ function cec_commons_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
+  // Exported field_base: 'field_unit_ref'.
+  $field_bases['field_unit_ref'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_unit_ref',
+    'indexes' => array(
+      'unit_id' => array(
+        0 => 'unit_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'bat_calendar_reference',
+    'settings' => array(
+      'profile2_private' => FALSE,
+      'referenceable_event_types' => array(
+        1 => 1,
+      ),
+      'referenceable_unit_types' => array(
+        1 => 1,
+        2 => 2,
+        3 => 3,
+      ),
+    ),
+    'translatable' => 0,
+    'type' => 'bat_calendar_unit_reference',
+  );
+
   // Exported field_base: 'field_version'.
   $field_bases['field_version'] = array(
     'active' => 1,

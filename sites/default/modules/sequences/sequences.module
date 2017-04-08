@@ -80,6 +80,9 @@ function sequences_node_validate($node, $form, &$form_state) {
           $bat_units[] = new Unit($resource->field_unit_ref[LANGUAGE_NONE][0]['unit_id'], 0);
         }
       }
+      if (empty($bat_units)) {
+        return;
+      }
 
       global $databases;
       $prefix = (isset($databases['default']['default']['prefix'])) ? $databases['default']['default']['prefix'] : '';
@@ -145,46 +148,44 @@ function sequences_node_validate($node, $form, &$form_state) {
 }
 
 /**
+ * Implements hook_user_presave().
+ */
+function sequences_user_presave(&$edit, $account, $category) {
+  // If the user is a PNJ or a Zorga.
+  if (!empty($account->roles[user_role_load_by_name('PNJ')->rid]) || !empty($account->roles[user_role_load_by_name('Zorga')->rid])) {
+    _sequences_entity_handle_unit('npc', $account);
+    $edit['field_unit_ref'][LANGUAGE_NONE] = $account->field_unit_ref[LANGUAGE_NONE];
+  }
+  // If the user was a PNJ or Zorga but not anymore.
+  elseif (!empty($account->field_unit_ref[LANGUAGE_NONE])) {
+    // Delete the unit and detach the user.
+    $unit = bat_unit_load($account->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
+    bat_unit_delete($unit);
+    $account->field_unit_ref[LANGUAGE_NONE] = [];
+    $edit['field_unit_ref'][LANGUAGE_NONE] = [];
+  }
+}
+
+/**
  * Implements hook_node_presave().
  */
 function sequences_node_presave($node) {
-  if (in_array($node->type, ['stuff', 'character'])) {
-    $type = 'stuff';
-    if ($node->type == 'character') {
-      $type = $node->field_character_type[LANGUAGE_NONE][0]['value'] == 'PNJ' ? 'npc' : 'pc';
+  // Units management.
+  if ($node->type == 'stuff') {
+    _sequences_entity_handle_unit('stuff', $node);
+  }
+  elseif ($node->type == 'character') {
+    // If the character is a Player Character.
+    if ($node->field_character_type[LANGUAGE_NONE][0]['value'] == 'Joueur') {
+      _sequences_entity_handle_unit('pc', $node);
     }
-
-    $mapping = ['stuff' => 'Matériel', 'npc' => 'PNJ', 'pc' => 'PJ'];
-
-    if (!empty($node->field_unit_ref[LANGUAGE_NONE])) {
+    // If the character was a Player Character but not anymore.
+    elseif (!empty($node->field_unit_ref[LANGUAGE_NONE])) {
+      // Delete the unit and detach the node.
       $unit = bat_unit_load($node->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
-      if ($unit->type == $type) {
-        $unit->name = $node->title;
-        $unit->changed = REQUEST_TIME;
-      }
-      else {
-        bat_unit_delete($unit);
-        unset($unit);
-      }
+      bat_unit_delete($unit);
+      $node->field_unit_ref[LANGUAGE_NONE] = [];
     }
-    if (empty($unit)) {
-      $unit = bat_unit_create([
-        'name' => $node->title,
-        'type' => $type,
-        'type_id' => array_search($mapping[$type], bat_unit_types_ids()),
-        'created' => REQUEST_TIME,
-      ]);
-    }
-    if (!empty($node->nid)) {
-      $unit->{'field_' . $type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
-    }
-    bat_unit_save($unit);
-
-    // Save the Unit ID to the node.
-    $node->field_unit_ref = [LANGUAGE_NONE => [[
-      'unit_id' => $unit->unit_id,
-      'event_type_id' => bat_event_get_types('availability')->id,
-    ]]];
   }
 }
 
@@ -192,14 +193,61 @@ function sequences_node_presave($node) {
  * Implements hook_node_insert().
  */
 function sequences_node_insert($node) {
-  if (!empty($node->field_unit_ref)) {
-    $type = 'stuff';
-    if ($node->type == 'character') {
-      $type = $node->field_character_type->value == 'PNJ' ? 'npc' : 'pc';
-    }
-
+  if (!empty($node->field_unit_ref[LANGUAGE_NONE])) {
     $unit = bat_unit_load($node->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
-    $unit->{'field_' . $type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
+    if ($node->type == 'stuff') {
+      $unit->field_stuff_ref = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
+    }
+    elseif ($node->type == 'character') {
+      $unit->field_pc_ref = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
+    }
     bat_unit_save($unit);
   }
+}
+
+/**
+ * Implements hook_user_update().
+ */
+function sequences_user_update(&$edit, $account, $category) {
+  if (!empty($account->field_unit_ref[LANGUAGE_NONE])) {
+    $unit = bat_unit_load($account->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
+    $unit->field_npc_ref = [LANGUAGE_NONE => [['target_id' => $account->uid]]];
+    bat_unit_save($unit);
+  }
+}
+
+/**
+ * Helper that creates or edit a Unit to mirror the given entity.
+ *
+ * @param string $type
+ * @param object $entity
+ */
+function _sequences_entity_handle_unit($type, $entity) {
+  $mapping = ['stuff' => 'Matériel', 'npc' => 'PNJ', 'pc' => 'PJ'];
+
+  // If there is already an Unit attached to the entity.
+  if (!empty($entity->field_unit_ref[LANGUAGE_NONE])) {
+    return;
+  }
+
+  $unit = bat_unit_create([
+    'name' => !empty($entity->title) ? $entity->title : $entity->name,
+    'type' => $type,
+    'type_id' => array_search($mapping[$type], bat_unit_types_ids()),
+    'created' => REQUEST_TIME,
+  ]);
+
+  if (!empty($entity->nid)) {
+    $unit->{'field_' . $type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $entity->nid]]];
+  }
+  if (!empty($entity->uid)) {
+    $unit->{'field_' . $type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $entity->uid]]];
+  }
+  bat_unit_save($unit);
+
+  // Save the Unit ID to the node.
+  $entity->field_unit_ref = [LANGUAGE_NONE => [[
+    'unit_id' => $unit->unit_id,
+    'event_type_id' => bat_event_get_types('availability')->id,
+  ]]];
 }
