@@ -54,26 +54,20 @@ function sequences_node_validate($node, $form, &$form_state) {
     if ($event_type->fixed_event_states) {
       $wrapper = entity_metadata_wrapper('node', $node);
 
-      $start_date = new DateTime($wrapper->field_dates->value()['value']);
-      $end_date = new DateTime($wrapper->field_dates->value()['value2']);
-      $end_date->sub(new DateInterval('PT1M'));
+      // Aggregate stuff, players and npcs.
+      $nids = $wrapper->field_matos->raw();
+      $nids = array_merge($nids, $wrapper->field_players->raw());
+      $resources = node_load_multiple($nids);
 
-      $resources = $wrapper->field_matos->raw();
-      $resources = array_merge($resources, $wrapper->field_players->raw());
+      $uids = [];
       foreach ($form_state['values']['field_nonplayers'][LANGUAGE_NONE] as $npc) {
-        if (!empty($npc['field_nonplayer_role'][LANGUAGE_NONE][0]['target_id'])) {
-          $resources[] = $npc['field_nonplayer_role'][LANGUAGE_NONE][0]['target_id'];
+        if (!empty($npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'])) {
+          $uids[] = $npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'];
         }
       }
-      $resources = node_load_multiple($resources);
+      $resources = array_merge($resources, user_load_multiple($uids));
 
-      $existing_events = [];
-      foreach ($form_state['values']['field_event_refs'][LANGUAGE_NONE] as $event) {
-        if (!empty($event['target_id'])) {
-          $existing_events[] = $event['target_id'];
-        }
-      }
-
+      // Extract Unit IDs from resources.
       $bat_units = [];
       foreach ($resources as $resource) {
         if (!empty($resource->field_unit_ref[LANGUAGE_NONE][0]['unit_id'])) {
@@ -84,61 +78,82 @@ function sequences_node_validate($node, $form, &$form_state) {
         return;
       }
 
+      // Keeps existing Events IDs.
+      $existing_events = [];
+      foreach ($form_state['values']['field_event_refs'][LANGUAGE_NONE] as $event) {
+        if (!empty($event['target_id'])) {
+          $existing_events[] = $event['target_id'];
+        }
+      }
+
+      // Extract all existing events for these units between these dates.
       global $databases;
       $prefix = (isset($databases['default']['default']['prefix'])) ? $databases['default']['default']['prefix'] : '';
       $event_store = new DrupalDBStore($event_type->type, DrupalDBStore::BAT_EVENT, $prefix);
       $calendar = new Calendar($bat_units, $event_store);
+
+      $start_date = new DateTime($wrapper->field_dates->value()['value']);
+      $end_date = new DateTime($wrapper->field_dates->value()['value2']);
+      $end_date->sub(new DateInterval('PT1M'));
       $events = $calendar->getEvents($start_date, $end_date);
 
+      // Ensures that there is no date conflict with the attached units.
       foreach ($events as $unit_id => $unit_events) {
         foreach ($unit_events as $event) {
           $event_id = $event->getValue();
+          // Ignore if the event is already registered in this sequence.
+          if (in_array($event_id, $existing_events)) {
+            continue;
+          }
 
-          if (!in_array($event_id, $existing_events)) {
-            if ($event = bat_event_load($event_id)) {
-              $state = bat_event_load_state($event->event_state_reference[LANGUAGE_NONE][0]['state_id']);
+          $event = bat_event_load($event_id);
+          if ($event === FALSE) {
+            continue;
+          }
 
-              if ($state['blocking']) {
-                $unit = bat_unit_load($unit_id);
-                $sequence = node_load($event->field_sequence_ref[LANGUAGE_NONE][0]['target_id']);
+          $state = bat_event_load_state($event->event_state_reference[LANGUAGE_NONE][0]['state_id']);
 
-                $params = [
-                  '!sequence' => l($sequence->title, 'node/' . $sequence->nid),
-                ];
-                switch ($unit->type) {
-                  case 'stuff':
-                    $item = node_load($unit->field_stuff_ref[LANGUAGE_NONE][0]['target_id']);
-                    $params['!item'] = l($item->title, 'node/' . $item->nid);
-                      form_set_error(
-                        'field_matos][und][' . $item->nid,
-                        format_string('Le matériel !item est déjà utilisé par la séquence !sequence à ce moment.', $params)
-                      );
+          // If the existing event references a blocking state mark the field
+          // as error and output an appropriate error message.
+          if ($state['blocking']) {
+            $unit = bat_unit_load($unit_id);
+            $sequence = node_load($event->field_sequence_ref[LANGUAGE_NONE][0]['target_id']);
+
+            $params = [
+              '!sequence' => l($sequence->title, 'node/' . $sequence->nid),
+            ];
+            switch ($unit->type) {
+              case 'stuff':
+                $item = node_load($unit->field_stuff_ref[LANGUAGE_NONE][0]['target_id']);
+                $params['!item'] = l($item->title, 'node/' . $item->nid);
+                  form_set_error(
+                    'field_matos][und][' . $item->nid,
+                    format_string('Le matériel !item est déjà utilisé par la séquence !sequence à ce moment.', $params)
+                  );
+                break;
+
+              case 'npc':
+                $item = user_load($unit->field_npc_ref[LANGUAGE_NONE][0]['target_id']);
+                $params['!item'] = l($item->name, 'user/' . $item->uid);
+                foreach ($form_state['values']['field_nonplayers'][LANGUAGE_NONE] as $delta => $npc) {
+                  if (!empty($npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id']) && $npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'] == $item->uid) {
                     break;
-
-                  case 'npc':
-                    $item = node_load($unit->field_npc_ref[LANGUAGE_NONE][0]['target_id']);
-                    $params['!item'] = l($item->title, 'node/' . $item->nid);
-                    foreach ($form_state['values']['field_nonplayers'][LANGUAGE_NONE] as $delta => $npc) {
-                      if (!empty($npc['field_nonplayer_role'][LANGUAGE_NONE][0]['target_id']) && $npc['field_nonplayer_role'][LANGUAGE_NONE][0]['target_id'] == $item->nid) {
-                        break;
-                      }
-                    }
-                    form_set_error(
-                      'field_nonplayers][und][' . $delta . '][field_nonplayer_role',
-                      format_string('Le PNJ !item est déjà utilisé par la séquence !sequence à ce moment.', $params)
-                    );
-                    break;
-
-                  case 'pc':
-                    $item = node_load($unit->field_pc_ref[LANGUAGE_NONE][0]['target_id']);
-                    $params['!item'] = l($item->title, 'node/' . $item->nid);
-                    form_set_error(
-                      'field_players][und][' . $item->nid,
-                      format_string('Le PJ !item est déjà utilisé par la séquence !sequence à ce moment.', $params)
-                    );
-                    break;
+                  }
                 }
-              }
+                form_set_error(
+                  'field_nonplayers][und][' . $delta . '][field_incarnate_npc',
+                  format_string('Le PNJ !item est déjà utilisé par la séquence !sequence à ce moment.', $params)
+                );
+                break;
+
+              case 'pc':
+                $item = node_load($unit->field_pc_ref[LANGUAGE_NONE][0]['target_id']);
+                $params['!item'] = l($item->title, 'node/' . $item->nid);
+                form_set_error(
+                  'field_players][und][' . $item->nid,
+                  format_string('Le PJ !item est déjà utilisé par la séquence !sequence à ce moment.', $params)
+                );
+                break;
             }
           }
         }
@@ -187,6 +202,11 @@ function sequences_node_presave($node) {
       $node->field_unit_ref[LANGUAGE_NONE] = [];
     }
   }
+
+  // Events management.
+  elseif ($node->type == 'sequence') {
+    _sequences_entity_handle_event($node);
+  }
 }
 
 /**
@@ -203,7 +223,25 @@ function sequences_node_insert($node) {
     }
     bat_unit_save($unit);
   }
+
+  sequences_node_update($node);
 }
+
+/**
+ * Implements hook_node_update().
+ */
+function sequences_node_update($node) {
+  if (!empty($node->field_event_refs)) {
+    foreach ($node->field_event_refs[LANGUAGE_NONE] as $event) {
+      $event = bat_event_load($event['target_id']);
+      if (empty($event->field_sequence_ref)) {
+        $event->field_sequence_ref = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
+        bat_event_save($event);
+      }
+    }
+  }
+}
+
 
 /**
  * Implements hook_user_update().
@@ -250,4 +288,76 @@ function _sequences_entity_handle_unit($type, $entity) {
     'unit_id' => $unit->unit_id,
     'event_type_id' => bat_event_get_types('availability')->id,
   ]]];
+}
+
+/**
+ * Helper that creates or edit an Event to mirror the given entity.
+ *
+ * @param object $entity
+ */
+function _sequences_entity_handle_event($entity) {
+  // Gather all resources (stuff, npc, pc).
+  $nids = [];
+  foreach ($entity->field_matos[LANGUAGE_NONE] as $item) {
+    if (!empty($item['target_id'])) {
+      $nids[$item['target_id']] = $item['target_id'];
+    }
+  }
+  foreach ($entity->field_players[LANGUAGE_NONE] as $item) {
+    if (!empty($item['target_id'])) {
+      $nids[$item['target_id']] = $item['target_id'];
+    }
+  }
+  $resources = node_load_multiple($nids);
+
+  $uids = [];
+  foreach ($entity->field_nonplayers[LANGUAGE_NONE] as $npc) {
+    if (!empty($npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'])) {
+      $target_id = $npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'];
+      $uids[$target_id] = $target_id;
+    }
+  }
+  $resources = array_merge($resources, user_load_multiple($uids));
+
+  // Extract all unit ids of the resources.
+  $bat_units = [];
+  foreach ($resources as $resource) {
+    if (!empty($resource->field_unit_ref[LANGUAGE_NONE][0]['unit_id'])) {
+      $unit_id = $resource->field_unit_ref[LANGUAGE_NONE][0]['unit_id'];
+      $bat_units[$unit_id] = $unit_id;
+    }
+  }
+
+  // Handle existing events.
+  foreach ($entity->field_event_refs[LANGUAGE_NONE] as $event) {
+    $event = bat_event_load($event['target_id']);
+    if ($entity->field_dates != $entity->original->field_dates) {
+      $event->start_date = $entity->field_dates[LANGUAGE_NONE][0]['value'];
+      $event->end_date = $entity->field_dates[LANGUAGE_NONE][0]['value2'];
+      if (!empty($entity->nid)) {
+        $event->field_sequence_ref = [LANGUAGE_NONE => [['target_id' => $entity->nid]]];
+      }
+      bat_event_save($event);
+    }
+
+    // Remove existing event's unit from the units to handle.
+    $unit_id = $event->event_bat_unit_reference[LANGUAGE_NONE][0]['target_id'];
+    unset($bat_units[$unit_id]);
+  }
+
+  // Handle remaining units.
+  $state_id = bat_event_load_state_by_machine_name('unavailable')['id'];
+  foreach ($bat_units as $unit_id) {
+    $event = bat_event_create(['type' => 'availability']);
+    $event->start_date = $entity->field_dates[LANGUAGE_NONE][0]['value'];
+    $event->end_date = $entity->field_dates[LANGUAGE_NONE][0]['value2'];
+    $event->event_bat_unit_reference = [LANGUAGE_NONE => [['target_id' => $unit_id]]];
+    $event->event_state_reference = [LANGUAGE_NONE => [['state_id' => $state_id]]];
+    if (!empty($entity->nid)) {
+      $event->field_sequence_ref = [LANGUAGE_NONE => [['target_id' => $entity->nid]]];
+    }
+    bat_event_save($event);
+
+    $entity->field_event_refs[LANGUAGE_NONE][] = ['target_id' => $event->event_id];
+  }
 }
