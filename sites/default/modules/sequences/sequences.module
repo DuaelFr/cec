@@ -134,7 +134,7 @@ function sequences_node_validate($node, $form, &$form_state) {
 
               case 'npc':
                 $item = user_load($unit->field_npc_ref[LANGUAGE_NONE][0]['target_id']);
-                $params['!item'] = l($item->name, 'user/' . $item->uid);
+                $params['!item'] = l(entity_label('user', $item), 'user/' . $item->uid);
                 foreach ($form_state['values']['field_nonplayers'][LANGUAGE_NONE] as $delta => $npc) {
                   if (!empty($npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id']) && $npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'] == $item->uid) {
                     break;
@@ -168,7 +168,7 @@ function sequences_node_validate($node, $form, &$form_state) {
 function sequences_user_presave(&$edit, $account, $category) {
   // If the user is a PNJ or a Zorga.
   if (!empty($account->roles[user_role_load_by_name('PNJ')->rid]) || !empty($account->roles[user_role_load_by_name('Zorga')->rid])) {
-    _sequences_entity_handle_unit('npc', $account);
+    _sequences_entity_handle_unit('npc', 'user', $account);
     $edit['field_unit_ref'][LANGUAGE_NONE] = $account->field_unit_ref[LANGUAGE_NONE];
   }
   // If the user was a PNJ or Zorga but not anymore.
@@ -187,12 +187,12 @@ function sequences_user_presave(&$edit, $account, $category) {
 function sequences_node_presave($node) {
   // Units management.
   if ($node->type == 'stuff') {
-    _sequences_entity_handle_unit('stuff', $node);
+    _sequences_entity_handle_unit('stuff', 'node', $node);
   }
   elseif ($node->type == 'character') {
     // If the character is a Player Character.
     if ($node->field_character_type[LANGUAGE_NONE][0]['value'] == 'Joueur') {
-      _sequences_entity_handle_unit('pc', $node);
+      _sequences_entity_handle_unit('pc', 'node', $node);
     }
     // If the character was a Player Character but not anymore.
     elseif (!empty($node->field_unit_ref[LANGUAGE_NONE])) {
@@ -213,17 +213,6 @@ function sequences_node_presave($node) {
  * Implements hook_node_insert().
  */
 function sequences_node_insert($node) {
-  if (!empty($node->field_unit_ref[LANGUAGE_NONE])) {
-    $unit = bat_unit_load($node->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
-    if ($node->type == 'stuff') {
-      $unit->field_stuff_ref = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
-    }
-    elseif ($node->type == 'character') {
-      $unit->field_pc_ref = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
-    }
-    bat_unit_save($unit);
-  }
-
   sequences_node_update($node);
 }
 
@@ -231,10 +220,18 @@ function sequences_node_insert($node) {
  * Implements hook_node_update().
  */
 function sequences_node_update($node) {
+  if (!empty($node->field_unit_ref[LANGUAGE_NONE])) {
+    $unit = bat_unit_load($node->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
+    if (empty($unit->{'field_' . $unit->type . '_ref'}[LANGUAGE_NONE])) {
+      $unit->{'field_' . $unit->type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
+      bat_unit_save($unit);
+    }
+  }
+
   if (!empty($node->field_event_refs)) {
     foreach ($node->field_event_refs[LANGUAGE_NONE] as $event) {
       $event = bat_event_load($event['target_id']);
-      if (empty($event->field_sequence_ref)) {
+      if (empty($event->field_sequence_ref[LANGUAGE_NONE])) {
         $event->field_sequence_ref = [LANGUAGE_NONE => [['target_id' => $node->nid]]];
         bat_event_save($event);
       }
@@ -249,8 +246,10 @@ function sequences_node_update($node) {
 function sequences_user_update(&$edit, $account, $category) {
   if (!empty($account->field_unit_ref[LANGUAGE_NONE])) {
     $unit = bat_unit_load($account->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
-    $unit->field_npc_ref = [LANGUAGE_NONE => [['target_id' => $account->uid]]];
-    bat_unit_save($unit);
+    if (empty($unit->{'field_' . $unit->type . '_ref'}[LANGUAGE_NONE])) {
+      $unit->{'field_' . $unit->type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $account->uid]]];
+      bat_unit_save($unit);
+    }
   }
 }
 
@@ -258,9 +257,10 @@ function sequences_user_update(&$edit, $account, $category) {
  * Helper that creates or edit a Unit to mirror the given entity.
  *
  * @param string $type
+ * @param string $entity_type
  * @param object $entity
  */
-function _sequences_entity_handle_unit($type, $entity) {
+function _sequences_entity_handle_unit($type, $entity_type, $entity) {
   $mapping = ['stuff' => 'Matériel', 'npc' => 'PNJ', 'pc' => 'PJ'];
 
   // If there is already an Unit attached to the entity.
@@ -269,18 +269,12 @@ function _sequences_entity_handle_unit($type, $entity) {
   }
 
   $unit = bat_unit_create([
-    'name' => !empty($entity->title) ? $entity->title : $entity->name,
+    'name' => entity_label($entity_type, $entity),
     'type' => $type,
     'type_id' => array_search($mapping[$type], bat_unit_types_ids()),
     'created' => REQUEST_TIME,
   ]);
-
-  if (!empty($entity->nid)) {
-    $unit->{'field_' . $type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $entity->nid]]];
-  }
-  if (!empty($entity->uid)) {
-    $unit->{'field_' . $type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $entity->uid]]];
-  }
+  $unit->{'field_' . $type . '_ref'} = [LANGUAGE_NONE => [['target_id' => entity_id($entity_type, $entity)]]];
   bat_unit_save($unit);
 
   // Save the Unit ID to the node.
