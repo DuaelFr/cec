@@ -29,7 +29,8 @@ function personnages_node_access($node, $op, $account) {
 
   if ($op == 'view' && $node->type == 'character') {
     $return = NODE_ACCESS_DENY;
-    $type = reset(field_get_items('node', $node, 'field_character_type'));
+    $type = field_get_items('node', $node, 'field_character_type');
+    $type = reset($type);
     if ($type['value'] == 'Joueur') {
       $incarnate = field_get_items('node', $node, 'field_incarnate');
       if (!empty($incarnate)) {

@@ -33,7 +33,8 @@ function groupes_node_access($node, $op, $account) {
       $return = NODE_ACCESS_ALLOW;
     }
     else {
-      $technical = reset(field_get_items('node', $node, 'field_group_is_technical'));
+      $technical = field_get_items('node', $node, 'field_group_is_technical');
+      $technical = reset($technical);
       $technical = $technical['value'] == 1;
       if ($technical && user_access('view technical groups')) {
         $return = NODE_ACCESS_ALLOW;
