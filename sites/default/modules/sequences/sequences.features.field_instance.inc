@@ -177,8 +177,8 @@ function sequences_field_default_field_instances() {
     ),
     'entity_type' => 'bat_unit',
     'field_name' => 'field_npc_ref',
-    'label' => 'Personnage',
-    'required' => 1,
+    'label' => 'PNJ',
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
