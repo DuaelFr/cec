@@ -179,6 +179,15 @@ function cec_profiles_mail($key, &$message, $params) {
   $message['body'] = array($msg);
 }
 
+/**
+ * Implements hook_username_alter().
+ */
+function cec_profiles_username_alter(&$name, $account) {
+  if (!empty($account->data['firstname'])) {
+    $name = $account->data['firstname'] . ' ' . $account->data['lastname'];
+  }
+}
+
 
 // -----------------------------------------------------------------------------
 // FORMS
