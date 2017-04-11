@@ -770,6 +770,17 @@ Date de fin : [field_dates_1]
     'character' => 'character',
   );
   $handler->display->display_options['arguments']['null']['validate']['fail'] = 'empty';
+  /* Contextual filter: Nœud: Opus (field_opus) */
+  $handler->display->display_options['arguments']['field_opus_value']['id'] = 'field_opus_value';
+  $handler->display->display_options['arguments']['field_opus_value']['table'] = 'field_data_field_opus';
+  $handler->display->display_options['arguments']['field_opus_value']['field'] = 'field_opus_value';
+  $handler->display->display_options['arguments']['field_opus_value']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_opus_value']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['field_opus_value']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_opus_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_opus_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_opus_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_opus_value']['limit'] = '0';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['operator'] = 'OR';
   $handler->display->display_options['filter_groups']['groups'] = array(
