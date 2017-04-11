@@ -1152,10 +1152,10 @@ Date de fin : [field_dates_1]
 
   $view = new view();
   $view->name = 'export_sequences';
-  $view->description = 'Export des séquences No1. (sans PNJs & matos)';
+  $view->description = 'Export des séquences';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Export Sequences 1';
+  $view->human_name = 'Export Sequences';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -1164,6 +1164,7 @@ Date de fin : [field_dates_1]
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Export Séquence étape 2 PNJs';
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'plus';
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     168020977 => '168020977',
@@ -1171,7 +1172,17 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
   $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Éléments par page';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Tout -';
+  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Décalage';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« premier';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ précédent';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'suivant ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Nœud: Type de séquence (field_sequence_type) */
@@ -1194,7 +1205,6 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = 'Titre';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Taxonomy term: Name */
@@ -1296,6 +1306,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['arguments']['field_opus_value']['default_action'] = 'default';
   $handler->display->display_options['arguments']['field_opus_value']['exception']['title'] = 'Tout';
   $handler->display->display_options['arguments']['field_opus_value']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_opus_value']['default_argument_options']['argument'] = 'acte3';
   $handler->display->display_options['arguments']['field_opus_value']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_opus_value']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_opus_value']['summary_options']['items_per_page'] = '25';
@@ -1342,12 +1353,11 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['label'] = 'ID Sequence';
+  $handler->display->display_options['fields']['nid']['label'] = 'ID';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = 'Titre';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Taxonomy term: Name */
@@ -1360,13 +1370,14 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_dates']['id'] = 'field_dates';
   $handler->display->display_options['fields']['field_dates']['table'] = 'field_data_field_dates';
   $handler->display->display_options['fields']['field_dates']['field'] = 'field_dates';
-  $handler->display->display_options['fields']['field_dates']['label'] = 'Début';
+  $handler->display->display_options['fields']['field_dates']['label'] = 'Debut';
   $handler->display->display_options['fields']['field_dates']['settings'] = array(
     'format_type' => 'short',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
+    'show_remaining_days' => 0,
   );
   /* Field: Nœud: Dates */
   $handler->display->display_options['fields']['field_dates_1']['id'] = 'field_dates_1';
@@ -1384,7 +1395,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_intrigue']['id'] = 'field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue']['field'] = 'field_intrigue';
-  $handler->display->display_options['fields']['field_intrigue']['label'] = 'Intrigue 1';
+  $handler->display->display_options['fields']['field_intrigue']['label'] = 'Intrigue1';
   $handler->display->display_options['fields']['field_intrigue']['settings'] = array(
     'link' => 0,
   );
@@ -1394,7 +1405,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_intrigue_1']['id'] = 'field_intrigue_1';
   $handler->display->display_options['fields']['field_intrigue_1']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue_1']['field'] = 'field_intrigue';
-  $handler->display->display_options['fields']['field_intrigue_1']['label'] = 'Intrigue 2';
+  $handler->display->display_options['fields']['field_intrigue_1']['label'] = 'Intrigue2';
   $handler->display->display_options['fields']['field_intrigue_1']['settings'] = array(
     'link' => 0,
   );
@@ -1404,7 +1415,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_intrigue_2']['id'] = 'field_intrigue_2';
   $handler->display->display_options['fields']['field_intrigue_2']['table'] = 'field_data_field_intrigue';
   $handler->display->display_options['fields']['field_intrigue_2']['field'] = 'field_intrigue';
-  $handler->display->display_options['fields']['field_intrigue_2']['label'] = 'Intrigue 3';
+  $handler->display->display_options['fields']['field_intrigue_2']['label'] = 'Intrigue3';
   $handler->display->display_options['fields']['field_intrigue_2']['settings'] = array(
     'link' => 0,
   );
@@ -1471,12 +1482,11 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['label'] = 'ID Séquence';
+  $handler->display->display_options['fields']['nid']['label'] = 'ID';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = 'Titre';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Field collection item: Rôle */
@@ -1484,6 +1494,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_nonplayer_role']['table'] = 'field_data_field_nonplayer_role';
   $handler->display->display_options['fields']['field_nonplayer_role']['field'] = 'field_nonplayer_role';
   $handler->display->display_options['fields']['field_nonplayer_role']['relationship'] = 'field_nonplayers_value';
+  $handler->display->display_options['fields']['field_nonplayer_role']['label'] = 'Role';
   $handler->display->display_options['fields']['field_nonplayer_role']['settings'] = array(
     'link' => 0,
   );
@@ -1492,6 +1503,7 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['field_incarnate_npc']['table'] = 'field_data_field_incarnate_npc';
   $handler->display->display_options['fields']['field_incarnate_npc']['field'] = 'field_incarnate_npc';
   $handler->display->display_options['fields']['field_incarnate_npc']['relationship'] = 'field_nonplayers_value';
+  $handler->display->display_options['fields']['field_incarnate_npc']['label'] = 'IncarnePar';
   $handler->display->display_options['fields']['field_incarnate_npc']['settings'] = array(
     'link' => 0,
   );
@@ -1501,7 +1513,7 @@ Date de fin : [field_dates_1]
   /* Display: Export Sequences Matos */
   $handler = $view->new_display('views_data_export', 'Export Sequences Matos', 'views_data_export_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Export Séquence étape 2 PNJs';
+  $handler->display->display_options['title'] = 'Export Séquence étape 3 Matos';
   $handler->display->display_options['display_description'] = 'Matos';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -1526,18 +1538,18 @@ Date de fin : [field_dates_1]
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['label'] = 'ID Séquence';
+  $handler->display->display_options['fields']['nid']['label'] = 'ID';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = 'Titre';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Nœud: Matériel */
   $handler->display->display_options['fields']['field_matos']['id'] = 'field_matos';
   $handler->display->display_options['fields']['field_matos']['table'] = 'field_data_field_matos';
   $handler->display->display_options['fields']['field_matos']['field'] = 'field_matos';
+  $handler->display->display_options['fields']['field_matos']['label'] = 'Materiel';
   $handler->display->display_options['fields']['field_matos']['settings'] = array(
     'link' => 0,
   );
@@ -1548,23 +1560,23 @@ Date de fin : [field_dates_1]
   $translatables['export_sequences'] = array(
     t('Master'),
     t('Export Séquence étape 2 PNJs'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
+    t('plus'),
+    t('Appliquer'),
+    t('Réinitialiser'),
+    t('Trier par'),
     t('Asc'),
     t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
+    t('Éléments par page'),
+    t('- Tout -'),
+    t('Décalage'),
+    t('« premier'),
+    t('‹ précédent'),
+    t('suivant ›'),
+    t('dernier »'),
     t('Type'),
     t('PNJ'),
     t('ID Séquence'),
-    t('Titre'),
+    t('Title'),
     t('Début'),
     t('Fin'),
     t('Intrigue 1'),
@@ -1578,10 +1590,19 @@ Date de fin : [field_dates_1]
     t('Export Sequences root'),
     t('Export Séquence étape 1'),
     t('Etape 1'),
-    t('ID Sequence'),
+    t('more'),
+    t('ID'),
+    t('Debut'),
+    t('Intrigue1'),
+    t('Intrigue2'),
+    t('Intrigue3'),
     t('Export Sequences PNJ'),
+    t('Role'),
+    t('IncarnePar'),
     t('Export Sequences Matos'),
+    t('Export Séquence étape 3 Matos'),
     t('Matos'),
+    t('Materiel'),
   );
   $export['export_sequences'] = $view;
 
