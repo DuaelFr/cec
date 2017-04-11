@@ -16,7 +16,7 @@ function sequences_default_bat_event_type() {
     "fixed_event_states" : "1",
     "weight" : "0",
     "default_event_value_field_ids" : null,
-    "default_event_label_field_name" : "field_sequence",
+    "default_event_label_field_name" : "field_sequence_ref",
     "data" : "",
     "target_entity_type" : "bat_unit",
     "event_states" : [
