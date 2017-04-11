@@ -323,20 +323,22 @@ function _sequences_entity_handle_event($entity) {
   }
 
   // Handle existing events.
-  foreach ($entity->field_event_refs[LANGUAGE_NONE] as $event) {
-    $event = bat_event_load($event['target_id']);
-    if ($entity->field_dates != $entity->original->field_dates) {
-      $event->start_date = $entity->field_dates[LANGUAGE_NONE][0]['value'];
-      $event->end_date = $entity->field_dates[LANGUAGE_NONE][0]['value2'];
-      if (!empty($entity->nid)) {
-        $event->field_sequence_ref = [LANGUAGE_NONE => [['target_id' => $entity->nid]]];
+  if (!empty($entity->field_event_refs[LANGUAGE_NONE])) {
+    foreach ($entity->field_event_refs[LANGUAGE_NONE] as $event) {
+      $event = bat_event_load($event['target_id']);
+      if ($entity->field_dates != $entity->original->field_dates) {
+        $event->start_date = $entity->field_dates[LANGUAGE_NONE][0]['value'];
+        $event->end_date = $entity->field_dates[LANGUAGE_NONE][0]['value2'];
+        if (!empty($entity->nid)) {
+          $event->field_sequence_ref = [LANGUAGE_NONE => [['target_id' => $entity->nid]]];
+        }
+        bat_event_save($event);
       }
-      bat_event_save($event);
-    }
 
-    // Remove existing event's unit from the units to handle.
-    $unit_id = $event->event_bat_unit_reference[LANGUAGE_NONE][0]['target_id'];
-    unset($bat_units[$unit_id]);
+      // Remove existing event's unit from the units to handle.
+      $unit_id = $event->event_bat_unit_reference[LANGUAGE_NONE][0]['target_id'];
+      unset($bat_units[$unit_id]);
+    }
   }
 
   // Handle remaining units.
