@@ -40,7 +40,7 @@ function sequences_form_alter(&$form, &$form_state, $form_id) {
  */
 function sequences_date_select_process_alter(&$element, &$form_state, $context) {
   if ($context['form']['#form_id'] == 'sequence_node_form') {
-    $element['day']['#options'] = array(27 => 'Jeudi 27', 28 => 'Vendredi 28', 29 => 'Samedi 29', 30 => 'Dimanche 30', 01 => 'Lundi 1er');
+    $element['day']['#options'] = array(27 => 'Jeudi 27', 28 => 'Vendredi 28', 29 => 'Samedi 29', 30 => 'Dimanche 30', 01 => 'Lundi 1er', 02 => 'Mardi 2', 03 => 'Mercredi 3', 04 => 'Jeudi 4');
     $element['month']['#options'] = array(04 => 'Avril', 05 => 'Mai');
   }
 }
