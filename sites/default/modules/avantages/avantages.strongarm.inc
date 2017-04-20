@@ -226,6 +226,10 @@ function avantages_strongarm() {
       'role' => '168020977',
       'view_mode' => 'full_zorga',
     ),
+    1 => array(
+      'role' => '199742668',
+      'view_mode' => 'full_zorga',
+    ),
   );
   $export['view_mode_per_role_avantage'] = $strongarm;
 

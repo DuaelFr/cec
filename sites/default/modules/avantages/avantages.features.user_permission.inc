@@ -84,6 +84,7 @@ function avantages_user_default_permissions() {
   $permissions['view all avantages'] = array(
     'name' => 'view all avantages',
     'roles' => array(
+      'PNJ' => 'PNJ',
       'Zorga' => 'Zorga',
     ),
     'module' => 'avantages',

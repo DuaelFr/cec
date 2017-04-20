@@ -39,7 +39,7 @@ function avantages_node_access($node, $op, $account) {
 function avantages_file_download($uri) {
   global $user;
 
-  if (strpos($uri, 'private://avantages/') === 0 && $user->uid != 1) {
+  if (strpos($uri, 'private://avantages/') === 0 && !user_access('view all avantages')) {
     // Get the corresponding fid.
     $files = file_load_multiple(array(), array('uri' => $uri));
     $fid = key($files);
@@ -52,8 +52,8 @@ function avantages_file_download($uri) {
       ->fieldCondition('field_attachment', 'fid', $fid, '=')
       ->addMetaData('account', user_load(1));
     $result = $query->execute();
+    if (empty($result) || empty($result['node'])) { return NULL; }
     $avtid = key($result['node']);
-    if (empty($avtid)) { return NULL; }
 
     // Get the field collections in which this avantage is.
     $query = new EntityFieldQuery();
@@ -62,8 +62,8 @@ function avantages_file_download($uri) {
       ->fieldCondition('field_avantage_valide', 'value', 1, '=')
       ->fieldCondition('field_avantage', 'target_id', $avtid, '=');
     $result = $query->execute();
+    if (empty($result) || empty($result['field_collection_item'])) { return -1; }
     $fcids = array_keys($result['field_collection_item']);
-    if (empty($fcids)) { return -1; }
 
     // Get the characters linked to one of these avantages and incarnated by the current user.
     $query = new EntityFieldQuery();
@@ -72,8 +72,7 @@ function avantages_file_download($uri) {
       ->fieldCondition('field_incarnate', 'target_id', $user->uid, '=')
       ->fieldCondition('field_avantages', 'value', $fcids, 'IN');
     $result = $query->execute();
-    $charids = array_keys($result['node']);
-    if (empty($charids)) { return -1; }
+    if (empty($result) || empty($result['node'])) { return -1; }
 
     // Allow download.
     $result = array(
@@ -101,8 +100,8 @@ function avantages_file_download_access($file_item, $entity_type, $entity) {
       ->fieldCondition('field_avantage_valide', 'value', 1, '=')
       ->fieldCondition('field_avantage', 'target_id', $entity->nid, '=');
     $result = $query->execute();
+    if (empty($result) || empty($result['field_collection_item'])) { return FALSE; }
     $fcids = array_keys($result['field_collection_item']);
-    if (empty($fcids)) { return FALSE; }
 
     // Get the characters linked to one of these avantages and incarnated by the current user.
     global $user;
@@ -112,8 +111,7 @@ function avantages_file_download_access($file_item, $entity_type, $entity) {
       ->fieldCondition('field_incarnate', 'target_id', $user->uid, '=')
       ->fieldCondition('field_avantages', 'value', $fcids, 'IN');
     $result = $query->execute();
-    $charids = array_keys($result['node']);
-    if (empty($charids)) { return FALSE; }
+    if (empty($result) || empty($result['node'])) { return FALSE; }
 
     return TRUE;
   }
