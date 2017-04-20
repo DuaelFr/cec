@@ -88,13 +88,3 @@ function cec_commons_form_alter(&$form, &$form_state, $form_id) {
     $form['field_opus'][LANGUAGE_NONE]['#default_value'][] = variable_get('cec_current_opus');
   }
 }
-
-/**
- * Implements hook_views_api().
- */
-function cec_commons_views_api() {
-  return [
-    'api' => 3,
-    'path' => drupal_get_path('module', 'cec_commons') . '/views',
-  ];
-}
