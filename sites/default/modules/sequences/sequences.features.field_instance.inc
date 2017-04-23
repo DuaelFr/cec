@@ -311,7 +311,7 @@ function sequences_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
           'link' => FALSE,
@@ -349,7 +349,7 @@ function sequences_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
           'link' => FALSE,
@@ -701,11 +701,11 @@ function sequences_field_default_field_instances() {
         'settings' => array(
           'add' => 'Ajouter',
           'delete' => 'Supprimer',
-          'description' => TRUE,
+          'description' => 1,
           'edit' => 'Modifier',
-          'translate' => 'Traduire',
+          'view_mode' => 'full',
         ),
-        'type' => 'field_collection_list',
+        'type' => 'field_collection_view',
         'weight' => 7,
       ),
       'print' => array(
