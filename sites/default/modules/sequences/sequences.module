@@ -324,26 +324,32 @@ function _sequences_entity_handle_unit($type, $entity_type, $entity) {
 function _sequences_entity_handle_event($entity) {
   // Gather all resources (stuff, npc, pc).
   $nids = [];
-  foreach ($entity->field_matos[LANGUAGE_NONE] as $item) {
-    if (!empty($item['target_id'])) {
-      $nids[$item['target_id']] = $item['target_id'];
+  if (!empty($entity->field_matos[LANGUAGE_NONE])) {
+    foreach ($entity->field_matos[LANGUAGE_NONE] as $item) {
+      if (!empty($item['target_id'])) {
+        $nids[$item['target_id']] = $item['target_id'];
+      }
     }
   }
-  foreach ($entity->field_players[LANGUAGE_NONE] as $item) {
-    if (!empty($item['target_id'])) {
-      $nids[$item['target_id']] = $item['target_id'];
+  if (!empty($entity->field_players[LANGUAGE_NONE])) {
+    foreach ($entity->field_players[LANGUAGE_NONE] as $item) {
+      if (!empty($item['target_id'])) {
+        $nids[$item['target_id']] = $item['target_id'];
+      }
     }
   }
-  $resources = node_load_multiple($nids);
+  $resources = !empty($nids) ? node_load_multiple($nids) : [];
 
   $uids = [];
-  foreach ($entity->field_nonplayers[LANGUAGE_NONE] as $npc) {
-    if (!empty($npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'])) {
-      $target_id = $npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'];
-      $uids[$target_id] = $target_id;
+  if (!empty($entity->field_nonplayers[LANGUAGE_NONE])) {
+    foreach ($entity->field_nonplayers[LANGUAGE_NONE] as $npc) {
+      if (!empty($npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'])) {
+        $target_id = $npc['field_incarnate_npc'][LANGUAGE_NONE][0]['target_id'];
+        $uids[$target_id] = $target_id;
+      }
     }
   }
-  $resources = array_merge($resources, user_load_multiple($uids));
+  $resources = !empty($uids) ? array_merge($resources, user_load_multiple($uids)) : $resources;
 
   // Extract all unit ids of the resources.
   $bat_units = [];
