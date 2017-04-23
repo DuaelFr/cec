@@ -239,6 +239,26 @@ function sequences_node_update($node) {
   }
 }
 
+/**
+ * Implements hook_node_delete().
+ */
+function sequences_node_delete($node) {
+  if (!empty($node->field_unit_ref[LANGUAGE_NONE])) {
+    $unit = bat_unit_load($node->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
+    if (!empty($unit)) {
+      bat_unit_delete($unit);
+    }
+  }
+
+  if (!empty($node->field_event_refs)) {
+    foreach ($node->field_event_refs[LANGUAGE_NONE] as $event) {
+      $event = bat_event_load($event['target_id']);
+      if (!empty($event)) {
+        bat_event_delete($event);
+      }
+    }
+  }
+}
 
 /**
  * Implements hook_user_update().
@@ -249,6 +269,18 @@ function sequences_user_update(&$edit, $account, $category) {
     if (empty($unit->{'field_' . $unit->type . '_ref'}[LANGUAGE_NONE])) {
       $unit->{'field_' . $unit->type . '_ref'} = [LANGUAGE_NONE => [['target_id' => $account->uid]]];
       bat_unit_save($unit);
+    }
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function sequences_user_cancel($edit, $account, $method) {
+  if (!empty($account->field_unit_ref[LANGUAGE_NONE])) {
+    $unit = bat_unit_load($account->field_unit_ref[LANGUAGE_NONE][0]['unit_id']);
+    if (!empty($unit)) {
+      bat_unit_delete($unit);
     }
   }
 }
