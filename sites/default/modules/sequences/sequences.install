@@ -87,7 +87,7 @@ function sequences_update_7005(&$sandbox) {
     $q = new EntityFieldQuery();
     $q->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'sequence')
-      ->fieldCondition('field_opus', 'acte3');
+      ->fieldCondition('field_opus', 'value', 'acte3');
     $r = $q->execute();
 
     $sandbox['items'] = array_keys($r['node']);
