@@ -20,21 +20,27 @@ function sequences_user_default_permissions() {
   // Exported permission: 'create sequence content'.
   $permissions['create sequence content'] = array(
     'name' => 'create sequence content',
-    'roles' => array(),
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any sequence content'.
   $permissions['delete any sequence content'] = array(
     'name' => 'delete any sequence content',
-    'roles' => array(),
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete own sequence content'.
   $permissions['delete own sequence content'] = array(
     'name' => 'delete own sequence content',
-    'roles' => array(),
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'node',
   );
 
@@ -48,14 +54,18 @@ function sequences_user_default_permissions() {
   // Exported permission: 'edit any sequence content'.
   $permissions['edit any sequence content'] = array(
     'name' => 'edit any sequence content',
-    'roles' => array(),
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit own sequence content'.
   $permissions['edit own sequence content'] = array(
     'name' => 'edit own sequence content',
-    'roles' => array(),
+    'roles' => array(
+      'Zorga' => 'Zorga',
+    ),
     'module' => 'node',
   );
 
