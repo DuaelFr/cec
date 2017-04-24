@@ -242,3 +242,23 @@ h4 {
 .view-admin-sequences.view-display-id-page_print .field-collection-view-links { display: none; }
 .view-admin-sequences.view-display-id-page_print .action-links-field-collection-add { display: none; }
 
+
+/**********************/
+/* Sequences planning */
+/**********************/
+
+table.cec-planning {}
+table.cec-planning th.time { font-size: .75em; padding-top: 0; padding-bottom: 15px; line-height: 1.5; }
+table.cec-planning tr td { background: #fff; border: 0; }
+table.cec-planning tr:hover td { background: #fff; border: 0; }
+table.cec-planning tr td a {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  display: block;
+  height: 100%;
+  margin: -5px 0;
+  padding: 5px;
+}
+table.cec-planning tr td a:hover {
+  background: lightgrey;
+}

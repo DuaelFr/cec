@@ -413,3 +413,132 @@ function _sequences_entity_handle_event($entity) {
     $entity->field_event_refs[LANGUAGE_NONE][] = ['target_id' => $event->event_id];
   }
 }
+
+// -----------------------------------------------------------------------------
+// Plannings.
+
+/**
+ * Implements hook_menu().
+ */
+function sequences_menu() {
+  $items['admin/cec/sequences-planning'] = [
+    'title' => 'Planning',
+    'access arguments' => ['edit any sequence content'],
+    'page callback' => '_sequences_planning_summary',
+  ];
+  $items['admin/cec/sequences-planning/%'] = [
+    'title' => 'Planning',
+    'access arguments' => ['edit any sequence content'],
+    'page callback' => '_sequences_planning_day',
+    'page arguments' => [3],
+  ];
+  return $items;
+}
+
+/**
+ * Page callback for admin/cec/sequences-planning.
+ */
+function _sequences_planning_summary() {
+  $opus = variable_get('cec_current_opus');
+
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'sequence')
+    ->fieldCondition('field_opus', 'value', $opus);
+  $result = $query->execute();
+
+  $query = db_select('field_data_field_dates', 'd')
+    ->fields('d', ['field_dates_value', 'field_dates_value2'])
+    ->condition('entity_id', array_keys($result['node']));
+  $results = $query->execute();
+
+  $dates = [];
+  foreach ($results as $result) {
+    $dates[] = substr($result->field_dates_value, 0, 10);
+    $dates[] = substr($result->field_dates_value2, 0, 10);
+  }
+  $dates = array_unique($dates);
+  sort($dates);
+
+  $build = [
+    '#theme' => 'item_list',
+    '#title' => 'Global par jour',
+    '#items' => [],
+  ];
+  foreach ($dates as $date) {
+    $build['#items'][] = l(\DateTime::createFromFormat('Y-m-d', $date)->format('l j F Y'), 'admin/cec/sequences-planning/' . $date);
+  }
+  return $build;
+}
+
+/**
+ * Page callback for admin/cec/sequences-planning/%.
+ */
+function _sequences_planning_day($date) {
+  $title = \DateTime::createFromFormat('Y-m-d', $date)->format('l j F Y');
+  drupal_set_title($title);
+
+  $query = db_select('field_data_field_dates', 'd')
+    ->fields('d', ['entity_id'])
+    ->condition(
+      db_or()
+        ->condition(
+          db_and()
+            ->condition('field_dates_value', $date . ' 00:00:00', '>=')
+            ->condition('field_dates_value', $date . ' 23:59:59', '<=')
+        )
+        ->condition(
+          db_and()
+            ->condition('field_dates_value2', $date . ' 00:00:00', '>=')
+            ->condition('field_dates_value2', $date . ' 23:59:59', '<=')
+        )
+    )
+    ->orderBy('field_dates_value');
+  $results = $query->execute()->fetchCol();
+
+  return _sequences_build_planning($results);
+}
+
+/**
+ * Helper that builds a planning from an array of sequences nids.
+ *
+ * @param $nids
+ * @return array
+ */
+function _sequences_build_planning($nids) {
+  $build = [
+    '#theme' => 'table',
+    '#attributes' => ['class' => ['cec-planning']],
+    '#header' => [
+      'Heure',
+      ['data' => 'Séquences', 'colspan' => 100],
+    ],
+    '#rows' => [],
+  ];
+
+  for ($i = 0 ; $i < 24 ; ++$i) {
+    $build['#rows'][] = [
+      ['data' => sprintf('%02d', $i) . ':00', 'header' => TRUE, 'class' => 'time'],
+    ];
+    $build['#rows'][] = [
+      ['data' => sprintf('%02d', $i) . ':30', 'header' => TRUE, 'class' => 'time'],
+    ];
+  }
+
+  foreach (node_load_multiple($nids) as $node) {
+    $start = \DateTime::createFromFormat('Y-m-d H:i:s', $node->field_dates[LANGUAGE_NONE][0]['value']);
+    $end   = \DateTime::createFromFormat('Y-m-d H:i:s', $node->field_dates[LANGUAGE_NONE][0]['value2']);
+
+    $start_index = $start->format('H') * 2 + $start->format('i') / 30;
+
+    $diff = $start->diff($end, TRUE);
+    $length = $diff->h * 2 + $diff->i / 30;
+
+    $build['#rows'][$start_index][] = [
+      'data' => l($node->title, 'node/' . $node->nid),
+      'rowspan' => $length,
+    ];
+  }
+
+  return $build;
+}

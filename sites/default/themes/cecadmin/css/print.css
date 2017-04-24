@@ -66,6 +66,7 @@
   }
 
   .breadcrumb,
+  .messages,
   .print-link,
   #header,
   #right-section,
@@ -108,5 +109,11 @@
   .view-admin-sequences.view-display-id-page_print .field { display: block; float: none; overflow: hidden; }
   .view-admin-sequences.view-display-id-page_print h2 { font-size: 2em; margin-bottom: 1em; }
   .view-admin-sequences.view-display-id-page_print .field-label-above .field-label { font-size: 1.2em; margin-top: 1em; }
+
+  table.cec-planning th.time { font-size: .75em; padding-top: 0; padding-bottom: 15px; line-height: 1; }
+  table.cec-planning tr { border-top: 1px solid lightgrey; }
+  table.cec-planning tr:last-child { border-bottom: 1px solid lightgrey; }
+  table.cec-planning tr td { border: 1px solid grey; padding: 5px; }
+  table.cec-planning tr td[rowspan] { break-inside: avoid; }
 
 } /* End @media print */
