@@ -247,6 +247,10 @@ h4 {
 /* Sequences planning */
 /**********************/
 
+.cec-planning__filters > div { display: flex; align-items: flex-start; flex-flow: row nowrap; justify-content: space-between; }
+.cec-planning__filters > div > :not(:last-child) { margin-right: 5px; }
+.cec-planning__filters > div > :last-child { margin-top: 20px; }
+
 table.cec-planning {}
 table.cec-planning th.time { font-size: .75em; padding-top: 0; padding-bottom: 15px; line-height: 1.5; }
 table.cec-planning tr td { background: #fff; border: 0; }

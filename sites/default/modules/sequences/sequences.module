@@ -426,12 +426,6 @@ function sequences_menu() {
     'access arguments' => ['edit any sequence content'],
     'page callback' => '_sequences_planning_summary',
   ];
-  $items['admin/cec/sequences-planning/%'] = [
-    'title' => 'Planning',
-    'access arguments' => ['edit any sequence content'],
-    'page callback' => '_sequences_planning_day',
-    'page arguments' => [3],
-  ];
   return $items;
 }
 
@@ -439,42 +433,12 @@ function sequences_menu() {
  * Page callback for admin/cec/sequences-planning.
  */
 function _sequences_planning_summary() {
-  $opus = variable_get('cec_current_opus');
-
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'sequence')
-    ->fieldCondition('field_opus', 'value', $opus);
-  $result = $query->execute();
-
-  $query = db_select('field_data_field_dates', 'd')
-    ->fields('d', ['field_dates_value', 'field_dates_value2'])
-    ->condition('entity_id', array_keys($result['node']));
-  $results = $query->execute();
-
-  $dates = [];
-  foreach ($results as $result) {
-    $dates[] = substr($result->field_dates_value, 0, 10);
-    $dates[] = substr($result->field_dates_value2, 0, 10);
-  }
-  $dates = array_unique($dates);
-  sort($dates);
-
   $build = [
-    '#theme' => 'item_list',
-    '#title' => 'Global par jour',
-    '#items' => [],
+    'filters' => drupal_get_form('sequences_planning_filters'),
+    'results' => [],
   ];
-  foreach ($dates as $date) {
-    $build['#items'][] = l(\DateTime::createFromFormat('Y-m-d', $date)->format('l j F Y'), 'admin/cec/sequences-planning/' . $date);
-  }
-  return $build;
-}
 
-/**
- * Page callback for admin/cec/sequences-planning/%.
- */
-function _sequences_planning_day($date) {
+  $date = $build['filters']['date']['#default_value'];
   $title = \DateTime::createFromFormat('Y-m-d', $date)->format('l j F Y');
   drupal_set_title($title);
 
@@ -494,9 +458,121 @@ function _sequences_planning_day($date) {
         )
     )
     ->orderBy('field_dates_value');
-  $results = $query->execute()->fetchCol();
+  $nids = $query->execute()->fetchCol();
 
-  return _sequences_build_planning($results);
+  if ($build['filters']['intrigue']['#default_value'] != '_none') {
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'sequence')
+      ->fieldCondition('field_intrigue', 'target_id', $build['filters']['intrigue']['#default_value']);
+    $results = $query->execute();
+    $nids = array_intersect($nids, array_keys($results['node']));
+  }
+
+  if ($build['filters']['npc']['#default_value'] != '_none') {
+    $query = db_select('field_data_field_incarnate_npc', 'd')
+      ->fields('d', ['entity_id'])
+      ->distinct(TRUE)
+      ->condition('field_incarnate_npc_target_id', $build['filters']['npc']['#default_value']);
+    $fcids = $query->execute()->fetchCol();
+
+    if (!empty($fcids)) {
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'sequence')
+        ->fieldCondition('field_nonplayers', 'value', $fcids);
+      $results = $query->execute();
+      $nids = array_intersect($nids, array_keys($results['node']));
+    }
+    else {
+      $nids = [];
+    }
+  }
+
+  if ($build['filters']['player']['#default_value'] != '_none') {
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'sequence')
+      ->fieldCondition('field_players', 'target_id', $build['filters']['player']['#default_value']);
+    $results = $query->execute();
+    $nids = array_intersect($nids, array_keys($results['node']));
+  }
+
+  if ($build['filters']['stuff']['#default_value'] != '_none') {
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'sequence')
+      ->fieldCondition('field_matos', 'target_id', $build['filters']['stuff']['#default_value']);
+    $results = $query->execute();
+    $nids = array_intersect($nids, array_keys($results['node']));
+  }
+
+  $build['results'] = _sequences_build_planning($nids);
+  return $build;
+}
+
+function sequences_planning_filters($form, $form_state) {
+  $form = [
+    '#method' => 'GET',
+    '#attributes' => ['class' => ['cec-planning__filters']],
+    '#after_build' => [
+      function($form) {
+        unset($form['form_token']);
+        unset($form['form_build_id']);
+        unset($form['form_id']);
+        return $form;
+      }
+    ],
+  ];
+
+  $dates = _sequences_planning_get_dates();
+  $form['date'] = [
+    '#type' => 'select',
+    '#title' => 'Date',
+    '#options' => $dates,
+    '#default_value' => !empty($_GET['date']) ? $_GET['date'] : key($dates),
+    '#required' => TRUE,
+  ];
+
+  $form['intrigue'] = [
+    '#type' => 'select',
+    '#title' => 'Intrigue',
+    '#options' => _sequences_planning_get_intrigues(),
+    '#empty_value' => '_none',
+    '#default_value' => !empty($_GET['intrigue']) ? $_GET['intrigue'] : '_none',
+  ];
+
+  $form['npc'] = [
+    '#type' => 'select',
+    '#title' => 'PNJ',
+    '#options' => _sequences_planning_get_npcs(),
+    '#empty_value' => '_none',
+    '#default_value' => !empty($_GET['npc']) ? $_GET['npc'] : '_none',
+  ];
+
+  $form['player'] = [
+    '#type' => 'select',
+    '#title' => 'Joueur/euse',
+    '#options' => _sequences_planning_get_players(),
+    '#empty_value' => '_none',
+    '#default_value' => !empty($_GET['player']) ? $_GET['player'] : '_none',
+  ];
+
+  $form['stuff'] = [
+    '#type' => 'select',
+    '#title' => 'Matos',
+    '#options' => _sequences_planning_get_stuff(),
+    '#empty_value' => '_none',
+    '#default_value' => !empty($_GET['stuff']) ? $_GET['stuff'] : '_none',
+  ];
+
+  $form['submit'] = [
+    '#type' => 'submit',
+    '#value' => 'Filtrer',
+    '#name' => '',
+  ];
+
+  return $form;
 }
 
 /**
@@ -541,4 +617,135 @@ function _sequences_build_planning($nids) {
   }
 
   return $build;
+}
+
+// -----------------------------------------------------------------------------
+// Helpers.
+
+/**
+ * Get available players.
+ */
+function _sequences_planning_get_players() {
+  $opus = variable_get('cec_current_opus');
+
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'character')
+    ->fieldCondition('field_character_type', 'value', 'Joueur')
+    ->fieldCondition('field_opus', 'value', $opus);
+  $result = $query->execute();
+
+  $return = [];
+  foreach (node_load_multiple(array_keys($result['node'])) as $node) {
+    $return[$node->nid] = $node->title;
+  }
+  asort($return);
+  return $return;
+}
+
+/**
+ * Get available NPCs.
+ */
+function _sequences_planning_get_npcs() {
+  $rids = [];
+  $rids[] = user_role_load_by_name('PNJ')->rid;
+  $rids[] = user_role_load_by_name('Zorga')->rid;
+
+  $query = db_select('users_roles', 'ur')
+    ->fields('ur', ['uid'])
+    ->distinct(TRUE)
+    ->condition('uid', 1, '>')
+    ->condition('rid', $rids, 'IN');
+  $uids = $query->execute()->fetchCol();
+
+  $return = [];
+  foreach (user_load_multiple($uids) as $account) {
+    $return[$account->uid] = format_string('@firstname @lastname (@username)', [
+      '@firstname' => !empty($account->data['firstname']) ? ucfirst(strtolower($account->data['firstname'])) : ucfirst(strtolower($account->name)),
+      '@lastname'  => !empty($account->data['lastname']) ? ucfirst(strtolower($account->data['lastname'])) : '',
+      '@username'  => $account->name,
+    ]);
+  }
+  asort($return);
+  return $return;
+}
+
+/**
+ * Get available stuff.
+ */
+function _sequences_planning_get_stuff() {
+  $opus = variable_get('cec_current_opus');
+
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'stuff')
+    ->fieldCondition('field_opus', 'value', $opus);
+  $result = $query->execute();
+
+  $return = [];
+  foreach (node_load_multiple(array_keys($result['node'])) as $node) {
+    $return[$node->nid] = $node->title;
+  }
+  asort($return);
+  return $return;
+}
+
+/**
+ * Get available intrigues.
+ */
+function _sequences_planning_get_intrigues() {
+  $query = db_select('field_data_field_intrigue', 'd')
+    ->fields('d', ['field_intrigue_target_id'])
+    ->distinct(TRUE)
+    ->condition('entity_id', _sequences_planning_get_sequences_nids(), 'IN');
+  $nids = $query->execute()->fetchCol();
+
+  $return = [];
+  foreach (node_load_multiple($nids) as $node) {
+    $return[$node->nid] = $node->title;
+  }
+  asort($return);
+  return $return;
+}
+
+/**
+ * Get available dates.
+ */
+function _sequences_planning_get_dates() {
+  $query = db_select('field_data_field_dates', 'd')
+    ->fields('d', ['field_dates_value', 'field_dates_value2'])
+    ->condition('entity_id', _sequences_planning_get_sequences_nids(), 'IN');
+  $results = $query->execute();
+
+  $dates = [];
+  foreach ($results as $result) {
+    $tmp = substr($result->field_dates_value, 0, 10);
+    $dates[$tmp] = \DateTime::createFromFormat('Y-m-d', $tmp)->format('l j F Y');
+
+    $tmp = substr($result->field_dates_value2, 0, 10);
+    $dates[$tmp] = \DateTime::createFromFormat('Y-m-d', $tmp)->format('l j F Y');
+  }
+  $dates = array_unique($dates);
+  ksort($dates);
+
+  return $dates;
+}
+
+/**
+ * Get sequences nids.
+ */
+function _sequences_planning_get_sequences_nids() {
+  $cache = &drupal_static(__FUNCTION__, []);
+  if (empty($cache)) {
+    $opus = variable_get('cec_current_opus');
+
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'sequence')
+      ->fieldCondition('field_opus', 'value', $opus);
+    $result = $query->execute();
+
+    $cache = array_keys($result['node']);
+  }
+  return $cache;
 }
