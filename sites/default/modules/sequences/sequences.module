@@ -18,7 +18,7 @@ function sequences_form_alter(&$form, &$form_state, $form_id) {
     if (empty($form['field_dates'][LANGUAGE_NONE][0]['#default_value']['value'])) {
       $form['field_dates'][LANGUAGE_NONE][0]['#default_value'] = array(
         'value' => '2017-04-27 16:00:00',
-        'value2' => '2017-05-01 16:00:00',
+        'value2' => '2017-04-27 16:30:00',
         'timezone' => 'Europe/Paris',
         'timezone_db' => 'Europe/Paris',
         'date_type' => 'datetime',
