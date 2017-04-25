@@ -42,6 +42,17 @@ function sequences_date_select_process_alter(&$element, &$form_state, $context) 
   if ($context['form']['#form_id'] == 'sequence_node_form') {
     $element['day']['#options'] = array(27 => 'Jeudi 27', 28 => 'Vendredi 28', 29 => 'Samedi 29', 30 => 'Dimanche 30', 01 => 'Lundi 1er', 02 => 'Mardi 2', 03 => 'Mercredi 3', 04 => 'Jeudi 4');
     $element['month']['#options'] = array(04 => 'Avril', 05 => 'Mai');
+    $element['#element_validate'][] = '_sequences_date_validate';
+  }
+}
+
+/**
+ * Validate dates to avoid them to be out of range.
+ */
+function _sequences_date_validate($element, &$form_state) {
+  $input = drupal_array_get_nested_value($form_state['values'], $element['#parents']);
+  if ($input < '2017-04-27 00:00:00' || $input > '2017-05-04 23:59:59') {
+    form_error($element, format_string('Date %which invalide', ['%which' => $element['#date_title']]));
   }
 }
 
