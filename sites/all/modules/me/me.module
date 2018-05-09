@@ -167,8 +167,8 @@ function me_handler($parts, $callback) {
 
   $args = func_get_args();
 
-  $parts = array_pop($args);
-  $callback = array_pop($args);
+  $callback = array_shift($args);
+  $parts = array_shift($args);
 
   // If we want the uid shown in the address bar, we need to do a redirect.
   if (me_variable_get('me_redirect') || _me_user_disabled() || !_me_handle_path($_GET['q'])) {
@@ -316,9 +316,12 @@ function me_menu_alter(&$callbacks) {
         }
 
         $parts = explode('/', $new_path, MENU_MAX_PARTS);
-        //if (isset($data['page arguments'])) $data['page arguments'] = array_merge(array($parts, $data['page callback']), $data['page arguments']);
-        if (isset($data['page arguments'])) $data['page arguments'] = array_merge($data['page arguments'], array($data['page callback'], $parts));
-        else $data['page arguments'] = array($parts, $data['page callback']);
+        if (isset($data['page arguments'])) {
+          $data['page arguments'] = array_merge(array($data['page callback'], $parts), $data['page arguments']);
+        }
+        else {
+          $data['page arguments'] = array($data['page callback'], $parts);
+        }
         $data['page callback'] = 'me_handler';
       }
 
